@@ -1,0 +1,129 @@
+# 버킷
+
+Google Cloud Storage(GCS) 버킷을 만드는 방법에 대해 Google Cloud Console, `gsutil` 명령어 도구, Google Cloud 클라이언트 라이브러리를 사용하는 방법이 있다.
+
+## 버킷 생성
+
+### GCS
+
+1. **Cloud Console 열기**: [Google Cloud Console](https://console.cloud.google.com/)로 이동합니다.
+
+2. **프로젝트 선택**: 버킷을 만들 프로젝트를 선택합니다.
+
+3. **Cloud Storage로 이동**: 네비게이션 메뉴에서 "Cloud Storage" > "Browser"를 선택합니다.
+
+4. **버킷 생성**:
+    - "Create bucket" 버튼을 클릭합니다.
+    - 버킷 이름을 입력합니다. 버킷 이름은 전 세계에서 유일해야 합니다.
+    - 버킷 위치를 선택합니다. 필요에 따라 특정 지역, 다중 지역 또는 이중 지역을 선택할 수 있습니다.
+    - 기본 스토리지 클래스를 선택합니다. 이는 저장된 데이터의 비용 및 가용성에 영향을 미칩니다.
+    - 접근 제어를 설정합니다. "Uniform" 또는 "Fine-grained" 접근 제어를 선택할 수 있습니다.
+    - 필요한 추가 설정을 구성합니다.
+    - "Create"를 클릭하여 버킷을 만듭니다.
+
+### `gsutil` 도구
+
+Google Cloud SDK에 포함된 `gsutil`은 Cloud Storage와 상호작용할 수 있는 명령어 도구다. 
+
+1. **Google Cloud SDK 설치**:
+    - [Google Cloud SDK 설치 페이지](https://cloud.google.com/sdk/docs/install)의 지침에 따라 Google Cloud SDK를 설치합니다.
+
+2. **SDK 초기화**:
+
+    ```sh
+    gcloud init
+    ```
+
+3. **GCS 버킷 만들기**:
+
+    ```sh
+    gsutil mb -p [PROJECT_ID] -l [LOCATION] gs://[BUCKET_NAME]/
+    ```
+
+    - `[PROJECT_ID]`를 Google Cloud 프로젝트 ID로 바꿉니다.
+    - `[LOCATION]`을 버킷 위치로 바꿉니다 (예: `us-central1`, `us`, `EU`).
+    - `[BUCKET_NAME]`을 고유한 버킷 이름으로 바꿉니다.
+
+    예제:
+    ```sh
+    gsutil mb -p alookso-id -l asia-northeast3 gs://my-buckets-name/
+    gstutil ls
+    ```
+
+### 파이썬과 GC 클라이언트
+
+Python을 사용하여 Google Cloud 클라이언트 라이브러리를 통해 프로그래밍 방식으로 GCS 버킷을 만들 수도 있습니다.
+
+1. **Google Cloud Storage 클라이언트 라이브러리 설치**:
+
+    ```sh
+    pip install google-cloud-storage
+    ```
+
+2. **Python을 사용하여 버킷 생성**:
+
+    ```python
+    from google.cloud import storage
+
+    # GCS 클라이언트 초기화
+    client = storage.Client()
+
+    # 버킷 이름과 위치 정의
+    bucket_name = 'your-unique-bucket-name'
+    location = 'US'  # 또는 'us-central1'과 같은 지역 지정
+
+    # 버킷 생성
+    bucket = client.bucket(bucket_name)
+    new_bucket = client.create_bucket(bucket, location=location)
+
+    print(f'Bucket {new_bucket.name} created.')
+    ```
+
+### 예제
+
+아래는 Python을 사용하여 GCS 버킷을 생성하는 전체 예제입니다:
+
+```python
+import os
+from google.cloud import storage
+
+# 인증 설정
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'path/to/your-service-account-file.json'
+
+# GCS 클라이언트 초기화
+client = storage.Client()
+
+# 버킷 이름과 위치 정의
+bucket_name = 'your-unique-bucket-name'
+location = 'US'  # 또는 'us-central1'과 같은 지역 지정
+
+# 버킷 생성
+bucket = client.bucket(bucket_name)
+new_bucket = client.create_bucket(bucket, location=location)
+
+print(f'Bucket {new_bucket.name} created.')
+```
+
+## 버킷 권한
+
+
+서비스 계정에 적절한 권한을 부여해야 합니다. 다음 단계를 따라 권한을 부여할 수 있습니다:
+
+1. Google Cloud Console에 접속합니다.
+
+2. 프로젝트를 선택합니다.
+
+3. 왼쪽 메뉴에서 "Storage" 메뉴를 선택합니다.
+
+4. `버킷명` 버킷을 찾아 클릭합니다.
+
+5. 상단 메뉴에서 "권한" 탭을 클릭합니다.
+
+6. "구성원 추가" 버튼을 클릭합니다.
+
+7. "새 구성원" 입력란에 `youtube-analytics-api@버킷명.iam.gserviceaccount.com` 서비스 계정 이메일을 입력합니다.
+
+8. 역할 선택란에서 "Storage 객체 관리자" 또는 "Storage 객체 생성자" 역할을 선택합니다. 이 역할은 버킷 내의 객체에 대한 읽기/쓰기 권한을 부여합니다.
+
+9. "저장" 버튼을 클릭하여 권한을 저장합니다.
+

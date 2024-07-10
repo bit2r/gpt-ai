@@ -1,0 +1,1990 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.45">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>langchain – 챗GPT AI</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./assets/android-chrome-192x192.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+
+<script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-229551680-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script>
+
+
+<link rel="stylesheet" href="assets/quarto.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">기본기</a></li><li class="breadcrumb-item"><a href="./langchain.html">랭체인</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="검색" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">챗GPT AI</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="다크 모드 전환"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="검색"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">기본기</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">인공지능</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">데이터 사이언스</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./langchain.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">랭체인</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">자동화</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gh_action.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">깃헙 액션</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">타겟(target)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./target.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">타겟</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">GCP</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gcs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">버킷</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">챗GPT</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">챗GPT</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Positron</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./positron.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">데이터 과학 편집기</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#api" id="toc-api" class="nav-link active" data-scroll-target="#api">API</a>
+  <ul class="collapse">
+  <li><a href="#허깅페이스" id="toc-허깅페이스" class="nav-link" data-scroll-target="#허깅페이스">허깅페이스</a></li>
+  <li><a href="#openai" id="toc-openai" class="nav-link" data-scroll-target="#openai">OpenAI</a></li>
+  <li><a href="#클로드" id="toc-클로드" class="nav-link" data-scroll-target="#클로드">클로드</a></li>
+  </ul></li>
+  <li><a href="#프롬프트-템플릿" id="toc-프롬프트-템플릿" class="nav-link" data-scroll-target="#프롬프트-템플릿">프롬프트 템플릿</a></li>
+  <li><a href="#lcel" id="toc-lcel" class="nav-link" data-scroll-target="#lcel">LCEL</a></li>
+  <li><a href="#랭그래프" id="toc-랭그래프" class="nav-link" data-scroll-target="#랭그래프">랭그래프</a></li>
+  <li><a href="#rag" id="toc-rag" class="nav-link" data-scroll-target="#rag">RAG</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">기본기</a></li><li class="breadcrumb-item"><a href="./langchain.html">랭체인</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">랭체인</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> 코드</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 표시</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 숨기기</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">소스 코드 표시</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>랭체인(langcahin)</strong>은 대규모 언어 모델(LLM)을 활용한 애플리케이션 개발을 위한 소프트웨어 개발 프레임워크로, LLM을 다양한 애플리케이션과 통합하는 것을 용이하기 쉽기 때문에 인기를 얻고 있다. 랭체인은 LLM과 인터페이스, 다양한 구성 요소 연결, 메모리 관리 등이 수월하기 때문에 특히 개발자 사이에서 인기가 높다. 랭체인의 주요 목적은 LLM 기반 애플리케이션 개발을 단순화하고 가속화하는 것으로 데이터 처리, 프롬프트 관리, 모델 통합 등 LLM 애플리케이션 개발의 여러 측면을 쉽게 다룰 수 있도록 도구와 추상화를 제공한다.</p>
+<ul>
+<li>대규모 언어 모델(LLM), 데이터 소스, 그리고 다른 기능들을 통합된 문법 아래 연결한다.</li>
+<li>확장성을 허용한다.</li>
+<li>모듈화된 컴포넌트들을 포함한다.</li>
+<li>파이썬과 JavaScript를 지원한다.</li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<p><a href="langchain_files\figure-html\mermaid-figure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="langchain_files\figure-html\mermaid-figure-1.png" style="width:8.18in;height:2.78in" class="figure-img"></a></p>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<section id="api" class="level2">
+<h2 class="anchored" data-anchor-id="api">API</h2>
+<section id="허깅페이스" class="level3">
+<h3 class="anchored" data-anchor-id="허깅페이스">허깅페이스</h3>
+<p>파이썬과 R을 사용해 Hugging Face Hub의 대형 언어 모델(Large Language Model, LLM)을 활용한다. 파이썬에서는 필요한 라이브러리를 설치하고, R에서는 <code>reticulate</code> 라이브러리를 통해 파이썬 환경을 사용한다. 파이썬 코드에서 Hugging Face Hub에 접근하기 위한 API 토큰을 로드하고, <code>HuggingFaceHub</code> 클래스를 사용하여 특정 모델(‘tiiuae/falcon-7b-instruct’)에 질문을 하고, 모델의 답변을 출력한다.</p>
+<ol type="1">
+<li><p><code>pip install langchain_community</code>, <code>pip install dotenv</code>, <code>pip install langchain-huggingface</code>: 이 세 명령어는 파이썬 환경에서 필요한 패키지들을 설치한다. <code>langchain_community</code>는 언어 체인 커뮤니티 라이브러리, <code>dotenv</code>는 환경 변수를 관리하는 라이브러리, <code>huggingface_hub</code>는 Hugging Face Hub와 연동하는 데 사용되는 라이브러리다.</p></li>
+<li><p>R 코드 부분에서 <code>library(reticulate)</code>를 사용해 파이썬과 R 사이의 상호작용을 가능하게 하는 <code>reticulate</code> 라이브러리를 로드한다. <code>use_condaenv("langchain", required = TRUE)</code>는 <code>langchain</code>이라는 이름의 Conda 환경을 사용하도록 지시한다. 이는 파이썬 코드를 R 환경에서 실행하기 위한 준비 단계다.</p></li>
+<li><p>파이썬 코드에서는 먼저 <code>langchain_community.llms</code>에서 <code>HuggingFaceHub</code> 클래스를, <code>dotenv</code>에서 <code>load_dotenv</code> 함수를 가져온다. 이후 <code>os</code> 모듈을 임포트한다. <code>load_dotenv()</code>를 호출하여 환경 변수를 로드한다. 이는 <code>.env</code> 파일에 저장된 환경 변수를 사용할 수 있게 한다.</p></li>
+<li><p><code>huggingfacehub_api_token = os.getenv('HF_TOKEN')</code>는 환경 변수에서 ’HF_TOKEN’을 찾아 해당 토큰을 변수에 저장한다. 이 토큰은 Hugging Face Hub에 접근할 때 인증을 위해 사용된다.</p></li>
+<li><p><code>HuggingFaceHub</code> 클래스의 인스턴스를 생성한다. 이 때 <code>repo_id</code>에는 사용할 Hugging Face 모델의 저장소 ID를, <code>huggingfacehub_api_token</code>에는 위에서 얻은 API 토큰을 넣는다.</p></li>
+<li><p>대형 언어 모델에 질문을 하기 위해 <code>question</code> 변수에 질문을 저장하고, <code>llm.invoke(question)</code>을 호출하여 모델에 질문을 전달하고 결과를 받는다.</p></li>
+<li><p>마지막으로 <code>print(output)</code>을 통해 얻은 결과를 출력한다. 이 코드는 Hugging Face Hub의 특정 모델을 사용하여 질문에 대한 답변을 얻는 과정을 보여준다.</p></li>
+</ol>
+<ul>
+<li><code>pip install langchain_community</code></li>
+<li><code>pip install dotenv</code></li>
+<li><code>pip install -U langchain-huggingface</code></li>
+</ul>
+<p>다양한 한국어가 지원되는 언어모형을 실험해봤지만 언어모형 크기가 큰 경우 실행이 불가능하다.</p>
+<div id="91bdcec3" class="cell" data-execution_count="1">
+<details open="" class="code-fold">
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_huggingface <span class="im">import</span> HuggingFaceEndpoint</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>huggingfacehub_api_token <span class="op">=</span> os.getenv(<span class="st">'HUGGINGFACEHUB_API_TOKEN'</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>huggingfacehub_api_token</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> HuggingFaceHub(repo_id<span class="op">=</span><span class="st">'tiiuae/falcon-7b-instruct'</span>, </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                     huggingfacehub_api_token <span class="op">=</span> huggingfacehub_api_token)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>question <span class="op">=</span> <span class="st">'What is LLM in AI?'</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> llm.invoke(question)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(output)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="openai" class="level3">
+<h3 class="anchored" data-anchor-id="openai">OpenAI</h3>
+<p><code>pip install --upgrade langchain openai</code> 명령어로 <code>openai</code> 패키지를 설치하고 <code>pip install langchain-openai</code> 명령어로 랭체인 인터페이스를 사용해서 LLM 을 활용한다.</p>
+<div id="8bc40c66" class="cell" data-execution_count="2">
+<details open="" class="code-fold">
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_openai <span class="im">import</span> OpenAI</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>openai_api_key <span class="op">=</span> os.getenv(<span class="st">'OPENAI_API_KEY'</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> OpenAI(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    model_name<span class="op">=</span><span class="st">"gpt-3.5-turbo-instruct"</span>,   </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    openai_api_key<span class="op">=</span>openai_api_key</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>question <span class="op">=</span> <span class="st">'인공지능 대규모 언어모형 LLM이 뭐야'</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> llm.invoke(question)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(output)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<pre><code>LLM은 'Large Language Model'의 약자로, 인공지능 기술 중 하나인 자연어 처리(Natural Language Processing) 분야에서 사용되는 대규모 언어모형을 말합니다. LLM은 수많은 문장과 단어를 학습하고 이를 바탕으로 텍스트를 생성하고 이해하는 기술을 갖춘 인공지능 모델을 의미합니다. 이를 통해 LLM은 인간과 유사한 수준의 언어 이해 및 생성 능력을 가지고 있습니다. LLM은 다양한 분야에서 활용되고 있으며, 텍스트 생성, 기계 번역, 자연어 이해 등 다양한 응용 분야에서 성능을 발휘하고 있습니다.</code></pre>
+</section>
+<section id="클로드" class="level3">
+<h3 class="anchored" data-anchor-id="클로드">클로드</h3>
+<p><code>pip install -U langchain-anthropic</code> 앤트로픽을 설치한 후 동일하게 실행한다.</p>
+<div id="aa592c4f" class="cell" data-execution_count="3">
+<details open="" class="code-fold">
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_anthropic <span class="im">import</span> ChatAnthropic</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>anthropic_api_key <span class="op">=</span> os.getenv(<span class="st">'ANTHROPIC_API_KEY'</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> ChatAnthropic(</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"claude-3-opus-20240229"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    anthropic_api_key<span class="op">=</span>anthropic_api_key</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>question <span class="op">=</span> <span class="st">'인공지능 대규모 언어모형 LLM이 뭐야?'</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> llm.invoke(question)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(output.content)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<pre><code>'인공지능 대규모 언어모형(Large Language Model, LLM)은 방대한 양의 텍스트 데이터를 학습하여 만들어진 거대한 신경망 모델입니다. LLM은 다음과 같은 특징을 가지고 있습니다:\n\n1. 데이터 크기: 수백 기가바이트에서 수 테라바이트에 이르는 방대한 텍스트 데이터로 학습합니다.\n\n2. 모델 크기: 수십억에서 수조 개의 매개변수를 가진 거대한 신경망 구조를 가집니다. \n\n3. 자연어 이해 및 생성: 문맥을 이해하고 자연스러운 언어를 생성할 수 있습니다.\n\n4. 다양한 태스크 수행: 질의응답, 요약, 번역, 창작 등 다양한 자연어 처리 태스크를 수행할 수 있습니다.\n\n5. 사전 학습과 전이 학습: 대량의 데이터로 사전 학습된 후, 특정 태스크를 위해 추가 학습(전이 학습)될 수 있습니다.\n\n대표적인 LLM으로는 GPT-3, BERT, XLNet, T5 등이 있습니다. 이러한 모델들은 자연어 처리 분야에서 혁신을 가져왔으며, 다양한 응용 분야에서 활용되고 있습니다. 그러나 막대한 컴퓨팅 자원이 필요하고, 편향성 문제 등 한계점도 존재합니다. LLM 기술은 계속 발전하고 있으며, 앞으로도 자연어 인공지능 분야를 선도할 것으로 예상됩니다.'</code></pre>
+</section>
+</section>
+<section id="프롬프트-템플릿" class="level2">
+<h2 class="anchored" data-anchor-id="프롬프트-템플릿">프롬프트 템플릿</h2>
+<p>프롬프트 템플릿(Prompt Template)은 대규모 언어 모델(LLM)에 입력할 프롬프트의 구조를 정의하는 틀(template)로 일관된 형식의 프롬프트를 생성하고, 동적으로 내용을 채워 넣을 수 있게 해주는 도구다.</p>
+<ol type="1">
+<li>재사용성: 동일한 구조의 프롬프트를 여러 번 사용할 수 있다.</li>
+<li>일관성: 프롬프트의 형식을 일정하게 유지할 수 있다.</li>
+<li>동적 내용: 변수를 사용하여 프롬프트의 특정 부분을 동적으로 변경할 수 있다.</li>
+<li>구조화: 컨텍스트, 질문, 응답 형식 등을 체계적으로 구성할 수 있다.</li>
+</ol>
+<p>프롬프트 템플릿은 주로 세 가지 요소(컨텍스트, 질문, 응답 형식)로 이루어진다.<br>
+컨텍스트는 모델에게 배경 정보를 제공하고, 질문은 모델에게 요구하는 구체적인 작업을 명시한다. 응답 형식은 모델이 어떤 방식으로 답변해야 하는지 지시한다.</p>
+<p>프롬프트 템플릿에는 변수를 포함시킬 수 있다. 변수는 프롬프트를 생성할 때 동적으로 값이 채워지는 부분으로 동일한 구조의 프롬프트를 다양한 상황에 맞춰 재사용할 수 있다.</p>
+<p>프롬프트 템플릿은 이러한 요소들을 조합해 최종 프롬프트를 만들어내는 과정에서 변수에 실제 값이 할당되고, 전체 프롬프트의 구조가 완성된다. 완성된 최종 프롬프트는 대규모 언어 모델(LLM)에 입력된다. LLM은 이 프롬프트를 받아 처리하고, 요청된 작업에 따라 적절한 응답을 생성해 출력한다.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<p><a href="langchain_files\figure-html\mermaid-figure-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="langchain_files\figure-html\mermaid-figure-3.png" style="width:4.12in;height:5.52in" class="figure-img"></a></p>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<div id="7662f5de" class="cell" data-execution_count="4">
+<details open="" class="code-fold">
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.prompts <span class="im">import</span> PromptTemplate</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_openai <span class="im">import</span> OpenAI</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># .env 파일에서 환경 변수 로드</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 프롬프트 템플릿 정의</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>template <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="st">컨텍스트: </span><span class="sc">{context}</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="st">질문: </span><span class="sc">{question}</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="st">응답 형식: </span><span class="sc">{response_format}</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="st">위의 컨텍스트를 바탕으로 질문에 답하세요. 응답은 제시된 형식을 따라주세요.</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>prompt_template <span class="op">=</span> PromptTemplate(</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    template<span class="op">=</span>template,</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    input_variables<span class="op">=</span>[<span class="st">"context"</span>, <span class="st">"question"</span>, <span class="st">"response_format"</span>]</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co"># OpenAI LLM 초기화 (API 키는 .env 파일에서 가져옴)</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> OpenAI(model_name<span class="op">=</span><span class="st">"gpt-3.5-turbo-instruct"</span>,   </span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>             temperature<span class="op">=</span><span class="fl">0.7</span>, </span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>             openai_api_key<span class="op">=</span>os.getenv(<span class="st">"OPENAI_API_KEY"</span>))</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co"># 프롬프트 생성</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> prompt_template.<span class="bu">format</span>(</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    context<span class="op">=</span><span class="st">"랭체인은 대규모 언어 모델을 활용한 애플리케이션 개발을 위한 프레임워크입니다."</span>,</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    question<span class="op">=</span><span class="st">"랭체인의 주요 특징 세 가지는 무엇인가요?"</span>,</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    response_format<span class="op">=</span><span class="st">"1. 첫 번째 특징</span><span class="ch">\n</span><span class="st">2. 두 번째 특징</span><span class="ch">\n</span><span class="st">3. 세 번째 특징"</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co"># LLM에 프롬프트 전달 및 응답 생성</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> llm.invoke(prompt)</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"생성된 프롬프트:"</span>)</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prompt)</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">LLM 응답:"</span>)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<pre><code>생성된 프롬프트:
+
+컨텍스트: 랭체인은 대규모 언어 모델을 활용한 애플리케이션 개발을 위한 프레임워크입니다.
+
+질문: 랭체인의 주요 특징 세 가지는 무엇인가요?
+
+응답 형식: 1. 첫 번째 특징
+2. 두 번째 특징
+3. 세 번째 특징
+
+위의 컨텍스트를 바탕으로 질문에 답하세요. 응답은 제시된 형식을 따라주세요.
+
+
+LLM 응답:
+
+1. 랭체인은 대규모 언어 모델을 활용하여 자연어 처리 작업을 수행할 수 있습니다.
+2. 랭체인은 다양한 애플리케이션 개발을 지원하기 위한 다양한 API를 제공합니다.
+3. 랭체인은 사용자가 직접 학습한 데이터를 추가하여 모델을 개선할 수 있는 기능을 제공합니다.</code></pre>
+</section>
+<section id="lcel" class="level2">
+<h2 class="anchored" data-anchor-id="lcel">LCEL</h2>
+<p>랭체인 표현언어(LangChain Expression Language, LCEL)는 LangChain 컴포넌트들을 연결하고 조합하기 위한 선언적 방식의 인터페이스로 복잡한 AI 애플리케이션 구축을 단순화하고 가독성을 높이는 데 도움을 준다. 체인(Chain)은 LCEL의 핵심 개념 중 하나로, 여러 컴포넌트들을 연결하여 하나의 작업 흐름을 만드는 것을 말한다.</p>
+<p>유닉스 파이프(<code>|</code>)를 이해하고 있다면 <code>prompt | model</code>와 같이 프롬프트 템플릿과 LLM 모델을 연결하는 간단한 체인을 생성한다. <code>프롬프트 | LLM | 출력파서</code>와 같은 패턴이 일반적이다. 프롬프트 템플릿으로 주제를 받아 프롬프트를 완성하고 LLM 모형에 전달하고 출력파서를 통해 원하는 결과물을 출력시킨다.</p>
+<div id="ea05675d" class="cell" data-execution_count="5">
+<details open="" class="code-fold">
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.prompts <span class="im">import</span> ChatPromptTemplate</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_openai <span class="im">import</span> ChatOpenAI</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.output_parsers <span class="im">import</span> CommaSeparatedListOutputParser</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.runnables <span class="im">import</span> RunnablePassthrough</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># .env 파일에서 환경 변수 로드</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 출력 파서 정의</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>output_parser <span class="op">=</span> CommaSeparatedListOutputParser()</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 프롬프트 템플릿 정의</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>prompt_template <span class="op">=</span> ChatPromptTemplate.from_template(<span class="st">"""</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="st">다음 주제에 관련된 키워드를 5개 나열해주세요: </span><span class="sc">{topic}</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="st">당신의 응답은 반드시 쉼표로 구분된 단일 단어 목록이어야 합니다.</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 모델 정의 (API 키는 .env 파일에서 가져옴)</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> OpenAI(</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    model_name<span class="op">=</span><span class="st">"gpt-3.5-turbo-instruct"</span>,   </span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    temperature<span class="op">=</span><span class="fl">0.7</span>, </span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    openai_api_key<span class="op">=</span>os.getenv(<span class="st">"OPENAI_API_KEY"</span>)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 체인 구성</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>chain <span class="op">=</span> (</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"topic"</span>: RunnablePassthrough()} </span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    <span class="op">|</span> prompt_template </span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    <span class="op">|</span> model </span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    <span class="op">|</span> output_parser</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="co"># 체인 실행</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> chain.invoke(<span class="st">"인공지능"</span>)</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"인공지능 관련 키워드:"</span>)</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> keyword <span class="kw">in</span> result:</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"- </span><span class="sc">{</span>keyword<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<pre><code>인공지능 관련 키워드:
+- 기계학습
+- 딥러닝
+- 자연어처리
+- 로봇
+- 빅데이터</code></pre>
+<p>LCEL과 Chain을 사용하면 복잡한 AI 로직을 더 쉽게 구조화하고 관리할 수 있으며, 코드의 가독성과 유지보수성을 크게 향상시킬 수 있다.</p>
+</section>
+<section id="랭그래프" class="level2">
+<h2 class="anchored" data-anchor-id="랭그래프">랭그래프</h2>
+<p>랭그래프(LangGraph)는 랭체인(LangChain)의 일부로, 에이전트(Agent) 시스템을 설계하기 위한 도구로 복잡한 AI 워크플로우를 구축하는 데 사용된다. 랭그래프는 에이전트의 상태를 추적하고 관리할 수 있는 상태 관리 기능을 제공한다. 이를 통해 장기적인 대화나 복잡한 작업의 진행 상황을 효과적으로 추적할 수 있고, 조건부 로직과 반복을 포함한 복잡한 워크플로우를 정의할 수 있는 유연성을 제공한다. 또한, 다양한 외부 도구와 API를 쉽게 통합할 수 있는 기능도 랭그래프의 중요한 특징으로 AI 시스템의 능력을 확장하고 실제 세계의 다양한 작업을 수행할 수 있게 된다. 특히, 랭그래프는 재사용 가능한 컴포넌트를 만들어 복잡한 시스템을 구축할 수 있는 모듈성을 제공하여 개발 효율성을 높이고 일관성 있는 시스템 구축을 가능하게 한다.</p>
+<p><code>pip install langgraph</code> 명령어로 설치한 후 프롬프트 템플릿에 사칙연산 관련 문제풀이로 LLM을 활용한다. <code>LLMMathChain</code>은 <code>numexpr</code> 패키지도 필요하니 <code>pip install numexpr</code> 명령어로 설치한다.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">코드</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">실행결과</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div id="2af05090" class="cell" data-execution_count="6">
+<details open="" class="code-fold">
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.agents <span class="im">import</span> initialize_agent, load_tools</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.llms <span class="im">import</span> OpenAI</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Load environment variables from .env file</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Get OpenAI API key</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>openai_api_key <span class="op">=</span> os.getenv(<span class="st">"OPENAI_API_KEY"</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the language model</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> OpenAI(</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    model_name<span class="op">=</span><span class="st">"gpt-3.5-turbo-instruct"</span>,  </span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    temperature<span class="op">=</span><span class="fl">0.0</span>, </span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    openai_api_key<span class="op">=</span>openai_api_key</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the necessary tools</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>tools <span class="op">=</span> load_tools([<span class="st">"llm-math"</span>], llm<span class="op">=</span>llm)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the prompt for the agent</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="st">You are a helpful assistant that can perform various mathematical calculations and provide accurate results.</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the ReAct agent with the prompt</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>agent <span class="op">=</span> initialize_agent(</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    tools<span class="op">=</span>tools,</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    llm<span class="op">=</span>llm,</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    agent_type<span class="op">=</span><span class="st">"react"</span>,</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    verbose<span class="op">=</span><span class="va">True</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="co"># List of questions to ask the agent</span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>questions <span class="op">=</span> [</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">"15 더하기 27은 얼마인가요?"</span>,</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    <span class="st">"144의 제곱근은 얼마인가요?"</span>,</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>    <span class="st">"250의 30%는 얼마인가요?"</span>,</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    <span class="st">"5 곱하기 8에서 12를 뺀 값은 얼마인가요?"</span>,</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Ask each question to the agent and print the response</span></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> question <span class="kw">in</span> questions:</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> agent.invoke({<span class="st">"input"</span>: question})</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"질문: </span><span class="sc">{</span>question<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"답변: </span><span class="sc">{</span>response[<span class="st">'output'</span>]<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<pre><code>&gt; Entering new AgentExecutor chain...
+ I should use a calculator to add 15 and 27
+Action: Calculator
+
+Observation: Answer: 42
+Thought: I now know the final answer
+Final Answer: 42
+
+&gt; Finished chain.
+질문: 15 더하기 27은 얼마인가요?
+답변: 42
+
+
+
+&gt; Entering new AgentExecutor chain...
+ I should use a calculator to find the square root of 144
+Action: Calculator
+Action Input: 144
+Observation: Answer: 144
+ I now know the final answer
+Final Answer: 12
+
+&gt; Finished chain.
+질문: 144의 제곱근은 얼마인가요?
+답변: 12
+
+
+
+&gt; Entering new AgentExecutor chain...
+ We need to find the percentage of 250.
+Action: Calculator
+
+Observation: Answer: 75.0
+Thought: We have found the percentage.
+Final Answer: 75.0
+
+&gt; Finished chain.
+질문: 250의 30%는 얼마인가요?
+답변: 75.0
+
+
+
+&gt; Entering new AgentExecutor chain...
+ I should use a calculator to solve this problem.
+Action: Calculator
+Action Input: 5 * 8 - 12
+Observation: Answer: 28
+ I now know the final answer.
+Final Answer: 28
+
+&gt; Finished chain.
+질문: 5 곱하기 8에서 12를 뺀 값은 얼마인가요?
+답변: 28</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="rag" class="level2">
+<h2 class="anchored" data-anchor-id="rag">RAG</h2>
+<p>검색 증강 생성(Retrieval Augmented Generation, RAG)는 대규모 언어 모델(LLM)의 성능을 향상시키기 위해 외부 지식을 활용하는 기술로 사용자의 질문이나 프롬프트에 대해 관련성 높은 정보를 검색하고, 이를 원래의 프롬프트와 결합하여 LLM에 제공한다. RAG의 핵심 아이디어는 LLM의 생성 능력과 외부 데이터베이스의 최신 정보를 결합하는 것으로 <strong>임베딩(Embedding)</strong>이 중요한 역할을 한다. 사용자의 질문과 데이터베이스 내 문서들은 벡터 형태로 변환되며, 이를 통해 의미적 유사성을 기반으로 관련 정보를 빠르게 검색할 수 있다.</p>
+<p>RAG의 작동 과정은 다음과 같다. 먼저, 사용자가 질문을 입력하면 이 질문은 벡터로 변환된다. 그 다음, 이 벡터를 사용해 미리 준비된 벡터 데이터베이스에서 가장 유사한 문서나 정보를 검색한다. 검색된 정보는 원래의 질문과 함께 새로운 프롬프트를 구성하는 데 사용된다. 이렇게 증강된 프롬프트가 LLM에 입력되어 최종 응답을 생성한다.</p>
+<p>LLM은 학습 시점의 데이터에 기반하므로 최신 정보를 반영하지 못할 수 있지만, RAG를 통해 외부 데이터베이스의 최신 정보를 활용할 수 있어 LLM의 환각(hallucination) 문제를 줄이고 더 정확하고 신뢰할 수 있는 응답을 생성하는 데 도움을 준다.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<p><a href="langchain_files\figure-html\mermaid-figure-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="langchain_files\figure-html\mermaid-figure-2.png" style="width:10.59in;height:1.78in" class="figure-img"></a></p>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>numpy</code> 버전 오류
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<pre><code>AttributeError: np.float_ was removed in the NumPy 2.0 release. Use np.float64 instead.
+Cell In[53], line 26
+     24 # 임베딩 모델 및 벡터 저장소 설정
+     25 embeddings = OpenAIEmbeddings()
+---&gt; 26 vectorstore = Chroma.from_documents(texts, embeddings)
+     28 # RAG 체인 설정
+     29 llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
+Show Traceback</code></pre>
+</div>
+</div>
+<div id="c549bf5c" class="cell" data-execution_count="7">
+<details open="" class="code-fold">
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.document_loaders <span class="im">import</span> WikipediaLoader</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.text_splitter <span class="im">import</span> RecursiveCharacterTextSplitter</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_openai <span class="im">import</span> OpenAIEmbeddings</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.vectorstores <span class="im">import</span> Chroma</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.chains <span class="im">import</span> RetrievalQA</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_openai <span class="im">import</span> ChatOpenAI</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 환경 변수 로드</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># OpenAI API 키 설정</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"OPENAI_API_KEY"</span>] <span class="op">=</span> os.getenv(<span class="st">"OPENAI_API_KEY"</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 위키백과에서 "인공지능" 문서 로드</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> WikipediaLoader(<span class="st">"인공지능"</span>, load_max_docs<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>documents <span class="op">=</span> loader.load()</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 문서 분할</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>text_splitter <span class="op">=</span> RecursiveCharacterTextSplitter(chunk_size<span class="op">=</span><span class="dv">1000</span>, chunk_overlap<span class="op">=</span><span class="dv">200</span>)</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>texts <span class="op">=</span> text_splitter.split_documents(documents)</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 임베딩 모델 및 벡터 저장소 설정</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>embeddings <span class="op">=</span> OpenAIEmbeddings()</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>vectorstore <span class="op">=</span> Chroma.from_documents(texts, embeddings)</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="co"># RAG 체인 설정</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> ChatOpenAI(model_name<span class="op">=</span><span class="st">"gpt-3.5-turbo"</span>, temperature<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>qa_chain <span class="op">=</span> RetrievalQA.from_chain_type(</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    llm<span class="op">=</span>llm,</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    chain_type<span class="op">=</span><span class="st">"stuff"</span>,</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    retriever<span class="op">=</span>vectorstore.as_retriever()</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="co"># 질문-답변 루프</span></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>    query <span class="op">=</span> <span class="bu">input</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">질문을 입력하세요 (종료하려면 'q' 입력): "</span>)</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> query.lower() <span class="op">==</span> <span class="st">'q'</span>:</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> qa_chain.invoke(query)</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">답변: </span><span class="sc">{</span>result[<span class="st">'result'</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "복사완료!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "복사완료!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb14" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 랭체인</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>**랭체인(langcahin)**은 대규모 언어 모델(LLM)을 활용한 애플리케이션 개발을 위한 소프트웨어 개발 프레임워크로, LLM을 다양한 애플리케이션과 통합하는 것을 용이하기 쉽기 때문에 인기를 얻고 있다.</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>랭체인은 LLM과 인터페이스, 다양한 구성 요소 연결, 메모리 관리 등이 수월하기 때문에 특히 개발자 사이에서 인기가 높다.</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>랭체인의 주요 목적은 LLM 기반 애플리케이션 개발을 단순화하고 가속화하는 것으로 데이터 처리, 프롬프트 관리, 모델 통합 등 LLM 애플리케이션 개발의 여러 측면을 쉽게 다룰 수 있도록 도구와 추상화를 제공한다.</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>대규모 언어 모델(LLM), 데이터 소스, 그리고 다른 기능들을 통합된 문법 아래 연결한다.</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>확장성을 허용한다.</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>모듈화된 컴포넌트들을 포함한다. </span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>파이썬과 JavaScript를 지원한다.</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="in">graph LR</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="in">    VD["벡터&lt;br&gt;데이터베이스"] --&gt; LLM</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="in">    PT["프롬프트&lt;br&gt;템플릿"] --&gt; LLM</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="in">    UP[사용자프롬프트] --&gt; PT</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="in">    LLM --&gt; O[출력]</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="in">    O --&gt; U((사용자))</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="in">    U --&gt; UP</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="in">    subgraph LANGCHAIN["&lt;strong&gt;랭체인 (LangChain)&lt;/strong&gt;"]</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="in">        VD</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="in">        LLM[LLM]</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="in">        PT</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="in">        UP</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="in">        O</span></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="in">    classDef default fill:#f4f4f4,stroke:#333,stroke-width:1px;</span></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="in">    classDef emphasis fill:#e0e0e0,stroke:#666,stroke-width:2px;</span></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="in">    classDef user fill:#d3d3d3,stroke:#333,stroke-width:2px;    </span></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a><span class="in">    style LANGCHAIN fill:#ffffff,stroke:#999,stroke-width:2px,stroke-dasharray: 5 5</span></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## API</span></span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a><span class="fu">### 허깅페이스</span></span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>파이썬과 R을 사용해 Hugging Face Hub의 대형 언어 모델(Large Language Model, LLM)을 활용한다. 파이썬에서는 필요한 라이브러리를 설치하고, R에서는 <span class="in">`reticulate`</span> 라이브러리를 통해 파이썬 환경을 사용한다. </span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>파이썬 코드에서 Hugging Face Hub에 접근하기 위한 API 토큰을 로드하고, <span class="in">`HuggingFaceHub`</span> 클래스를 사용하여 특정 모델('tiiuae/falcon-7b-instruct')에 질문을 하고, 모델의 답변을 출력한다. </span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span><span class="in">`pip install langchain_community`</span>, <span class="in">`pip install dotenv`</span>, <span class="in">`pip install langchain-huggingface`</span>: 이 세 명령어는 파이썬 환경에서 필요한 패키지들을 설치한다. <span class="in">`langchain_community`</span>는 언어 체인 커뮤니티 라이브러리, <span class="in">`dotenv`</span>는 환경 변수를 관리하는 라이브러리, <span class="in">`huggingface_hub`</span>는 Hugging Face Hub와 연동하는 데 사용되는 라이브러리다.</span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>R 코드 부분에서 <span class="in">`library(reticulate)`</span>를 사용해 파이썬과 R 사이의 상호작용을 가능하게 하는 <span class="in">`reticulate`</span> 라이브러리를 로드한다. <span class="in">`use_condaenv("langchain", required = TRUE)`</span>는 <span class="in">`langchain`</span>이라는 이름의 Conda 환경을 사용하도록 지시한다. 이는 파이썬 코드를 R 환경에서 실행하기 위한 준비 단계다.</span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>파이썬 코드에서는 먼저 <span class="in">`langchain_community.llms`</span>에서 <span class="in">`HuggingFaceHub`</span> 클래스를, <span class="in">`dotenv`</span>에서 <span class="in">`load_dotenv`</span> 함수를 가져온다. 이후 <span class="in">`os`</span> 모듈을 임포트한다. <span class="in">`load_dotenv()`</span>를 호출하여 환경 변수를 로드한다. 이는 <span class="in">`.env`</span> 파일에 저장된 환경 변수를 사용할 수 있게 한다.</span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span><span class="in">`huggingfacehub_api_token = os.getenv('HF_TOKEN')`</span>는 환경 변수에서 'HF_TOKEN'을 찾아 해당 토큰을 변수에 저장한다. 이 토큰은 Hugging Face Hub에 접근할 때 인증을 위해 사용된다.</span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span><span class="in">`HuggingFaceHub`</span> 클래스의 인스턴스를 생성한다. 이 때 <span class="in">`repo_id`</span>에는 사용할 Hugging Face 모델의 저장소 ID를, <span class="in">`huggingfacehub_api_token`</span>에는 위에서 얻은 API 토큰을 넣는다.</span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>대형 언어 모델에 질문을 하기 위해 <span class="in">`question`</span> 변수에 질문을 저장하고, <span class="in">`llm.invoke(question)`</span>을 호출하여 모델에 질문을 전달하고 결과를 받는다.</span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>마지막으로 <span class="in">`print(output)`</span>을 통해 얻은 결과를 출력한다. 이 코드는 Hugging Face Hub의 특정 모델을 사용하여 질문에 대한 답변을 얻는 과정을 보여준다.</span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`pip install langchain_community`</span></span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`pip install dotenv`</span></span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`pip install -U langchain-huggingface`</span></span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a>다양한 한국어가 지원되는 언어모형을 실험해봤지만 언어모형 크기가 큰 경우 실행이 불가능하다.</span>
+<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_huggingface <span class="im">import</span> HuggingFaceEndpoint</span>
+<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a>huggingfacehub_api_token <span class="op">=</span> os.getenv(<span class="st">'HUGGINGFACEHUB_API_TOKEN'</span>)</span>
+<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a>huggingfacehub_api_token</span>
+<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> HuggingFaceHub(repo_id<span class="op">=</span><span class="st">'tiiuae/falcon-7b-instruct'</span>, </span>
+<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a>                     huggingfacehub_api_token <span class="op">=</span> huggingfacehub_api_token)</span>
+<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a>question <span class="op">=</span> <span class="st">'What is LLM in AI?'</span></span>
+<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> llm.invoke(question)</span>
+<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-86"><a href="#cb14-86" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(output)</span>
+<span id="cb14-87"><a href="#cb14-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a><span class="fu">### OpenAI</span></span>
+<span id="cb14-90"><a href="#cb14-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-91"><a href="#cb14-91" aria-hidden="true" tabindex="-1"></a><span class="in">`pip install --upgrade langchain openai`</span> 명령어로 <span class="in">`openai`</span> 패키지를 설치하고 </span>
+<span id="cb14-92"><a href="#cb14-92" aria-hidden="true" tabindex="-1"></a><span class="in">`pip install langchain-openai`</span> 명령어로 랭체인 인터페이스를 사용해서 LLM 을 활용한다.</span>
+<span id="cb14-93"><a href="#cb14-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-94"><a href="#cb14-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-97"><a href="#cb14-97" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb14-98"><a href="#cb14-98" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb14-99"><a href="#cb14-99" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_openai <span class="im">import</span> OpenAI</span>
+<span id="cb14-100"><a href="#cb14-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-101"><a href="#cb14-101" aria-hidden="true" tabindex="-1"></a>openai_api_key <span class="op">=</span> os.getenv(<span class="st">'OPENAI_API_KEY'</span>)</span>
+<span id="cb14-102"><a href="#cb14-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-103"><a href="#cb14-103" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> OpenAI(</span>
+<span id="cb14-104"><a href="#cb14-104" aria-hidden="true" tabindex="-1"></a>    model_name<span class="op">=</span><span class="st">"gpt-3.5-turbo-instruct"</span>,   </span>
+<span id="cb14-105"><a href="#cb14-105" aria-hidden="true" tabindex="-1"></a>    openai_api_key<span class="op">=</span>openai_api_key</span>
+<span id="cb14-106"><a href="#cb14-106" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-107"><a href="#cb14-107" aria-hidden="true" tabindex="-1"></a>question <span class="op">=</span> <span class="st">'인공지능 대규모 언어모형 LLM이 뭐야'</span></span>
+<span id="cb14-108"><a href="#cb14-108" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> llm.invoke(question)</span>
+<span id="cb14-109"><a href="#cb14-109" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(output)</span>
+<span id="cb14-110"><a href="#cb14-110" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-111"><a href="#cb14-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-112"><a href="#cb14-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-113"><a href="#cb14-113" aria-hidden="true" tabindex="-1"></a><span class="in">LLM은 'Large Language Model'의 약자로, 인공지능 기술 중 하나인 자연어 처리(Natural Language Processing) 분야에서 사용되는 대규모 언어모형을 말합니다. LLM은 수많은 문장과 단어를 학습하고 이를 바탕으로 텍스트를 생성하고 이해하는 기술을 갖춘 인공지능 모델을 의미합니다. 이를 통해 LLM은 인간과 유사한 수준의 언어 이해 및 생성 능력을 가지고 있습니다. LLM은 다양한 분야에서 활용되고 있으며, 텍스트 생성, 기계 번역, 자연어 이해 등 다양한 응용 분야에서 성능을 발휘하고 있습니다.</span></span>
+<span id="cb14-114"><a href="#cb14-114" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-115"><a href="#cb14-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-116"><a href="#cb14-116" aria-hidden="true" tabindex="-1"></a><span class="fu">### 클로드</span></span>
+<span id="cb14-117"><a href="#cb14-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-118"><a href="#cb14-118" aria-hidden="true" tabindex="-1"></a><span class="in">`pip install -U langchain-anthropic`</span> 앤트로픽을 설치한 후 동일하게 실행한다.</span>
+<span id="cb14-119"><a href="#cb14-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-122"><a href="#cb14-122" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb14-123"><a href="#cb14-123" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb14-124"><a href="#cb14-124" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_anthropic <span class="im">import</span> ChatAnthropic</span>
+<span id="cb14-125"><a href="#cb14-125" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb14-126"><a href="#cb14-126" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb14-127"><a href="#cb14-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-128"><a href="#cb14-128" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb14-129"><a href="#cb14-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-130"><a href="#cb14-130" aria-hidden="true" tabindex="-1"></a>anthropic_api_key <span class="op">=</span> os.getenv(<span class="st">'ANTHROPIC_API_KEY'</span>)</span>
+<span id="cb14-131"><a href="#cb14-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-132"><a href="#cb14-132" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> ChatAnthropic(</span>
+<span id="cb14-133"><a href="#cb14-133" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"claude-3-opus-20240229"</span>,</span>
+<span id="cb14-134"><a href="#cb14-134" aria-hidden="true" tabindex="-1"></a>    anthropic_api_key<span class="op">=</span>anthropic_api_key</span>
+<span id="cb14-135"><a href="#cb14-135" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-136"><a href="#cb14-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-137"><a href="#cb14-137" aria-hidden="true" tabindex="-1"></a>question <span class="op">=</span> <span class="st">'인공지능 대규모 언어모형 LLM이 뭐야?'</span></span>
+<span id="cb14-138"><a href="#cb14-138" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> llm.invoke(question)</span>
+<span id="cb14-139"><a href="#cb14-139" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(output.content)</span>
+<span id="cb14-140"><a href="#cb14-140" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-141"><a href="#cb14-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-142"><a href="#cb14-142" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-143"><a href="#cb14-143" aria-hidden="true" tabindex="-1"></a><span class="in">'인공지능 대규모 언어모형(Large Language Model, LLM)은 방대한 양의 텍스트 데이터를 학습하여 만들어진 거대한 신경망 모델입니다. LLM은 다음과 같은 특징을 가지고 있습니다:\n\n1. 데이터 크기: 수백 기가바이트에서 수 테라바이트에 이르는 방대한 텍스트 데이터로 학습합니다.\n\n2. 모델 크기: 수십억에서 수조 개의 매개변수를 가진 거대한 신경망 구조를 가집니다. \n\n3. 자연어 이해 및 생성: 문맥을 이해하고 자연스러운 언어를 생성할 수 있습니다.\n\n4. 다양한 태스크 수행: 질의응답, 요약, 번역, 창작 등 다양한 자연어 처리 태스크를 수행할 수 있습니다.\n\n5. 사전 학습과 전이 학습: 대량의 데이터로 사전 학습된 후, 특정 태스크를 위해 추가 학습(전이 학습)될 수 있습니다.\n\n대표적인 LLM으로는 GPT-3, BERT, XLNet, T5 등이 있습니다. 이러한 모델들은 자연어 처리 분야에서 혁신을 가져왔으며, 다양한 응용 분야에서 활용되고 있습니다. 그러나 막대한 컴퓨팅 자원이 필요하고, 편향성 문제 등 한계점도 존재합니다. LLM 기술은 계속 발전하고 있으며, 앞으로도 자연어 인공지능 분야를 선도할 것으로 예상됩니다.'</span></span>
+<span id="cb14-144"><a href="#cb14-144" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-145"><a href="#cb14-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-146"><a href="#cb14-146" aria-hidden="true" tabindex="-1"></a><span class="fu">## 프롬프트 템플릿</span></span>
+<span id="cb14-147"><a href="#cb14-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-148"><a href="#cb14-148" aria-hidden="true" tabindex="-1"></a>프롬프트 템플릿(Prompt Template)은 대규모 언어 모델(LLM)에 입력할 프롬프트의 구조를 정의하는 틀(template)로 일관된 형식의 프롬프트를 생성하고, 동적으로 내용을 채워 넣을 수 있게 해주는 도구다.</span>
+<span id="cb14-149"><a href="#cb14-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-150"><a href="#cb14-150" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>재사용성: 동일한 구조의 프롬프트를 여러 번 사용할 수 있다.</span>
+<span id="cb14-151"><a href="#cb14-151" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>일관성: 프롬프트의 형식을 일정하게 유지할 수 있다.</span>
+<span id="cb14-152"><a href="#cb14-152" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>동적 내용: 변수를 사용하여 프롬프트의 특정 부분을 동적으로 변경할 수 있다.</span>
+<span id="cb14-153"><a href="#cb14-153" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>구조화: 컨텍스트, 질문, 응답 형식 등을 체계적으로 구성할 수 있다.</span>
+<span id="cb14-154"><a href="#cb14-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-155"><a href="#cb14-155" aria-hidden="true" tabindex="-1"></a>프롬프트 템플릿은 주로 세 가지 요소(컨텍스트, 질문, 응답 형식)로 이루어진다.  </span>
+<span id="cb14-156"><a href="#cb14-156" aria-hidden="true" tabindex="-1"></a>컨텍스트는 모델에게 배경 정보를 제공하고, </span>
+<span id="cb14-157"><a href="#cb14-157" aria-hidden="true" tabindex="-1"></a>질문은 모델에게 요구하는 구체적인 작업을 명시한다. </span>
+<span id="cb14-158"><a href="#cb14-158" aria-hidden="true" tabindex="-1"></a>응답 형식은 모델이 어떤 방식으로 답변해야 하는지 지시한다.</span>
+<span id="cb14-159"><a href="#cb14-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-160"><a href="#cb14-160" aria-hidden="true" tabindex="-1"></a>프롬프트 템플릿에는 변수를 포함시킬 수 있다. </span>
+<span id="cb14-161"><a href="#cb14-161" aria-hidden="true" tabindex="-1"></a>변수는 프롬프트를 생성할 때 동적으로 값이 채워지는 부분으로 동일한 구조의 프롬프트를 다양한 상황에 맞춰 재사용할 수 있다.</span>
+<span id="cb14-162"><a href="#cb14-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-163"><a href="#cb14-163" aria-hidden="true" tabindex="-1"></a>프롬프트 템플릿은 이러한 요소들을 조합해 최종 프롬프트를 만들어내는 과정에서 변수에 실제 값이 할당되고, 전체 프롬프트의 구조가 완성된다. 완성된 최종 프롬프트는 대규모 언어 모델(LLM)에 입력된다. LLM은 이 프롬프트를 받아 처리하고, 요청된 작업에 따라 적절한 응답을 생성해 출력한다.</span>
+<span id="cb14-164"><a href="#cb14-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-167"><a href="#cb14-167" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb14-168"><a href="#cb14-168" aria-hidden="true" tabindex="-1"></a><span class="in">graph TD</span></span>
+<span id="cb14-169"><a href="#cb14-169" aria-hidden="true" tabindex="-1"></a><span class="in">    V[변수]</span></span>
+<span id="cb14-170"><a href="#cb14-170" aria-hidden="true" tabindex="-1"></a><span class="in">    FP[최종 프롬프트]</span></span>
+<span id="cb14-171"><a href="#cb14-171" aria-hidden="true" tabindex="-1"></a><span class="in">    LLM[대규모 언어 모델]</span></span>
+<span id="cb14-172"><a href="#cb14-172" aria-hidden="true" tabindex="-1"></a><span class="in">    O[응답]</span></span>
+<span id="cb14-173"><a href="#cb14-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-174"><a href="#cb14-174" aria-hidden="true" tabindex="-1"></a><span class="in">    subgraph PT ["프롬프트 템플릿 (Prompt Template)"]</span></span>
+<span id="cb14-175"><a href="#cb14-175" aria-hidden="true" tabindex="-1"></a><span class="in">        C[컨텍스트]</span></span>
+<span id="cb14-176"><a href="#cb14-176" aria-hidden="true" tabindex="-1"></a><span class="in">        Q[질문]</span></span>
+<span id="cb14-177"><a href="#cb14-177" aria-hidden="true" tabindex="-1"></a><span class="in">        R[응답 형식]</span></span>
+<span id="cb14-178"><a href="#cb14-178" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb14-179"><a href="#cb14-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-180"><a href="#cb14-180" aria-hidden="true" tabindex="-1"></a><span class="in">    V --&gt;|동적 삽입| PT</span></span>
+<span id="cb14-181"><a href="#cb14-181" aria-hidden="true" tabindex="-1"></a><span class="in">    PT --&gt;|생성| FP</span></span>
+<span id="cb14-182"><a href="#cb14-182" aria-hidden="true" tabindex="-1"></a><span class="in">    FP --&gt;|입력| LLM</span></span>
+<span id="cb14-183"><a href="#cb14-183" aria-hidden="true" tabindex="-1"></a><span class="in">    LLM --&gt;|출력| O</span></span>
+<span id="cb14-184"><a href="#cb14-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-185"><a href="#cb14-185" aria-hidden="true" tabindex="-1"></a><span class="in">    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px</span></span>
+<span id="cb14-186"><a href="#cb14-186" aria-hidden="true" tabindex="-1"></a><span class="in">    classDef emphasis fill:#d9d9d9,stroke:#333,stroke-width:2px</span></span>
+<span id="cb14-187"><a href="#cb14-187" aria-hidden="true" tabindex="-1"></a><span class="in">    classDef highlight fill:#e6e6e6,stroke:#333,stroke-width:1px</span></span>
+<span id="cb14-188"><a href="#cb14-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-189"><a href="#cb14-189" aria-hidden="true" tabindex="-1"></a><span class="in">    class PT,LLM emphasis</span></span>
+<span id="cb14-190"><a href="#cb14-190" aria-hidden="true" tabindex="-1"></a><span class="in">    class FP,O highlight</span></span>
+<span id="cb14-191"><a href="#cb14-191" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-192"><a href="#cb14-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-193"><a href="#cb14-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-196"><a href="#cb14-196" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb14-197"><a href="#cb14-197" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb14-198"><a href="#cb14-198" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.prompts <span class="im">import</span> PromptTemplate</span>
+<span id="cb14-199"><a href="#cb14-199" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_openai <span class="im">import</span> OpenAI</span>
+<span id="cb14-200"><a href="#cb14-200" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb14-201"><a href="#cb14-201" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb14-202"><a href="#cb14-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-203"><a href="#cb14-203" aria-hidden="true" tabindex="-1"></a><span class="co"># .env 파일에서 환경 변수 로드</span></span>
+<span id="cb14-204"><a href="#cb14-204" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb14-205"><a href="#cb14-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-206"><a href="#cb14-206" aria-hidden="true" tabindex="-1"></a><span class="co"># 프롬프트 템플릿 정의</span></span>
+<span id="cb14-207"><a href="#cb14-207" aria-hidden="true" tabindex="-1"></a>template <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb14-208"><a href="#cb14-208" aria-hidden="true" tabindex="-1"></a><span class="st">컨텍스트: </span><span class="sc">{context}</span></span>
+<span id="cb14-209"><a href="#cb14-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-210"><a href="#cb14-210" aria-hidden="true" tabindex="-1"></a><span class="st">질문: </span><span class="sc">{question}</span></span>
+<span id="cb14-211"><a href="#cb14-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-212"><a href="#cb14-212" aria-hidden="true" tabindex="-1"></a><span class="st">응답 형식: </span><span class="sc">{response_format}</span></span>
+<span id="cb14-213"><a href="#cb14-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-214"><a href="#cb14-214" aria-hidden="true" tabindex="-1"></a><span class="st">위의 컨텍스트를 바탕으로 질문에 답하세요. 응답은 제시된 형식을 따라주세요.</span></span>
+<span id="cb14-215"><a href="#cb14-215" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb14-216"><a href="#cb14-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-217"><a href="#cb14-217" aria-hidden="true" tabindex="-1"></a>prompt_template <span class="op">=</span> PromptTemplate(</span>
+<span id="cb14-218"><a href="#cb14-218" aria-hidden="true" tabindex="-1"></a>    template<span class="op">=</span>template,</span>
+<span id="cb14-219"><a href="#cb14-219" aria-hidden="true" tabindex="-1"></a>    input_variables<span class="op">=</span>[<span class="st">"context"</span>, <span class="st">"question"</span>, <span class="st">"response_format"</span>]</span>
+<span id="cb14-220"><a href="#cb14-220" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-221"><a href="#cb14-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-222"><a href="#cb14-222" aria-hidden="true" tabindex="-1"></a><span class="co"># OpenAI LLM 초기화 (API 키는 .env 파일에서 가져옴)</span></span>
+<span id="cb14-223"><a href="#cb14-223" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> OpenAI(model_name<span class="op">=</span><span class="st">"gpt-3.5-turbo-instruct"</span>,   </span>
+<span id="cb14-224"><a href="#cb14-224" aria-hidden="true" tabindex="-1"></a>             temperature<span class="op">=</span><span class="fl">0.7</span>, </span>
+<span id="cb14-225"><a href="#cb14-225" aria-hidden="true" tabindex="-1"></a>             openai_api_key<span class="op">=</span>os.getenv(<span class="st">"OPENAI_API_KEY"</span>))</span>
+<span id="cb14-226"><a href="#cb14-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-227"><a href="#cb14-227" aria-hidden="true" tabindex="-1"></a><span class="co"># 프롬프트 생성</span></span>
+<span id="cb14-228"><a href="#cb14-228" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> prompt_template.<span class="bu">format</span>(</span>
+<span id="cb14-229"><a href="#cb14-229" aria-hidden="true" tabindex="-1"></a>    context<span class="op">=</span><span class="st">"랭체인은 대규모 언어 모델을 활용한 애플리케이션 개발을 위한 프레임워크입니다."</span>,</span>
+<span id="cb14-230"><a href="#cb14-230" aria-hidden="true" tabindex="-1"></a>    question<span class="op">=</span><span class="st">"랭체인의 주요 특징 세 가지는 무엇인가요?"</span>,</span>
+<span id="cb14-231"><a href="#cb14-231" aria-hidden="true" tabindex="-1"></a>    response_format<span class="op">=</span><span class="st">"1. 첫 번째 특징</span><span class="ch">\n</span><span class="st">2. 두 번째 특징</span><span class="ch">\n</span><span class="st">3. 세 번째 특징"</span></span>
+<span id="cb14-232"><a href="#cb14-232" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-233"><a href="#cb14-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-234"><a href="#cb14-234" aria-hidden="true" tabindex="-1"></a><span class="co"># LLM에 프롬프트 전달 및 응답 생성</span></span>
+<span id="cb14-235"><a href="#cb14-235" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> llm.invoke(prompt)</span>
+<span id="cb14-236"><a href="#cb14-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-237"><a href="#cb14-237" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"생성된 프롬프트:"</span>)</span>
+<span id="cb14-238"><a href="#cb14-238" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prompt)</span>
+<span id="cb14-239"><a href="#cb14-239" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">LLM 응답:"</span>)</span>
+<span id="cb14-240"><a href="#cb14-240" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response)</span>
+<span id="cb14-241"><a href="#cb14-241" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-242"><a href="#cb14-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-243"><a href="#cb14-243" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-244"><a href="#cb14-244" aria-hidden="true" tabindex="-1"></a><span class="in">생성된 프롬프트:</span></span>
+<span id="cb14-245"><a href="#cb14-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-246"><a href="#cb14-246" aria-hidden="true" tabindex="-1"></a><span class="in">컨텍스트: 랭체인은 대규모 언어 모델을 활용한 애플리케이션 개발을 위한 프레임워크입니다.</span></span>
+<span id="cb14-247"><a href="#cb14-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-248"><a href="#cb14-248" aria-hidden="true" tabindex="-1"></a><span class="in">질문: 랭체인의 주요 특징 세 가지는 무엇인가요?</span></span>
+<span id="cb14-249"><a href="#cb14-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-250"><a href="#cb14-250" aria-hidden="true" tabindex="-1"></a><span class="in">응답 형식: 1. 첫 번째 특징</span></span>
+<span id="cb14-251"><a href="#cb14-251" aria-hidden="true" tabindex="-1"></a><span class="in">2. 두 번째 특징</span></span>
+<span id="cb14-252"><a href="#cb14-252" aria-hidden="true" tabindex="-1"></a><span class="in">3. 세 번째 특징</span></span>
+<span id="cb14-253"><a href="#cb14-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-254"><a href="#cb14-254" aria-hidden="true" tabindex="-1"></a><span class="in">위의 컨텍스트를 바탕으로 질문에 답하세요. 응답은 제시된 형식을 따라주세요.</span></span>
+<span id="cb14-255"><a href="#cb14-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-256"><a href="#cb14-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-257"><a href="#cb14-257" aria-hidden="true" tabindex="-1"></a><span class="in">LLM 응답:</span></span>
+<span id="cb14-258"><a href="#cb14-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-259"><a href="#cb14-259" aria-hidden="true" tabindex="-1"></a><span class="in">1. 랭체인은 대규모 언어 모델을 활용하여 자연어 처리 작업을 수행할 수 있습니다.</span></span>
+<span id="cb14-260"><a href="#cb14-260" aria-hidden="true" tabindex="-1"></a><span class="in">2. 랭체인은 다양한 애플리케이션 개발을 지원하기 위한 다양한 API를 제공합니다.</span></span>
+<span id="cb14-261"><a href="#cb14-261" aria-hidden="true" tabindex="-1"></a><span class="in">3. 랭체인은 사용자가 직접 학습한 데이터를 추가하여 모델을 개선할 수 있는 기능을 제공합니다.</span></span>
+<span id="cb14-262"><a href="#cb14-262" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-263"><a href="#cb14-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-264"><a href="#cb14-264" aria-hidden="true" tabindex="-1"></a><span class="fu">## LCEL</span></span>
+<span id="cb14-265"><a href="#cb14-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-266"><a href="#cb14-266" aria-hidden="true" tabindex="-1"></a>랭체인 표현언어(LangChain Expression Language, LCEL)는 LangChain 컴포넌트들을 연결하고 조합하기 위한 선언적 방식의 인터페이스로 복잡한 AI 애플리케이션 구축을 단순화하고 가독성을 높이는 데 도움을 준다.</span>
+<span id="cb14-267"><a href="#cb14-267" aria-hidden="true" tabindex="-1"></a>체인(Chain)은 LCEL의 핵심 개념 중 하나로, 여러 컴포넌트들을 연결하여 하나의 작업 흐름을 만드는 것을 말한다.</span>
+<span id="cb14-268"><a href="#cb14-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-269"><a href="#cb14-269" aria-hidden="true" tabindex="-1"></a>유닉스 파이프(<span class="in">`|`</span>)를 이해하고 있다면 <span class="in">`prompt | model`</span>와 같이 프롬프트 템플릿과 LLM 모델을 연결하는 간단한 체인을 생성한다. <span class="in">`프롬프트 | LLM | 출력파서`</span>와 같은 패턴이 일반적이다. 프롬프트 템플릿으로 주제를 받아 프롬프트를 완성하고 LLM 모형에 전달하고 출력파서를 통해 원하는 결과물을 출력시킨다.</span>
+<span id="cb14-270"><a href="#cb14-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-271"><a href="#cb14-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-274"><a href="#cb14-274" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb14-275"><a href="#cb14-275" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb14-276"><a href="#cb14-276" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.prompts <span class="im">import</span> ChatPromptTemplate</span>
+<span id="cb14-277"><a href="#cb14-277" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_openai <span class="im">import</span> ChatOpenAI</span>
+<span id="cb14-278"><a href="#cb14-278" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.output_parsers <span class="im">import</span> CommaSeparatedListOutputParser</span>
+<span id="cb14-279"><a href="#cb14-279" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.runnables <span class="im">import</span> RunnablePassthrough</span>
+<span id="cb14-280"><a href="#cb14-280" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb14-281"><a href="#cb14-281" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb14-282"><a href="#cb14-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-283"><a href="#cb14-283" aria-hidden="true" tabindex="-1"></a><span class="co"># .env 파일에서 환경 변수 로드</span></span>
+<span id="cb14-284"><a href="#cb14-284" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb14-285"><a href="#cb14-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-286"><a href="#cb14-286" aria-hidden="true" tabindex="-1"></a><span class="co"># 출력 파서 정의</span></span>
+<span id="cb14-287"><a href="#cb14-287" aria-hidden="true" tabindex="-1"></a>output_parser <span class="op">=</span> CommaSeparatedListOutputParser()</span>
+<span id="cb14-288"><a href="#cb14-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-289"><a href="#cb14-289" aria-hidden="true" tabindex="-1"></a><span class="co"># 프롬프트 템플릿 정의</span></span>
+<span id="cb14-290"><a href="#cb14-290" aria-hidden="true" tabindex="-1"></a>prompt_template <span class="op">=</span> ChatPromptTemplate.from_template(<span class="st">"""</span></span>
+<span id="cb14-291"><a href="#cb14-291" aria-hidden="true" tabindex="-1"></a><span class="st">다음 주제에 관련된 키워드를 5개 나열해주세요: </span><span class="sc">{topic}</span></span>
+<span id="cb14-292"><a href="#cb14-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-293"><a href="#cb14-293" aria-hidden="true" tabindex="-1"></a><span class="st">당신의 응답은 반드시 쉼표로 구분된 단일 단어 목록이어야 합니다.</span></span>
+<span id="cb14-294"><a href="#cb14-294" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>)</span>
+<span id="cb14-295"><a href="#cb14-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-296"><a href="#cb14-296" aria-hidden="true" tabindex="-1"></a><span class="co"># 모델 정의 (API 키는 .env 파일에서 가져옴)</span></span>
+<span id="cb14-297"><a href="#cb14-297" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> OpenAI(</span>
+<span id="cb14-298"><a href="#cb14-298" aria-hidden="true" tabindex="-1"></a>    model_name<span class="op">=</span><span class="st">"gpt-3.5-turbo-instruct"</span>,   </span>
+<span id="cb14-299"><a href="#cb14-299" aria-hidden="true" tabindex="-1"></a>    temperature<span class="op">=</span><span class="fl">0.7</span>, </span>
+<span id="cb14-300"><a href="#cb14-300" aria-hidden="true" tabindex="-1"></a>    openai_api_key<span class="op">=</span>os.getenv(<span class="st">"OPENAI_API_KEY"</span>)</span>
+<span id="cb14-301"><a href="#cb14-301" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-302"><a href="#cb14-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-303"><a href="#cb14-303" aria-hidden="true" tabindex="-1"></a><span class="co"># 체인 구성</span></span>
+<span id="cb14-304"><a href="#cb14-304" aria-hidden="true" tabindex="-1"></a>chain <span class="op">=</span> (</span>
+<span id="cb14-305"><a href="#cb14-305" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"topic"</span>: RunnablePassthrough()} </span>
+<span id="cb14-306"><a href="#cb14-306" aria-hidden="true" tabindex="-1"></a>    <span class="op">|</span> prompt_template </span>
+<span id="cb14-307"><a href="#cb14-307" aria-hidden="true" tabindex="-1"></a>    <span class="op">|</span> model </span>
+<span id="cb14-308"><a href="#cb14-308" aria-hidden="true" tabindex="-1"></a>    <span class="op">|</span> output_parser</span>
+<span id="cb14-309"><a href="#cb14-309" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-310"><a href="#cb14-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-311"><a href="#cb14-311" aria-hidden="true" tabindex="-1"></a><span class="co"># 체인 실행</span></span>
+<span id="cb14-312"><a href="#cb14-312" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> chain.invoke(<span class="st">"인공지능"</span>)</span>
+<span id="cb14-313"><a href="#cb14-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-314"><a href="#cb14-314" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"인공지능 관련 키워드:"</span>)</span>
+<span id="cb14-315"><a href="#cb14-315" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> keyword <span class="kw">in</span> result:</span>
+<span id="cb14-316"><a href="#cb14-316" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"- </span><span class="sc">{</span>keyword<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-317"><a href="#cb14-317" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-318"><a href="#cb14-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-319"><a href="#cb14-319" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-320"><a href="#cb14-320" aria-hidden="true" tabindex="-1"></a><span class="in">인공지능 관련 키워드:</span></span>
+<span id="cb14-321"><a href="#cb14-321" aria-hidden="true" tabindex="-1"></a><span class="in">- 기계학습</span></span>
+<span id="cb14-322"><a href="#cb14-322" aria-hidden="true" tabindex="-1"></a><span class="in">- 딥러닝</span></span>
+<span id="cb14-323"><a href="#cb14-323" aria-hidden="true" tabindex="-1"></a><span class="in">- 자연어처리</span></span>
+<span id="cb14-324"><a href="#cb14-324" aria-hidden="true" tabindex="-1"></a><span class="in">- 로봇</span></span>
+<span id="cb14-325"><a href="#cb14-325" aria-hidden="true" tabindex="-1"></a><span class="in">- 빅데이터</span></span>
+<span id="cb14-326"><a href="#cb14-326" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-327"><a href="#cb14-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-328"><a href="#cb14-328" aria-hidden="true" tabindex="-1"></a>LCEL과 Chain을 사용하면 복잡한 AI 로직을 더 쉽게 구조화하고 관리할 수 있으며, 코드의 가독성과 유지보수성을 크게 향상시킬 수 있다.</span>
+<span id="cb14-329"><a href="#cb14-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-330"><a href="#cb14-330" aria-hidden="true" tabindex="-1"></a><span class="fu">## 랭그래프</span></span>
+<span id="cb14-331"><a href="#cb14-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-332"><a href="#cb14-332" aria-hidden="true" tabindex="-1"></a>랭그래프(LangGraph)는 랭체인(LangChain)의 일부로, 에이전트(Agent) 시스템을 설계하기 위한 도구로 복잡한 AI 워크플로우를 구축하는 데 사용된다. 랭그래프는 에이전트의 상태를 추적하고 관리할 수 있는 상태 관리 기능을 제공한다. 이를 통해 장기적인 대화나 복잡한 작업의 진행 상황을 효과적으로 추적할 수 있고, 조건부 로직과 반복을 포함한 복잡한 워크플로우를 정의할 수 있는 유연성을 제공한다. 또한, 다양한 외부 도구와 API를 쉽게 통합할 수 있는 기능도 랭그래프의 중요한 특징으로 AI 시스템의 능력을 확장하고 실제 세계의 다양한 작업을 수행할 수 있게 된다.</span>
+<span id="cb14-333"><a href="#cb14-333" aria-hidden="true" tabindex="-1"></a>특히, 랭그래프는 재사용 가능한 컴포넌트를 만들어 복잡한 시스템을 구축할 수 있는 모듈성을 제공하여 개발 효율성을 높이고 일관성 있는 시스템 구축을 가능하게 한다.</span>
+<span id="cb14-334"><a href="#cb14-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-335"><a href="#cb14-335" aria-hidden="true" tabindex="-1"></a><span class="in">`pip install langgraph`</span> 명령어로 설치한 후 프롬프트 템플릿에 사칙연산 관련 문제풀이로 LLM을 활용한다.</span>
+<span id="cb14-336"><a href="#cb14-336" aria-hidden="true" tabindex="-1"></a><span class="in">`LLMMathChain`</span>은 <span class="in">`numexpr`</span> 패키지도 필요하니 <span class="in">`pip install numexpr`</span> 명령어로 설치한다.</span>
+<span id="cb14-337"><a href="#cb14-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-338"><a href="#cb14-338" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb14-339"><a href="#cb14-339" aria-hidden="true" tabindex="-1"></a><span class="fu">### 코드</span></span>
+<span id="cb14-340"><a href="#cb14-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-343"><a href="#cb14-343" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb14-344"><a href="#cb14-344" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb14-345"><a href="#cb14-345" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.agents <span class="im">import</span> initialize_agent, load_tools</span>
+<span id="cb14-346"><a href="#cb14-346" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.llms <span class="im">import</span> OpenAI</span>
+<span id="cb14-347"><a href="#cb14-347" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb14-348"><a href="#cb14-348" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb14-349"><a href="#cb14-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-350"><a href="#cb14-350" aria-hidden="true" tabindex="-1"></a><span class="co"># Load environment variables from .env file</span></span>
+<span id="cb14-351"><a href="#cb14-351" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb14-352"><a href="#cb14-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-353"><a href="#cb14-353" aria-hidden="true" tabindex="-1"></a><span class="co"># Get OpenAI API key</span></span>
+<span id="cb14-354"><a href="#cb14-354" aria-hidden="true" tabindex="-1"></a>openai_api_key <span class="op">=</span> os.getenv(<span class="st">"OPENAI_API_KEY"</span>)</span>
+<span id="cb14-355"><a href="#cb14-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-356"><a href="#cb14-356" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the language model</span></span>
+<span id="cb14-357"><a href="#cb14-357" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> OpenAI(</span>
+<span id="cb14-358"><a href="#cb14-358" aria-hidden="true" tabindex="-1"></a>    model_name<span class="op">=</span><span class="st">"gpt-3.5-turbo-instruct"</span>,  </span>
+<span id="cb14-359"><a href="#cb14-359" aria-hidden="true" tabindex="-1"></a>    temperature<span class="op">=</span><span class="fl">0.0</span>, </span>
+<span id="cb14-360"><a href="#cb14-360" aria-hidden="true" tabindex="-1"></a>    openai_api_key<span class="op">=</span>openai_api_key</span>
+<span id="cb14-361"><a href="#cb14-361" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-362"><a href="#cb14-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-363"><a href="#cb14-363" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the necessary tools</span></span>
+<span id="cb14-364"><a href="#cb14-364" aria-hidden="true" tabindex="-1"></a>tools <span class="op">=</span> load_tools([<span class="st">"llm-math"</span>], llm<span class="op">=</span>llm)</span>
+<span id="cb14-365"><a href="#cb14-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-366"><a href="#cb14-366" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the prompt for the agent</span></span>
+<span id="cb14-367"><a href="#cb14-367" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb14-368"><a href="#cb14-368" aria-hidden="true" tabindex="-1"></a><span class="st">You are a helpful assistant that can perform various mathematical calculations and provide accurate results.</span></span>
+<span id="cb14-369"><a href="#cb14-369" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb14-370"><a href="#cb14-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-371"><a href="#cb14-371" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the ReAct agent with the prompt</span></span>
+<span id="cb14-372"><a href="#cb14-372" aria-hidden="true" tabindex="-1"></a>agent <span class="op">=</span> initialize_agent(</span>
+<span id="cb14-373"><a href="#cb14-373" aria-hidden="true" tabindex="-1"></a>    tools<span class="op">=</span>tools,</span>
+<span id="cb14-374"><a href="#cb14-374" aria-hidden="true" tabindex="-1"></a>    llm<span class="op">=</span>llm,</span>
+<span id="cb14-375"><a href="#cb14-375" aria-hidden="true" tabindex="-1"></a>    agent_type<span class="op">=</span><span class="st">"react"</span>,</span>
+<span id="cb14-376"><a href="#cb14-376" aria-hidden="true" tabindex="-1"></a>    verbose<span class="op">=</span><span class="va">True</span></span>
+<span id="cb14-377"><a href="#cb14-377" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-378"><a href="#cb14-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-379"><a href="#cb14-379" aria-hidden="true" tabindex="-1"></a><span class="co"># List of questions to ask the agent</span></span>
+<span id="cb14-380"><a href="#cb14-380" aria-hidden="true" tabindex="-1"></a>questions <span class="op">=</span> [</span>
+<span id="cb14-381"><a href="#cb14-381" aria-hidden="true" tabindex="-1"></a>    <span class="st">"15 더하기 27은 얼마인가요?"</span>,</span>
+<span id="cb14-382"><a href="#cb14-382" aria-hidden="true" tabindex="-1"></a>    <span class="st">"144의 제곱근은 얼마인가요?"</span>,</span>
+<span id="cb14-383"><a href="#cb14-383" aria-hidden="true" tabindex="-1"></a>    <span class="st">"250의 30%는 얼마인가요?"</span>,</span>
+<span id="cb14-384"><a href="#cb14-384" aria-hidden="true" tabindex="-1"></a>    <span class="st">"5 곱하기 8에서 12를 뺀 값은 얼마인가요?"</span>,</span>
+<span id="cb14-385"><a href="#cb14-385" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb14-386"><a href="#cb14-386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-387"><a href="#cb14-387" aria-hidden="true" tabindex="-1"></a><span class="co"># Ask each question to the agent and print the response</span></span>
+<span id="cb14-388"><a href="#cb14-388" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> question <span class="kw">in</span> questions:</span>
+<span id="cb14-389"><a href="#cb14-389" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> agent.invoke({<span class="st">"input"</span>: question})</span>
+<span id="cb14-390"><a href="#cb14-390" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"질문: </span><span class="sc">{</span>question<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-391"><a href="#cb14-391" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"답변: </span><span class="sc">{</span>response[<span class="st">'output'</span>]<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb14-392"><a href="#cb14-392" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-393"><a href="#cb14-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-394"><a href="#cb14-394" aria-hidden="true" tabindex="-1"></a><span class="fu">### 실행결과</span></span>
+<span id="cb14-395"><a href="#cb14-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-396"><a href="#cb14-396" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-397"><a href="#cb14-397" aria-hidden="true" tabindex="-1"></a><span class="in">&gt; Entering new AgentExecutor chain...</span></span>
+<span id="cb14-398"><a href="#cb14-398" aria-hidden="true" tabindex="-1"></a><span class="in"> I should use a calculator to add 15 and 27</span></span>
+<span id="cb14-399"><a href="#cb14-399" aria-hidden="true" tabindex="-1"></a><span class="in">Action: Calculator</span></span>
+<span id="cb14-400"><a href="#cb14-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-401"><a href="#cb14-401" aria-hidden="true" tabindex="-1"></a><span class="in">Observation: Answer: 42</span></span>
+<span id="cb14-402"><a href="#cb14-402" aria-hidden="true" tabindex="-1"></a><span class="in">Thought: I now know the final answer</span></span>
+<span id="cb14-403"><a href="#cb14-403" aria-hidden="true" tabindex="-1"></a><span class="in">Final Answer: 42</span></span>
+<span id="cb14-404"><a href="#cb14-404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-405"><a href="#cb14-405" aria-hidden="true" tabindex="-1"></a><span class="in">&gt; Finished chain.</span></span>
+<span id="cb14-406"><a href="#cb14-406" aria-hidden="true" tabindex="-1"></a><span class="in">질문: 15 더하기 27은 얼마인가요?</span></span>
+<span id="cb14-407"><a href="#cb14-407" aria-hidden="true" tabindex="-1"></a><span class="in">답변: 42</span></span>
+<span id="cb14-408"><a href="#cb14-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-409"><a href="#cb14-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-410"><a href="#cb14-410" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-411"><a href="#cb14-411" aria-hidden="true" tabindex="-1"></a><span class="in">&gt; Entering new AgentExecutor chain...</span></span>
+<span id="cb14-412"><a href="#cb14-412" aria-hidden="true" tabindex="-1"></a><span class="in"> I should use a calculator to find the square root of 144</span></span>
+<span id="cb14-413"><a href="#cb14-413" aria-hidden="true" tabindex="-1"></a><span class="in">Action: Calculator</span></span>
+<span id="cb14-414"><a href="#cb14-414" aria-hidden="true" tabindex="-1"></a><span class="in">Action Input: 144</span></span>
+<span id="cb14-415"><a href="#cb14-415" aria-hidden="true" tabindex="-1"></a><span class="in">Observation: Answer: 144</span></span>
+<span id="cb14-416"><a href="#cb14-416" aria-hidden="true" tabindex="-1"></a><span class="in"> I now know the final answer</span></span>
+<span id="cb14-417"><a href="#cb14-417" aria-hidden="true" tabindex="-1"></a><span class="in">Final Answer: 12</span></span>
+<span id="cb14-418"><a href="#cb14-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-419"><a href="#cb14-419" aria-hidden="true" tabindex="-1"></a><span class="in">&gt; Finished chain.</span></span>
+<span id="cb14-420"><a href="#cb14-420" aria-hidden="true" tabindex="-1"></a><span class="in">질문: 144의 제곱근은 얼마인가요?</span></span>
+<span id="cb14-421"><a href="#cb14-421" aria-hidden="true" tabindex="-1"></a><span class="in">답변: 12</span></span>
+<span id="cb14-422"><a href="#cb14-422" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-423"><a href="#cb14-423" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-424"><a href="#cb14-424" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-425"><a href="#cb14-425" aria-hidden="true" tabindex="-1"></a><span class="in">&gt; Entering new AgentExecutor chain...</span></span>
+<span id="cb14-426"><a href="#cb14-426" aria-hidden="true" tabindex="-1"></a><span class="in"> We need to find the percentage of 250.</span></span>
+<span id="cb14-427"><a href="#cb14-427" aria-hidden="true" tabindex="-1"></a><span class="in">Action: Calculator</span></span>
+<span id="cb14-428"><a href="#cb14-428" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-429"><a href="#cb14-429" aria-hidden="true" tabindex="-1"></a><span class="in">Observation: Answer: 75.0</span></span>
+<span id="cb14-430"><a href="#cb14-430" aria-hidden="true" tabindex="-1"></a><span class="in">Thought: We have found the percentage.</span></span>
+<span id="cb14-431"><a href="#cb14-431" aria-hidden="true" tabindex="-1"></a><span class="in">Final Answer: 75.0</span></span>
+<span id="cb14-432"><a href="#cb14-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-433"><a href="#cb14-433" aria-hidden="true" tabindex="-1"></a><span class="in">&gt; Finished chain.</span></span>
+<span id="cb14-434"><a href="#cb14-434" aria-hidden="true" tabindex="-1"></a><span class="in">질문: 250의 30%는 얼마인가요?</span></span>
+<span id="cb14-435"><a href="#cb14-435" aria-hidden="true" tabindex="-1"></a><span class="in">답변: 75.0</span></span>
+<span id="cb14-436"><a href="#cb14-436" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-437"><a href="#cb14-437" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-438"><a href="#cb14-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-439"><a href="#cb14-439" aria-hidden="true" tabindex="-1"></a><span class="in">&gt; Entering new AgentExecutor chain...</span></span>
+<span id="cb14-440"><a href="#cb14-440" aria-hidden="true" tabindex="-1"></a><span class="in"> I should use a calculator to solve this problem.</span></span>
+<span id="cb14-441"><a href="#cb14-441" aria-hidden="true" tabindex="-1"></a><span class="in">Action: Calculator</span></span>
+<span id="cb14-442"><a href="#cb14-442" aria-hidden="true" tabindex="-1"></a><span class="in">Action Input: 5 * 8 - 12</span></span>
+<span id="cb14-443"><a href="#cb14-443" aria-hidden="true" tabindex="-1"></a><span class="in">Observation: Answer: 28</span></span>
+<span id="cb14-444"><a href="#cb14-444" aria-hidden="true" tabindex="-1"></a><span class="in"> I now know the final answer.</span></span>
+<span id="cb14-445"><a href="#cb14-445" aria-hidden="true" tabindex="-1"></a><span class="in">Final Answer: 28</span></span>
+<span id="cb14-446"><a href="#cb14-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-447"><a href="#cb14-447" aria-hidden="true" tabindex="-1"></a><span class="in">&gt; Finished chain.</span></span>
+<span id="cb14-448"><a href="#cb14-448" aria-hidden="true" tabindex="-1"></a><span class="in">질문: 5 곱하기 8에서 12를 뺀 값은 얼마인가요?</span></span>
+<span id="cb14-449"><a href="#cb14-449" aria-hidden="true" tabindex="-1"></a><span class="in">답변: 28</span></span>
+<span id="cb14-450"><a href="#cb14-450" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-451"><a href="#cb14-451" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-452"><a href="#cb14-452" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-453"><a href="#cb14-453" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-454"><a href="#cb14-454" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-455"><a href="#cb14-455" aria-hidden="true" tabindex="-1"></a><span class="fu">## RAG</span></span>
+<span id="cb14-456"><a href="#cb14-456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-457"><a href="#cb14-457" aria-hidden="true" tabindex="-1"></a>검색 증강 생성(Retrieval Augmented Generation, RAG)는 대규모 언어 모델(LLM)의 성능을 향상시키기 위해 외부 지식을 활용하는 기술로 </span>
+<span id="cb14-458"><a href="#cb14-458" aria-hidden="true" tabindex="-1"></a>사용자의 질문이나 프롬프트에 대해 관련성 높은 정보를 검색하고, 이를 원래의 프롬프트와 결합하여 LLM에 제공한다.</span>
+<span id="cb14-459"><a href="#cb14-459" aria-hidden="true" tabindex="-1"></a>RAG의 핵심 아이디어는 LLM의 생성 능력과 외부 데이터베이스의 최신 정보를 결합하는 것으로 **임베딩(Embedding)**이 중요한 역할을 한다. 사용자의 질문과 데이터베이스 내 문서들은 벡터 형태로 변환되며, 이를 통해 의미적 유사성을 기반으로 관련 정보를 빠르게 검색할 수 있다.</span>
+<span id="cb14-460"><a href="#cb14-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-461"><a href="#cb14-461" aria-hidden="true" tabindex="-1"></a>RAG의 작동 과정은 다음과 같다. </span>
+<span id="cb14-462"><a href="#cb14-462" aria-hidden="true" tabindex="-1"></a>먼저, 사용자가 질문을 입력하면 이 질문은 벡터로 변환된다. </span>
+<span id="cb14-463"><a href="#cb14-463" aria-hidden="true" tabindex="-1"></a>그 다음, 이 벡터를 사용해 미리 준비된 벡터 데이터베이스에서 가장 유사한 문서나 정보를 검색한다. </span>
+<span id="cb14-464"><a href="#cb14-464" aria-hidden="true" tabindex="-1"></a>검색된 정보는 원래의 질문과 함께 새로운 프롬프트를 구성하는 데 사용된다. </span>
+<span id="cb14-465"><a href="#cb14-465" aria-hidden="true" tabindex="-1"></a>이렇게 증강된 프롬프트가 LLM에 입력되어 최종 응답을 생성한다.</span>
+<span id="cb14-466"><a href="#cb14-466" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-467"><a href="#cb14-467" aria-hidden="true" tabindex="-1"></a>LLM은 학습 시점의 데이터에 기반하므로 최신 정보를 반영하지 못할 수 있지만, </span>
+<span id="cb14-468"><a href="#cb14-468" aria-hidden="true" tabindex="-1"></a>RAG를 통해 외부 데이터베이스의 최신 정보를 활용할 수 있어 LLM의 환각(hallucination) 문제를 줄이고 더 정확하고 신뢰할 수 있는 응답을 생성하는 데 도움을 준다.</span>
+<span id="cb14-469"><a href="#cb14-469" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-472"><a href="#cb14-472" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb14-473"><a href="#cb14-473" aria-hidden="true" tabindex="-1"></a><span class="in">graph LR</span></span>
+<span id="cb14-474"><a href="#cb14-474" aria-hidden="true" tabindex="-1"></a><span class="in">    U((사용자)) --&gt; UP[사용자&lt;br&gt;프롬프트]</span></span>
+<span id="cb14-475"><a href="#cb14-475" aria-hidden="true" tabindex="-1"></a><span class="in">    UP --&gt; EM[임베딩&lt;br&gt;모델]</span></span>
+<span id="cb14-476"><a href="#cb14-476" aria-hidden="true" tabindex="-1"></a><span class="in">    EM --&gt; VD[벡터&lt;br&gt;데이터베이스]</span></span>
+<span id="cb14-477"><a href="#cb14-477" aria-hidden="true" tabindex="-1"></a><span class="in">    VD --&gt; MSD[가장 유사한&lt;br&gt;문서들]</span></span>
+<span id="cb14-478"><a href="#cb14-478" aria-hidden="true" tabindex="-1"></a><span class="in">    UP --&gt; PT[프롬프트 템플릿&lt;br&gt;= 지시 +&lt;br&gt;사용자 프롬프트 +&lt;br&gt;문서들]</span></span>
+<span id="cb14-479"><a href="#cb14-479" aria-hidden="true" tabindex="-1"></a><span class="in">    MSD --&gt; PT</span></span>
+<span id="cb14-480"><a href="#cb14-480" aria-hidden="true" tabindex="-1"></a><span class="in">    PT --&gt; LLM[LLM]</span></span>
+<span id="cb14-481"><a href="#cb14-481" aria-hidden="true" tabindex="-1"></a><span class="in">    LLM --&gt; O[출력]</span></span>
+<span id="cb14-482"><a href="#cb14-482" aria-hidden="true" tabindex="-1"></a><span class="in">    O --&gt; U</span></span>
+<span id="cb14-483"><a href="#cb14-483" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-484"><a href="#cb14-484" aria-hidden="true" tabindex="-1"></a><span class="in">classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px;</span></span>
+<span id="cb14-485"><a href="#cb14-485" aria-hidden="true" tabindex="-1"></a><span class="in">classDef user fill:#FFD700,stroke:#333,stroke-width:2px;</span></span>
+<span id="cb14-486"><a href="#cb14-486" aria-hidden="true" tabindex="-1"></a><span class="in">classDef emphasis fill:#e1e1e1,stroke:#333,stroke-width:2px;</span></span>
+<span id="cb14-487"><a href="#cb14-487" aria-hidden="true" tabindex="-1"></a><span class="in">class U user;</span></span>
+<span id="cb14-488"><a href="#cb14-488" aria-hidden="true" tabindex="-1"></a><span class="in">class PT,LLM emphasis;</span></span>
+<span id="cb14-489"><a href="#cb14-489" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-490"><a href="#cb14-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-491"><a href="#cb14-491" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-492"><a href="#cb14-492" aria-hidden="true" tabindex="-1"></a>::: callout-warning</span>
+<span id="cb14-493"><a href="#cb14-493" aria-hidden="true" tabindex="-1"></a><span class="fu">### `numpy` 버전 오류</span></span>
+<span id="cb14-494"><a href="#cb14-494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-495"><a href="#cb14-495" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-496"><a href="#cb14-496" aria-hidden="true" tabindex="-1"></a><span class="in">AttributeError: np.float_ was removed in the NumPy 2.0 release. Use np.float64 instead.</span></span>
+<span id="cb14-497"><a href="#cb14-497" aria-hidden="true" tabindex="-1"></a><span class="in">Cell In[53], line 26</span></span>
+<span id="cb14-498"><a href="#cb14-498" aria-hidden="true" tabindex="-1"></a><span class="in">     24 # 임베딩 모델 및 벡터 저장소 설정</span></span>
+<span id="cb14-499"><a href="#cb14-499" aria-hidden="true" tabindex="-1"></a><span class="in">     25 embeddings = OpenAIEmbeddings()</span></span>
+<span id="cb14-500"><a href="#cb14-500" aria-hidden="true" tabindex="-1"></a><span class="in">---&gt; 26 vectorstore = Chroma.from_documents(texts, embeddings)</span></span>
+<span id="cb14-501"><a href="#cb14-501" aria-hidden="true" tabindex="-1"></a><span class="in">     28 # RAG 체인 설정</span></span>
+<span id="cb14-502"><a href="#cb14-502" aria-hidden="true" tabindex="-1"></a><span class="in">     29 llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)</span></span>
+<span id="cb14-503"><a href="#cb14-503" aria-hidden="true" tabindex="-1"></a><span class="in">Show Traceback</span></span>
+<span id="cb14-504"><a href="#cb14-504" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-505"><a href="#cb14-505" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-506"><a href="#cb14-506" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-507"><a href="#cb14-507" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-510"><a href="#cb14-510" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb14-511"><a href="#cb14-511" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb14-512"><a href="#cb14-512" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.document_loaders <span class="im">import</span> WikipediaLoader</span>
+<span id="cb14-513"><a href="#cb14-513" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.text_splitter <span class="im">import</span> RecursiveCharacterTextSplitter</span>
+<span id="cb14-514"><a href="#cb14-514" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_openai <span class="im">import</span> OpenAIEmbeddings</span>
+<span id="cb14-515"><a href="#cb14-515" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.vectorstores <span class="im">import</span> Chroma</span>
+<span id="cb14-516"><a href="#cb14-516" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.chains <span class="im">import</span> RetrievalQA</span>
+<span id="cb14-517"><a href="#cb14-517" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_openai <span class="im">import</span> ChatOpenAI</span>
+<span id="cb14-518"><a href="#cb14-518" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb14-519"><a href="#cb14-519" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb14-520"><a href="#cb14-520" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-521"><a href="#cb14-521" aria-hidden="true" tabindex="-1"></a><span class="co"># 환경 변수 로드</span></span>
+<span id="cb14-522"><a href="#cb14-522" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb14-523"><a href="#cb14-523" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-524"><a href="#cb14-524" aria-hidden="true" tabindex="-1"></a><span class="co"># OpenAI API 키 설정</span></span>
+<span id="cb14-525"><a href="#cb14-525" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"OPENAI_API_KEY"</span>] <span class="op">=</span> os.getenv(<span class="st">"OPENAI_API_KEY"</span>)</span>
+<span id="cb14-526"><a href="#cb14-526" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-527"><a href="#cb14-527" aria-hidden="true" tabindex="-1"></a><span class="co"># 위키백과에서 "인공지능" 문서 로드</span></span>
+<span id="cb14-528"><a href="#cb14-528" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> WikipediaLoader(<span class="st">"인공지능"</span>, load_max_docs<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb14-529"><a href="#cb14-529" aria-hidden="true" tabindex="-1"></a>documents <span class="op">=</span> loader.load()</span>
+<span id="cb14-530"><a href="#cb14-530" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-531"><a href="#cb14-531" aria-hidden="true" tabindex="-1"></a><span class="co"># 문서 분할</span></span>
+<span id="cb14-532"><a href="#cb14-532" aria-hidden="true" tabindex="-1"></a>text_splitter <span class="op">=</span> RecursiveCharacterTextSplitter(chunk_size<span class="op">=</span><span class="dv">1000</span>, chunk_overlap<span class="op">=</span><span class="dv">200</span>)</span>
+<span id="cb14-533"><a href="#cb14-533" aria-hidden="true" tabindex="-1"></a>texts <span class="op">=</span> text_splitter.split_documents(documents)</span>
+<span id="cb14-534"><a href="#cb14-534" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-535"><a href="#cb14-535" aria-hidden="true" tabindex="-1"></a><span class="co"># 임베딩 모델 및 벡터 저장소 설정</span></span>
+<span id="cb14-536"><a href="#cb14-536" aria-hidden="true" tabindex="-1"></a>embeddings <span class="op">=</span> OpenAIEmbeddings()</span>
+<span id="cb14-537"><a href="#cb14-537" aria-hidden="true" tabindex="-1"></a>vectorstore <span class="op">=</span> Chroma.from_documents(texts, embeddings)</span>
+<span id="cb14-538"><a href="#cb14-538" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-539"><a href="#cb14-539" aria-hidden="true" tabindex="-1"></a><span class="co"># RAG 체인 설정</span></span>
+<span id="cb14-540"><a href="#cb14-540" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> ChatOpenAI(model_name<span class="op">=</span><span class="st">"gpt-3.5-turbo"</span>, temperature<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb14-541"><a href="#cb14-541" aria-hidden="true" tabindex="-1"></a>qa_chain <span class="op">=</span> RetrievalQA.from_chain_type(</span>
+<span id="cb14-542"><a href="#cb14-542" aria-hidden="true" tabindex="-1"></a>    llm<span class="op">=</span>llm,</span>
+<span id="cb14-543"><a href="#cb14-543" aria-hidden="true" tabindex="-1"></a>    chain_type<span class="op">=</span><span class="st">"stuff"</span>,</span>
+<span id="cb14-544"><a href="#cb14-544" aria-hidden="true" tabindex="-1"></a>    retriever<span class="op">=</span>vectorstore.as_retriever()</span>
+<span id="cb14-545"><a href="#cb14-545" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-546"><a href="#cb14-546" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-547"><a href="#cb14-547" aria-hidden="true" tabindex="-1"></a><span class="co"># 질문-답변 루프</span></span>
+<span id="cb14-548"><a href="#cb14-548" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb14-549"><a href="#cb14-549" aria-hidden="true" tabindex="-1"></a>    query <span class="op">=</span> <span class="bu">input</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">질문을 입력하세요 (종료하려면 'q' 입력): "</span>)</span>
+<span id="cb14-550"><a href="#cb14-550" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> query.lower() <span class="op">==</span> <span class="st">'q'</span>:</span>
+<span id="cb14-551"><a href="#cb14-551" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb14-552"><a href="#cb14-552" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> qa_chain.invoke(query)</span>
+<span id="cb14-553"><a href="#cb14-553" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">답변: </span><span class="sc">{</span>result[<span class="st">'result'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-554"><a href="#cb14-554" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code><button title="클립보드 복사" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><a href="https://quarto.org/">Quarto</a> 개발</p>
+</div>   
+    <div class="nav-footer-center">
+<p><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></p>
+</div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/bit2r/gpt-ai">Github 코드 저장소</a></p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom","loop":false});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

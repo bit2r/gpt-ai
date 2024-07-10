@@ -1,0 +1,5 @@
+{
+    "editor.defaultFormatter": "quarto.quarto",
+    "notebook.defaultFormatter": "quarto.quarto",
+    "editor.defaultFoldingRangeProvider": "quarto.quarto"
+}

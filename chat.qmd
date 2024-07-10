@@ -1,0 +1,92 @@
+---
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+# 챗GPT
+
+
+![](images/chattr-diagram.png){fig-align="center"}
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+#| eval: false
+> chattr::chattr_app()
+
+── chattr - Available models 
+Select the number of the model you would like to use:
+
+1: OpenAI - GitHub Copilot Chat -  (copilot) 
+
+2: OpenAI - Chat Completions - gpt-3.5-turbo (gpt35) 
+
+3: OpenAI - Chat Completions - gpt-4 (gpt4) 
+
+4: OpenAI - Chat Completions - gpt-4o (gpt4o) 
+
+
+선택: 
+```
+
+![](images/chattr_gpt35.png){fig-align="center" width="261"}
+
+![](images/chattr_prompt.png){fig-align="center" width="302"}
+
+::: callout-note
+### 시스템 프롬프트
+
+> Use the 'Tidy Modeling with R' (https://www.tmwr.org/) book as main
+> reference Use the 'R for Data Science' (https://r4ds.had.co.nz/) book
+> as main reference Use tidyverse packages: readr, ggplot2, dplyr, tidyr
+> For models, use tidymodels packages: recipes, parsnip, yardstick,
+> workflows, broom Avoid explanations unless requested by user,
+> expecting code only For code output, use RMarkdown code chunks Avoid
+> all code chunk options
+:::
+
+## 키보드 단축키
+
+
+
+![](images/chattr_shortcut.png)
+
+```{r}
+#| eval: false
+library(chattr)
+chattr_use(provider = "LlamaGPT", path_url = "~/LlamaGPTJ-chat/build/bin/chat", model = "D:/llms/ggml-gpt4all-j.bin")
+
+```
+
+
+```bash
+> chattr_defaults(path = "D:\\llms\\ggml-gpt4all-j.bin", model = "LlamaGPT")
+
+── chattr ────────────────────────────────────────────────────────────────────────
+
+── Defaults for: Default ──
+
+── Prompt: 
+• Use the R language, the tidyverse, and tidymodels
+
+── Model 
+• Provider: LlamaGPT
+• Path/URL: D:\llms\ggml-gpt4all-j.bin
+• Model: LlamaGPT
+• Label: GPT4ALL 1.3 (LlamaGPT)
+
+── Model Arguments: 
+• threads: 4
+• temp: 0.01
+• n_predict: 1000
+
+── Context: 
+Max Data Files: 0
+Max Data Frames: 0
+✖ Chat History
+✖ Document contents
+```
+

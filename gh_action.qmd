@@ -1,0 +1,102 @@
+# 깃헙 액션
+
+깃헙 액션(GitHub Action)은 깃헙에서 제공하는 CI/CD 서비스입니다. 깃헙 저장소에 푸시가 발생하면 깃헙 액션을 통해 빌드, 테스트, 배포 등의 작업을 자동화할 수 있다.
+
+
+
+
+```{mermaid}
+graph TD
+    A[시작] --> B[웹사이트 데이터 스크래핑]
+    B --> C[데이터를 CSV 파일로 저장]
+    C --> D[데이터 처리]
+    D --> E[결과를 핸드폰 메시지로 전송]
+
+    subgraph 스크래핑 및 저장
+        B --> F1[필요한 라이브러리 로드]
+        F1 --> F2[URL 정의]
+        F2 --> F3[rvest 등으로 데이터 추출]
+        F3 --> F4[데이터 정리 및 구조화]
+        F4 --> F5[데이터를 CSV로 저장]
+    end
+
+    subgraph 데이터 처리
+        D --> G1[CSV 파일 로드]
+        G1 --> G2[데이터 분석 수행]
+        G2 --> G3[요약 또는 결과 생성]
+    end
+
+    subgraph 메시지 전송
+        E --> H1[메시징 패키지 설치 및 로드]
+        H1 --> H2[메시지 포맷팅]
+        H2 --> H3[API 또는 서비스를 통해 메시지 전송]
+    end
+```
+
+
+# 크로링
+
+## 주식가격
+
+[네이버 금융 크롤링](https://velog.io/@sae0912/%EC%9B%B9-%ED%81%AC%EB%A1%A4%EB%A7%81-%EB%84%A4%EC%9D%B4%EB%B2%84-%EA%B8%88%EC%9C%B5-%ED%81%AC%EB%A1%A4%EB%A7%81) 파이썬 코드를 참고하여 챗GPT로 코드를 동작하는 코드를 생성한다.
+
+```{python}
+import requests
+from bs4 import BeautifulSoup
+
+def get_stock_info(stock_code):
+    url = f"https://finance.naver.com/item/main.nhn?code={stock_code}"
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    # Attempt to extract the stock name with a more robust approach
+    company_info = soup.find("div", {"class":"h_company"})
+    stock_name = company_info.find("a").text
+
+    # Find the element containing the current price
+    current_price_container = soup.find("p", {"class": "no_today"})
+    current_price = current_price_container.find("span", {"class": "blind"}).get_text() if current_price_container else "Price not found"
+
+    return stock_name, current_price
+
+# Example usage
+stock_code = '005930'  # Samsung Electronics code
+stock_name, current_price = get_stock_info(stock_code)
+print(f"{stock_name} (code {stock_code}) 현재가격: {current_price} KRW.")
+```
+
+
+> ### R 코드로 변환
+>
+> 프롬프트: 다음 코드를 R 코드로 변환해줘
+
+인코딩 이슈가 있어 `read_html()`에서 다음과 같이 변환한다.
+
+```{r}
+library(rvest)
+
+get_stock_info <- function(stock_code) {
+  url <- sprintf("https://finance.naver.com/item/main.nhn?code=%s", stock_code)
+  webpage <- read_html(url,  encoding = "euc-kr")  # Setting the encoding to EUC-KR
+  
+  # Attempt to extract the stock name with a more robust approach
+  company_info <- html_node(webpage, "div.h_company")
+  stock_name <- html_text(html_node(company_info, "a"))
+
+  # Find the element containing the current price
+  current_price_container <- html_node(webpage, "p.no_today")
+  if (!is.null(current_price_container)) {
+    current_price <- html_text(html_node(current_price_container, "span.blind"))
+  } else {
+    current_price <- "Price not found"
+  }
+  
+  list(stock_name = stock_name, current_price = current_price)
+}
+
+# Example usage
+stock_code <- '005930'  # Samsung Electronics code
+info <- get_stock_info(stock_code)
+cat(sprintf("%s (code %s) 현재가격: %s KRW.\n", info$stock_name, stock_code, info$current_price))
+```
+

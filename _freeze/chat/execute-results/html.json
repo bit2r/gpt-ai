@@ -1,0 +1,17 @@
+{
+  "hash": "87a9d01b8e89da1b3929aa3ee9949750",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\neditor: \n  markdown: \n    wrap: 72\n---\n\n\n\n\n# 챗GPT\n\n\n![](images/chattr-diagram.png){fig-align=\"center\"}\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\n```\n\n::: {.cell-output .cell-output-stderr}\n\n```\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors\n```\n\n\n:::\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\n> chattr::chattr_app()\n\n── chattr - Available models \nSelect the number of the model you would like to use:\n\n1: OpenAI - GitHub Copilot Chat -  (copilot) \n\n2: OpenAI - Chat Completions - gpt-3.5-turbo (gpt35) \n\n3: OpenAI - Chat Completions - gpt-4 (gpt4) \n\n4: OpenAI - Chat Completions - gpt-4o (gpt4o) \n\n\n선택: \n```\n:::\n\n\n\n\n![](images/chattr_gpt35.png){fig-align=\"center\" width=\"261\"}\n\n![](images/chattr_prompt.png){fig-align=\"center\" width=\"302\"}\n\n::: callout-note\n### 시스템 프롬프트\n\n> Use the 'Tidy Modeling with R' (https://www.tmwr.org/) book as main\n> reference Use the 'R for Data Science' (https://r4ds.had.co.nz/) book\n> as main reference Use tidyverse packages: readr, ggplot2, dplyr, tidyr\n> For models, use tidymodels packages: recipes, parsnip, yardstick,\n> workflows, broom Avoid explanations unless requested by user,\n> expecting code only For code output, use RMarkdown code chunks Avoid\n> all code chunk options\n:::\n\n## 키보드 단축키\n\n\n\n![](images/chattr_shortcut.png)\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(chattr)\nchattr_use(provider = \"LlamaGPT\", path_url = \"~/LlamaGPTJ-chat/build/bin/chat\", model = \"D:/llms/ggml-gpt4all-j.bin\")\n```\n:::\n\n\n\n\n\n```bash\n> chattr_defaults(path = \"D:\\\\llms\\\\ggml-gpt4all-j.bin\", model = \"LlamaGPT\")\n\n── chattr ────────────────────────────────────────────────────────────────────────\n\n── Defaults for: Default ──\n\n── Prompt: \n• Use the R language, the tidyverse, and tidymodels\n\n── Model \n• Provider: LlamaGPT\n• Path/URL: D:\\llms\\ggml-gpt4all-j.bin\n• Model: LlamaGPT\n• Label: GPT4ALL 1.3 (LlamaGPT)\n\n── Model Arguments: \n• threads: 4\n• temp: 0.01\n• n_predict: 1000\n\n── Context: \nMax Data Files: 0\nMax Data Frames: 0\n✖ Chat History\n✖ Document contents\n```\n\n",
+    "supporting": [
+      "chat_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
