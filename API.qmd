@@ -1,0 +1,149 @@
+# API
+
+**API(Application Programming Interface)**는 서로 다른 소프트웨어 시스템 상호작용 방법을 정의한 인터페이스로 함수, 클래스, 프로토콜, 데이터 구조 등을 포함할 수 있다. API를 사용하는 목적은 소프트웨어 개발을 단순화하고 표준화하는 것으로, API를 사용하면 개발자가 특정 기능을 처음부터 새롭게 개발할 필요 없이 이미 개발된 기능을 재사용할 수 있고, API를 통해 서로 다른 시스템 간의 상호작용을 가능하게 하므로, 시스템 통합을 단순화할 수 있다. 웹 API는 일반적으로 HTTP를 통해 통신하며, 웹 서버에서 데이터를 요청하거나 웹 서버에 데이터를 보낼 수 있다. 이러한 웹 API를 통해 개발자는 웹사이트, 애플리케이션, 서비스 등에서 다른 서비스의 기능이나 데이터를 활용할 수 있다.
+
+
+```{mermaid}
+graph TD
+    Internet[Internet]
+    Web[Web]
+    
+    Internet --> Web
+    Internet --> OtherProtocols
+
+    subgraph WebTechnologies
+    HTTP[HTTP]
+    REST[RESTful API]
+    SOAP[SOAP]
+    Web --> HTTP
+    HTTP --> REST
+    HTTP --> SOAP
+    end
+
+    subgraph Frontend
+    HTML[HTML]
+    CSS[CSS]
+    JS[JavaScript]
+    DOM[DOM]
+    Browser[Web Browser]
+    end
+
+    subgraph Backend
+    Server[Web Server]
+    DB[(Database)]
+    end
+
+    subgraph Data_Exchange
+    JSON[JSON]
+    XML[XML]
+    end
+
+    subgraph Security
+    HTTPS[HTTPS]
+    SSL[SSL/TLS]
+    end
+
+    subgraph Communication
+    WS[WebSocket]
+    end
+
+    subgraph OtherProtocols
+    FTP[FTP]
+    SSH[SSH]
+    SMTP[SMTP]
+    POP3[POP3]
+    IMAP[IMAP]
+    end
+
+    Web --> Frontend
+    Web --> Backend
+    Web --> Data_Exchange
+    Web --> Security
+    Web --> Communication
+
+    REST --> JSON
+    REST --> XML
+    SOAP --> XML
+    HTTP --> HTTPS
+    HTTP --> WS
+
+    Server --> DB
+    Browser --> HTML
+    Browser --> CSS
+    Browser --> JS
+    JS --> DOM
+
+    HTTPS --> SSL
+```
+
+::: callout-note
+### API 유형
+
+1.  웹 API: HTTP를 통해 통신하는 API로, RESTful API가 대표적이다.
+2.  라이브러리 API: 프로그래밍 언어의 라이브러리나 프레임워크에서 제공하는 API다.
+3.  운영체제 API: 운영체제가 제공하는 서비스에 접근할 수 있게 해주는 API다.
+4.  데이터베이스 API: 데이터베이스와 상호작용하기 위한 API다.
+5.  하드웨어 API: 하드웨어 기능에 접근할 수 있게 해주는 API다.
+
+예를 들어, 대표적인 윈도우와 유닉스/리눅스 운영체제 API를 비교하면 다음과 같다.
+
+| 기능 | Windows | UNIX/Linux |
+|-----------------|-----------------------|--------------------------------|
+| 파일 시스템 | CreateFile(), ReadFile(), WriteFile() | open(), read(), write(), close() |
+| 프로세스 관리 | CreateProcess(), TerminateProcess() | fork(), exec(), wait() |
+| 메모리 관리 | VirtualAlloc(), VirtualFree() | mmap(), munmap() |
+| 네트워크 | WinSock: socket(), connect(), send(), recv() | Berkeley sockets: socket(), connect(), send(), recv() |
+| GUI | Win32 API: CreateWindow(), ShowWindow() | X Window System: XCreateWindow(), XMapWindow() |
+
+각 운영체제는 유사한 기능을 제공하지만, 구체적인 함수 이름과 사용 방법에는 차이가 있다.
+:::
+
+## RESTful API
+
+RESTful API가 사실상의 표준이 된 이유는 여러 가지가 있다. 우선, HTTP 프로토콜을 기반으로 하여 이해하기 쉽고 사용이 간편한 단순성과 직관성을 갖추고 있다. 또한, 클라이언트-서버 분리를 통해 각 부분을 독립적으로 확장할 수 있는 확장성을 제공한다. 다양한 플랫폼에서 사용 가능하며 언어에 구애받지 않는 플랫폼 독립성도 갖추고 있다. 기존 웹 인프라를 그대로 활용할 수 있어 웹 표준을 준수하며, JSON, XML 등 다양한 데이터 형식을 지원하는 유연성도 갖추고 있다. 마지막으로, 캐싱을 통해 효율적인 리소스 사용이 가능한 성능 측면의 이점도 있다.
+
+RESTful API는 REST(Representational State Transfer) 아키텍처 원칙을 따르는 웹 서비스 API로 2000년 로이 필딩(Roy Fielding)이 그의 박사 논문에서 제안한 분산 시스템을 위한 아키텍처 스타일이다. RESTful API와 HTTP는 밀접한 관계를 갖는데, RESTful API는 HTTP 프로토콜의 특성을 최대한 활용하여 설계되었다. 이로 인해 기존 웹 인프라를 그대로 사용할 수 있으며, 웹 개발자들에게 친숙한 방식으로 API를 구현하고 사용할 수 있게 되었다.
+
+RESTful API는 몇 가지 주요 특징을 가지고 있다. 첫째, 자원 기반 구조를 채택하여 모든 것을 "자원"으로 표현하며, 각 자원은 고유한 URI를 갖는다. 둘째, 상태가 없는 통신 방식을 사용하여 각 요청이 독립적으로 처리되며, 서버는 클라이언트의 상태를 저장하지 않는다. 셋째, HTTP 메서드를 사용하여 자원을 조작하는 균일한 인터페이스를 제공한다. 넷째, 클라이언트와 서버의 관심사를 분리하여 독립적인 발전을 가능하게 하는 클라이언트-서버 구조를 채택한다. 다섯째, 중간 서버를 통해 로드 밸런싱, 공유 캐시 등을 구현할 수 있는 계층화 시스템을 지원한다. 마지막으로, 응답을 캐시할 수 있어 성능 향상이 가능한 캐시 가능성을 제공한다.
+
+1.  기반 프로토콜: RESTful API는 HTTP를 기본 프로토콜로 사용한다. HTTP의 메서드, 상태 코드, 헤더 등을 활용하여 통신한다.
+2.  메서드 활용: RESTful API는 HTTP 메서드(GET, POST, PUT, DELETE 등)를 사용하여 CRUD(Create, Read, Update, Delete) 작업을 수행한다.
+3.  상태 코드: HTTP 상태 코드를 사용하여 요청의 결과를 표현한다. 예를 들어, 200(OK), 201(Created), 404(Not Found) 등이다.
+4.  헤더 활용: HTTP 헤더를 사용하여 메타데이터를 전송하고, 컨텐츠 협상, 인증 등을 처리한다.
+5.  URL 구조: RESTful API는 HTTP URL을 사용하여 리소스를 식별하고 접근한다.
+6.  무상태성: HTTP의 무상태성 특성을 그대로 따르며, 각 요청은 독립적으로 처리된다.
+
+| 대분류 | 코드 | 상태 | 설명 |
+|--------------|--------------|--------------|------------------------------|
+| 정보 | 100 | Continue | 서버가 요청의 일부를 받았으며 클라이언트가 나머지를 계속 보내야 함 |
+| 성공 | 200 | OK | 요청이 성공적으로 처리됨 |
+| 성공 | 201 | Created | 새 리소스가 성공적으로 생성됨 |
+| 성공 | 204 | No Content | 요청은 성공했지만 응답 본문이 없음 |
+| 리다이렉션 | 301 | Moved Permanently | 요청한 리소스의 URI가 변경됨 |
+| 클라이언트 오류 | 400 | Bad Request | 잘못된 요청으로 서버가 처리할 수 없음 |
+| 클라이언트 오류 | 401 | Unauthorized | 인증이 필요한 리소스에 대한 인증 실패 |
+| 클라이언트 오류 | 403 | Forbidden | 서버가 요청을 거부함 |
+| 클라이언트 오류 | 404 | Not Found | 요청한 리소스를 찾을 수 없음 |
+| 서버 오류 | 500 | Internal Server Error | 서버 내부 오류 발생 |
+| 서버 오류 | 503 | Service Unavailable | 서버가 일시적으로 서비스를 제공할 수 없음 |
+| 네트워크 | 504 | Gateway Timeout | 게이트웨이나 프록시 역할하는 서버에서 시간 초과 발생 |
+
+: HTTP 상태 코드표 {#tbl-status-code .striped .hover}
+
+## 리소스
+
+RESTful API는 리소스 중심으로 설계되어, 리소스를 통해 실제 세계의 개체나 개념을 표현하므로 API 구조를 이해하기 쉽다. 예를 들어, '/users'는 사용자 리소스를, '/products'는 제품 리소스를 나타내어 API의 목적과 기능을 명확히 전달한다. 또한, 리소스 중심 설계는 일관성을 제공한다. 모든 리소스에 대해 동일한 인터페이스(HTTP 메서드)를 사용하므로 API의 사용 방법이 일관된다. GET, POST, PUT, DELETE 등의 메서드로 모든 리소스를 조작할 수 있어 개발자들이 쉽게 API를 익히고 사용할 수 있다. 특히, 리소스 중심 설계의 가장 큰 장점은 플랫폼 독립성이다. 특정 프로그래밍 언어나 기술에 종속되지 않아 다양한 클라이언트와의 호환성을 보장되어 다양한 환경에서 API를 활용할 수 있다.
+
+리소스 예로는 사용자, 제품, 주문 등이 있다. 사용자 리소스의 경우 '/users/{user_id}'와 같은 URI로 표현되며, GET, POST, PUT, DELETE 등의 HTTP 메서드를 통해 사용자 정보의 조회, 생성, 수정, 삭제 등의 조작이 가능하다. 제품 리소스는 '/products/{product_id}'로 표현될 수 있으며, 제품 목록 조회, 새 제품 추가, 제품 정보 업데이트 등의 작업을 수행할 수 있다. 주문 리소스의 경우 '/orders/{order_id}'로 표현되어 특정 사용자의 주문 목록 조회, 새 주문 생성, 주문 상태 변경 등의 기능을 제공할 수 있다.
+
+리소스 `https://www.example.com:443/products/electronics?category=laptops&price=1000` 를 해부학적으로 살펴보자.
+
+| 구성 요소 | 설명 | 예시 | 비유 |
+|:------------:|:-------------------:|:------------------:|:--------------:|
+| 프로토콜 (Protocol) | 데이터 전송 방식 | http://, https:// | 교통 수단 (자동차, 기차) |
+| 도메인 (Domain) | 웹 서버의 주소 | www.example.com | 건물의 도로명 주소 |
+| 포트 (Port) | 서비스 접근 위한 논리적 연결 지점 | :80, :443 | 건물의 출입구 또는 문 |
+| 경로 (Path) | 서버 내 리소스 구체적인 위치 | /products/electronics/ | 건물 내 특정 사무실 유닛 |
+| 쿼리 (Query) | 리소스에 전달되는 추가 매개변수 | ?category=laptops&price=1000 | 추가 지시사항 또는 세부 요청 |
+
+

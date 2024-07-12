@@ -34,11 +34,12 @@ website:
           - index.qmd
           - code_interpreter.qmd
           - langchain.qmd
+          - LLMs.qmd
+          - positron.qmd
+          - API.qmd          
       - section: "자동화"
         contents:
           - gh_action.qmd
-      - section: "타겟(target)"
-        contents:
           - target.qmd
       - section: "GCP"
         contents:
@@ -46,9 +47,9 @@ website:
       - section: "챗GPT"
         contents:
           - chat.qmd
-      - section: "Positron"
+      - section: "데이터베이스"
         contents:
-          - positron.qmd
+          - database.qmd
 
     right:
       - icon: github

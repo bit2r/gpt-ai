@@ -1,0 +1,1981 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.45">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>database – 챗GPT AI</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./assets/android-chrome-192x192.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+
+<script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-229551680-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script>
+
+
+<link rel="stylesheet" href="assets/quarto.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./database.html">데이터베이스</a></li><li class="breadcrumb-item"><a href="./database.html">벡터 데이터베이스</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="검색" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">챗GPT AI</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="다크 모드 전환"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="검색"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">기본기</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">인공지능</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">데이터 사이언스</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./langchain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">랭체인</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./LLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LLMs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./positron.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">데이터 과학 편집기</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">자동화</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gh_action.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">깃헙 액션</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./target.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">타겟</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">GCP</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gcs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">버킷</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">챗GPT</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">챗GPT</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">데이터베이스</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./database.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">벡터 데이터베이스</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#임베딩" id="toc-임베딩" class="nav-link active" data-scroll-target="#임베딩">임베딩</a>
+  <ul class="collapse">
+  <li><a href="#텍스트-벡터" id="toc-텍스트-벡터" class="nav-link" data-scroll-target="#텍스트-벡터">텍스트 → 벡터</a></li>
+  <li><a href="#벡터-시각화" id="toc-벡터-시각화" class="nav-link" data-scroll-target="#벡터-시각화">벡터 시각화</a></li>
+  <li><a href="#벡터-검색" id="toc-벡터-검색" class="nav-link" data-scroll-target="#벡터-검색">벡터 검색</a></li>
+  </ul></li>
+  <li><a href="#감성분류" id="toc-감성분류" class="nav-link" data-scroll-target="#감성분류">감성분류</a>
+  <ul class="collapse">
+  <li><a href="#zero-shot-임베딩-기반-감성분류" id="toc-zero-shot-임베딩-기반-감성분류" class="nav-link" data-scroll-target="#zero-shot-임베딩-기반-감성분류">Zero-shot 임베딩 기반 감성분류</a></li>
+  <li><a href="#few-shot-임베딩-기반-감성분류" id="toc-few-shot-임베딩-기반-감성분류" class="nav-link" data-scroll-target="#few-shot-임베딩-기반-감성분류">Few-shot 임베딩 기반 감성분류</a></li>
+  </ul></li>
+  <li><a href="#뉴스기사-분류" id="toc-뉴스기사-분류" class="nav-link" data-scroll-target="#뉴스기사-분류">뉴스기사 분류</a></li>
+  <li><a href="#데이터베이스" id="toc-데이터베이스" class="nav-link" data-scroll-target="#데이터베이스">데이터베이스</a>
+  <ul class="collapse">
+  <li><a href="#크로마db" id="toc-크로마db" class="nav-link" data-scroll-target="#크로마db">크로마DB</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./database.html">데이터베이스</a></li><li class="breadcrumb-item"><a href="./database.html">벡터 데이터베이스</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">벡터 데이터베이스</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> 코드</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 표시</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 숨기기</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">소스 코드 표시</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="fig-vector-database" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vector-database-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/vector_database.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="그림&nbsp;1: 출처: https://blog.det.life/why-you-shouldnt-invest-in-vector-databases-c0cd3f59d23c"><img src="images/vector_database.webp" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vector-database-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;1: 출처: https://blog.det.life/why-you-shouldnt-invest-in-vector-databases-c0cd3f59d23c
+</figcaption>
+</figure>
+</div>
+<section id="임베딩" class="level2">
+<h2 class="anchored" data-anchor-id="임베딩">임베딩</h2>
+<p>자연어 처리(NLP) 분야에서 나온 개념으로, 텍스트의 맥락과 의도를 포착하는데 유용한 <strong>임베딩(Embedding)</strong>은 텍스트를 다차원 벡터 공간에 매핑한 수치적 표현으로 텍스트의 의미를 포착하는 숫자 벡터로 변환하는 과정이다. 텍스트의 의미적 유사성을 수학적으로 계산할 수 있기 때문에 유사한 의미를 가진 단어나 문장은 벡터 공간에서 서로 가깝게 위치하게 된다. 의미 검색, 추천 시스템, 분류 작업 등 다양한 AI 응용 프로그램에 활용된다.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="embedding-process">
+<div>
+<p><a href="database_files\figure-html\mermaid-figure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="database_files\figure-html\mermaid-figure-1.png" style="width:4.58in;height:5.67in"></a></p>
+</div>
+</div>
+</div>
+</div>
+<div id="party-embedding" class="cell" data-execution_count="1">
+<details open="" class="code-fold">
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.spatial.distance <span class="im">import</span> cosine</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.manifold <span class="im">import</span> TSNE</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.font_manager <span class="im">as</span> fm</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 텍스트 데이터 (정치 상황)</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>texts <span class="op">=</span> [</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A당은 경제 성장을 최우선 과제로 삼고 있다"</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"B당은 복지 정책 확대를 주장하고 있다"</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A당은 규제 완화를 통한 기업 활성화를 추진한다"</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"B당은 환경 보호를 위한 정책을 강조한다"</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A당은 국방력 강화에 중점을 두고 있다"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"B당은 교육 개혁을 통한 인재 양성을 중시한다"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"양당은 부동산 정책에서 첨예하게 대립하고 있다"</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>os.getenv(<span class="st">'OPENAI_API_KEY'</span>))</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 임베딩 생성 함수</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_embedding(text):</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> client.embeddings.create(</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"text-embedding-ada-002"</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="bu">input</span><span class="op">=</span>text</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.data[<span class="dv">0</span>].embedding</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co"># 텍스트를 임베딩으로 변환</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>embeddings <span class="op">=</span> [get_embedding(text) <span class="cf">for</span> text <span class="kw">in</span> texts]</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 임베딩 리스트를 NumPy 배열로 변환</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>embeddings_array <span class="op">=</span> np.array(embeddings)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># 시각화를 위한 차원 축소 (t-SNE)</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>tsne <span class="op">=</span> TSNE(n_components<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>, perplexity<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>reduced_embeddings <span class="op">=</span> tsne.fit_transform(embeddings_array)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co"># 한글 폰트 경로 설정 (Windows 기준)</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>font_path <span class="op">=</span> <span class="vs">r'C:\Windows\Fonts\malgun.ttf'</span>  <span class="co"># 맑은 고딕 폰트 경로</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co"># 폰트 프로퍼티 설정</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>font_prop <span class="op">=</span> fm.FontProperties(fname<span class="op">=</span>font_path, size<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="co"># matplotlib 폰트 설정</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.family'</span>] <span class="op">=</span> font_prop.get_name()</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="co"># 그래프 그리기</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (x, y) <span class="kw">in</span> <span class="bu">enumerate</span>(reduced_embeddings):</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    plt.scatter(x, y)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    plt.annotate(texts[i], (x, y), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>, fontproperties<span class="op">=</span>font_prop)</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"정치 상황 텍스트 임베딩 시각화"</span>, fontproperties<span class="op">=</span>font_prop)</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="co"># 그래프를 PNG 파일로 저장</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'images/embeddings_visualization.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="co"># 거리 측정 및 추천</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> recommend(query, texts, embeddings, top_n<span class="op">=</span><span class="dv">3</span>):</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>    query_embedding <span class="op">=</span> get_embedding(query)</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>    distances <span class="op">=</span> [cosine(query_embedding, emb) <span class="cf">for</span> emb <span class="kw">in</span> embeddings]</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>    sorted_indices <span class="op">=</span> np.argsort(distances)</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [texts[i] <span class="cf">for</span> i <span class="kw">in</span> sorted_indices[:top_n]]</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="co"># 추천 예시</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"기후 위기"</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>recommendations <span class="op">=</span> recommend(query, texts, embeddings)</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"'</span><span class="sc">{</span>query<span class="sc">}</span><span class="ss">'와 가장 유사한 텍스트:"</span>)</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, rec <span class="kw">in</span> <span class="bu">enumerate</span>(recommendations, <span class="dv">1</span>):</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. </span><span class="sc">{</span>rec<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="텍스트-벡터" class="level3">
+<h3 class="anchored" data-anchor-id="텍스트-벡터">텍스트 → 벡터</h3>
+<p>텍스트를 OpenAI 임베딩 모형(<code>text-embedding-ada-002</code>)을 통해 1,536 차원 벡터로 변환시킨다.</p>
+<div id="077c6e4d" class="cell" data-execution_count="2">
+<details open="" class="code-fold">
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(embeddings[<span class="dv">1</span>][:<span class="dv">10</span>])</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>[<span class="op">-</span><span class="fl">0.021668272092938423</span>, <span class="op">-</span><span class="fl">0.018942788243293762</span>, <span class="fl">0.013783353380858898</span>, <span class="fl">0.0006076404242776334</span>, <span class="op">-</span><span class="fl">0.03229901194572449</span>, <span class="fl">0.010813796892762184</span>, <span class="op">-</span><span class="fl">0.022183537483215332</span>, <span class="fl">0.01155957579612732</span>, <span class="op">-</span><span class="fl">0.031404078006744385</span>, <span class="fl">0.004132294096052647</span>]</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="벡터-시각화" class="level3">
+<h3 class="anchored" data-anchor-id="벡터-시각화">벡터 시각화</h3>
+<p>텍스트를 OpenAI 임베딩 모형(<code>text-embedding-ada-002</code>)을 통해 1,536 차원 벡터로 변환을 했는데 총 7개 문장에 대해 각 당의 정책적 차이를 시각적으로 확인하기 위해 차원축소기법으로 TSNE를 사용하여 2차원 공간을 축소하여 시각화하여 A당과 B당의 정책이 몰려있고 서로 다른 차이를 갖는 것을 확인할 수 있다.</p>
+<p><a href="images/embeddings_visualization.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/embeddings_visualization.png" class="img-fluid"></a></p>
+</section>
+<section id="벡터-검색" class="level3">
+<h3 class="anchored" data-anchor-id="벡터-검색">벡터 검색</h3>
+<p><code>기후 위기</code>와 가장 관련된 정책을 검색하는데 벡터 검색을 사용하여 가장 거리가 가까운 순으로 3개를 추출한다. 먼저 검색어를 <code>get_embedding()</code> 함수로 벡터로 변환하고 코사인 유사도(<code>cosign()</code>) 함수를 사용해서 거리를 계산하고 가장 거리가 가까운 정책을 출력한다.</p>
+<pre><code>'기후 위기'와 가장 유사한 텍스트:
+1. B당은 환경 보호를 위한 정책을 강조한다
+2. A당은 경제 성장을 최우선 과제로 삼고 있다
+3. A당은 국방력 강화에 중점을 두고 있다</code></pre>
+</section>
+</section>
+<section id="감성분류" class="level2">
+<h2 class="anchored" data-anchor-id="감성분류">감성분류</h2>
+<section id="zero-shot-임베딩-기반-감성분류" class="level3">
+<h3 class="anchored" data-anchor-id="zero-shot-임베딩-기반-감성분류">Zero-shot 임베딩 기반 감성분류</h3>
+<p>각 감정에 대한 예시 문장 대신, 감정을 설명하는 문장을 사용한다. 감정의 일반적인 개념을 사용하기 때문에 특정 예시에 의존하지 않하거나 휘둘리지 않는 장점이 있다. 특히 <code>scipy</code> 패키지 <code>distance.cosine()</code> 함수를 사용해서 거리를 사용한다는 점에서 차이가 있다.</p>
+<div id="sentiment-classification" class="cell" data-execution_count="3">
+<details open="" class="code-fold">
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.spatial <span class="im">import</span> distance</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># OpenAI 클라이언트 설정</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>os.getenv(<span class="st">'OPENAI_API_KEY'</span>))</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 텍스트를 임베딩으로 변환하는 함수</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_embedding(text):</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> client.embeddings.create(</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"text-embedding-ada-002"</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">input</span><span class="op">=</span>text</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.data[<span class="dv">0</span>].embedding</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 감정 레이블 정의</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>sentiments <span class="op">=</span> [<span class="st">"긍정적인"</span>, <span class="st">"중립적인"</span>, <span class="st">"부정적인"</span>]</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 감정 레이블에 대한 설명 텍스트</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>sentiment_descriptions <span class="op">=</span> [</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"이 문장은 긍정적인 감정이나 태도를 표현합니다."</span>,</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"이 문장은 중립적이거나 특별한 감정을 표현하지 않습니다."</span>,</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"이 문장은 부정적인 감정이나 태도를 표현합니다."</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="co"># 감정 설명의 임베딩 계산</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>sentiment_embeddings <span class="op">=</span> [get_embedding(desc) <span class="cf">for</span> desc <span class="kw">in</span> sentiment_descriptions]</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co"># 새로운 문장의 감정 분류 함수</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classify_sentiment(text):</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    text_embedding <span class="op">=</span> get_embedding(text)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    distances <span class="op">=</span> [distance.cosine(text_embedding, sentiment_emb) <span class="cf">for</span> sentiment_emb <span class="kw">in</span> sentiment_embeddings]</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    closest_sentiment_index <span class="op">=</span> np.argmin(distances)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sentiments[closest_sentiment_index]</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="co"># 테스트</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>test_sentences <span class="op">=</span> [</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    <span class="st">"오늘은 정말 행복한 날이에요!"</span>,</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    <span class="st">"그저 그런 하루였어요."</span>,</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    <span class="st">"이 상황이 너무 힘들어요."</span>,</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="st">"새로운 기회를 얻게 되어 기뻐요."</span>,</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    <span class="st">"별로 특별한 감정은 없어요."</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sentence <span class="kw">in</span> test_sentences:</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    sentiment <span class="op">=</span> classify_sentiment(sentence)</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"문장: '</span><span class="sc">{</span>sentence<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"감정 분류: </span><span class="sc">{</span>sentiment<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<pre><code>문장: '오늘은 정말 행복한 날이에요!'
+감정 분류: 긍정적인
+
+문장: '그저 그런 하루였어요.'
+감정 분류: 긍정적인
+
+문장: '이 상황이 너무 힘들어요.'
+감정 분류: 부정적인
+
+문장: '새로운 기회를 얻게 되어 기뻐요.'
+감정 분류: 긍정적인
+
+문장: '별로 특별한 감정은 없어요.'
+감정 분류: 중립적인</code></pre>
+</section>
+<section id="few-shot-임베딩-기반-감성분류" class="level3">
+<h3 class="anchored" data-anchor-id="few-shot-임베딩-기반-감성분류">Few-shot 임베딩 기반 감성분류</h3>
+<p>일반적인 개념이 아닌 몇가지 감성분류 사례를 제시하고 제시된 텍스트에 대한 감성을 분류한다.</p>
+<div id="few-shot-classification" class="cell" data-execution_count="4">
+<details open="" class="code-fold">
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics.pairwise <span class="im">import</span> cosine_similarity</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># OpenAI 클라이언트 설정</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>os.getenv(<span class="st">'OPENAI_API_KEY'</span>))</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 텍스트를 임베딩으로 변환하는 함수</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_embedding(text):</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> client.embeddings.create(</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"text-embedding-ada-002"</span>,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">input</span><span class="op">=</span>text</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.data[<span class="dv">0</span>].embedding</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 감정 레이블과 예시 문장</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>sentiment_examples <span class="op">=</span> {</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"긍정"</span>: [<span class="st">"정말 좋은 하루였어요!"</span>, <span class="st">"이 영화 최고예요!"</span>, <span class="st">"새 직장이 너무 마음에 들어요."</span>],</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"중립"</span>: [<span class="st">"오늘 날씨는 평범해요."</span>, <span class="st">"특별한 일은 없었어요."</span>, <span class="st">"그냥 그래요."</span>],</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"부정"</span>: [<span class="st">"정말 최악의 경험이었어요."</span>, <span class="st">"실망스러워요."</span>, <span class="st">"오늘 기분이 좋지 않아요."</span>]</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co"># 각 감정 레이블에 대한 평균 임베딩 계산</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>sentiment_embeddings <span class="op">=</span> {}</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sentiment, examples <span class="kw">in</span> sentiment_examples.items():</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    embeddings <span class="op">=</span> [get_embedding(ex) <span class="cf">for</span> ex <span class="kw">in</span> examples]</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    sentiment_embeddings[sentiment] <span class="op">=</span> np.mean(embeddings, axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="co"># 새로운 문장의 감정 분류 함수</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classify_sentiment(text):</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    text_embedding <span class="op">=</span> get_embedding(text)</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    similarities <span class="op">=</span> {</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>        sentiment: cosine_similarity([text_embedding], [emb])[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> sentiment, emb <span class="kw">in</span> sentiment_embeddings.items()</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">max</span>(similarities, key<span class="op">=</span>similarities.get)</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="co"># 테스트</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>test_sentences <span class="op">=</span> [</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    <span class="st">"오늘은 정말 행복한 날이에요!"</span>,</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    <span class="st">"그저 그런 하루였어요."</span>,</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    <span class="st">"이 상황이 너무 힘들어요."</span>,</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    <span class="st">"새로운 기회를 얻게 되어 기뻐요."</span>,</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>    <span class="st">"별로 특별한 감정은 없어요."</span></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sentence <span class="kw">in</span> test_sentences:</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>    sentiment <span class="op">=</span> classify_sentiment(sentence)</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"문장: '</span><span class="sc">{</span>sentence<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"감정 분류: </span><span class="sc">{</span>sentiment<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<pre><code>문장: '오늘은 정말 행복한 날이에요!'
+감정 분류: 긍정
+
+문장: '그저 그런 하루였어요.'
+감정 분류: 중립
+
+문장: '이 상황이 너무 힘들어요.'
+감정 분류: 부정
+
+문장: '새로운 기회를 얻게 되어 기뻐요.'
+감정 분류: 긍정
+
+문장: '별로 특별한 감정은 없어요.'
+감정 분류: 중립</code></pre>
+</section>
+</section>
+<section id="뉴스기사-분류" class="level2">
+<h2 class="anchored" data-anchor-id="뉴스기사-분류">뉴스기사 분류</h2>
+<p>뉴스 기사의 토픽을 분류하는 기능구현도 가능하다. 먼저 7개의 주요 뉴스 토픽인 정치, 경제, 사회, 문화, 과학기술, 스포츠, 국제를 정의하고, 각 토픽에 대해 간단한 설명을 제공하여 Zero-shot 학습을 준비한다. OpenAI의 API를 사용하여 이 토픽 설명과 분류할 뉴스 기사 텍스트의 임베딩을 생성하고ㅡ, 토픽 분류는 주어진 뉴스 기사의 임베딩과 각 토픽 설명의 임베딩 간의 코사인 거리를 계산하여 수행한다. 가장 거리가 가까운, 즉 가장 유사한 토픽을 해당 기사의 토픽으로 선택한다.</p>
+<div id="topic-classification" class="cell" data-execution_count="5">
+<details open="" class="code-fold">
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.spatial <span class="im">import</span> distance</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># OpenAI 클라이언트 설정</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>os.getenv(<span class="st">'OPENAI_API_KEY'</span>))</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 텍스트를 임베딩으로 변환하는 함수</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_embedding(text):</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> client.embeddings.create(</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"text-embedding-ada-002"</span>,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">input</span><span class="op">=</span>text</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.data[<span class="dv">0</span>].embedding</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 뉴스 토픽 정의</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>topics <span class="op">=</span> [<span class="st">"정치"</span>, <span class="st">"경제"</span>, <span class="st">"사회"</span>, <span class="st">"문화"</span>, <span class="st">"과학기술"</span>, <span class="st">"스포츠"</span>, <span class="st">"국제"</span>]</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 토픽에 대한 설명 텍스트</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>topic_descriptions <span class="op">=</span> [</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"정치와 관련된 뉴스로, 정부, 정책, 선거, 정당 등에 대한 내용을 다룹니다."</span>,</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"경제와 관련된 뉴스로, 금융, 주식, 기업, 무역 등에 대한 내용을 다룹니다."</span>,</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"사회와 관련된 뉴스로, 교육, 범죄, 환경, 복지 등 사회 전반의 이슈를 다룹니다."</span>,</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"문화와 관련된 뉴스로, 예술, 엔터테인먼트, 라이프스타일 등에 대한 내용을 다룹니다."</span>,</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"과학기술과 관련된 뉴스로, 연구, 발명, IT, 우주 등에 대한 내용을 다룹니다."</span>,</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"스포츠와 관련된 뉴스로, 각종 경기, 선수, 팀 등에 대한 내용을 다룹니다."</span>,</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"국제 뉴스로, 외교, 세계 각국의 주요 사건 등에 대한 내용을 다룹니다."</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="co"># 토픽 설명의 임베딩 계산</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>topic_embeddings <span class="op">=</span> [get_embedding(desc) <span class="cf">for</span> desc <span class="kw">in</span> topic_descriptions]</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="co"># 뉴스 기사의 토픽 분류 함수</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classify_news_topic(news_text):</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    news_embedding <span class="op">=</span> get_embedding(news_text)</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    distances <span class="op">=</span> [distance.cosine(news_embedding, topic_emb) <span class="cf">for</span> topic_emb <span class="kw">in</span> topic_embeddings]</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    closest_topic_index <span class="op">=</span> np.argmin(distances)</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> topics[closest_topic_index]</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a><span class="co"># 테스트용 뉴스 기사 샘플</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>test_news_articles <span class="op">=</span> [</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>    <span class="st">"국회는 오늘 새로운 법안을 통과시켰다. 이번 법안은 청년 일자리 창출을 위한 것으로..."</span>,</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>    <span class="st">"중앙은행은 기준금리를 0.25%p 인상했다고 발표했다. 이는 인플레이션 압력에 대응하기 위한 조치로..."</span>,</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>    <span class="st">"올해 열린 칸 영화제에서 한국 영화가 대상을 수상했다. 이 영화는 사회적 불평등을 다룬..."</span>,</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>    <span class="st">"NASA의 새로운 화성 탐사선이 성공적으로 발사되었다. 이 탐사선은 화성의 지질학적 특성을 연구할 예정이다..."</span>,</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>    <span class="st">"월드컵 예선에서 한국 대표팀이 극적인 승리를 거뒀다. 경기 종료 직전 터진 골로..."</span></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a><span class="co"># 테스트 실행</span></span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> article <span class="kw">in</span> test_news_articles:</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>    topic <span class="op">=</span> classify_news_topic(article)</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"뉴스 기사: '</span><span class="sc">{</span>article[:<span class="dv">50</span>]<span class="sc">}</span><span class="ss">...'"</span>)</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"분류된 토픽: </span><span class="sc">{</span>topic<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<pre><code>뉴스 기사: '국회는 오늘 새로운 법안을 통과시켰다. 이번 법안은 청년 일자리 창출을 위한 것으로......'
+분류된 토픽: 정치
+
+뉴스 기사: '중앙은행은 기준금리를 0.25%p 인상했다고 발표했다. 이는 인플레이션 압력에 대응하기 위...'
+분류된 토픽: 경제
+
+뉴스 기사: '올해 열린 칸 영화제에서 한국 영화가 대상을 수상했다. 이 영화는 사회적 불평등을 다룬.....'
+분류된 토픽: 사회
+
+뉴스 기사: 'NASA의 새로운 화성 탐사선이 성공적으로 발사되었다. 이 탐사선은 화성의 지질학적 특성을...'
+분류된 토픽: 과학기술
+
+뉴스 기사: '월드컵 예선에서 한국 대표팀이 극적인 승리를 거뒀다. 경기 종료 직전 터진 골로......'
+분류된 토픽: 스포츠</code></pre>
+</section>
+<section id="데이터베이스" class="level2">
+<h2 class="anchored" data-anchor-id="데이터베이스">데이터베이스</h2>
+<p>벡터 데이터베이스가 앞서 제시된 임베딩 방식 대신 필요한 이유는 이전 관계형 데이터베이스, 비정형 데이터베이스가 필요한 이유와 유사하다. 대규모 데이터셋을 효율적으로 처리할 수 있을 뿐만 아니라, 임베딩 벡터를 메모리에 모두 로드하는 기존 방식과 달리, 벡터 데이터베이스는 디스크 기반 저장과 인덱싱을 통해 대용량 데이터를 효과적으로 관리하는데 기여한다. 빠른 유사도 검색이 가능하여 특수한 인덱싱 기법을 사용하여 고차원 벡터 간의 유사도 계산을 최적화한다. 확장성이 뛰어나, 분산 아키텍처를 지원하여 데이터 규모가 커져도 성능을 유지할 수 있을 뿐만 아니라 실시간 업데이트와 쿼리가 가능하다.</p>
+<p>다양한 벡터 데이터베이스 중 선택 시 고려할 점은 다음과 같다. 오픈소스 솔루션을 원한다면 커뮤니티 지원이 활발하고 무료로 사용할 수 있다는 장점이 있는 Chroma, Vespa, Milvus 등을 고려할 수 있다. 관리형 서비스를 제공하여 운영 부담을 줄일 수 있는 상용 솔루션을 고려한다면 Pinecone이나 Weaviate가 좋은 선택일 수 있다.</p>
+<p>기존 관계형 데이터베이스와의 통합이 필요하다면 PostgreSQL의 벡터 검색 확장을 고려할 수 있다. 대규모 분산 시스템을 구축해야 한다면 Vespa나 Milvus가 적합할 수 있다. 검색 엔진 기능도 함께 필요하다면 Elasticsearch를 고려할 수 있다.</p>
+<p>결국, 프로젝트 규모, 예산, 필요한 기능, 운영 능력 등을 종합적으로 고려하여 적절한 벡터 데이터베이스를 선택해야 한다. 소규모 프로젝트라면 Chroma나 LanceDB와 같은 가벼운 솔루션으로 시작하고, 대규모 프로덕션 환경이라면 Pinecone이나 Vespa 같은 성숙한 솔루션이 추천된다.</p>
+<section id="크로마db" class="level3">
+<h3 class="anchored" data-anchor-id="크로마db">크로마DB</h3>
+<div id="vector-db-chroma" class="cell" data-execution_count="6">
+<details open="" class="code-fold">
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> chromadb</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> chromadb.config <span class="im">import</span> Settings</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> chromadb.utils <span class="im">import</span> embedding_functions</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># OpenAI 클라이언트 설정</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>openai_client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>os.getenv(<span class="st">'OPENAI_API_KEY'</span>))</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 임베딩 함수 정의</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_embedding(texts):</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># texts가 문자열인 경우 리스트로 변환</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(texts, <span class="bu">str</span>):</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>        texts <span class="op">=</span> [texts]</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> openai_client.embedding.create(</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"text-embedding-ada-002"</span>,</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>        <span class="bu">input</span><span class="op">=</span>texts</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [item[<span class="st">'embedding'</span>] <span class="cf">for</span> item <span class="kw">in</span> response[<span class="st">'data'</span>]]</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co"># ChromaDB 임베딩 함수 생성</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>embedding_function <span class="op">=</span> embedding_functions.OpenAIEmbeddingFunction(get_embedding)</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 지속성 저장소 경로 설정</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>persist_directory <span class="op">=</span> <span class="st">"./data/chroma_db"</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co"># ChromaDB 클라이언트 생성</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> chromadb.Client(Settings(</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    chroma_db_impl<span class="op">=</span><span class="st">"duckdb+parquet"</span>,</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>    persist_directory<span class="op">=</span>persist_directory</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="co"># 컬렉션 생성 또는 기존 컬렉션 로드</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>collection_name <span class="op">=</span> <span class="st">"persistent_news_articles"</span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> collection_name <span class="kw">in</span> client.list_collections():</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    collection <span class="op">=</span> client.get_collection(name<span class="op">=</span>collection_name, embedding_function<span class="op">=</span>embedding_function)</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"기존 컬렉션 '</span><span class="sc">{</span>collection_name<span class="sc">}</span><span class="ss">'을 로드했습니다."</span>)</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>    collection <span class="op">=</span> client.create_collection(name<span class="op">=</span>collection_name, embedding_function<span class="op">=</span>embedding_function)</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"새 컬렉션 '</span><span class="sc">{</span>collection_name<span class="sc">}</span><span class="ss">'을 생성했습니다."</span>)</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="co"># 문서 추가 (이미 존재하지 않는 경우에만)</span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> collection.count() <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>    collection.add(</span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>        documents<span class="op">=</span>[</span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>            <span class="st">"정부, 신재생에너지 정책 발표"</span>,</span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>            <span class="st">"중앙은행, 기준금리 동결 결정"</span>,</span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>            <span class="st">"AI 기술, 의료 분야 혁신 이끌어"</span></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>        metadatas<span class="op">=</span>[</span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"category"</span>: <span class="st">"정치"</span>},</span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"category"</span>: <span class="st">"경제"</span>},</span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"category"</span>: <span class="st">"기술"</span>}</span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a>        ids<span class="op">=</span>[<span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>]</span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"문서를 추가했습니다."</span>)</span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"기존 문서가 존재합니다."</span>)</span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a><span class="co"># 유사도 검색</span></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> collection.query(</span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>    query_texts<span class="op">=</span>[<span class="st">"최신 기술 동향"</span>],</span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>    n_results<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">검색 결과:"</span>)</span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (<span class="bu">id</span>, distance) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(results[<span class="st">'ids'</span>][<span class="dv">0</span>], results[<span class="st">'distances'</span>][<span class="dv">0</span>])):</span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">. ID: </span><span class="sc">{</span><span class="bu">id</span><span class="sc">}</span><span class="ss">, 거리: </span><span class="sc">{</span>distance<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   문서: </span><span class="sc">{</span>collection<span class="sc">.</span>get(ids<span class="op">=</span>[<span class="bu">id</span>])[<span class="st">'documents'</span>][<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   메타데이터: </span><span class="sc">{</span>collection<span class="sc">.</span>get(ids<span class="op">=</span>[<span class="bu">id</span>])[<span class="st">'metadatas'</span>][<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a><span class="co"># 메타데이터 필터링</span></span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a>filtered_results <span class="op">=</span> collection.query(</span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a>    query_texts<span class="op">=</span>[<span class="st">"경제 정책"</span>],</span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a>    where<span class="op">=</span>{<span class="st">"category"</span>: <span class="st">"경제"</span>},</span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a>    n_results<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"필터링된 검색 결과:"</span>)</span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"문서: </span><span class="sc">{</span>filtered_results[<span class="st">'documents'</span>][<span class="dv">0</span>][<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"메타데이터: </span><span class="sc">{</span>filtered_results[<span class="st">'metadatas'</span>][<span class="dv">0</span>][<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a><span class="co"># 변경사항 저장</span></span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a>client.persist()</span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">변경사항을 디스크에 저장했습니다."</span>)</span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a><span class="co"># 현재 컬렉션의 문서 수 출력</span></span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">현재 컬렉션의 문서 수: </span><span class="sc">{</span>collection<span class="sc">.</span>count()<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "복사완료!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "복사완료!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb11" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 벡터 데이터베이스</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="al">![출처: https://blog.det.life/why-you-shouldnt-invest-in-vector-databases-c0cd3f59d23c](images/vector_database.webp)</span>{#fig-vector-database}</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## 임베딩</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>자연어 처리(NLP) 분야에서 나온 개념으로, 텍스트의 맥락과 의도를 포착하는데 유용한 **임베딩(Embedding)**은 텍스트를 다차원 벡터 공간에 매핑한 수치적 표현으로 텍스트의 의미를 포착하는 숫자 벡터로 변환하는 과정이다. 텍스트의 의미적 유사성을 수학적으로 계산할 수 있기 때문에  유사한 의미를 가진 단어나 문장은 벡터 공간에서 서로 가깝게 위치하게 된다. 의미 검색, 추천 시스템, 분류 작업 등 다양한 AI 응용 프로그램에 활용된다. </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="in">%%| label: embedding-process</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="in">graph TD</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="in">    subgraph 입력</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="in">    A[정치 상황 텍스트]</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="in">    H[사용자 쿼리]</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="in">    subgraph 임베딩 생성</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="in">    B[OpenAI API]</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="in">    C[임베딩 벡터]</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="in">    A --&gt; B</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="in">    H --&gt; B</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="in">    B --&gt; C</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="in">    subgraph 시각화</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a><span class="in">    D[차원 축소 t-SNE]</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="in">    E[2D 시각화]</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a><span class="in">    C --&gt; D</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="in">    D --&gt; E</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a><span class="in">    subgraph 유사도 분석 및 추천</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a><span class="in">    F[코사인 거리 계산]</span></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a><span class="in">    G[유사 텍스트 추천]</span></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a><span class="in">    C --&gt; F</span></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a><span class="in">    F --&gt; G</span></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: party-embedding</span></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.spatial.distance <span class="im">import</span> cosine</span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.manifold <span class="im">import</span> TSNE</span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.font_manager <span class="im">as</span> fm</span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a><span class="co"># 텍스트 데이터 (정치 상황)</span></span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>texts <span class="op">=</span> [</span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A당은 경제 성장을 최우선 과제로 삼고 있다"</span>,</span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>    <span class="st">"B당은 복지 정책 확대를 주장하고 있다"</span>,</span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A당은 규제 완화를 통한 기업 활성화를 추진한다"</span>,</span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>    <span class="st">"B당은 환경 보호를 위한 정책을 강조한다"</span>,</span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A당은 국방력 강화에 중점을 두고 있다"</span>,</span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>    <span class="st">"B당은 교육 개혁을 통한 인재 양성을 중시한다"</span>,</span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>    <span class="st">"양당은 부동산 정책에서 첨예하게 대립하고 있다"</span></span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>os.getenv(<span class="st">'OPENAI_API_KEY'</span>))</span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a><span class="co"># 임베딩 생성 함수</span></span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_embedding(text):</span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> client.embeddings.create(</span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"text-embedding-ada-002"</span>,</span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>        <span class="bu">input</span><span class="op">=</span>text</span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.data[<span class="dv">0</span>].embedding</span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a><span class="co"># 텍스트를 임베딩으로 변환</span></span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a>embeddings <span class="op">=</span> [get_embedding(text) <span class="cf">for</span> text <span class="kw">in</span> texts]</span>
+<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a><span class="co"># 임베딩 리스트를 NumPy 배열로 변환</span></span>
+<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a>embeddings_array <span class="op">=</span> np.array(embeddings)</span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a><span class="co"># 시각화를 위한 차원 축소 (t-SNE)</span></span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a>tsne <span class="op">=</span> TSNE(n_components<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>, perplexity<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a>reduced_embeddings <span class="op">=</span> tsne.fit_transform(embeddings_array)</span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a><span class="co"># 한글 폰트 경로 설정 (Windows 기준)</span></span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a>font_path <span class="op">=</span> <span class="vs">r'C:\Windows\Fonts\malgun.ttf'</span>  <span class="co"># 맑은 고딕 폰트 경로</span></span>
+<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a><span class="co"># 폰트 프로퍼티 설정</span></span>
+<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a>font_prop <span class="op">=</span> fm.FontProperties(fname<span class="op">=</span>font_path, size<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a><span class="co"># matplotlib 폰트 설정</span></span>
+<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.family'</span>] <span class="op">=</span> font_prop.get_name()</span>
+<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a><span class="co"># 그래프 그리기</span></span>
+<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
+<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (x, y) <span class="kw">in</span> <span class="bu">enumerate</span>(reduced_embeddings):</span>
+<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a>    plt.scatter(x, y)</span>
+<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a>    plt.annotate(texts[i], (x, y), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>, fontproperties<span class="op">=</span>font_prop)</span>
+<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"정치 상황 텍스트 임베딩 시각화"</span>, fontproperties<span class="op">=</span>font_prop)</span>
+<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a><span class="co"># 그래프를 PNG 파일로 저장</span></span>
+<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'images/embeddings_visualization.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a><span class="co"># 거리 측정 및 추천</span></span>
+<span id="cb11-112"><a href="#cb11-112" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> recommend(query, texts, embeddings, top_n<span class="op">=</span><span class="dv">3</span>):</span>
+<span id="cb11-113"><a href="#cb11-113" aria-hidden="true" tabindex="-1"></a>    query_embedding <span class="op">=</span> get_embedding(query)</span>
+<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a>    distances <span class="op">=</span> [cosine(query_embedding, emb) <span class="cf">for</span> emb <span class="kw">in</span> embeddings]</span>
+<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a>    sorted_indices <span class="op">=</span> np.argsort(distances)</span>
+<span id="cb11-116"><a href="#cb11-116" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [texts[i] <span class="cf">for</span> i <span class="kw">in</span> sorted_indices[:top_n]]</span>
+<span id="cb11-117"><a href="#cb11-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-118"><a href="#cb11-118" aria-hidden="true" tabindex="-1"></a><span class="co"># 추천 예시</span></span>
+<span id="cb11-119"><a href="#cb11-119" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"기후 위기"</span></span>
+<span id="cb11-120"><a href="#cb11-120" aria-hidden="true" tabindex="-1"></a>recommendations <span class="op">=</span> recommend(query, texts, embeddings)</span>
+<span id="cb11-121"><a href="#cb11-121" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"'</span><span class="sc">{</span>query<span class="sc">}</span><span class="ss">'와 가장 유사한 텍스트:"</span>)</span>
+<span id="cb11-122"><a href="#cb11-122" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, rec <span class="kw">in</span> <span class="bu">enumerate</span>(recommendations, <span class="dv">1</span>):</span>
+<span id="cb11-123"><a href="#cb11-123" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. </span><span class="sc">{</span>rec<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-124"><a href="#cb11-124" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-125"><a href="#cb11-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-126"><a href="#cb11-126" aria-hidden="true" tabindex="-1"></a><span class="fu">### 텍스트 &amp;rarr; 벡터</span></span>
+<span id="cb11-127"><a href="#cb11-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-128"><a href="#cb11-128" aria-hidden="true" tabindex="-1"></a>텍스트를 OpenAI 임베딩 모형(<span class="in">`text-embedding-ada-002`</span>)을 통해 1,536 차원 벡터로 변환시킨다.</span>
+<span id="cb11-129"><a href="#cb11-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-132"><a href="#cb11-132" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-133"><a href="#cb11-133" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb11-134"><a href="#cb11-134" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(embeddings[<span class="dv">1</span>][:<span class="dv">10</span>])</span>
+<span id="cb11-135"><a href="#cb11-135" aria-hidden="true" tabindex="-1"></a>[<span class="op">-</span><span class="fl">0.021668272092938423</span>, <span class="op">-</span><span class="fl">0.018942788243293762</span>, <span class="fl">0.013783353380858898</span>, <span class="fl">0.0006076404242776334</span>, <span class="op">-</span><span class="fl">0.03229901194572449</span>, <span class="fl">0.010813796892762184</span>, <span class="op">-</span><span class="fl">0.022183537483215332</span>, <span class="fl">0.01155957579612732</span>, <span class="op">-</span><span class="fl">0.031404078006744385</span>, <span class="fl">0.004132294096052647</span>]</span>
+<span id="cb11-136"><a href="#cb11-136" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-137"><a href="#cb11-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-138"><a href="#cb11-138" aria-hidden="true" tabindex="-1"></a><span class="fu">### 벡터 시각화</span></span>
+<span id="cb11-139"><a href="#cb11-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-140"><a href="#cb11-140" aria-hidden="true" tabindex="-1"></a>텍스트를 OpenAI 임베딩 모형(<span class="in">`text-embedding-ada-002`</span>)을 통해 1,536 차원 벡터로 변환을 했는데 총 7개 문장에 대해 각 당의 정책적 차이를 시각적으로 확인하기 위해 차원축소기법으로 TSNE를 사용하여 2차원 공간을 축소하여 시각화하여 A당과 B당의 정책이 몰려있고 서로 다른 차이를 갖는 것을 확인할 수 있다.</span>
+<span id="cb11-141"><a href="#cb11-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-142"><a href="#cb11-142" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/embeddings_visualization.png)</span></span>
+<span id="cb11-143"><a href="#cb11-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-144"><a href="#cb11-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-145"><a href="#cb11-145" aria-hidden="true" tabindex="-1"></a><span class="fu">### 벡터 검색</span></span>
+<span id="cb11-146"><a href="#cb11-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-147"><a href="#cb11-147" aria-hidden="true" tabindex="-1"></a><span class="in">`기후 위기`</span>와 가장 관련된 정책을 검색하는데 벡터 검색을 사용하여 가장 거리가 가까운 순으로 3개를 추출한다. 먼저 검색어를 <span class="in">`get_embedding()`</span> 함수로 벡터로 변환하고 코사인 유사도(<span class="in">`cosign()`</span>) 함수를 </span>
+<span id="cb11-148"><a href="#cb11-148" aria-hidden="true" tabindex="-1"></a>사용해서 거리를 계산하고 가장 거리가 가까운 정책을 출력한다.</span>
+<span id="cb11-149"><a href="#cb11-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-150"><a href="#cb11-150" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-151"><a href="#cb11-151" aria-hidden="true" tabindex="-1"></a><span class="in">'기후 위기'와 가장 유사한 텍스트:</span></span>
+<span id="cb11-152"><a href="#cb11-152" aria-hidden="true" tabindex="-1"></a><span class="in">1. B당은 환경 보호를 위한 정책을 강조한다</span></span>
+<span id="cb11-153"><a href="#cb11-153" aria-hidden="true" tabindex="-1"></a><span class="in">2. A당은 경제 성장을 최우선 과제로 삼고 있다</span></span>
+<span id="cb11-154"><a href="#cb11-154" aria-hidden="true" tabindex="-1"></a><span class="in">3. A당은 국방력 강화에 중점을 두고 있다</span></span>
+<span id="cb11-155"><a href="#cb11-155" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-156"><a href="#cb11-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-157"><a href="#cb11-157" aria-hidden="true" tabindex="-1"></a><span class="fu">## 감성분류</span></span>
+<span id="cb11-158"><a href="#cb11-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-159"><a href="#cb11-159" aria-hidden="true" tabindex="-1"></a><span class="fu">### Zero-shot 임베딩 기반 감성분류</span></span>
+<span id="cb11-160"><a href="#cb11-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-161"><a href="#cb11-161" aria-hidden="true" tabindex="-1"></a>각 감정에 대한 예시 문장 대신, 감정을 설명하는 문장을 사용한다.</span>
+<span id="cb11-162"><a href="#cb11-162" aria-hidden="true" tabindex="-1"></a>감정의 일반적인 개념을 사용하기 때문에 특정 예시에 의존하지 않하거나 휘둘리지 않는 장점이 있다.</span>
+<span id="cb11-163"><a href="#cb11-163" aria-hidden="true" tabindex="-1"></a>특히 <span class="in">`scipy`</span> 패키지 <span class="in">`distance.cosine()`</span> 함수를 사용해서 거리를 사용한다는 점에서 차이가 있다. </span>
+<span id="cb11-164"><a href="#cb11-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-167"><a href="#cb11-167" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-168"><a href="#cb11-168" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb11-169"><a href="#cb11-169" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: sentiment-classification</span></span>
+<span id="cb11-170"><a href="#cb11-170" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-171"><a href="#cb11-171" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb11-172"><a href="#cb11-172" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.spatial <span class="im">import</span> distance</span>
+<span id="cb11-173"><a href="#cb11-173" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb11-174"><a href="#cb11-174" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb11-175"><a href="#cb11-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-176"><a href="#cb11-176" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb11-177"><a href="#cb11-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-178"><a href="#cb11-178" aria-hidden="true" tabindex="-1"></a><span class="co"># OpenAI 클라이언트 설정</span></span>
+<span id="cb11-179"><a href="#cb11-179" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>os.getenv(<span class="st">'OPENAI_API_KEY'</span>))</span>
+<span id="cb11-180"><a href="#cb11-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-181"><a href="#cb11-181" aria-hidden="true" tabindex="-1"></a><span class="co"># 텍스트를 임베딩으로 변환하는 함수</span></span>
+<span id="cb11-182"><a href="#cb11-182" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_embedding(text):</span>
+<span id="cb11-183"><a href="#cb11-183" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> client.embeddings.create(</span>
+<span id="cb11-184"><a href="#cb11-184" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"text-embedding-ada-002"</span>,</span>
+<span id="cb11-185"><a href="#cb11-185" aria-hidden="true" tabindex="-1"></a>        <span class="bu">input</span><span class="op">=</span>text</span>
+<span id="cb11-186"><a href="#cb11-186" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-187"><a href="#cb11-187" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.data[<span class="dv">0</span>].embedding</span>
+<span id="cb11-188"><a href="#cb11-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-189"><a href="#cb11-189" aria-hidden="true" tabindex="-1"></a><span class="co"># 감정 레이블 정의</span></span>
+<span id="cb11-190"><a href="#cb11-190" aria-hidden="true" tabindex="-1"></a>sentiments <span class="op">=</span> [<span class="st">"긍정적인"</span>, <span class="st">"중립적인"</span>, <span class="st">"부정적인"</span>]</span>
+<span id="cb11-191"><a href="#cb11-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-192"><a href="#cb11-192" aria-hidden="true" tabindex="-1"></a><span class="co"># 감정 레이블에 대한 설명 텍스트</span></span>
+<span id="cb11-193"><a href="#cb11-193" aria-hidden="true" tabindex="-1"></a>sentiment_descriptions <span class="op">=</span> [</span>
+<span id="cb11-194"><a href="#cb11-194" aria-hidden="true" tabindex="-1"></a>    <span class="st">"이 문장은 긍정적인 감정이나 태도를 표현합니다."</span>,</span>
+<span id="cb11-195"><a href="#cb11-195" aria-hidden="true" tabindex="-1"></a>    <span class="st">"이 문장은 중립적이거나 특별한 감정을 표현하지 않습니다."</span>,</span>
+<span id="cb11-196"><a href="#cb11-196" aria-hidden="true" tabindex="-1"></a>    <span class="st">"이 문장은 부정적인 감정이나 태도를 표현합니다."</span></span>
+<span id="cb11-197"><a href="#cb11-197" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb11-198"><a href="#cb11-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-199"><a href="#cb11-199" aria-hidden="true" tabindex="-1"></a><span class="co"># 감정 설명의 임베딩 계산</span></span>
+<span id="cb11-200"><a href="#cb11-200" aria-hidden="true" tabindex="-1"></a>sentiment_embeddings <span class="op">=</span> [get_embedding(desc) <span class="cf">for</span> desc <span class="kw">in</span> sentiment_descriptions]</span>
+<span id="cb11-201"><a href="#cb11-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-202"><a href="#cb11-202" aria-hidden="true" tabindex="-1"></a><span class="co"># 새로운 문장의 감정 분류 함수</span></span>
+<span id="cb11-203"><a href="#cb11-203" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classify_sentiment(text):</span>
+<span id="cb11-204"><a href="#cb11-204" aria-hidden="true" tabindex="-1"></a>    text_embedding <span class="op">=</span> get_embedding(text)</span>
+<span id="cb11-205"><a href="#cb11-205" aria-hidden="true" tabindex="-1"></a>    distances <span class="op">=</span> [distance.cosine(text_embedding, sentiment_emb) <span class="cf">for</span> sentiment_emb <span class="kw">in</span> sentiment_embeddings]</span>
+<span id="cb11-206"><a href="#cb11-206" aria-hidden="true" tabindex="-1"></a>    closest_sentiment_index <span class="op">=</span> np.argmin(distances)</span>
+<span id="cb11-207"><a href="#cb11-207" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sentiments[closest_sentiment_index]</span>
+<span id="cb11-208"><a href="#cb11-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-209"><a href="#cb11-209" aria-hidden="true" tabindex="-1"></a><span class="co"># 테스트</span></span>
+<span id="cb11-210"><a href="#cb11-210" aria-hidden="true" tabindex="-1"></a>test_sentences <span class="op">=</span> [</span>
+<span id="cb11-211"><a href="#cb11-211" aria-hidden="true" tabindex="-1"></a>    <span class="st">"오늘은 정말 행복한 날이에요!"</span>,</span>
+<span id="cb11-212"><a href="#cb11-212" aria-hidden="true" tabindex="-1"></a>    <span class="st">"그저 그런 하루였어요."</span>,</span>
+<span id="cb11-213"><a href="#cb11-213" aria-hidden="true" tabindex="-1"></a>    <span class="st">"이 상황이 너무 힘들어요."</span>,</span>
+<span id="cb11-214"><a href="#cb11-214" aria-hidden="true" tabindex="-1"></a>    <span class="st">"새로운 기회를 얻게 되어 기뻐요."</span>,</span>
+<span id="cb11-215"><a href="#cb11-215" aria-hidden="true" tabindex="-1"></a>    <span class="st">"별로 특별한 감정은 없어요."</span></span>
+<span id="cb11-216"><a href="#cb11-216" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb11-217"><a href="#cb11-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-218"><a href="#cb11-218" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sentence <span class="kw">in</span> test_sentences:</span>
+<span id="cb11-219"><a href="#cb11-219" aria-hidden="true" tabindex="-1"></a>    sentiment <span class="op">=</span> classify_sentiment(sentence)</span>
+<span id="cb11-220"><a href="#cb11-220" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"문장: '</span><span class="sc">{</span>sentence<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb11-221"><a href="#cb11-221" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"감정 분류: </span><span class="sc">{</span>sentiment<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb11-222"><a href="#cb11-222" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-223"><a href="#cb11-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-224"><a href="#cb11-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-225"><a href="#cb11-225" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-226"><a href="#cb11-226" aria-hidden="true" tabindex="-1"></a><span class="in">문장: '오늘은 정말 행복한 날이에요!'</span></span>
+<span id="cb11-227"><a href="#cb11-227" aria-hidden="true" tabindex="-1"></a><span class="in">감정 분류: 긍정적인</span></span>
+<span id="cb11-228"><a href="#cb11-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-229"><a href="#cb11-229" aria-hidden="true" tabindex="-1"></a><span class="in">문장: '그저 그런 하루였어요.'</span></span>
+<span id="cb11-230"><a href="#cb11-230" aria-hidden="true" tabindex="-1"></a><span class="in">감정 분류: 긍정적인</span></span>
+<span id="cb11-231"><a href="#cb11-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-232"><a href="#cb11-232" aria-hidden="true" tabindex="-1"></a><span class="in">문장: '이 상황이 너무 힘들어요.'</span></span>
+<span id="cb11-233"><a href="#cb11-233" aria-hidden="true" tabindex="-1"></a><span class="in">감정 분류: 부정적인</span></span>
+<span id="cb11-234"><a href="#cb11-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-235"><a href="#cb11-235" aria-hidden="true" tabindex="-1"></a><span class="in">문장: '새로운 기회를 얻게 되어 기뻐요.'</span></span>
+<span id="cb11-236"><a href="#cb11-236" aria-hidden="true" tabindex="-1"></a><span class="in">감정 분류: 긍정적인</span></span>
+<span id="cb11-237"><a href="#cb11-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-238"><a href="#cb11-238" aria-hidden="true" tabindex="-1"></a><span class="in">문장: '별로 특별한 감정은 없어요.'</span></span>
+<span id="cb11-239"><a href="#cb11-239" aria-hidden="true" tabindex="-1"></a><span class="in">감정 분류: 중립적인</span></span>
+<span id="cb11-240"><a href="#cb11-240" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-241"><a href="#cb11-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-242"><a href="#cb11-242" aria-hidden="true" tabindex="-1"></a><span class="fu">### Few-shot 임베딩 기반 감성분류</span></span>
+<span id="cb11-243"><a href="#cb11-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-244"><a href="#cb11-244" aria-hidden="true" tabindex="-1"></a>일반적인 개념이 아닌 몇가지 감성분류 사례를 제시하고 제시된 텍스트에 대한 감성을 분류한다.</span>
+<span id="cb11-245"><a href="#cb11-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-248"><a href="#cb11-248" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-249"><a href="#cb11-249" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb11-250"><a href="#cb11-250" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: few-shot-classification</span></span>
+<span id="cb11-251"><a href="#cb11-251" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-252"><a href="#cb11-252" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb11-253"><a href="#cb11-253" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics.pairwise <span class="im">import</span> cosine_similarity</span>
+<span id="cb11-254"><a href="#cb11-254" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb11-255"><a href="#cb11-255" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb11-256"><a href="#cb11-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-257"><a href="#cb11-257" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb11-258"><a href="#cb11-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-259"><a href="#cb11-259" aria-hidden="true" tabindex="-1"></a><span class="co"># OpenAI 클라이언트 설정</span></span>
+<span id="cb11-260"><a href="#cb11-260" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>os.getenv(<span class="st">'OPENAI_API_KEY'</span>))</span>
+<span id="cb11-261"><a href="#cb11-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-262"><a href="#cb11-262" aria-hidden="true" tabindex="-1"></a><span class="co"># 텍스트를 임베딩으로 변환하는 함수</span></span>
+<span id="cb11-263"><a href="#cb11-263" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_embedding(text):</span>
+<span id="cb11-264"><a href="#cb11-264" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> client.embeddings.create(</span>
+<span id="cb11-265"><a href="#cb11-265" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"text-embedding-ada-002"</span>,</span>
+<span id="cb11-266"><a href="#cb11-266" aria-hidden="true" tabindex="-1"></a>        <span class="bu">input</span><span class="op">=</span>text</span>
+<span id="cb11-267"><a href="#cb11-267" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-268"><a href="#cb11-268" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.data[<span class="dv">0</span>].embedding</span>
+<span id="cb11-269"><a href="#cb11-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-270"><a href="#cb11-270" aria-hidden="true" tabindex="-1"></a><span class="co"># 감정 레이블과 예시 문장</span></span>
+<span id="cb11-271"><a href="#cb11-271" aria-hidden="true" tabindex="-1"></a>sentiment_examples <span class="op">=</span> {</span>
+<span id="cb11-272"><a href="#cb11-272" aria-hidden="true" tabindex="-1"></a>    <span class="st">"긍정"</span>: [<span class="st">"정말 좋은 하루였어요!"</span>, <span class="st">"이 영화 최고예요!"</span>, <span class="st">"새 직장이 너무 마음에 들어요."</span>],</span>
+<span id="cb11-273"><a href="#cb11-273" aria-hidden="true" tabindex="-1"></a>    <span class="st">"중립"</span>: [<span class="st">"오늘 날씨는 평범해요."</span>, <span class="st">"특별한 일은 없었어요."</span>, <span class="st">"그냥 그래요."</span>],</span>
+<span id="cb11-274"><a href="#cb11-274" aria-hidden="true" tabindex="-1"></a>    <span class="st">"부정"</span>: [<span class="st">"정말 최악의 경험이었어요."</span>, <span class="st">"실망스러워요."</span>, <span class="st">"오늘 기분이 좋지 않아요."</span>]</span>
+<span id="cb11-275"><a href="#cb11-275" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-276"><a href="#cb11-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-277"><a href="#cb11-277" aria-hidden="true" tabindex="-1"></a><span class="co"># 각 감정 레이블에 대한 평균 임베딩 계산</span></span>
+<span id="cb11-278"><a href="#cb11-278" aria-hidden="true" tabindex="-1"></a>sentiment_embeddings <span class="op">=</span> {}</span>
+<span id="cb11-279"><a href="#cb11-279" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sentiment, examples <span class="kw">in</span> sentiment_examples.items():</span>
+<span id="cb11-280"><a href="#cb11-280" aria-hidden="true" tabindex="-1"></a>    embeddings <span class="op">=</span> [get_embedding(ex) <span class="cf">for</span> ex <span class="kw">in</span> examples]</span>
+<span id="cb11-281"><a href="#cb11-281" aria-hidden="true" tabindex="-1"></a>    sentiment_embeddings[sentiment] <span class="op">=</span> np.mean(embeddings, axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb11-282"><a href="#cb11-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-283"><a href="#cb11-283" aria-hidden="true" tabindex="-1"></a><span class="co"># 새로운 문장의 감정 분류 함수</span></span>
+<span id="cb11-284"><a href="#cb11-284" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classify_sentiment(text):</span>
+<span id="cb11-285"><a href="#cb11-285" aria-hidden="true" tabindex="-1"></a>    text_embedding <span class="op">=</span> get_embedding(text)</span>
+<span id="cb11-286"><a href="#cb11-286" aria-hidden="true" tabindex="-1"></a>    similarities <span class="op">=</span> {</span>
+<span id="cb11-287"><a href="#cb11-287" aria-hidden="true" tabindex="-1"></a>        sentiment: cosine_similarity([text_embedding], [emb])[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb11-288"><a href="#cb11-288" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> sentiment, emb <span class="kw">in</span> sentiment_embeddings.items()</span>
+<span id="cb11-289"><a href="#cb11-289" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb11-290"><a href="#cb11-290" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">max</span>(similarities, key<span class="op">=</span>similarities.get)</span>
+<span id="cb11-291"><a href="#cb11-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-292"><a href="#cb11-292" aria-hidden="true" tabindex="-1"></a><span class="co"># 테스트</span></span>
+<span id="cb11-293"><a href="#cb11-293" aria-hidden="true" tabindex="-1"></a>test_sentences <span class="op">=</span> [</span>
+<span id="cb11-294"><a href="#cb11-294" aria-hidden="true" tabindex="-1"></a>    <span class="st">"오늘은 정말 행복한 날이에요!"</span>,</span>
+<span id="cb11-295"><a href="#cb11-295" aria-hidden="true" tabindex="-1"></a>    <span class="st">"그저 그런 하루였어요."</span>,</span>
+<span id="cb11-296"><a href="#cb11-296" aria-hidden="true" tabindex="-1"></a>    <span class="st">"이 상황이 너무 힘들어요."</span>,</span>
+<span id="cb11-297"><a href="#cb11-297" aria-hidden="true" tabindex="-1"></a>    <span class="st">"새로운 기회를 얻게 되어 기뻐요."</span>,</span>
+<span id="cb11-298"><a href="#cb11-298" aria-hidden="true" tabindex="-1"></a>    <span class="st">"별로 특별한 감정은 없어요."</span></span>
+<span id="cb11-299"><a href="#cb11-299" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb11-300"><a href="#cb11-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-301"><a href="#cb11-301" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sentence <span class="kw">in</span> test_sentences:</span>
+<span id="cb11-302"><a href="#cb11-302" aria-hidden="true" tabindex="-1"></a>    sentiment <span class="op">=</span> classify_sentiment(sentence)</span>
+<span id="cb11-303"><a href="#cb11-303" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"문장: '</span><span class="sc">{</span>sentence<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb11-304"><a href="#cb11-304" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"감정 분류: </span><span class="sc">{</span>sentiment<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb11-305"><a href="#cb11-305" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-306"><a href="#cb11-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-307"><a href="#cb11-307" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-308"><a href="#cb11-308" aria-hidden="true" tabindex="-1"></a><span class="in">문장: '오늘은 정말 행복한 날이에요!'</span></span>
+<span id="cb11-309"><a href="#cb11-309" aria-hidden="true" tabindex="-1"></a><span class="in">감정 분류: 긍정</span></span>
+<span id="cb11-310"><a href="#cb11-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-311"><a href="#cb11-311" aria-hidden="true" tabindex="-1"></a><span class="in">문장: '그저 그런 하루였어요.'</span></span>
+<span id="cb11-312"><a href="#cb11-312" aria-hidden="true" tabindex="-1"></a><span class="in">감정 분류: 중립</span></span>
+<span id="cb11-313"><a href="#cb11-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-314"><a href="#cb11-314" aria-hidden="true" tabindex="-1"></a><span class="in">문장: '이 상황이 너무 힘들어요.'</span></span>
+<span id="cb11-315"><a href="#cb11-315" aria-hidden="true" tabindex="-1"></a><span class="in">감정 분류: 부정</span></span>
+<span id="cb11-316"><a href="#cb11-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-317"><a href="#cb11-317" aria-hidden="true" tabindex="-1"></a><span class="in">문장: '새로운 기회를 얻게 되어 기뻐요.'</span></span>
+<span id="cb11-318"><a href="#cb11-318" aria-hidden="true" tabindex="-1"></a><span class="in">감정 분류: 긍정</span></span>
+<span id="cb11-319"><a href="#cb11-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-320"><a href="#cb11-320" aria-hidden="true" tabindex="-1"></a><span class="in">문장: '별로 특별한 감정은 없어요.'</span></span>
+<span id="cb11-321"><a href="#cb11-321" aria-hidden="true" tabindex="-1"></a><span class="in">감정 분류: 중립</span></span>
+<span id="cb11-322"><a href="#cb11-322" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-323"><a href="#cb11-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-324"><a href="#cb11-324" aria-hidden="true" tabindex="-1"></a><span class="fu">## 뉴스기사 분류</span></span>
+<span id="cb11-325"><a href="#cb11-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-326"><a href="#cb11-326" aria-hidden="true" tabindex="-1"></a>뉴스 기사의 토픽을 분류하는 기능구현도 가능하다. 먼저 7개의 주요 뉴스 토픽인 정치, 경제, 사회, 문화, 과학기술, 스포츠, 국제를 정의하고, 각 토픽에 대해 간단한 설명을 제공하여 Zero-shot 학습을 준비한다. OpenAI의 API를 사용하여 이 토픽 설명과 분류할 뉴스 기사 텍스트의 임베딩을 생성하고ㅡ, 토픽 분류는 주어진 뉴스 기사의 임베딩과 각 토픽 설명의 임베딩 간의 코사인 거리를 계산하여 수행한다. 가장 거리가 가까운, 즉 가장 유사한 토픽을 해당 기사의 토픽으로 선택한다.</span>
+<span id="cb11-327"><a href="#cb11-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-330"><a href="#cb11-330" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-331"><a href="#cb11-331" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb11-332"><a href="#cb11-332" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: topic-classification</span></span>
+<span id="cb11-333"><a href="#cb11-333" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-334"><a href="#cb11-334" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb11-335"><a href="#cb11-335" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.spatial <span class="im">import</span> distance</span>
+<span id="cb11-336"><a href="#cb11-336" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb11-337"><a href="#cb11-337" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb11-338"><a href="#cb11-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-339"><a href="#cb11-339" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb11-340"><a href="#cb11-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-341"><a href="#cb11-341" aria-hidden="true" tabindex="-1"></a><span class="co"># OpenAI 클라이언트 설정</span></span>
+<span id="cb11-342"><a href="#cb11-342" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>os.getenv(<span class="st">'OPENAI_API_KEY'</span>))</span>
+<span id="cb11-343"><a href="#cb11-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-344"><a href="#cb11-344" aria-hidden="true" tabindex="-1"></a><span class="co"># 텍스트를 임베딩으로 변환하는 함수</span></span>
+<span id="cb11-345"><a href="#cb11-345" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_embedding(text):</span>
+<span id="cb11-346"><a href="#cb11-346" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> client.embeddings.create(</span>
+<span id="cb11-347"><a href="#cb11-347" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"text-embedding-ada-002"</span>,</span>
+<span id="cb11-348"><a href="#cb11-348" aria-hidden="true" tabindex="-1"></a>        <span class="bu">input</span><span class="op">=</span>text</span>
+<span id="cb11-349"><a href="#cb11-349" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-350"><a href="#cb11-350" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.data[<span class="dv">0</span>].embedding</span>
+<span id="cb11-351"><a href="#cb11-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-352"><a href="#cb11-352" aria-hidden="true" tabindex="-1"></a><span class="co"># 뉴스 토픽 정의</span></span>
+<span id="cb11-353"><a href="#cb11-353" aria-hidden="true" tabindex="-1"></a>topics <span class="op">=</span> [<span class="st">"정치"</span>, <span class="st">"경제"</span>, <span class="st">"사회"</span>, <span class="st">"문화"</span>, <span class="st">"과학기술"</span>, <span class="st">"스포츠"</span>, <span class="st">"국제"</span>]</span>
+<span id="cb11-354"><a href="#cb11-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-355"><a href="#cb11-355" aria-hidden="true" tabindex="-1"></a><span class="co"># 토픽에 대한 설명 텍스트</span></span>
+<span id="cb11-356"><a href="#cb11-356" aria-hidden="true" tabindex="-1"></a>topic_descriptions <span class="op">=</span> [</span>
+<span id="cb11-357"><a href="#cb11-357" aria-hidden="true" tabindex="-1"></a>    <span class="st">"정치와 관련된 뉴스로, 정부, 정책, 선거, 정당 등에 대한 내용을 다룹니다."</span>,</span>
+<span id="cb11-358"><a href="#cb11-358" aria-hidden="true" tabindex="-1"></a>    <span class="st">"경제와 관련된 뉴스로, 금융, 주식, 기업, 무역 등에 대한 내용을 다룹니다."</span>,</span>
+<span id="cb11-359"><a href="#cb11-359" aria-hidden="true" tabindex="-1"></a>    <span class="st">"사회와 관련된 뉴스로, 교육, 범죄, 환경, 복지 등 사회 전반의 이슈를 다룹니다."</span>,</span>
+<span id="cb11-360"><a href="#cb11-360" aria-hidden="true" tabindex="-1"></a>    <span class="st">"문화와 관련된 뉴스로, 예술, 엔터테인먼트, 라이프스타일 등에 대한 내용을 다룹니다."</span>,</span>
+<span id="cb11-361"><a href="#cb11-361" aria-hidden="true" tabindex="-1"></a>    <span class="st">"과학기술과 관련된 뉴스로, 연구, 발명, IT, 우주 등에 대한 내용을 다룹니다."</span>,</span>
+<span id="cb11-362"><a href="#cb11-362" aria-hidden="true" tabindex="-1"></a>    <span class="st">"스포츠와 관련된 뉴스로, 각종 경기, 선수, 팀 등에 대한 내용을 다룹니다."</span>,</span>
+<span id="cb11-363"><a href="#cb11-363" aria-hidden="true" tabindex="-1"></a>    <span class="st">"국제 뉴스로, 외교, 세계 각국의 주요 사건 등에 대한 내용을 다룹니다."</span></span>
+<span id="cb11-364"><a href="#cb11-364" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb11-365"><a href="#cb11-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-366"><a href="#cb11-366" aria-hidden="true" tabindex="-1"></a><span class="co"># 토픽 설명의 임베딩 계산</span></span>
+<span id="cb11-367"><a href="#cb11-367" aria-hidden="true" tabindex="-1"></a>topic_embeddings <span class="op">=</span> [get_embedding(desc) <span class="cf">for</span> desc <span class="kw">in</span> topic_descriptions]</span>
+<span id="cb11-368"><a href="#cb11-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-369"><a href="#cb11-369" aria-hidden="true" tabindex="-1"></a><span class="co"># 뉴스 기사의 토픽 분류 함수</span></span>
+<span id="cb11-370"><a href="#cb11-370" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classify_news_topic(news_text):</span>
+<span id="cb11-371"><a href="#cb11-371" aria-hidden="true" tabindex="-1"></a>    news_embedding <span class="op">=</span> get_embedding(news_text)</span>
+<span id="cb11-372"><a href="#cb11-372" aria-hidden="true" tabindex="-1"></a>    distances <span class="op">=</span> [distance.cosine(news_embedding, topic_emb) <span class="cf">for</span> topic_emb <span class="kw">in</span> topic_embeddings]</span>
+<span id="cb11-373"><a href="#cb11-373" aria-hidden="true" tabindex="-1"></a>    closest_topic_index <span class="op">=</span> np.argmin(distances)</span>
+<span id="cb11-374"><a href="#cb11-374" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> topics[closest_topic_index]</span>
+<span id="cb11-375"><a href="#cb11-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-376"><a href="#cb11-376" aria-hidden="true" tabindex="-1"></a><span class="co"># 테스트용 뉴스 기사 샘플</span></span>
+<span id="cb11-377"><a href="#cb11-377" aria-hidden="true" tabindex="-1"></a>test_news_articles <span class="op">=</span> [</span>
+<span id="cb11-378"><a href="#cb11-378" aria-hidden="true" tabindex="-1"></a>    <span class="st">"국회는 오늘 새로운 법안을 통과시켰다. 이번 법안은 청년 일자리 창출을 위한 것으로..."</span>,</span>
+<span id="cb11-379"><a href="#cb11-379" aria-hidden="true" tabindex="-1"></a>    <span class="st">"중앙은행은 기준금리를 0.25%p 인상했다고 발표했다. 이는 인플레이션 압력에 대응하기 위한 조치로..."</span>,</span>
+<span id="cb11-380"><a href="#cb11-380" aria-hidden="true" tabindex="-1"></a>    <span class="st">"올해 열린 칸 영화제에서 한국 영화가 대상을 수상했다. 이 영화는 사회적 불평등을 다룬..."</span>,</span>
+<span id="cb11-381"><a href="#cb11-381" aria-hidden="true" tabindex="-1"></a>    <span class="st">"NASA의 새로운 화성 탐사선이 성공적으로 발사되었다. 이 탐사선은 화성의 지질학적 특성을 연구할 예정이다..."</span>,</span>
+<span id="cb11-382"><a href="#cb11-382" aria-hidden="true" tabindex="-1"></a>    <span class="st">"월드컵 예선에서 한국 대표팀이 극적인 승리를 거뒀다. 경기 종료 직전 터진 골로..."</span></span>
+<span id="cb11-383"><a href="#cb11-383" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb11-384"><a href="#cb11-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-385"><a href="#cb11-385" aria-hidden="true" tabindex="-1"></a><span class="co"># 테스트 실행</span></span>
+<span id="cb11-386"><a href="#cb11-386" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> article <span class="kw">in</span> test_news_articles:</span>
+<span id="cb11-387"><a href="#cb11-387" aria-hidden="true" tabindex="-1"></a>    topic <span class="op">=</span> classify_news_topic(article)</span>
+<span id="cb11-388"><a href="#cb11-388" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"뉴스 기사: '</span><span class="sc">{</span>article[:<span class="dv">50</span>]<span class="sc">}</span><span class="ss">...'"</span>)</span>
+<span id="cb11-389"><a href="#cb11-389" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"분류된 토픽: </span><span class="sc">{</span>topic<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb11-390"><a href="#cb11-390" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-391"><a href="#cb11-391" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-392"><a href="#cb11-392" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-393"><a href="#cb11-393" aria-hidden="true" tabindex="-1"></a><span class="in">뉴스 기사: '국회는 오늘 새로운 법안을 통과시켰다. 이번 법안은 청년 일자리 창출을 위한 것으로......'</span></span>
+<span id="cb11-394"><a href="#cb11-394" aria-hidden="true" tabindex="-1"></a><span class="in">분류된 토픽: 정치</span></span>
+<span id="cb11-395"><a href="#cb11-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-396"><a href="#cb11-396" aria-hidden="true" tabindex="-1"></a><span class="in">뉴스 기사: '중앙은행은 기준금리를 0.25%p 인상했다고 발표했다. 이는 인플레이션 압력에 대응하기 위...'</span></span>
+<span id="cb11-397"><a href="#cb11-397" aria-hidden="true" tabindex="-1"></a><span class="in">분류된 토픽: 경제</span></span>
+<span id="cb11-398"><a href="#cb11-398" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-399"><a href="#cb11-399" aria-hidden="true" tabindex="-1"></a><span class="in">뉴스 기사: '올해 열린 칸 영화제에서 한국 영화가 대상을 수상했다. 이 영화는 사회적 불평등을 다룬.....'</span></span>
+<span id="cb11-400"><a href="#cb11-400" aria-hidden="true" tabindex="-1"></a><span class="in">분류된 토픽: 사회</span></span>
+<span id="cb11-401"><a href="#cb11-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-402"><a href="#cb11-402" aria-hidden="true" tabindex="-1"></a><span class="in">뉴스 기사: 'NASA의 새로운 화성 탐사선이 성공적으로 발사되었다. 이 탐사선은 화성의 지질학적 특성을...'</span></span>
+<span id="cb11-403"><a href="#cb11-403" aria-hidden="true" tabindex="-1"></a><span class="in">분류된 토픽: 과학기술</span></span>
+<span id="cb11-404"><a href="#cb11-404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-405"><a href="#cb11-405" aria-hidden="true" tabindex="-1"></a><span class="in">뉴스 기사: '월드컵 예선에서 한국 대표팀이 극적인 승리를 거뒀다. 경기 종료 직전 터진 골로......'</span></span>
+<span id="cb11-406"><a href="#cb11-406" aria-hidden="true" tabindex="-1"></a><span class="in">분류된 토픽: 스포츠</span></span>
+<span id="cb11-407"><a href="#cb11-407" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-408"><a href="#cb11-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-409"><a href="#cb11-409" aria-hidden="true" tabindex="-1"></a><span class="fu">## 데이터베이스</span></span>
+<span id="cb11-410"><a href="#cb11-410" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-411"><a href="#cb11-411" aria-hidden="true" tabindex="-1"></a>벡터 데이터베이스가 앞서 제시된 임베딩 방식 대신 필요한 이유는 이전 관계형 데이터베이스, 비정형 데이터베이스가 필요한 이유와 유사하다. 대규모 데이터셋을 효율적으로 처리할 수 있을 뿐만 아니라, 임베딩 벡터를 메모리에 모두 로드하는 기존 방식과 달리, 벡터 데이터베이스는 디스크 기반 저장과 인덱싱을 통해 대용량 데이터를 효과적으로 관리하는데 기여한다. 빠른 유사도 검색이 가능하여 특수한 인덱싱 기법을 사용하여 고차원 벡터 간의 유사도 계산을 최적화한다. 확장성이 뛰어나, 분산 아키텍처를 지원하여 데이터 규모가 커져도 성능을 유지할 수 있을 뿐만 아니라 실시간 업데이트와 쿼리가 가능하다. </span>
+<span id="cb11-412"><a href="#cb11-412" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-413"><a href="#cb11-413" aria-hidden="true" tabindex="-1"></a>다양한 벡터 데이터베이스 중 선택 시 고려할 점은 다음과 같다. 오픈소스 솔루션을 원한다면 커뮤니티 지원이 활발하고 무료로 사용할 수 있다는 장점이 있는 Chroma, Vespa, Milvus 등을 고려할 수 있다. 관리형 서비스를 제공하여 운영 부담을 줄일 수 있는 상용 솔루션을 고려한다면 Pinecone이나 Weaviate가 좋은 선택일 수 있다.</span>
+<span id="cb11-414"><a href="#cb11-414" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-415"><a href="#cb11-415" aria-hidden="true" tabindex="-1"></a>기존 관계형 데이터베이스와의 통합이 필요하다면 PostgreSQL의 벡터 검색 확장을 고려할 수 있다. 대규모 분산 시스템을 구축해야 한다면 Vespa나 Milvus가 적합할 수 있다. 검색 엔진 기능도 함께 필요하다면 Elasticsearch를 고려할 수 있다.</span>
+<span id="cb11-416"><a href="#cb11-416" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-417"><a href="#cb11-417" aria-hidden="true" tabindex="-1"></a>결국, 프로젝트 규모, 예산, 필요한 기능, 운영 능력 등을 종합적으로 고려하여 적절한 벡터 데이터베이스를 선택해야 한다. 소규모 프로젝트라면 Chroma나 LanceDB와 같은 가벼운 솔루션으로 시작하고, 대규모 프로덕션 환경이라면 Pinecone이나 Vespa 같은 성숙한 솔루션이 추천된다.</span>
+<span id="cb11-418"><a href="#cb11-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-419"><a href="#cb11-419" aria-hidden="true" tabindex="-1"></a><span class="fu">### 크로마DB</span></span>
+<span id="cb11-420"><a href="#cb11-420" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-423"><a href="#cb11-423" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-424"><a href="#cb11-424" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb11-425"><a href="#cb11-425" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: vector-db-chroma</span></span>
+<span id="cb11-426"><a href="#cb11-426" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> chromadb</span>
+<span id="cb11-427"><a href="#cb11-427" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> chromadb.config <span class="im">import</span> Settings</span>
+<span id="cb11-428"><a href="#cb11-428" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> chromadb.utils <span class="im">import</span> embedding_functions</span>
+<span id="cb11-429"><a href="#cb11-429" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb11-430"><a href="#cb11-430" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb11-431"><a href="#cb11-431" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb11-432"><a href="#cb11-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-433"><a href="#cb11-433" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb11-434"><a href="#cb11-434" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-435"><a href="#cb11-435" aria-hidden="true" tabindex="-1"></a><span class="co"># OpenAI 클라이언트 설정</span></span>
+<span id="cb11-436"><a href="#cb11-436" aria-hidden="true" tabindex="-1"></a>openai_client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>os.getenv(<span class="st">'OPENAI_API_KEY'</span>))</span>
+<span id="cb11-437"><a href="#cb11-437" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-438"><a href="#cb11-438" aria-hidden="true" tabindex="-1"></a><span class="co"># 임베딩 함수 정의</span></span>
+<span id="cb11-439"><a href="#cb11-439" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_embedding(texts):</span>
+<span id="cb11-440"><a href="#cb11-440" aria-hidden="true" tabindex="-1"></a>    <span class="co"># texts가 문자열인 경우 리스트로 변환</span></span>
+<span id="cb11-441"><a href="#cb11-441" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(texts, <span class="bu">str</span>):</span>
+<span id="cb11-442"><a href="#cb11-442" aria-hidden="true" tabindex="-1"></a>        texts <span class="op">=</span> [texts]</span>
+<span id="cb11-443"><a href="#cb11-443" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-444"><a href="#cb11-444" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> openai_client.embedding.create(</span>
+<span id="cb11-445"><a href="#cb11-445" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"text-embedding-ada-002"</span>,</span>
+<span id="cb11-446"><a href="#cb11-446" aria-hidden="true" tabindex="-1"></a>        <span class="bu">input</span><span class="op">=</span>texts</span>
+<span id="cb11-447"><a href="#cb11-447" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-448"><a href="#cb11-448" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [item[<span class="st">'embedding'</span>] <span class="cf">for</span> item <span class="kw">in</span> response[<span class="st">'data'</span>]]</span>
+<span id="cb11-449"><a href="#cb11-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-450"><a href="#cb11-450" aria-hidden="true" tabindex="-1"></a><span class="co"># ChromaDB 임베딩 함수 생성</span></span>
+<span id="cb11-451"><a href="#cb11-451" aria-hidden="true" tabindex="-1"></a>embedding_function <span class="op">=</span> embedding_functions.OpenAIEmbeddingFunction(get_embedding)</span>
+<span id="cb11-452"><a href="#cb11-452" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-453"><a href="#cb11-453" aria-hidden="true" tabindex="-1"></a><span class="co"># 지속성 저장소 경로 설정</span></span>
+<span id="cb11-454"><a href="#cb11-454" aria-hidden="true" tabindex="-1"></a>persist_directory <span class="op">=</span> <span class="st">"./data/chroma_db"</span></span>
+<span id="cb11-455"><a href="#cb11-455" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-456"><a href="#cb11-456" aria-hidden="true" tabindex="-1"></a><span class="co"># ChromaDB 클라이언트 생성</span></span>
+<span id="cb11-457"><a href="#cb11-457" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> chromadb.Client(Settings(</span>
+<span id="cb11-458"><a href="#cb11-458" aria-hidden="true" tabindex="-1"></a>    chroma_db_impl<span class="op">=</span><span class="st">"duckdb+parquet"</span>,</span>
+<span id="cb11-459"><a href="#cb11-459" aria-hidden="true" tabindex="-1"></a>    persist_directory<span class="op">=</span>persist_directory</span>
+<span id="cb11-460"><a href="#cb11-460" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb11-461"><a href="#cb11-461" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-462"><a href="#cb11-462" aria-hidden="true" tabindex="-1"></a><span class="co"># 컬렉션 생성 또는 기존 컬렉션 로드</span></span>
+<span id="cb11-463"><a href="#cb11-463" aria-hidden="true" tabindex="-1"></a>collection_name <span class="op">=</span> <span class="st">"persistent_news_articles"</span></span>
+<span id="cb11-464"><a href="#cb11-464" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> collection_name <span class="kw">in</span> client.list_collections():</span>
+<span id="cb11-465"><a href="#cb11-465" aria-hidden="true" tabindex="-1"></a>    collection <span class="op">=</span> client.get_collection(name<span class="op">=</span>collection_name, embedding_function<span class="op">=</span>embedding_function)</span>
+<span id="cb11-466"><a href="#cb11-466" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"기존 컬렉션 '</span><span class="sc">{</span>collection_name<span class="sc">}</span><span class="ss">'을 로드했습니다."</span>)</span>
+<span id="cb11-467"><a href="#cb11-467" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb11-468"><a href="#cb11-468" aria-hidden="true" tabindex="-1"></a>    collection <span class="op">=</span> client.create_collection(name<span class="op">=</span>collection_name, embedding_function<span class="op">=</span>embedding_function)</span>
+<span id="cb11-469"><a href="#cb11-469" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"새 컬렉션 '</span><span class="sc">{</span>collection_name<span class="sc">}</span><span class="ss">'을 생성했습니다."</span>)</span>
+<span id="cb11-470"><a href="#cb11-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-471"><a href="#cb11-471" aria-hidden="true" tabindex="-1"></a><span class="co"># 문서 추가 (이미 존재하지 않는 경우에만)</span></span>
+<span id="cb11-472"><a href="#cb11-472" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> collection.count() <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb11-473"><a href="#cb11-473" aria-hidden="true" tabindex="-1"></a>    collection.add(</span>
+<span id="cb11-474"><a href="#cb11-474" aria-hidden="true" tabindex="-1"></a>        documents<span class="op">=</span>[</span>
+<span id="cb11-475"><a href="#cb11-475" aria-hidden="true" tabindex="-1"></a>            <span class="st">"정부, 신재생에너지 정책 발표"</span>,</span>
+<span id="cb11-476"><a href="#cb11-476" aria-hidden="true" tabindex="-1"></a>            <span class="st">"중앙은행, 기준금리 동결 결정"</span>,</span>
+<span id="cb11-477"><a href="#cb11-477" aria-hidden="true" tabindex="-1"></a>            <span class="st">"AI 기술, 의료 분야 혁신 이끌어"</span></span>
+<span id="cb11-478"><a href="#cb11-478" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb11-479"><a href="#cb11-479" aria-hidden="true" tabindex="-1"></a>        metadatas<span class="op">=</span>[</span>
+<span id="cb11-480"><a href="#cb11-480" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"category"</span>: <span class="st">"정치"</span>},</span>
+<span id="cb11-481"><a href="#cb11-481" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"category"</span>: <span class="st">"경제"</span>},</span>
+<span id="cb11-482"><a href="#cb11-482" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"category"</span>: <span class="st">"기술"</span>}</span>
+<span id="cb11-483"><a href="#cb11-483" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb11-484"><a href="#cb11-484" aria-hidden="true" tabindex="-1"></a>        ids<span class="op">=</span>[<span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>]</span>
+<span id="cb11-485"><a href="#cb11-485" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-486"><a href="#cb11-486" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"문서를 추가했습니다."</span>)</span>
+<span id="cb11-487"><a href="#cb11-487" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb11-488"><a href="#cb11-488" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"기존 문서가 존재합니다."</span>)</span>
+<span id="cb11-489"><a href="#cb11-489" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-490"><a href="#cb11-490" aria-hidden="true" tabindex="-1"></a><span class="co"># 유사도 검색</span></span>
+<span id="cb11-491"><a href="#cb11-491" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> collection.query(</span>
+<span id="cb11-492"><a href="#cb11-492" aria-hidden="true" tabindex="-1"></a>    query_texts<span class="op">=</span>[<span class="st">"최신 기술 동향"</span>],</span>
+<span id="cb11-493"><a href="#cb11-493" aria-hidden="true" tabindex="-1"></a>    n_results<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb11-494"><a href="#cb11-494" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-495"><a href="#cb11-495" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-496"><a href="#cb11-496" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">검색 결과:"</span>)</span>
+<span id="cb11-497"><a href="#cb11-497" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (<span class="bu">id</span>, distance) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(results[<span class="st">'ids'</span>][<span class="dv">0</span>], results[<span class="st">'distances'</span>][<span class="dv">0</span>])):</span>
+<span id="cb11-498"><a href="#cb11-498" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">. ID: </span><span class="sc">{</span><span class="bu">id</span><span class="sc">}</span><span class="ss">, 거리: </span><span class="sc">{</span>distance<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-499"><a href="#cb11-499" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   문서: </span><span class="sc">{</span>collection<span class="sc">.</span>get(ids<span class="op">=</span>[<span class="bu">id</span>])[<span class="st">'documents'</span>][<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-500"><a href="#cb11-500" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   메타데이터: </span><span class="sc">{</span>collection<span class="sc">.</span>get(ids<span class="op">=</span>[<span class="bu">id</span>])[<span class="st">'metadatas'</span>][<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-501"><a href="#cb11-501" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span>
+<span id="cb11-502"><a href="#cb11-502" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-503"><a href="#cb11-503" aria-hidden="true" tabindex="-1"></a><span class="co"># 메타데이터 필터링</span></span>
+<span id="cb11-504"><a href="#cb11-504" aria-hidden="true" tabindex="-1"></a>filtered_results <span class="op">=</span> collection.query(</span>
+<span id="cb11-505"><a href="#cb11-505" aria-hidden="true" tabindex="-1"></a>    query_texts<span class="op">=</span>[<span class="st">"경제 정책"</span>],</span>
+<span id="cb11-506"><a href="#cb11-506" aria-hidden="true" tabindex="-1"></a>    where<span class="op">=</span>{<span class="st">"category"</span>: <span class="st">"경제"</span>},</span>
+<span id="cb11-507"><a href="#cb11-507" aria-hidden="true" tabindex="-1"></a>    n_results<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb11-508"><a href="#cb11-508" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-509"><a href="#cb11-509" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-510"><a href="#cb11-510" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"필터링된 검색 결과:"</span>)</span>
+<span id="cb11-511"><a href="#cb11-511" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"문서: </span><span class="sc">{</span>filtered_results[<span class="st">'documents'</span>][<span class="dv">0</span>][<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-512"><a href="#cb11-512" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"메타데이터: </span><span class="sc">{</span>filtered_results[<span class="st">'metadatas'</span>][<span class="dv">0</span>][<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-513"><a href="#cb11-513" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-514"><a href="#cb11-514" aria-hidden="true" tabindex="-1"></a><span class="co"># 변경사항 저장</span></span>
+<span id="cb11-515"><a href="#cb11-515" aria-hidden="true" tabindex="-1"></a>client.persist()</span>
+<span id="cb11-516"><a href="#cb11-516" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">변경사항을 디스크에 저장했습니다."</span>)</span>
+<span id="cb11-517"><a href="#cb11-517" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-518"><a href="#cb11-518" aria-hidden="true" tabindex="-1"></a><span class="co"># 현재 컬렉션의 문서 수 출력</span></span>
+<span id="cb11-519"><a href="#cb11-519" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">현재 컬렉션의 문서 수: </span><span class="sc">{</span>collection<span class="sc">.</span>count()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-520"><a href="#cb11-520" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-521"><a href="#cb11-521" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-522"><a href="#cb11-522" aria-hidden="true" tabindex="-1"></a><span class="fu">### 파인콘</span></span>
+</code><button title="클립보드 복사" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><a href="https://quarto.org/">Quarto</a> 개발</p>
+</div>   
+    <div class="nav-footer-center">
+<p><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></p>
+</div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/bit2r/gpt-ai">Github 코드 저장소</a></p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>
