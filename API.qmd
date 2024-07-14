@@ -2,8 +2,8 @@
 
 **API(Application Programming Interface)**는 서로 다른 소프트웨어 시스템 상호작용 방법을 정의한 인터페이스로 함수, 클래스, 프로토콜, 데이터 구조 등을 포함할 수 있다. API를 사용하는 목적은 소프트웨어 개발을 단순화하고 표준화하는 것으로, API를 사용하면 개발자가 특정 기능을 처음부터 새롭게 개발할 필요 없이 이미 개발된 기능을 재사용할 수 있고, API를 통해 서로 다른 시스템 간의 상호작용을 가능하게 하므로, 시스템 통합을 단순화할 수 있다. 웹 API는 일반적으로 HTTP를 통해 통신하며, 웹 서버에서 데이터를 요청하거나 웹 서버에 데이터를 보낼 수 있다. 이러한 웹 API를 통해 개발자는 웹사이트, 애플리케이션, 서비스 등에서 다른 서비스의 기능이나 데이터를 활용할 수 있다.
 
-
 ```{mermaid}
+%%| label: web-http-RESTful
 graph TD
     Internet[Internet]
     Web[Web]
@@ -85,17 +85,15 @@ graph TD
 4.  데이터베이스 API: 데이터베이스와 상호작용하기 위한 API다.
 5.  하드웨어 API: 하드웨어 기능에 접근할 수 있게 해주는 API다.
 
-예를 들어, 대표적인 윈도우와 유닉스/리눅스 운영체제 API를 비교하면 다음과 같다.
+각 운영체제는 유사한 기능을 제공하지만, 구체적인 함수 이름과 사용 방법에는 차이가 있다. 예를 들어, 대표적인 윈도우와 유닉스/리눅스 운영체제 API를 비교하면 다음과 같다.
 
 | 기능 | Windows | UNIX/Linux |
-|-----------------|-----------------------|--------------------------------|
+|------------------|-----------------------|-------------------------------|
 | 파일 시스템 | CreateFile(), ReadFile(), WriteFile() | open(), read(), write(), close() |
 | 프로세스 관리 | CreateProcess(), TerminateProcess() | fork(), exec(), wait() |
 | 메모리 관리 | VirtualAlloc(), VirtualFree() | mmap(), munmap() |
 | 네트워크 | WinSock: socket(), connect(), send(), recv() | Berkeley sockets: socket(), connect(), send(), recv() |
 | GUI | Win32 API: CreateWindow(), ShowWindow() | X Window System: XCreateWindow(), XMapWindow() |
-
-각 운영체제는 유사한 기능을 제공하지만, 구체적인 함수 이름과 사용 방법에는 차이가 있다.
 :::
 
 ## RESTful API
@@ -114,7 +112,7 @@ RESTful API는 몇 가지 주요 특징을 가지고 있다. 첫째, 자원 기�
 6.  무상태성: HTTP의 무상태성 특성을 그대로 따르며, 각 요청은 독립적으로 처리된다.
 
 | 대분류 | 코드 | 상태 | 설명 |
-|--------------|--------------|--------------|------------------------------|
+|---------------|---------------|---------------|---------------------------|
 | 정보 | 100 | Continue | 서버가 요청의 일부를 받았으며 클라이언트가 나머지를 계속 보내야 함 |
 | 성공 | 200 | OK | 요청이 성공적으로 처리됨 |
 | 성공 | 201 | Created | 새 리소스가 성공적으로 생성됨 |
@@ -139,11 +137,395 @@ RESTful API는 리소스 중심으로 설계되어, 리소스를 통해 실제 �
 리소스 `https://www.example.com:443/products/electronics?category=laptops&price=1000` 를 해부학적으로 살펴보자.
 
 | 구성 요소 | 설명 | 예시 | 비유 |
-|:------------:|:-------------------:|:------------------:|:--------------:|
+|:---------------:|:------------------:|:-----------------:|:---------------:|
 | 프로토콜 (Protocol) | 데이터 전송 방식 | http://, https:// | 교통 수단 (자동차, 기차) |
 | 도메인 (Domain) | 웹 서버의 주소 | www.example.com | 건물의 도로명 주소 |
 | 포트 (Port) | 서비스 접근 위한 논리적 연결 지점 | :80, :443 | 건물의 출입구 또는 문 |
 | 경로 (Path) | 서버 내 리소스 구체적인 위치 | /products/electronics/ | 건물 내 특정 사무실 유닛 |
 | 쿼리 (Query) | 리소스에 전달되는 추가 매개변수 | ?category=laptops&price=1000 | 추가 지시사항 또는 세부 요청 |
+
+## `urllib`과 `requests`
+
+`requests`는 Python에서 HTTP 요청을 보내는 작업을 단순화하고, 사용자 친화적으로 만든 패키지다. GET, POST, DELETE, PUT 등의 다양한 HTTP 메소드를 사용하여 웹 서버와 통신할 수 있고, `requests`는 JSON 응답을 쉽게 파싱하고, 쿠키를 유지하며, 파일 업로드, HTTP 헤더 조작, SSL 인증 등의 복잡한 작업을 쉽게 처리할 수 있다.
+
+`urllib`는 Python의 표준 라이브러리 중 하나지만, 사용법이 다소 복잡하고 번거로운데 반해, `requests`는 인터페이스가 간결하고 직관적이어서 같은 작업을 더 쉽게 수행할 수 있다.
+
+`urllib`과 `requests`는 파이썬에서 HTTP 통신을 위해 사용되는 라이브러리로 `urllib`은 파이썬 표준 라이브러리에 포함된 모듈이다. URL 처리와 HTTP 요청을 위한 기본적인 기능을 제공한다. 웹 페이지 열기, 데이터 다운로드, 서버에 데이터 전송 등의 작업을 수행할 수 있지만,사용법이 다소 복잡하고 저수준의 API를 제공한다.
+
+`requests`는 써드파티 라이브러리로, HTTP 요청을 보다 쉽고 효율적으로 처리할 수 있게 해준다. `urllib`에 비해 더 직관적이고 사용하기 쉬운 인터페이스를 제공한다. GET, POST, PUT, DELETE 등 다양한 HTTP 메소드를 쉽게 사용할 수 있으며, 세션 관리, 쿠키 처리, 파일 업로드 등 고급 기능도 간단하게 구현할 수 있다.
+
+`requests` 라이브러리가 대부분의 작업에서 더 간단하고 직관적인 인터페이스를 제공함하며, 특히 JSON 파싱, 인증, 세션 관리 등에서 `requests`가 더 편리하다. 그러나 두 라이브러리 모두 `BeautifulSoup`과 같은 추가 라이브러리와 함께 사용되어 HTML 파싱 등의 작업을 수행하고 병렬 처리 작업을 위해서 `requests` 생태계의 `grequests` 라이브러리를 사용하면 더 쉽게 구현할 수 있다.
+
+| 범주 | 기능 | urllib | requests |
+|-----------------|-----------------|------------------|----------------------|
+| 기본 요청 | GET 요청 | `urllib.request.urlopen('http://example.com')` | `requests.get('http://example.com')` |
+|  | POST 요청 | `urllib.request.urlopen('http://example.com', data=bytes(urlencode(data), encoding='utf-8'))` | `requests.post('http://example.com', data=data)` |
+| 헤더 처리 | 사용자 정의 헤더 | `urllib.request.Request('http://example.com', headers={'User-Agent': 'Mozilla/5.0'})` | `requests.get('http://example.com', headers={'User-Agent': 'Mozilla/5.0'})` |
+| 데이터 파싱 | HTML 파싱 | `BeautifulSoup(html, 'html.parser')` (별도 라이브러리 필요) | `BeautifulSoup(response.content, 'html.parser')` (별도 라이브러리 필요) |
+|  | JSON 파싱 | `json.loads(response.read().decode('utf-8'))` | `response.json()` |
+| 인증 | 기본 인증 | `urllib.request.HTTPBasicAuthHandler()` | `requests.get('http://example.com', auth=('user', 'pass'))` |
+| 세션 관리 | 쿠키 처리 | `urllib.request.HTTPCookieProcessor()` | `session = requests.Session()` |
+| 에러 처리 | 상태 코드 확인 | `try-except` 블록으로 `HTTPError` 처리 | `response.raise_for_status()` |
+| 병렬 처리 | 동시 요청 | `concurrent.futures` 모듈 사용 (복잡) | `grequests` 라이브러리 사용 (간단) |
+
+`urllib`과 `requests` 패키지로 두가지 구현 코드를 비교해보자. [파머 펭귄 데이터셋](https://gist.github.com/slopp/ce3b90b9168f2f921784de84fa445651) 웹주소에서 데이터를 마치 로컬파일 데이터셋을 가져오듯이 동일한 방식으로 가져온다.
+
+::: panel-tabset
+### urllib
+
+```{python}
+#| eval: false
+from urllib.request import urlretrieve
+import pandas as pd
+
+url = 'https://gist.githubusercontent.com/slopp/ce3b90b9168f2f921784de84fa445651/raw/4ecf3041f0ed4913e7c230758733948bc561f434/penguins.csv'
+
+urlretrieve(url, 'data/penguins.csv')
+
+# Read file into a DataFrame and print its head
+penguins_df = pd.read_csv('data/penguins.csv', sep=',')
+print(penguins_df.head())
+```
+
+```{python}
+#| eval: false
+import requests
+import pandas as pd
+
+url = "https://gist.githubusercontent.com/slopp/ce3b90b9168f2f921784de84fa445651/raw/4ecf3041f0ed4913e7c230758733948bc561f434/penguins.csv"
+
+# GET 요청을 보내 데이터를 받아옴
+response = requests.get(url)
+
+# 받아온 데이터를 파일로 저장
+with open("data/penguins.csv", "wb") as file:
+    file.write(response.content)
+
+# 파일을 DataFrame으로 읽어들임
+penguins_df = pd.read_csv("data/penguins.csv", sep=",")
+
+# DataFrame의 처음 5행을 출력
+print(penguins_df.head())
+```
+:::
+
+## `BeautifulSoup`
+
+`BeautifulSoup`은 Python에서 HTML과 XML 문서를 파싱하기 위한 라이브러리다. 웹 스크래핑 작업에서 특히 유용하며, 복잡하고 잘 정돈되지 않은 웹 페이지에서 데이터를 쉽게 추출할 수 있다.
+
+`BeautifulSoup`은 문서를 트리 구조로 파싱하고, 이 트리를 통해 원하는 정보를 찾고, 수정하고, 네비게이트 할 수 있다. 예를 들어, HTML 문서에서 특정 태그를 찾거나, 특정 클래스 또는 ID를 가진 요소를 검색할 수 있다.
+
+`requests`와 `BeautifulSoup`는 웹 스크래핑 작업에서 함께 사용되는 경우가 많다. 일반적으로 `requests`를 사용하여 웹페이지의 HTML을 가져오고, 그런 다음 `BeautifulSoup`을 사용하여 가져온 HTML을 파싱하고 원하는 정보를 추출하는 방식이다.
+
+::: panel-tabset
+### 웹사이트 제목
+
+```{python}
+import requests
+from bs4 import BeautifulSoup
+
+url = 'https://r2bit.com'
+
+r = requests.get(url)
+
+html_doc = r.text
+
+soup = BeautifulSoup(html_doc)
+
+# pretty_soup = soup.prettify()
+r2bit_title = soup.title
+
+print(r2bit_title)
+```
+
+### 링크
+
+```{python}
+a_tags = soup.find_all('a')
+
+for link in a_tags:
+    print(link.get('href'))
+```
+:::
+
+## API 사례
+
+**API("Application Programming Interface)**는 서로 다른 소프트웨어 시스템 간에 상호작용하는 방법을 정의한 것으로 API를 통해 함수, 클래스, 프로토콜, 데이터 구조 등을 포함할 수 있다.
+
+API의 주요 목적은 소프트웨어 개발을 단순화하고 표준화하는 것으로, API를 사용하면 개발자가 특정 기능을 처음부터 새롭게 개발할 필요 없이 이미 개발된 기능을 재사용할 수 있어, API를 통해 서로 다른 시스템 간의 상호작용을 가능하게 하므로, 시스템 간의 통합을 단순화시킬 수 있다.
+
+웹 API는 일반적으로 HTTP를 통해 통신하며, 이를 통해 웹 서버에서 데이터를 요청하거나 웹 서버에 데이터를 보낼 수 있다. 이러한 웹 API를 통해 개발자는 웹 사이트, 애플리케이션, 서비스 등에서 다른 서비스의 기능이나 데이터를 활용할 수 있다. 예를 들어, 소셜 미디어 사이트의 API를 사용하면 개발자는 사용자가 해당 사이트에서 직접 게시물을 공유하거나 댓글을 작성하는 등의 기능을 자신의 애플리케이션에 통합할 수 있다. 이렇게 API를 사용하면 개발자는 기존의 플랫폼과 서비스에서 제공하는 기능과 데이터를 활용하여 새로운 애플리케이션을 더 빠르고 효과적으로 구축할 수 있다.
+
+[OMDb API - The Open Movie Database](https://www.omdbapi.com/)에서 영화 API에 대한 다양한 정보를 얻을 수 있다.
+
+::: panel-tabset
+### API 사양서
+
+[OMDb API - The Open Movie Database](https://www.omdbapi.com/)
+
+### API 시험
+
+![](images/gui_squid_game.jpg){fig-align="center" width="1003"}
+
+### 직접 호출
+
+![](images/api_squid_game.jpg){fig-align="center" width="689"}
+
+### R API 호출
+
+```{r}
+library(httr)
+library(tidyverse)
+
+squid_game_req <- glue::glue("http://www.omdbapi.com/",
+           "?i={Sys.getenv('OMDB_API_ID')}",
+           "&apikey={Sys.getenv('OMDB_API_KEY')}",
+           "&t=squid+game")
+
+squid_resp <- GET(squid_game_req)
+
+jsonlite::fromJSON(content(squid_resp, "text")) %>% 
+  enframe() %>% 
+  mutate(value = map_chr(value, 1))
+```
+
+### 파이썬 API 호출
+
+``` bash
+import requests
+
+url = 'http://www.omdbapi.com/?i=ttxxxxx&apikey=47xxxx&t=squid+game'
+
+r = requests.get(url)
+print(r.text)
+
+{"Title":"Squid Game","Year":"2021–","Rated":"TV-MA","Released":"17 Sep 2021","Runtime":"N/A","Genre":"Action, Drama, Mystery","Director":"N/A","Writer":"N/A","Actors":"Lee Jung-jae, Park Hae-soo, Yasushi Iwaki","Plot":"Hundreds of cash-strapped players accept a strange invitation to compete in children's games. Inside, a tempting prize awaits with deadly high stakes. A survival game that has a whopping 45.6 billion-won prize at stake.","Language":"Korean, English, Urdu","Country":"South Korea","Awards":"Won 6 Primetime Emmys. 46 wins & 80 nominations total","Poster":"https://m.media-amazon.com/images/M/MV5BYWE3MDVkN2EtNjQ5MS00ZDQ4LTliNzYtMjc2YWMzMDEwMTA3XkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"8.0/10"}],"Metascore":"N/A","imdbRating":"8.0","imdbVotes":"482,476","imdbID":"tt10919420","Type":"series","totalSeasons":"1","Response":"True"}
+```
+
+``` bash
+json_data = r.json()
+
+# Print each key-value pair in json_data
+for k in json_data.keys():
+    print(k + ': ', json_data[k])
+    
+Title:  Squid Game
+Year:  2021–
+Rated:  TV-MA
+Released:  17 Sep 2021
+Runtime:  N/A
+Genre:  Action, Drama, Mystery
+Director:  N/A
+Writer:  N/A
+Actors:  Lee Jung-jae, Park Hae-soo, Yasushi Iwaki
+Plot:  Hundreds of cash-strapped players accept a strange invitation to compete in children's games. Inside, a tempting prize awaits with deadly high stakes. A survival game that has a whopping 45.6 billion-won prize at stake.
+Language:  Korean, English, Urdu
+Country:  South Korea
+Awards:  Won 6 Primetime Emmys. 46 wins & 80 nominations total
+Poster:  https://m.media-amazon.com/images/M/MV5BYWE3MDVkN2EtNjQ5MS00ZDQ4LTliNzYtMjc2YWMzMDEwMTA3XkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_SX300.jpg
+Ratings:  [{'Source': 'Internet Movie Database', 'Value': '8.0/10'}]
+Metascore:  N/A
+imdbRating:  8.0
+imdbVotes:  482,476
+imdbID:  tt10919420
+Type:  series
+totalSeasons:  1
+Response:  True
+```
+
+### 보안강화
+
+```{python}
+import requests
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+api_key = os.getenv('OMDB_API_KEY')
+i = os.getenv('OMDB_API_ID')
+url = f'http://www.omdbapi.com/?i={i}&apikey={api_key}&t=squid+game'
+
+r = requests.get(url)
+print(r.text)
+```
+
+### `.env`
+
+``` bash
+OMDB_API_KEY=47xxxx
+OMDB_API_ID=ttxxxxx
+```
+:::
+
+## JSON 파일
+
+JSON(Javascript Object Notation, 자바스크립트 객체 표기법)은 가장 흔한 일반적인 웹 데이터 형식으로 데이터를 저장하거나 전송할 때 많이 사용되는 가벼운 자료형으로, 사람이 읽고 쓰기 쉬우며, 기계가 파싱하고 생성하기도 쉽다.
+
+-   언어 독립성: JSON은 JavaScript에서 파생되었지만, 거의 모든 프로그래밍 언어는 JSON 데이터를 파싱하는 라이브러리를 가지고 있고, 다양한 언어로 작성된 시스템 간에 데이터를 교환하는 데 아주 유용하게 작용한다.
+-   데이터 구조: JSON은 데이터를 구조화하는 방법도 제공하여 Nested JSON을 통해 중첩된 키-값 쌍을 통해 복잡한 데이터 구조를 표현할 수 있다.
+-   웹 표준: JSON은 웹 애플리케이션에서 서버와 클라이언트 사이의 데이터를 교환하는 표준으로 AJAX(Asynchronous JavaScript And XML)와 같은 기술이 이 형식을 기반으로 동작한다.
+-   읽기 쉬움: JSON 형식은 사람이 읽기 쉽기 때문에 디버깅을 도울 뿐만 아니라, 데이터를 보다 쉽게 이해하고 수정할 수 있다는 장점이 있다.
+
+```{r}
+library(tidyverse)
+
+dataframe_df <- tribble(~"Name", ~"Age",
+                        "Alice", 25,
+                        "Bob", 30,
+                        "Charlie", 35)
+
+gt::gt(dataframe_df)
+```
+
+6가지 JSON 파일 표현방법
+
+-   record: 각 레코드가 사전인 목록.
+-   column: 키가 열 레이블인 중첩 딕셔너리.
+-   split: 인덱스, 열, 데이터가 포함된 딕셔너리.
+-   index: 키가 인덱스 레이블인 중첩 딕셔너리.
+-   values: 그냥 값 배열.
+-   table: 스키마와 데이터를 포함하는 중첩된 딕셔너리(Apache Arrow 형식과 상호 운용성을 목표로 하는 더 복잡한 형식).
+
+::: panel-tabset
+### record
+
+``` bash
+[
+    {"Name": "Alice", "Age": 25},
+    {"Name": "Bob", "Age": 30},
+    {"Name": "Charlie", "Age": 35}
+]
+```
+
+### column
+
+``` bash
+{
+    "Name": {"0": "Alice", "1": "Bob", "2": "Charlie"},
+    "Age": {"0": 25, "1": 30, "2": 35}
+}
+```
+
+### split
+
+``` bash
+{
+    "columns": ["Name", "Age"],
+    "index": [0, 1, 2],
+    "data": [["Alice", 25], ["Bob", 30], ["Charlie", 35]]
+}
+```
+
+### index
+
+``` bash
+{
+    "0": {"Name": "Alice", "Age": 25},
+    "1": {"Name": "Bob", "Age": 30},
+    "2": {"Name": "Charlie", "Age": 35}
+}
+```
+
+### values
+
+``` bash
+[
+    ["Alice", 25],
+    ["Bob", 30],
+    ["Charlie", 35]
+]
+```
+
+### table
+
+``` bash
+{
+    "schema": {
+        "fields": [
+            {"name": "index", "type": "integer"},
+            {"name": "Name", "type": "string"},
+            {"name": "Age", "type": "integer"}
+        ],
+        "primaryKey": ["index"],
+        "pandas_version": "0.20.0"
+    },
+    "data": [
+        {"index": 0, "Name": "Alice", "Age": 25},
+        {"index": 1, "Name": "Bob", "Age": 30},
+        {"index": 2, "Name": "Charlie", "Age": 35}
+    ]
+}
+```
+:::
+
+### JSON 불러오기
+
+다양한 형식으로 데이터프레임 파일을 저장했다면 다음 단계로 이를 파이썬에서 불러오는 방식은 `json` 패키지를 사용한다.
+
+```{python}
+import json
+
+with open("data/json.json") as json_file:
+    json_data = json.load(json_file)
+
+for item in json_data:
+    if isinstance(item, dict):  # Check if the item is a dictionary
+        for k in item.keys():
+            print(k + ': ', item[k])
+    
+```
+
+### pandas 불러오기
+
+```{python}
+import pandas as pd
+
+json_pd = pd.read_json("data/json.json")
+
+print(json_pd.describe())
+```
+
+
+
+## 인증
+
+API 인증 방법이 필요한 이유는 우선, 보안을 강화하여 허가받지 않은 접근을 차단하고, 사용자를 정확히 식별하여 맞춤 서비스를 제공한다. 또한 리소스 사용을 제어하고 모니터링하여 적절한 과금과 사용량 제한을 적용할 수 있으며, 데이터의 무결성을 보장한다. 법규 준수를 위해서도 중요하며, API 버전 관리와 지원에도 도움이 된다.
+
+주요 AI LLM 서비스들의 API 인증 방식을 살펴보면, OpenAI의 GPT 모델들과 Google Cloud의 Vertex AI는 API 키/토큰 방식을 사용하며, Hugging Face의 Inference API는 JWT를 사용하고, Microsoft의 Azure OpenAI Service는 Azure 생태계의 일부로 OAuth 2.0을 사용하고 있다.
+
+| 인증 방법 | 장점 | 단점 | 대표적인 적용 사례 |
+|-----------|------|------|-------------------|
+| 기본 인증 | • 구현이 간단하고 빠름<br>• 대부분의 HTTP 클라이언트에서 지원 | • 보안성이 낮음 (암호화되지 않은 채로 전송)<br>• 자격 증명을 매 요청마다 전송해야 함<br>• 세션 관리 기능 없음 | • Git 저장소 접근 (GitHub, GitLab)<br>• 간단한 내부 API 시스템 |
+| API 키/토큰 | • 구현이 비교적 간단<br>• 사용자별 접근 제어 가능<br>• 키 폐기 및 재발급이 용이 | • 키가 노출될 경우 보안 위험<br>• 키 관리의 부담<br>• 상세한 권한 제어가 어려움 | • Google Maps API<br>• OpenWeatherMap API<br>• Stripe 결제 API<br>• OpenAI API (GPT-3, GPT-4)<br>• Google Cloud Vertex AI API |
+| JWT | • 서버 측 세션 저장소가 필요 없음<br>• 다양한 정보를 토큰에 포함 가능<br>• 마이크로서비스 아키텍처에 적합 | • 토큰 크기가 커질 수 있음<br>• 한번 발급된 토큰의 정보 변경 불가<br>• 토큰 탈취 시 보안 위험 | • Auth0 인증 서비스<br>• Firebase Authentication<br>• 많은 SPA(Single Page Application)<br>• Hugging Face Inference API |
+| OAuth 2.0 | • 높은 보안성<br>• 세부적인 권한 제어 가능<br>• 사용자 데이터에 대한 접근 권한 위임 가능 | • 구현이 복잡함<br>• 초기 설정에 시간이 소요됨<br>• 작은 규모의 API에는 과도할 수 있음 | • Google API<br>• Facebook 로그인<br>• Twitter API<br>• Microsoft Graph API<br>• Azure OpenAI Service |
+
+
+1.  기본 인증(Basic Authentication): 사용자 이름과 비밀번호를 사용하는 가장 단순한 형태의 인증 방식으로, requests 라이브러리에서 다음과 같이 구현된다.
+
+    ``` python
+    requests.get('http://api.example.com', auth=('username', 'password'))
+    ```
+
+2.  API 키/토큰 인증: 서버에서 발급한 고유한 키나 토큰을 사용하여 인증하는데 주로 두 가지 방식으로 구현된다.
+
+    a)  쿼리 파라미터로 전송 방식
+
+    ``` python
+    params = {'access_token': 'your_api_key'}
+    requests.get('http://api.example.com', params=params)
+    ```
+
+    b)  Authorization 헤더로 전송 전송
+
+    ``` python
+    headers = {'Authorization': 'Bearer your_api_key'}
+    requests.get('http://api.example.com', headers=headers)
+    ```
+
+3.  JWT(JSON Web Token) 인증: 클레임 정보를 JSON 객체로 안전하게 전송하는 방식으로 주로 Authorization 헤더에 포함되어 전송된다.
+
+4.  OAuth 2.0: 사용자 동의를 바탕으로 제3자 애플리케이션의 리소스 접근을 관리하는 프로토콜로 구현 방식이 복잡하여 별도의 라이브러리를 사용하는 경우가 많다.
 
 
