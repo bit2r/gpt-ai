@@ -112,7 +112,7 @@ RESTful API는 몇 가지 주요 특징을 가지고 있다. 첫째, 자원 기�
 6.  무상태성: HTTP의 무상태성 특성을 그대로 따르며, 각 요청은 독립적으로 처리된다.
 
 | 대분류 | 코드 | 상태 | 설명 |
-|----------------|----------------|----------------|-------------------------|
+|-----------------|-----------------|-----------------|-----------------------|
 | 정보 | 100 | Continue | 서버가 요청의 일부를 받았으며 클라이언트가 나머지를 계속 보내야 함 |
 | 성공 | 200 | OK | 요청이 성공적으로 처리됨 |
 | 성공 | 201 | Created | 새 리소스가 성공적으로 생성됨 |
@@ -157,7 +157,7 @@ RESTful API는 리소스 중심으로 설계되어, 리소스를 통해 실제 �
 `requests` 라이브러리가 대부분의 작업에서 더 간단하고 직관적인 인터페이스를 제공함하며, 특히 JSON 파싱, 인증, 세션 관리 등에서 `requests`가 더 편리하다. 그러나 두 라이브러리 모두 `BeautifulSoup`과 같은 추가 라이브러리와 함께 사용되어 HTML 파싱 등의 작업을 수행하고 병렬 처리 작업을 위해서 `requests` 생태계의 `grequests` 라이브러리를 사용하면 더 쉽게 구현할 수 있다.
 
 | 범주 | 기능 | urllib | requests |
-|-----------------|-----------------|-----------------|---------------------|
+|------------------|------------------|------------------|--------------------|
 | 기본 요청 | GET 요청 | `urllib.request.urlopen('http://example.com')` | `requests.get('http://example.com')` |
 |  | POST 요청 | `urllib.request.urlopen('http://example.com', data=bytes(urlencode(data), encoding='utf-8'))` | `requests.post('http://example.com', data=data)` |
 | 헤더 처리 | 사용자 정의 헤더 | `urllib.request.Request('http://example.com', headers={'User-Agent': 'Mozilla/5.0'})` | `requests.get('http://example.com', headers={'User-Agent': 'Mozilla/5.0'})` |
@@ -493,7 +493,7 @@ API 인증 방법이 필요한 이유는 우선, 보안을 강화하여 허가�
 주요 AI LLM 서비스들의 API 인증 방식을 살펴보면, OpenAI의 GPT 모델들과 Google Cloud의 Vertex AI는 API 키/토큰 방식을 사용하며, Hugging Face의 Inference API는 JWT를 사용하고, Microsoft의 Azure OpenAI Service는 Azure 생태계의 일부로 OAuth 2.0을 사용하고 있다.
 
 | 인증 방법 | 장점 | 단점 | 대표적인 적용 사례 |
-|---------|-------------------|--------------------|----------------------------|
+|----------------|----------------|-----------------|------------------------|
 | 기본 인증 | • 구현이 간단하고 빠름<br>• 대부분의 HTTP 클라이언트에서 지원 | • 보안성이 낮음 (암호화되지 않은 채로 전송)<br>• 자격 증명을 매 요청마다 전송해야 함<br>• 세션 관리 기능 없음 | • Git 저장소 접근 (GitHub, GitLab)<br>• 간단한 내부 API 시스템 |
 | API 키/토큰 | • 구현이 비교적 간단<br>• 사용자별 접근 제어 가능<br>• 키 폐기 및 재발급이 용이 | • 키가 노출될 경우 보안 위험<br>• 키 관리의 부담<br>• 상세한 권한 제어가 어려움 | • Google Maps API<br>• OpenWeatherMap API<br>• Stripe 결제 API<br>• OpenAI API (GPT-3, GPT-4)<br>• Google Cloud Vertex AI API |
 | JWT | • 서버 측 세션 저장소가 필요 없음<br>• 다양한 정보를 토큰에 포함 가능<br>• 마이크로서비스 아키텍처에 적합 | • 토큰 크기가 커질 수 있음<br>• 한번 발급된 토큰의 정보 변경 불가<br>• 토큰 탈취 시 보안 위험 | • Auth0 인증 서비스<br>• Firebase Authentication<br>• 많은 SPA(Single Page Application)<br>• Hugging Face Inference API |

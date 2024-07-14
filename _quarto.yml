@@ -38,6 +38,7 @@ website:
           - positron.qmd
           - API.qmd
           - API_openai.qmd
+          - API_openai_apps.qmd
       - section: "자동화"
         contents:
           - gh_action.qmd
