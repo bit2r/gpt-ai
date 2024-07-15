@@ -1,0 +1,21 @@
+
+# 올라마
+
+
+[올라마(ollama)](https://ollama.com/download) 웹사이트에서 운영체제에 맞춰 다운로드 받아 설치한다.
+
+```{bash}
+#| eval: false
+setx OLLAMA_MODELS D:\llms
+```
+
+```{bash}
+#| eval: false
+ollama run gemma2
+```
+
+```{python}
+from langchain_community.llms import Ollama
+llm = Ollama(model="gemma2")
+llm.invoke("축구를 가장 잘하는 나라는 어디야?")
+```

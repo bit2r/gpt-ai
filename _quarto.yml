@@ -53,6 +53,7 @@ website:
       - section: "데이터베이스"
         contents:
           - database.qmd
+          - ollama.qmd
 
     right:
       - icon: github
