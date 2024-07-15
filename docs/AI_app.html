@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.45">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>ai_app – 챗GPT AI</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./assets/android-chrome-192x192.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script><script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-229551680-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script><link rel="stylesheet" href="assets/quarto.css">
+</head>
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chat.html">챗GPT</a></li><li class="breadcrumb-item"><a href="./AI_app.html">OpenAI 응용프로그램</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="검색" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">챗GPT AI</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="다크 모드 전환"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="검색"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">기본기</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">인공지능</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">데이터 사이언스</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./langchain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">랭체인</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./LLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LLMs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./positron.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">데이터 과학 편집기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./API.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">API</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./API_openai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">OpenAI API</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./API_openai_apps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">OpenAI 응용프로그램</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">자동화</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gh_action.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">깃헙 액션</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./target.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">타겟</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">GCP</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gcs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">버킷</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">챗GPT</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">챗GPT</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AI_app.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">OpenAI 응용프로그램</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">데이터베이스</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./database.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">벡터 데이터베이스</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li>
+<a href="#openai-%EC%9D%91%EC%9A%A9%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8" id="toc-openai-응용프로그램" class="nav-link active" data-scroll-target="#openai-%EC%9D%91%EC%9A%A9%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8">OpenAI 응용프로그램</a>
+  <ul class="collapse">
+<li><a href="#%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95" id="toc-환경설정" class="nav-link" data-scroll-target="#%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95">환경설정</a></li>
+  <li><a href="#%EC%9C%A0%ED%8A%9C%EB%B8%8C-%EB%8F%99%EC%98%81%EC%83%81-%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C" id="toc-유튜브-동영상-다운로드" class="nav-link" data-scroll-target="#%EC%9C%A0%ED%8A%9C%EB%B8%8C-%EB%8F%99%EC%98%81%EC%83%81-%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C">유튜브 동영상 다운로드</a></li>
+  <li><a href="#%EC%98%A4%EB%94%94%EC%98%A4-%ED%85%8D%EC%8A%A4%ED%8A%B8" id="toc-오디오-텍스트" class="nav-link" data-scroll-target="#%EC%98%A4%EB%94%94%EC%98%A4-%ED%85%8D%EC%8A%A4%ED%8A%B8">오디오 → 텍스트</a></li>
+  <li><a href="#%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%A0%81%EC%9E%AC" id="toc-텍스트-적재" class="nav-link" data-scroll-target="#%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%A0%81%EC%9E%AC">텍스트 적재</a></li>
+  <li><a href="#%EC%9D%B8%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%B2%A1%ED%84%B0%EC%8A%A4%ED%86%A0%EC%96%B4" id="toc-인메모리-벡터스토어" class="nav-link" data-scroll-target="#%EC%9D%B8%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%B2%A1%ED%84%B0%EC%8A%A4%ED%86%A0%EC%96%B4">인메모리 벡터스토어</a></li>
+  <li><a href="#%EC%A7%88%EC%9D%98" id="toc-질의" class="nav-link" data-scroll-target="#%EC%A7%88%EC%9D%98">질의</a></li>
+  </ul>
+</li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><div class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chat.html">챗GPT</a></li><li class="breadcrumb-item"><a href="./AI_app.html">OpenAI 응용프로그램</a></li></ol></nav><div class="quarto-title-tools-only"><h1></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> 코드</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 표시</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 숨기기</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">소스 코드 표시</a></li></ul></div></div><section id="openai-응용프로그램" class="level1"><h1>OpenAI 응용프로그램</h1>
+<p><span class="margin-aside"><a href="https://statkclee.github.io/deep-learning/rconf-keynote.html">한국 R 컨퍼런스 - Julia Silge Keynote번역 (2021-11-17)</a></span></p>
+<p>2023년 서울 R 미트업에서 “챗GPT와 오정보(ChatGPT and Misinformation)”를 주제로 워싱턴 대학 제빈 웨스트 교수님을 모시고 특강을 진행했다. 한정된 예산으로 직접 모시지는 못하고 줌(Zoom) 녹화로 대신했다.</p>
+<p>약 1시간 분량의 녹화분량 중 일부 불필요한 부분은 <a href="https://ko.wikipedia.org/wiki/%EC%98%A4%ED%94%88%EC%83%B7">오픈샷 비디오 편집기(OpenShot Video Editor)</a>를 가지고 잘라낸다.</p>
+<p>결국 유튜브 동영상으로 올려 한글 자막을 입히는 것이 최종 목적이기 때문에 <code>.mp4</code> 파일에서 이미지 정보 대신 오디오 정보만 <code>.wav</code>, <code>.mp3</code> 파일로 추출해서 뽑아낸다.</p>
+<p>STT(Speech-to-Text) 영어 음성을 영어 텍스트로 전사(transcribe)해야 하는 작업이 필요하기 때문에 다양한 모델이 있지만 성능이 좋다고 인정받는 OpenAI Whisper 를 사용한다.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+API와 설치형
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="https://platform.openai.com/docs/models/whisper">OpenAI Whisper API</a>는 OpenAI의 API를 통해 사용할 수 있는 음성-텍스트 변환 모델이며 Whisper의 <a href="https://github.com/openai/whisper">오픈 소스 버전은 Github</a>에서 사용할 수 있다. 오픈 소스 버전의 Whisper와 OpenAI의 API를 통해 제공되는 버전은 차이가 없지만, OpenAI의 Whisper API를 사용할 경우, 시스템 전반에 걸친 일련의 최적화를 통해 OpenAI는 12월부터 ChatGPT의 비용을 90% 저렴하게 이용할 수 있으며,개발자는 API에서 오픈 소스 Whisper 대형-v2 모델을 사용하여 훨씬 빠르고 비용 효율적인 결과를 얻을 수 있다.</p>
+<p>영어 음성에서 텍스트로 전환하는 작업을 STT(Speech-to-Text)라고 부르는데 최근 성능도 많이 좋아졌고 그중 챗GPT 인기를 얻고 있는 <code>whisper</code> API를 사용해서 영어 음성을 텍스트로 변환할 수도 있고, C/C++로 OpenAI의 Whisper 모델 이식한 <a href="https://github.com/ggerganov/whisper.cpp">whisper.cpp</a> 모델을 사용하면 CPU로 무료로 사용가능하다. <a href="https://github.com/bnosac/audio.whisper"><code>audio.whisper</code></a> 패키지가 최근에 출시되어 이를 사용하면 수월히 R에서도 STT 작업을 수행할 수 있다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 39%">
+<col style="width: 10%">
+<col style="width: 16%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">모형</th>
+<th style="text-align: center;">언어</th>
+<th style="text-align: right;">크기</th>
+<th style="text-align: right;">필요 RAM 크기</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">
+<code>tiny</code> &amp; <code>tiny.en</code>
+</td>
+<td style="text-align: center;">Multilingual &amp; English only</td>
+<td style="text-align: right;">75 MB</td>
+<td style="text-align: right;">390 MB</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+<code>base</code> &amp; <code>base.en</code>
+</td>
+<td style="text-align: center;">Multilingual &amp; English only</td>
+<td style="text-align: right;">142 MB</td>
+<td style="text-align: right;">500 MB</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+<code>small</code> &amp; <code>small.en</code>
+</td>
+<td style="text-align: center;">Multilingual &amp; English only</td>
+<td style="text-align: right;">466 MB</td>
+<td style="text-align: right;">1.0 GB</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+<code>medium</code> &amp; <code>medium.en</code>
+</td>
+<td style="text-align: center;">Multilingual &amp; English only</td>
+<td style="text-align: right;">1.5 GB</td>
+<td style="text-align: right;">2.6 GB</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+<code>large-v1</code> &amp; <code>large</code>
+</td>
+<td style="text-align: center;">Multilingual</td>
+<td style="text-align: right;">2.9 GB</td>
+<td style="text-align: right;">4.7 GB</td>
+</tr>
+</tbody>
+</table>
+<p><code>whisper()</code> 입력 오디오는 16비트 <code>.wav</code> 파일형식만 가능하다. 따라서 R <code>av</code> 패키지 <code>av_audio_convert()</code> 함수로 원본 파일(<code>.flac</code>)을 <code>.wav</code> 파일로 변환한 후에 STT 작업을 수행한다.</p>
+</div>
+</div>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="whisper-process">
+<div>
+<p><a href="AI_app_files\figure-html\mermaid-figure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="AI_app_files\figure-html\mermaid-figure-1.png" style="width:2.82in;height:10.67in"></a></p>
+</div>
+</div>
+</div>
+</div>
+<section id="환경설정" class="level2"><h2 class="anchored" data-anchor-id="환경설정">환경설정</h2>
+<div class="cell">
+<details open="" class="code-fold"><summary>코드</summary><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install openai</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install unstructured</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install langchain-community </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install langchain-core</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install langchain-openai</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install yt_dlp</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install tiktoken</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install docarray</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open="" class="code-fold"><summary>코드</summary><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yt_dlp <span class="im">as</span> youtube_dl</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> yt_dlp <span class="im">import</span> DownloadError</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>True</code></pre>
+</div>
+<details open="" class="code-fold"><summary>코드</summary><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>openai_api_key <span class="op">=</span> os.getenv(<span class="st">"OPENAI_API_KEY"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="유튜브-동영상-다운로드" class="level2"><h2 class="anchored" data-anchor-id="유튜브-동영상-다운로드">유튜브 동영상 다운로드</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">챗GPT와 오정보</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">오디오 추출</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/3t9nPopr0QA" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<details open="" class="code-fold"><summary>코드</summary><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># An example YouTube tutorial video</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>youtube_url <span class="op">=</span> <span class="st">"https://www.youtube.com/watch?v=3t9nPopr0QA"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Directory to store the downloaded video</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>output_dir <span class="op">=</span> <span class="st">"data/audio/"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Config for youtube-dl</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>ydl_config <span class="op">=</span> {</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"format"</span>: <span class="st">"bestaudio/best"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"postprocessors"</span>: [</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">"key"</span>: <span class="st">"FFmpegExtractAudio"</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">"preferredcodec"</span>: <span class="st">"mp3"</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">"preferredquality"</span>: <span class="st">"192"</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"outtmpl"</span>: os.path.join(output_dir, <span class="st">"</span><span class="sc">%(title)s</span><span class="st">.</span><span class="sc">%(ext)s</span><span class="st">"</span>),</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"verbose"</span>: <span class="va">True</span>,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> os.path.exists(output_dir):</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    os.makedirs(output_dir)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> youtube_dl.YoutubeDL(ydl_config) <span class="im">as</span> ydl:</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        ydl.download([youtube_url])</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> DownloadError:</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> youtube_dl.YoutubeDL(ydl_config) <span class="im">as</span> ydl:</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        ydl.download([youtube_url])        </span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open="" class="code-fold"><summary>코드</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mccarthy-m-g/embedr">embedr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/embedr/man/embed_audio.html">embed_audio</a></span><span class="op">(</span><span class="st">"data/audio/챗GPT와 오정보(Misinformation).mp3"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<audio controls=""><source src="data/audio/챗GPT와 오정보(Misinformation).mp3" type="audio/mpeg"> Your browser does not support the audio tag;  for browser support, please see:  https://www.w3schools.com/tags/tag_audio.asp </audio>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold"><summary>코드</summary><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydub <span class="im">import</span> AudioSegment</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reduce_mp3_file_size(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    input_file, output_file, target_size_mb<span class="op">=</span><span class="dv">24</span>, initial_bitrate<span class="op">=</span><span class="dv">128</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load the audio file</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    audio <span class="op">=</span> AudioSegment.from_mp3(input_file)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get the current file size in MB</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    current_size_mb <span class="op">=</span> os.path.getsize(input_file) <span class="op">/</span> (<span class="dv">1024</span> <span class="op">*</span> <span class="dv">1024</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> current_size_mb <span class="op">&lt;=</span> target_size_mb:</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># If the file is already small enough, just copy it</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        audio.export(output_file, <span class="bu">format</span><span class="op">=</span><span class="st">"mp3"</span>, bitrate<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>initial_bitrate<span class="sc">}</span><span class="ss">k"</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Calculate the necessary bitrate</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        duration_seconds <span class="op">=</span> <span class="bu">len</span>(audio) <span class="op">/</span> <span class="dv">1000</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        target_bitrate <span class="op">=</span> <span class="bu">int</span>((target_size_mb <span class="op">*</span> <span class="dv">8</span> <span class="op">*</span> <span class="dv">1024</span>) <span class="op">/</span> duration_seconds)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Ensure the bitrate is not too low</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>        target_bitrate <span class="op">=</span> <span class="bu">max</span>(</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>            target_bitrate, <span class="dv">32</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>        )  <span class="co"># 32 kbps is usually the lowest reasonable bitrate</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Export with the new bitrate</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>        audio.export(output_file, <span class="bu">format</span><span class="op">=</span><span class="st">"mp3"</span>, bitrate<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>target_bitrate<span class="sc">}</span><span class="ss">k"</span>)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    new_size_mb <span class="op">=</span> os.path.getsize(output_file) <span class="op">/</span> (<span class="dv">1024</span> <span class="op">*</span> <span class="dv">1024</span>)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Original size: </span><span class="sc">{</span>current_size_mb<span class="sc">:.2f}</span><span class="ss"> MB"</span>)</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"New size: </span><span class="sc">{</span>new_size_mb<span class="sc">:.2f}</span><span class="ss"> MB"</span>)</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Reduced file saved as </span><span class="sc">{</span>output_file<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Usage</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>input_file <span class="op">=</span> <span class="st">"data/audio/챗GPT와 오정보(Misinformation).mp3"</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>output_file <span class="op">=</span> <span class="st">"data/audio/reduced_audio_file.mp3"</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>reduce_mp3_file_size(input_file, output_file)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open="" class="code-fold"><summary>코드</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mccarthy-m-g/embedr">embedr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/embedr/man/embed_audio.html">embed_audio</a></span><span class="op">(</span><span class="st">"data/audio/reduced_audio_file.mp3"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<audio controls=""><source src="data/audio/reduced_audio_file.mp3" type="audio/mpeg"> Your browser does not support the audio tag;  for browser support, please see:  https://www.w3schools.com/tags/tag_audio.asp </audio>
+</div>
+</div>
+</section><section id="오디오-텍스트" class="level2"><h2 class="anchored" data-anchor-id="오디오-텍스트">오디오 → 텍스트</h2>
+<p><code>whisper</code> 모형을 사용해서 오디오 음성에서 텍스트를 추출한다.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>코드</summary><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>audio_file <span class="op">=</span> glob.glob(os.path.join(output_dir, <span class="st">"*.mp3"</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>audio_filename <span class="op">=</span> audio_file[<span class="dv">0</span>]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(audio_filename)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>audio_file <span class="op">=</span> audio_filename</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>output_file <span class="op">=</span> <span class="st">"data/transcript.txt"</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> <span class="st">"whisper-1"</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI()</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>audio_file <span class="op">=</span> <span class="bu">open</span>(audio_file, <span class="st">"rb"</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>transcript <span class="op">=</span> client.audio.transcriptions.create(model<span class="op">=</span><span class="st">"whisper-1"</span>, <span class="bu">file</span><span class="op">=</span>audio_file)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>transcript.text</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(output_file, <span class="st">"w"</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">file</span>.write(transcript.text)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="텍스트-적재" class="level2"><h2 class="anchored" data-anchor-id="텍스트-적재">텍스트 적재</h2>
+<p>OpenAI whisper 모형으로 추출한 텍스트를 랭체인 <code>TextLoader</code>로 불러온다.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>코드</summary><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_community.document_loaders <span class="im">import</span> TextLoader</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> TextLoader(<span class="st">"./data/transcript.txt"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>docs <span class="op">=</span> loader.load()</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>docs[<span class="dv">0</span>]</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>Document(metadata={'source': './data/transcript.txt'}, page_content="Welcome everybody to our Seoul RMeetup online seminar where we explore various ideas and practices of data science. We are really happy today to have Jebin West from the University of Washington with us to talk about tragedy and misinformation cutting through a bullshit navigating misinformation and disinformation in the generative AI era. Jebin West is an associate professor in the information school at the University of Washington. He is the director and co-founder of the Center for Informed Public whose mission is registering strategic misinformation promoting an informed society and strengthening the democratic discourse. He is the co-director of data lab and the data science fellow at eScience Institute. He also served its affiliate faculty with the Center for Statistics and Social Sciences. He studies the science of science focusing on the impact of data technology and on slowing the spread of misinformation. Jebin also has teamed up with Carl Bostrom to launch the Calling Bullshit project developing a website and course materials for teaching quantitative reasoning and information literacy. He published the book Calling Bullshit the Art of Skepticism in a Data-Driven World which has been translated into Korean. Jebin I'll hand it over to you now to present your topic and share your insight with us. Well thank you very much Dr. Ahn. This is a real pleasure to be able to speak across the ocean. I wish I was there in person but I did get the opportunity to meet many of your students during your visit in Seattle at the University of Washington and that was a real real pleasure. Yes. So thank you so much. So today I'm going to talk about some of the excitement around generative AI and some and these chatbots that we're seeing everywhere in our world but but mostly I'm going to talk a lot about some of the concerns I have around these chatbots and how they may contribute to this growing problem of misinformation in our digital worlds. So I'm going to share my screen here. There we go. Here share and there we go. All right. Can you see that Dr. Ahn? Yes. Okay great. Okay so as Dr. Ahn said I study misinformation and disinformation in all sorts of forms. Where I study misinformation the most is at the interface of science and society but we also study it more generally in our center where we look at it from the political angle, from the angle of science, from the angle of health. We've studied misinformation during the pandemic and during elections and all sorts of other topics but today I'm going to focus on some of my concerns around generative AI and hopefully that will generate some questions and comments when it comes to this particular topic. I'm sure a lot of us are thinking about it. So one of the things that I tend to ask myself when new technologies come onto the world scene is whether we're better or worse off. I recently wrote an op-ed, an opinion piece for the Seattle Times which is our paper here in Seattle in the United States and I talked about some of the concerns I had and so some of the things I'm going to talk about in this talk come from that op-ed but I'm going to talk about a lot of other things I didn't have room to talk about in that particular op-ed. But I really want us as a group to think a lot about this. You know are we better or worse off with this new chatbot ability or and of course it's a mixed bag. There are things that might be better and there are things that are going to could be worse. I'm going to kind of focus on the more pessimistic version of this. About a week ago there was a lot of attention around a new music song that was posted on several music services that sounded like a mix between the famous musician Drake and The Weeknd. These are two musical artists that are known worldwide for their music and there was a song that was created that was quite catchy and believe it or not it was kind of good I have to admit and it was probably viewed by millions and millions of people. I don't know the exact stats on that. I should look that up but the point is this song was created with some of this new generative AI technology and this is an example where there might be some positive elements of this technology that allows for this mixing and this creation. It created a song that caught enough people's attention that it you know it caught so much attention it actually had to be taken down because of issues likely around copyright and there's all sorts of fallout from this and there's lots of discussions in the legal world that are continuing and it's only been about a week since this song was released but this is an example of the excitement that surrounds this technology and for good reason. If it can create a song that's a good mix of Drake and The Weeknd and it sounds reasonably good that's some evidence at least of the the power of this new technology and it's not like this is brand new technology. There is this kind of technology from the natural language processing world and and machine learning more generally has been around but there's been some advancements recently that make the generative aspect quite exciting but also a little scary. So I'm going to talk about today some of the the cautions that I have. There's a lot more cautions but these are the things I'm going to focus on and it's a lot to focus on in about 25 minutes so I'm going to hit these briefly and then if there are questions we can always go back to some of these topics in more detail but I'm going to go through talking about how at least from my perspective as someone who studies misinformation and as someone who studies misinformation specifically in science these are some of my big concerns. One of them is that these really are bullshitters at scale. They get a lot right but they also get some things wrong. Concerns around how this might affect democratic discourse online and offline. Concerns about content credit for all those content creators out there the musicians like Drake and The Weekend and the writers and the journalists and the researchers and the authors and the poets etc. What happens to their content when it gets pushed down after these generative AI, these chatbots and these large language models train on this content and then provide summaries and new content on top of it? Who owns the content? How's that going to work as we move forward? I'll talk a little bit about some of the job elimination issues both of course in science but in other areas it'll be that some of these are focused outside of the issue of science and then of course I'm going to talk about some of the issues of pseudoscience proliferation, the overconfidence of AI and the need for some of these qualifiers of confidence, the issues around reverse engineering, the generative cost, the actual cost both monetarily, environmentally but also the costs in other forms in creativity and other things and then I'll talk I'll end with just really emphasizing this issue about garbage in garbage out. Okay so we now live in this world where it seems we've got almost sentient beings. I know there's lots of philosophical debates whether they're sentient I don't think they are and we certainly haven't reached AGI levels and there's all sorts of great you know critiques of this particular technology but one thing that at least I think we're all pretty sure of it's it's kind of here to stay in some form or another even in my world in education as a professor who runs a research lab and also as a professor who teaches students, college students, I'm seeing the technology everywhere and when I was teaching my class last quarter I decided to just embrace the technology and allow the students to use it in any form that they see as long as they let me know that they were using it. That's my only criteria because I want to learn how this technology can be used by students and by teachers like myself and professors like myself but I also want to figure out where it goes wrong and so I learned a lot from my students and I will continue to have that kind of policy but maybe that'll change at some point. I know that some instructors don't allow it. I know that some scientific publishers are not allowing co-authorship or the use of AI in any form. Even countries like Italy have outlawed some forms of this technology and so there's going to be some that are going to eliminate it, some that are going to embrace it and the way I look at it is that it may just force me to write different kinds of questions and do different kinds of assessment but it might also be a tool that could help students learn to write when they're stuck and learn how to correct as long as they're willing to do some editing and self-correct and correction of the content that comes from these different bots and so the technology really is here to stay. And one thing I should say is what's interesting is that we have a technology that really seems to have passed the Turing test and one thing that's a bit a little surprising to me is that we haven't had a big celebration about this even though I'm, you know, I'm a bit of a critic of this technology and I focus a lot of my attention on some of the concerning areas of generative AI since I study misinformation and disinformation. I should say though on the other hand we should be thinking about some of the things that have occurred and for those not familiar with the Turing test it's this pretty simple idea that the Turing test will have passed when an individual can't tell the difference between content, you know, at least in this case written content created by a human and one by a computer and if that's the case and I do think in many respects we probably have passed this Turing test and there's been no celebration so I guess okay for those that are optimistic about this technology and more positive about this technology this would be something to celebrate absolutely no doubt. And in terms of education as I mentioned before this is really transforming education but it's transforming all sorts of other industries in ways that have captured the world's attention. I mean this technology has been adopted now faster than pretty much any other technology has been adopted with hundreds like a hundred million users within a very short amount of time and of course that's only growing and billions and billions of dollars being invested into this technology from big corporations to venture capitalists. There is a lot going into this technology and again there's good reason for that. And a lot of times my students will say well you know it's just like a calculator why would you ever want to take it away and I'm not taking I'm allowing them to use it but I will say it's a little different than a calculator because this is a technology that gets this things wrong at minimum probably 10 percent of the time. I mean these things are starting to still get sorted out in the research space we're working on some of these things to figure out you know what is the baseline error rate. Well it turns out it's pretty high and in some cases the impact can be quite high. So if you're talking about the medical field or you're talking about fields that really have an impact on an individual's lives that 10 percent or 20 percent or 5 percent or whatever those errors can be highly problematic. If you're just creating a poem then fine it doesn't really matter but I this analogy to the calculator goes a little it's there's reason to think that's a you know somewhat reasonable analogy but it but it is different and that it's not technology I wouldn't use a calculator that got the answers wrong 10 percent of the time. That would be I would probably be looking for other technologies or if I was using that calculator it would make it for a lot harder work and that's what we have to recognize that it's yes we have this technology that can do a lot of this new amazing things to make some of our jobs easier but it's going to take a lot of hard work on the editorial side to make sure that we're paying it that we're paying attention to some of those errors and there's all sorts of application this was a article just recently written by the by wired sort of examining the ways in which the medical field is starting to think about the adoption of this and in fact some medical researchers have gone so far as to say that all doctors will be using this technology at some point and and maybe that's true and there are reasons to think that's a possibility with its ability to mine the scientific literature to to integrate all sorts of different symptoms and could be that assistant in the doctor's room however there are reasons to also be worried about these technologies and in places like the medical field it might help the doctors as this article talks about but it also might not benefit so greatly many of those patients especially because we have many many examples of the ways in which these machines get things wrong and and have biases built in because the data that it's trained on has some of these biases and at this point a lot of these technologies are essentially just patching and putting band-aids on these problems that exist and part of it's just because these things are very difficult to reverse engineer which i'll talk about a little bit later now up there's plenty other reasons to be excited too actually one of my colleagues who i just saw at a conference last week uh daniel katz and his colleague michael bombarito um showed how this technology took the bar exam this is the main legal the the exam in the united states for allowing you to become a lawyer or sort of allowing you to sort of move forward as a certified lawyer lawyer um and they were able to show that chat gpt did pretty darn well and passed the bar exam and there's examples of the mcat and you know some of these other standardized tests that are go that have been uh tested with this technology in fact in many ways these have almost become a baseline test when comparing different large language models um and so uh it is pretty amazing so again amazed in many ways but i'm going to talk the rest of the time about some of the concerns that i have and and by the way uh as was mentioned i have this book where i talk about bullshit and and bullshit is a is a part of the misinformation story um and as dr on had mentioned it's also been translated in korean which has been super fun to see it uh uh pulled uh or written in these other languages and it helps me try to figure out what's being uh said here but in that book if you read it one of the more important laws and principles that we talk about is something called brandolini's bullshit asymmetry principle and if you go to wikipedia at least the english version i actually should check the korean version see if it's there but the english version of the wikipedia has this principle um in the wikipedia and this law is pretty simple it basically says that the amount of energy needed to refute bullshit is an order of magnitude bigger than needed to produce it so the amount of energy needed to refute it to clean it up to fix the problem is an order of magnitude much harder to produce it so here's the law so my colleague carl bergstrom decided to ask the large language model that meta created uh a while ago called galactica and this is you know it's been taken down since then but this was the science version essentially of one of these large language models and he decided to ask galactica tell me about uh brandolini's bullshit uh bullshit asymmetry principle and you know what it came up with and this is the real answer here's what it came up brandolini's law is a theory in economics proposed by giannani brandolini a professor at the university of padua which takes the smaller the economic unit the greater its efficiency almost nothing here is correct it's basically bullshitting the bullshit principle so to me this encapsulates one of the biggest problems with this technology it bullshits and it can do this at scale and this could be put in the wrong hands and this can also just add more noise to an information environment that has plenty of noise we need to to clean up that polluted information environment not add noise and that's what a lot of these chatbots will do definitely because they make they they put a lot of accurate things out there but they also put a lot of false things and this is the best encapsulation that uh i i've seen so far uh which is actually bullshitting the bullshit principle so that's a problem so as i mentioned uh in this um seattle uh this op-ed i talk about some of these things um and one of the things i talk about as well is that not only do these things can these bullshit at scale um they also can get in the way of democratic discourse and and many years ago back in 2018 there was a lot of attention around facebook's role in pushing misinformation excuse me and they revealed at the time when they were being when mark zuckerberg was being questioned by congress about all the fake accounts and they admitted they had disabled 1.3 billion fake accounts now they certainly haven't solved that problem just like no social media platform has solved that in fact when elon musk was taking over twitter that was one of the big issues at hand that there was all sorts of concerns if there was lots and lots of bots on twitter now that's still a problem i can guarantee you you know my group has done a little bit of work working uh in detecting and looking the effects of bots but my colleagues in in my research area have done a lot of work in that space and it's very very hard to do but one thing is that you know we do know is that there are a lot of bots out there and a lot of fake counts now imagine those fake counts with the ability that these chatbots now have to look even more human technology that's basically well has passed the turing test that to me is problematic because of these different reasons so you have these large number of fake accounts now imagine these fake accounts being scaled to conversations with our public officials now democracies depend on an engagement with the public with their officials that they voted in well that becomes a problem like it was back in 2017 when there was discussions at least in the united states around something called net neutrality and net neutrality was um a policy that was being debated in governmental circles and they want to know to know what the public was saying but when you went to what the public was saying they had complete the there were comments that it completely flooded the conversation on one side of the issue and it turns out that they were essentially fake accounts there were bots and again now imagine doing that with the sophistication that these new chatbots have before you could there was a you could start you could detect a bot much easier now it's become even harder and if if our democratic systems are flooded with these kinds of things this is this is problematic so this issue uh in its potential impact on democratic discourse and its um ability to bullshit at scale is of major concern to me so i spent a lot of my time like my colleagues in our center in sort of the darker corners of the internet studying the ways in which misinformation and disinformation spreads online and one thing that we are of course very concerned about now are the ways in which these technologies can can really further inflame or further fan the flames of discourse uh in groups if these get in the wrong hands and they certainly will i it's almost certain that bad actors are finding ways to use this technology um for their own ends and we know that you know you know our surgeon general and other major leaders around the world have recognized the ways in which misinformation can affect our health and they can affect the health of democracies so it's not just that oh well it's annoying there's a lot of false information online it just makes it hard to find you know good information it's not just that it actually affects people's health and we're recognizing that and at least well we've recognized it and now we've got another problem ahead of us which is the ability of these technologies to create deep fake images video audio text that's the the challenge we have ahead of us so as dr un had mentioned we have a center at the university of washington uh in seattle in the united states where we study this and this is one of the issues that we study and we study these things on social media platforms and we look at the way that individuals and organizations get amplified but we're also going to start looking at the ways that these bots and synthetically created content also get amplified so we do this through all sorts of different channels research is our main thing but we also do it through policy and education and community engagement and one of the things that my colleague carl bergstrom and i created several years ago to bring public attention to synthetic media to deep fakes was to create a game that we called which face is real.com and it was a simple game we just asked the users which image is real one of them is a real image of a real person on this earth and another one was synthetically created with computers and you can go through the you know thousands and thousands and thousands of images and we play this game and then you get told whether it's real or not and it turns out it's pretty hard i mean you know there's some that are kind of obvious but they're hard like this one right here which one's real look at it for a second well the one that's real is the one with the blue shirt at least on my right um and if you said the one on the red shirt totally understand it's really hard to tell the difference and the reason why we created this game was just to bring public attention because the the the time in a technology's birth that's i think most scary when it comes to its potential impact is when the public is not aware of the things that it can do so we created this game and we've had millions and millions of plays of this game um and we've now seen actually this technology you know get used and and you know of course good ways but a lot of bad ways too for example we've seen this technology be used to create fake journalists this is an example and you can read more about it but this has happened many times where journalists also so-called journalists um uh you know the profiles created and then there's these images and people that study deep fake imagery can actually look at these images and start to see what some look for some of these telltale signs on what's real or not so these this technology has been been already used and we talked about this when this game was created the ways in which it's being used and we've already seen it of course many ways so now we're asking how are the ways in which this new uh generative technology could be used but it's very similar it's based on similar kinds of concepts and and data training etc etc but um we're now asking the same things and of course we've seen this now just recently with this kind of technology being used in videos and even in ways that are more sophisticated than just these these sort of portrait pictures so this was an image it's a fake image and it's been reported all over bbc and lots of other places of donald trump supposedly being arrested in new york this was before he was actually um brought to new york on um the recent case but this of course never happened but it certainly sparked all sorts of concern and it spread like wildfire on the internet using um some of this you know mid-journey technology and our company like called mid-journey a lot of other companies that are creating this so it's making it easier and easier and less expensive and making it harder for us to tell what's real and so that technology is of course evolved um so okay so now i've talked about some of the democratic discourse i'm going to go through a little quicker on these other ones so then i can get to sort of the end and try to finish um in about i would say about seven minutes or so so like i mentioned at the beginning there's this issue of content creation and that's really important because these content creators um are generating a lot of the content that a lot of these technology companies are using to create these chatbots but we've seen this story before and by the way just recently there are major technology companies that are now not allowing the scraping of this data to be trained for these technologies unless they're compensating i think that's a fair thing so you know some of these big companies like reddit is not allowing stack overflow is now saying hey if you're going to scrape our data they want to be compensated and so you're going to start to see content creators starting to push back which is good because like i said we've seen this story before oh and by the way this is an example of uh you know getty images for it isn't a lawsuit right now um with a company that uh may have been scraping their data um uh illegally and the reason why that came out is because you can see this little getty images that pops up which is a watermark the getty images puts on their images so there's a pending lawsuit about this and that could determine some of the um some of how this content can or can't be uh scraped but we've seen this before uh when looking at new technology and the impact it can have on other information producers in the united states and in many places around the world we we have growing news deserts these are areas where there's no more local news and that's pretty devastating for democratic discourse for democracies because we depend on local news uh for engagement civic engagement and quality information and local news tends to be trusted more than national news and there's all sorts of reasons for that happening but certainly one element of that um is the effect that search engines and google in particular around it you know the way it sells ads and it takes a large cut at those ads um has potentially contributed to these news deserts of course there's lots of other things as well but but that technology everyone was excited about including myself and we use it all the time but there are these unintended effects that can affect other aspects of our information ecosystems and right now there's a there's a lawsuit going on the justice department united states justice department is suing google for monopolizing digital advertising technologies and one of those elements of this lawsuit story is is the it's the sort of increase in the demise of local news so there's all sorts of interesting things playing out right now and then the biden administration united states is thinking about you know doing some uh uh you know uh you know regulation of ai but they don't know you know it's so new to you know all administrations that it's hard to figure out like i mentioned italy has gone probably one of the furthest steps i think around this uh but there hasn't been a lot of action at least on the u.s side when it comes to the um to this um sort of thing and so you know these uh you know there's been letters so this was an article written by time i the image is quite uh quite nice it actually grows uh there's was a letter that went around from a bunch of influential people in ai and business leaders and technology including elon musk that says hey we should stop the development until we've had more time to think about although it's kind of ironic given that many of these tech leaders are still of course pushing their own development of uh ai in many ways and creating new ai companies and you know developing but anyway that's another story but but that is something to think about i don't think we're i don't think it's a you know i think there's no way that that that letter is going to like you know stop the technology from being developed but one thing it is good about is it's making hopefully forcing the public and journalists and government officials etc to start to think about the ways in which this technology uh could affect society we should think about it as i mentioned one of the concerns is is job demise and i think there's a lot of concern with that by those that even work in the job industry the pew research center recently at you know asked workers where you know are they concerned turns out a large number of you know workers from across these different industries are concerned um and uh there's probably good reason for this concern even sam altman at open ai which is sort of or is the owner of like chat gpt which is the you know one of the more well-known chatbots out there and and uh you know it's also the one that microsoft has invested you know billions um this this this is something that they've even said probably lose five million jobs you know i mean so these are these are real concerns so um the other thing to to mention too is that it's not just uh you know within science itself these are real concerns and and we've seen the proliferation of pseudoscience and the rise of predatory journals and content that maybe looks like science but it's not and i'll show you this is an example from many years ago this was a paper that was published in this international conference on atomic and nuclear physics and you look at the title atomic energy will be made available to a single source and you read the abstract and if you look at the abstract it doesn't make a lot of sense well it turns out that when this was created it was created by a person to make a point about how poor some of these journal venues and conference venues are this paper was made with autocomplete using an iphone and this is not all that different from this this you know chatbots and chat gpt which is really you know these autocomplete machines on steroids um and it looks sort of official like a real science paper but of course it was a lot of it was nonsense and the newest ones are you know much better but it is a concern that this could you know you know um increase the number of pseudoscience types of things or articles that are written by chatbots in fact there's been some articles that have been co-authored by chat gpt although some journal a lot of journals and publishers are saying they won't allow that anymore and that's probably a good thing and i will say this there's been lots of talk about the hallucination of these chatbots well one thing that i find incredibly problematic is the hallucination of citations um it'll make up citations all the time and we've been doing some work trying to find ways to to see when this happens it even happened my colleague uh carl found these examples of papers supposedly by me well these aren't real citations by me it shows my uh me right here west jones this is not uh my paper it's close to some of the papers i've written in terms of title but it's just a fake citation i just made up these citations and that's again another example of how that could affect the citation record and scholarly literature and something that i'm concerned about for science and something that's now happened with some of these chatbots even in bing now that has sort of integrated chat gpt4 into bing is that it throws references so it looks official but i can tell you that this was not done before the fact this is this knowledge that was written out in this answer when i asked about new tax laws for electric vehicles this is one question i asked that um it's not that it throwed you know learn something from citations and then cited them like we do in the scholarly literature it cited them post hoc something that's probably semantically similar although maybe scholars scholars probably do this too well they do do it post after posting uh you know some argument or sentence but this this is problematic to me because it looks like it's a science almost science and you know sciency and technical and it's really not even though it has those references so um you know there's been lots of discussion in the scientific literature what to do with these chatbots some have listed you know authors on papers publishers have come out even publishers in the machine learning world so icml was you know one of the first conferences not i don't think it was the first but one of the among the first that was saying you can't use chat gpt on this uh you know some are saying if you use it you have to note it you know all sorts of different policies are being created but overall you know i think the publishing community and the scholarly literature is going to have to grapple with this and i and my colleague and i have carl and i have a a another op-ed that were that we write about sort of what publishers can do around this particular issue now one of the other big concerns of this is of course that this technology shows you know it doesn't it's always 100 confident whether it's right or whether it's wrong that's really problematic at least when humans communicate they have these qualifiers of confidence where you can say something like i'm pretty sure or i i think so or i i think that's right you know these things are important and these chatbots don't have it they just are always they always seem to be well not seem they they spew out things whether they're right or wrong with 100 confidence and that's dangerous um and if there's you know one paper one of my colleagues emily bender has this great feature where um uh in this paper that she talks about and also in this feature um in uh in the new yorker or in this new york magazine uh they talk uh it talks a lot about some of the current concerns emily and other people that are true linguists that truly understand some of the problems with these technologies um this is one that i i would recommend reading and a lot of you may have heard of this early interview that a new york times uh journalist had with uh this you know with bing's chatbot um and it what essentially happened was the chatbot kind of went off the rails and started to say well you should leave your wife and i want to take over the world and all these things happen and of course a lot of the developers of this technology go whoa whoa whoa we need to fix it and there's been new rules around how you can use this bing chatbot and other chatbots but the problem with these fixes is they're like band-aids there's really it's very difficult to reverse engineer these problems or reverse engineer yeah reverse engineer these issues it's not like you can go to a line of code and say oh that's where the problem is um it's the way that these things are trained the way these models work with their bazillions of parameters makes it very difficult to reverse engineer and that's problematic when we run into these issues and all the issues we haven't even thought of um and so that to be is another big concern of course there's all sorts of jailbreaks to get these chatbots to do things that there have been band-aids put around and that's problematic and i won't go over all the jailbreaks you can read about because i don't want to get those out uh too much to the public but you can read about them it's not like they're that hidden um and that's problematic uh and there'll be many many others as well so these are some of the the ones i had some of these concerns reverse engineering the last two i'll mention is the cost um and the the cost we talked about jobs the costs potentially to all different aspects of society and this and the kind of scary thing is right now is that a lot of the tech layoffs are removing these teams they're removing other individuals as well but they're removing individuals that are on ethics and safety teams and of all times to have these kinds of teams at these companies it would be now and certainly maybe if you went back in history at the beginning of uh the rise of social media but they're being eliminated and this is a concern but there's also other kinds of costs that a lot of people forget and that's the cost of these queries there's been several analyses that have come out recently about the cost per query for running some of these uh chatbots and it's like almost an order of magnitude greater than a regular query that you'd have let's say on a google search and that has a cost and there's also costs of investing billions and millions of dollars in this technology that could also go to other kinds of investments that might be helping society so there's these costs that we have to think about the environmental costs you know the cost to society the costs of adding more you know pollution into our information systems etc there's also the issue um of garbage in garbage out and that that's a problem we're likely going to see as these chatbots generate more and more content that land online that becomes the training data for that those chatbots in you know chat you bt5 and chat gpt6 and what those effects will be uh requires some more research and thinking but the main thing that we've known in a lot for a long time of course in the machine learning world is that garbaging with your training data creates garbage out and even if you didn't have this you know feed forward a loop that i just mentioned there's a lot of garbage on the internet and that garbage finds its way into conversations with these chatbots and that's always a concern whether you're talking about science or this technology just generative ai technology more broadly so i'll end by saying that this technology is in many cases amazing i have mostly focused on some of my cautions and concerns like many people have especially in my world as someone who studies misinformation and misinformation specifically in science and its effect on the institution of science um uh and so uh and so these are things that we're going to have to you know pay attention to going forward um but i think like a lot of our new technology we just need time to think about it and run seminars and workshops and conferences just like this so hopefully this generates some conversation and hopefully we can uh sort out some of these cautions so with that i'll end you can reach out to me you can learn more about my book and the research we do uh in my lab and at our university and in my our center and you can um uh reach me in these ways")</code></pre>
+</div>
+</div>
+</section><section id="인메모리-벡터스토어" class="level2"><h2 class="anchored" data-anchor-id="인메모리-벡터스토어">인메모리 벡터스토어</h2>
+<p><code>DocArray</code>는 다양한 형태의 데이터를 관리할 수 있는 오픈소스 도구로, 랭체인과 연동하여 강력한 AI 애플리케이션을 만들 수 있다. 예를 들어, OpenAI의 Whisper 모델을 사용하여 유튜브 동영상의 오디오를 텍스트로 변환한 경우, <code>DocArray</code>를 활용해 이 텍스트 데이터를 효율적으로 저장하고 검색할 수 있다. 또한 <code>DocArrayRetriever</code>를 통해 랭체인 애플리케이션에서 문서 데이터를 쉽게 활용할 수 있어, 유튜브 콘텐츠 기반의 질의응답 시스템이나 콘텐츠 추천 엔진 등 다양한 응용 프로그램을 개발할 수 있다.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>코드</summary><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tiktoken</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.chains <span class="im">import</span> RetrievalQA</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_openai <span class="im">import</span> ChatOpenAI, OpenAIEmbeddings</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.vectorstores <span class="im">import</span> DocArrayInMemorySearch</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> DocArrayInMemorySearch.from_documents(docs, OpenAIEmbeddings())</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>retriever <span class="op">=</span> db.as_retriever()</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> ChatOpenAI(temperature<span class="op">=</span><span class="fl">0.0</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>qa_stuff <span class="op">=</span> RetrievalQA.from_chain_type(</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    llm<span class="op">=</span>llm, </span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    chain_type<span class="op">=</span><span class="st">"stuff"</span>,</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    retriever<span class="op">=</span>retriever,</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    verbose<span class="op">=</span><span class="va">True</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="질의" class="level2"><h2 class="anchored" data-anchor-id="질의">질의</h2>
+<p>실제 질의를 통해 사실관계를 확인해보자.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>코드</summary><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"what is misinformation"</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> qa_stuff.invoke(query)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>response</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<pre><code>&gt; Entering new RetrievalQA chain...
+
+&gt; Finished chain.
+{'query': 'what is misinformation',
+ 'result': 'Misinformation refers to false or inaccurate information that is spread, often unintentionally, leading to misunderstandings or misconceptions. It can be shared through various mediums such as social media, news outlets, or word of mouth. Misinformation can have negative impacts on individuals, communities, and society as a whole by influencing beliefs, decisions, and behaviors based on incorrect information.'}</code></pre>
+<div class="cell">
+<details open="" class="code-fold"><summary>코드</summary><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"There have been incidents due to misinformation.?"</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> qa_stuff.invoke(query)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>response</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<pre><code>&gt; Entering new RetrievalQA chain...
+
+&gt; Finished chain.
+{'query': 'There have been incidents due to misinformation.?',
+ 'result': "Yes, incidents due to misinformation have been a significant concern in various fields, including science, politics, health, and society in general. Misinformation can lead to confusion, mistrust, and even harm. In the context of generative AI and chatbots, the potential for misinformation to spread rapidly and at scale is a growing concern. Researchers like Jebin West are studying the impact of misinformation and disinformation in the digital world, particularly in the context of new technologies like generative AI. The spread of false information can have serious consequences, affecting democratic discourse, public health, and the credibility of information sources. It's essential to address and combat misinformation to promote an informed society and strengthen democratic discourse."}</code></pre>
+
+
+<!-- -->
+
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "복사완료!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "복사완료!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb17" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># OpenAI 응용프로그램</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>[<span class="co">[</span><span class="ot">한국 R 컨퍼런스 - Julia Silge Keynote번역 (2021-11-17)</span><span class="co">](https://statkclee.github.io/deep-learning/rconf-keynote.html)</span>]{.aside}</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>2023년 서울 R 미트업에서 "챗GPT와 오정보(ChatGPT and Misinformation)"를 주제로</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>워싱턴 대학 제빈 웨스트 교수님을 모시고 특강을 진행했다. </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>한정된 예산으로 직접 모시지는 못하고 줌(Zoom) 녹화로 대신했다.</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>약 1시간 분량의 녹화분량 중 일부 불필요한 부분은 <span class="co">[</span><span class="ot">오픈샷 비디오 편집기(OpenShot Video Editor)</span><span class="co">](https://ko.wikipedia.org/wiki/%EC%98%A4%ED%94%88%EC%83%B7)</span>를 가지고 잘라낸다.</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>결국 유튜브 동영상으로 올려 한글 자막을 입히는 것이 최종 목적이기 때문에 </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="in">`.mp4`</span> 파일에서 이미지 정보 대신 오디오 정보만 <span class="in">`.wav`</span>, <span class="in">`.mp3`</span> 파일로 추출해서 뽑아낸다. </span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>STT(Speech-to-Text) 영어 음성을 영어 텍스트로 전사(transcribe)해야 하는 작업이 </span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>필요하기 때문에 다양한 모델이 있지만 성능이 좋다고 인정받는 OpenAI Whisper 를 </span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>사용한다. </span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="fu">### API와 설치형</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">OpenAI Whisper API</span><span class="co">](https://platform.openai.com/docs/models/whisper)</span>는 OpenAI의 API를 통해 사용할 수 있는 음성-텍스트 변환 모델이며 Whisper의 <span class="co">[</span><span class="ot">오픈 소스 버전은 Github</span><span class="co">](https://github.com/openai/whisper)</span>에서 사용할 수 있다. 오픈 소스 버전의 Whisper와 OpenAI의 API를 통해 제공되는 버전은 차이가 없지만, OpenAI의 Whisper API를 사용할 경우, 시스템 전반에 걸친 일련의 최적화를 통해 OpenAI는 12월부터 ChatGPT의 비용을 90% 저렴하게 이용할 수 있으며,개발자는 API에서 오픈 소스 Whisper 대형-v2 모델을 사용하여 훨씬 빠르고 비용 효율적인 결과를 얻을 수 있다.</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>영어 음성에서 텍스트로 전환하는 작업을 STT(Speech-to-Text)라고 부르는데 </span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>최근 성능도 많이 좋아졌고 그중 챗GPT 인기를 얻고 있는 <span class="in">`whisper`</span> API를 사용해서 </span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>영어 음성을 텍스트로 변환할 수도 있고, C/C++로 OpenAI의 Whisper 모델 이식한 </span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">whisper.cpp</span><span class="co">](https://github.com/ggerganov/whisper.cpp)</span> 모델을 사용하면 CPU로 </span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>무료로 사용가능하다. <span class="co">[</span><span class="ot">`audio.whisper`</span><span class="co">](https://github.com/bnosac/audio.whisper)</span> 패키지가 최근에 출시되어 </span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>이를 사용하면 수월히 R에서도 STT 작업을 수행할 수 있다.</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>| 모형                   | 언어                        |  크기  | 필요 RAM 크기 |</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>|:-----------------------|:---------------------------:|-------:|-----------:|</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>| <span class="in">`tiny`</span> &amp; <span class="in">`tiny.en`</span>     | Multilingual &amp; English only | 75 MB  | 390 MB     |</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>| <span class="in">`base`</span> &amp; <span class="in">`base.en`</span>     | Multilingual &amp; English only | 142 MB | 500 MB     |</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>| <span class="in">`small`</span> &amp; <span class="in">`small.en`</span>   | Multilingual &amp; English only | 466 MB | 1.0 GB     |</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>| <span class="in">`medium`</span> &amp; <span class="in">`medium.en`</span> | Multilingual &amp; English only | 1.5 GB | 2.6 GB     |</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>| <span class="in">`large-v1`</span> &amp; <span class="in">`large`</span>   | Multilingual                | 2.9 GB | 4.7 GB     |</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a><span class="in">`whisper()`</span> 입력 오디오는 16비트 <span class="in">`.wav`</span> 파일형식만 가능하다. </span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>따라서 R <span class="in">`av`</span> 패키지 <span class="in">`av_audio_convert()`</span> 함수로 원본 파일(<span class="in">`.flac`</span>)을 <span class="in">`.wav`</span> 파일로 변환한 후에 </span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>STT 작업을 수행한다.</span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a><span class="in">%%| label: whisper-process</span></span>
+<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a><span class="in">graph TB</span></span>
+<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a><span class="in">    subgraph 전처리</span></span>
+<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a><span class="in">        direction TB</span></span>
+<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a><span class="in">        A[유튜브 동영상 다운로드] --&gt; B[MP3로 변환]</span></span>
+<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a><span class="in">        B --&gt; C[파일 크기 축소]</span></span>
+<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a><span class="in">    subgraph 음성인식</span></span>
+<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a><span class="in">        direction TB</span></span>
+<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a><span class="in">        C --&gt; D[OpenAI Whisper API]</span></span>
+<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a><span class="in">        D --&gt; E[스크립트 저장]</span></span>
+<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a><span class="in">    subgraph 벡터저장소</span></span>
+<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a><span class="in">        direction TB</span></span>
+<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a><span class="in">        E --&gt; F[텍스트 로드]</span></span>
+<span id="cb17-64"><a href="#cb17-64" aria-hidden="true" tabindex="-1"></a><span class="in">        F --&gt; G[벡터 저장소 생성]</span></span>
+<span id="cb17-65"><a href="#cb17-65" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb17-66"><a href="#cb17-66" aria-hidden="true" tabindex="-1"></a><span class="in">    subgraph 질의처리</span></span>
+<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a><span class="in">        direction TB</span></span>
+<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a><span class="in">        G --&gt; H[검색기 생성]</span></span>
+<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a><span class="in">        H --&gt; I[RetrievalQA 체인 설정]</span></span>
+<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a><span class="in">        I --&gt; J[사용자 질의 처리]</span></span>
+<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a><span class="fu">## 환경설정</span></span>
+<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb17-79"><a href="#cb17-79" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install openai</span>
+<span id="cb17-81"><a href="#cb17-81" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install unstructured</span>
+<span id="cb17-82"><a href="#cb17-82" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install langchain-community </span>
+<span id="cb17-83"><a href="#cb17-83" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install langchain-core</span>
+<span id="cb17-84"><a href="#cb17-84" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install langchain-openai</span>
+<span id="cb17-85"><a href="#cb17-85" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install yt_dlp</span>
+<span id="cb17-86"><a href="#cb17-86" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install tiktoken</span>
+<span id="cb17-87"><a href="#cb17-87" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install docarray</span>
+<span id="cb17-88"><a href="#cb17-88" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-89"><a href="#cb17-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-90"><a href="#cb17-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-93"><a href="#cb17-93" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-94"><a href="#cb17-94" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb17-95"><a href="#cb17-95" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
+<span id="cb17-96"><a href="#cb17-96" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb17-97"><a href="#cb17-97" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yt_dlp <span class="im">as</span> youtube_dl</span>
+<span id="cb17-98"><a href="#cb17-98" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> yt_dlp <span class="im">import</span> DownloadError</span>
+<span id="cb17-99"><a href="#cb17-99" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb17-100"><a href="#cb17-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-101"><a href="#cb17-101" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb17-102"><a href="#cb17-102" aria-hidden="true" tabindex="-1"></a>openai_api_key <span class="op">=</span> os.getenv(<span class="st">"OPENAI_API_KEY"</span>)</span>
+<span id="cb17-103"><a href="#cb17-103" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-104"><a href="#cb17-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-105"><a href="#cb17-105" aria-hidden="true" tabindex="-1"></a><span class="fu">## 유튜브 동영상 다운로드</span></span>
+<span id="cb17-106"><a href="#cb17-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-107"><a href="#cb17-107" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb17-108"><a href="#cb17-108" aria-hidden="true" tabindex="-1"></a><span class="fu">### 챗GPT와 오정보</span></span>
+<span id="cb17-109"><a href="#cb17-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-110"><a href="#cb17-110" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=3t9nPopr0QA &gt;}}</span>
+<span id="cb17-111"><a href="#cb17-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-112"><a href="#cb17-112" aria-hidden="true" tabindex="-1"></a><span class="fu">### 오디오 추출</span></span>
+<span id="cb17-113"><a href="#cb17-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-116"><a href="#cb17-116" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-117"><a href="#cb17-117" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb17-118"><a href="#cb17-118" aria-hidden="true" tabindex="-1"></a><span class="co"># An example YouTube tutorial video</span></span>
+<span id="cb17-119"><a href="#cb17-119" aria-hidden="true" tabindex="-1"></a>youtube_url <span class="op">=</span> <span class="st">"https://www.youtube.com/watch?v=3t9nPopr0QA"</span></span>
+<span id="cb17-120"><a href="#cb17-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-121"><a href="#cb17-121" aria-hidden="true" tabindex="-1"></a><span class="co"># Directory to store the downloaded video</span></span>
+<span id="cb17-122"><a href="#cb17-122" aria-hidden="true" tabindex="-1"></a>output_dir <span class="op">=</span> <span class="st">"data/audio/"</span></span>
+<span id="cb17-123"><a href="#cb17-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-124"><a href="#cb17-124" aria-hidden="true" tabindex="-1"></a><span class="co"># Config for youtube-dl</span></span>
+<span id="cb17-125"><a href="#cb17-125" aria-hidden="true" tabindex="-1"></a>ydl_config <span class="op">=</span> {</span>
+<span id="cb17-126"><a href="#cb17-126" aria-hidden="true" tabindex="-1"></a>    <span class="st">"format"</span>: <span class="st">"bestaudio/best"</span>,</span>
+<span id="cb17-127"><a href="#cb17-127" aria-hidden="true" tabindex="-1"></a>    <span class="st">"postprocessors"</span>: [</span>
+<span id="cb17-128"><a href="#cb17-128" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb17-129"><a href="#cb17-129" aria-hidden="true" tabindex="-1"></a>            <span class="st">"key"</span>: <span class="st">"FFmpegExtractAudio"</span>,</span>
+<span id="cb17-130"><a href="#cb17-130" aria-hidden="true" tabindex="-1"></a>            <span class="st">"preferredcodec"</span>: <span class="st">"mp3"</span>,</span>
+<span id="cb17-131"><a href="#cb17-131" aria-hidden="true" tabindex="-1"></a>            <span class="st">"preferredquality"</span>: <span class="st">"192"</span>,</span>
+<span id="cb17-132"><a href="#cb17-132" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb17-133"><a href="#cb17-133" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb17-134"><a href="#cb17-134" aria-hidden="true" tabindex="-1"></a>    <span class="st">"outtmpl"</span>: os.path.join(output_dir, <span class="st">"</span><span class="sc">%(title)s</span><span class="st">.</span><span class="sc">%(ext)s</span><span class="st">"</span>),</span>
+<span id="cb17-135"><a href="#cb17-135" aria-hidden="true" tabindex="-1"></a>    <span class="st">"verbose"</span>: <span class="va">True</span>,</span>
+<span id="cb17-136"><a href="#cb17-136" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-137"><a href="#cb17-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-138"><a href="#cb17-138" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> os.path.exists(output_dir):</span>
+<span id="cb17-139"><a href="#cb17-139" aria-hidden="true" tabindex="-1"></a>    os.makedirs(output_dir)</span>
+<span id="cb17-140"><a href="#cb17-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-141"><a href="#cb17-141" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb17-142"><a href="#cb17-142" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> youtube_dl.YoutubeDL(ydl_config) <span class="im">as</span> ydl:</span>
+<span id="cb17-143"><a href="#cb17-143" aria-hidden="true" tabindex="-1"></a>        ydl.download([youtube_url])</span>
+<span id="cb17-144"><a href="#cb17-144" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> DownloadError:</span>
+<span id="cb17-145"><a href="#cb17-145" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> youtube_dl.YoutubeDL(ydl_config) <span class="im">as</span> ydl:</span>
+<span id="cb17-146"><a href="#cb17-146" aria-hidden="true" tabindex="-1"></a>        ydl.download([youtube_url])        </span>
+<span id="cb17-147"><a href="#cb17-147" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-148"><a href="#cb17-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-151"><a href="#cb17-151" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-152"><a href="#cb17-152" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(embedr)</span>
+<span id="cb17-153"><a href="#cb17-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-154"><a href="#cb17-154" aria-hidden="true" tabindex="-1"></a><span class="fu">embed_audio</span>(<span class="st">"data/audio/챗GPT와 오정보(Misinformation).mp3"</span>)</span>
+<span id="cb17-155"><a href="#cb17-155" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-156"><a href="#cb17-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-157"><a href="#cb17-157" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb17-158"><a href="#cb17-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-161"><a href="#cb17-161" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-162"><a href="#cb17-162" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb17-163"><a href="#cb17-163" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb17-164"><a href="#cb17-164" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydub <span class="im">import</span> AudioSegment</span>
+<span id="cb17-165"><a href="#cb17-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-166"><a href="#cb17-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-167"><a href="#cb17-167" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reduce_mp3_file_size(</span>
+<span id="cb17-168"><a href="#cb17-168" aria-hidden="true" tabindex="-1"></a>    input_file, output_file, target_size_mb<span class="op">=</span><span class="dv">24</span>, initial_bitrate<span class="op">=</span><span class="dv">128</span></span>
+<span id="cb17-169"><a href="#cb17-169" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb17-170"><a href="#cb17-170" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load the audio file</span></span>
+<span id="cb17-171"><a href="#cb17-171" aria-hidden="true" tabindex="-1"></a>    audio <span class="op">=</span> AudioSegment.from_mp3(input_file)</span>
+<span id="cb17-172"><a href="#cb17-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-173"><a href="#cb17-173" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get the current file size in MB</span></span>
+<span id="cb17-174"><a href="#cb17-174" aria-hidden="true" tabindex="-1"></a>    current_size_mb <span class="op">=</span> os.path.getsize(input_file) <span class="op">/</span> (<span class="dv">1024</span> <span class="op">*</span> <span class="dv">1024</span>)</span>
+<span id="cb17-175"><a href="#cb17-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-176"><a href="#cb17-176" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> current_size_mb <span class="op">&lt;=</span> target_size_mb:</span>
+<span id="cb17-177"><a href="#cb17-177" aria-hidden="true" tabindex="-1"></a>        <span class="co"># If the file is already small enough, just copy it</span></span>
+<span id="cb17-178"><a href="#cb17-178" aria-hidden="true" tabindex="-1"></a>        audio.export(output_file, <span class="bu">format</span><span class="op">=</span><span class="st">"mp3"</span>, bitrate<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>initial_bitrate<span class="sc">}</span><span class="ss">k"</span>)</span>
+<span id="cb17-179"><a href="#cb17-179" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb17-180"><a href="#cb17-180" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Calculate the necessary bitrate</span></span>
+<span id="cb17-181"><a href="#cb17-181" aria-hidden="true" tabindex="-1"></a>        duration_seconds <span class="op">=</span> <span class="bu">len</span>(audio) <span class="op">/</span> <span class="dv">1000</span></span>
+<span id="cb17-182"><a href="#cb17-182" aria-hidden="true" tabindex="-1"></a>        target_bitrate <span class="op">=</span> <span class="bu">int</span>((target_size_mb <span class="op">*</span> <span class="dv">8</span> <span class="op">*</span> <span class="dv">1024</span>) <span class="op">/</span> duration_seconds)</span>
+<span id="cb17-183"><a href="#cb17-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-184"><a href="#cb17-184" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Ensure the bitrate is not too low</span></span>
+<span id="cb17-185"><a href="#cb17-185" aria-hidden="true" tabindex="-1"></a>        target_bitrate <span class="op">=</span> <span class="bu">max</span>(</span>
+<span id="cb17-186"><a href="#cb17-186" aria-hidden="true" tabindex="-1"></a>            target_bitrate, <span class="dv">32</span></span>
+<span id="cb17-187"><a href="#cb17-187" aria-hidden="true" tabindex="-1"></a>        )  <span class="co"># 32 kbps is usually the lowest reasonable bitrate</span></span>
+<span id="cb17-188"><a href="#cb17-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-189"><a href="#cb17-189" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Export with the new bitrate</span></span>
+<span id="cb17-190"><a href="#cb17-190" aria-hidden="true" tabindex="-1"></a>        audio.export(output_file, <span class="bu">format</span><span class="op">=</span><span class="st">"mp3"</span>, bitrate<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>target_bitrate<span class="sc">}</span><span class="ss">k"</span>)</span>
+<span id="cb17-191"><a href="#cb17-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-192"><a href="#cb17-192" aria-hidden="true" tabindex="-1"></a>    new_size_mb <span class="op">=</span> os.path.getsize(output_file) <span class="op">/</span> (<span class="dv">1024</span> <span class="op">*</span> <span class="dv">1024</span>)</span>
+<span id="cb17-193"><a href="#cb17-193" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Original size: </span><span class="sc">{</span>current_size_mb<span class="sc">:.2f}</span><span class="ss"> MB"</span>)</span>
+<span id="cb17-194"><a href="#cb17-194" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"New size: </span><span class="sc">{</span>new_size_mb<span class="sc">:.2f}</span><span class="ss"> MB"</span>)</span>
+<span id="cb17-195"><a href="#cb17-195" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Reduced file saved as </span><span class="sc">{</span>output_file<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-196"><a href="#cb17-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-197"><a href="#cb17-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-198"><a href="#cb17-198" aria-hidden="true" tabindex="-1"></a><span class="co"># Usage</span></span>
+<span id="cb17-199"><a href="#cb17-199" aria-hidden="true" tabindex="-1"></a>input_file <span class="op">=</span> <span class="st">"data/audio/챗GPT와 오정보(Misinformation).mp3"</span></span>
+<span id="cb17-200"><a href="#cb17-200" aria-hidden="true" tabindex="-1"></a>output_file <span class="op">=</span> <span class="st">"data/audio/reduced_audio_file.mp3"</span></span>
+<span id="cb17-201"><a href="#cb17-201" aria-hidden="true" tabindex="-1"></a>reduce_mp3_file_size(input_file, output_file)</span>
+<span id="cb17-202"><a href="#cb17-202" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-203"><a href="#cb17-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-206"><a href="#cb17-206" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-207"><a href="#cb17-207" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(embedr)</span>
+<span id="cb17-208"><a href="#cb17-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-209"><a href="#cb17-209" aria-hidden="true" tabindex="-1"></a><span class="fu">embed_audio</span>(<span class="st">"data/audio/reduced_audio_file.mp3"</span>)</span>
+<span id="cb17-210"><a href="#cb17-210" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-211"><a href="#cb17-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-212"><a href="#cb17-212" aria-hidden="true" tabindex="-1"></a><span class="fu">## 오디오 &amp;rarr; 텍스트</span></span>
+<span id="cb17-213"><a href="#cb17-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-214"><a href="#cb17-214" aria-hidden="true" tabindex="-1"></a><span class="in">`whisper`</span> 모형을 사용해서 오디오 음성에서 텍스트를 추출한다.</span>
+<span id="cb17-215"><a href="#cb17-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-218"><a href="#cb17-218" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-219"><a href="#cb17-219" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb17-220"><a href="#cb17-220" aria-hidden="true" tabindex="-1"></a>audio_file <span class="op">=</span> glob.glob(os.path.join(output_dir, <span class="st">"*.mp3"</span>))</span>
+<span id="cb17-221"><a href="#cb17-221" aria-hidden="true" tabindex="-1"></a>audio_filename <span class="op">=</span> audio_file[<span class="dv">0</span>]</span>
+<span id="cb17-222"><a href="#cb17-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-223"><a href="#cb17-223" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(audio_filename)</span>
+<span id="cb17-224"><a href="#cb17-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-225"><a href="#cb17-225" aria-hidden="true" tabindex="-1"></a>audio_file <span class="op">=</span> audio_filename</span>
+<span id="cb17-226"><a href="#cb17-226" aria-hidden="true" tabindex="-1"></a>output_file <span class="op">=</span> <span class="st">"data/transcript.txt"</span></span>
+<span id="cb17-227"><a href="#cb17-227" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> <span class="st">"whisper-1"</span></span>
+<span id="cb17-228"><a href="#cb17-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-229"><a href="#cb17-229" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI()</span>
+<span id="cb17-230"><a href="#cb17-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-231"><a href="#cb17-231" aria-hidden="true" tabindex="-1"></a>audio_file <span class="op">=</span> <span class="bu">open</span>(audio_file, <span class="st">"rb"</span>)</span>
+<span id="cb17-232"><a href="#cb17-232" aria-hidden="true" tabindex="-1"></a>transcript <span class="op">=</span> client.audio.transcriptions.create(model<span class="op">=</span><span class="st">"whisper-1"</span>, <span class="bu">file</span><span class="op">=</span>audio_file)</span>
+<span id="cb17-233"><a href="#cb17-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-234"><a href="#cb17-234" aria-hidden="true" tabindex="-1"></a>transcript.text</span>
+<span id="cb17-235"><a href="#cb17-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-236"><a href="#cb17-236" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(output_file, <span class="st">"w"</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb17-237"><a href="#cb17-237" aria-hidden="true" tabindex="-1"></a>    <span class="bu">file</span>.write(transcript.text)</span>
+<span id="cb17-238"><a href="#cb17-238" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-239"><a href="#cb17-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-240"><a href="#cb17-240" aria-hidden="true" tabindex="-1"></a><span class="fu">## 텍스트 적재</span></span>
+<span id="cb17-241"><a href="#cb17-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-242"><a href="#cb17-242" aria-hidden="true" tabindex="-1"></a>OpenAI whisper 모형으로 추출한 텍스트를 랭체인 <span class="in">`TextLoader`</span>로 불러온다.</span>
+<span id="cb17-243"><a href="#cb17-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-246"><a href="#cb17-246" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-247"><a href="#cb17-247" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_community.document_loaders <span class="im">import</span> TextLoader</span>
+<span id="cb17-248"><a href="#cb17-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-249"><a href="#cb17-249" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> TextLoader(<span class="st">"./data/transcript.txt"</span>)</span>
+<span id="cb17-250"><a href="#cb17-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-251"><a href="#cb17-251" aria-hidden="true" tabindex="-1"></a>docs <span class="op">=</span> loader.load()</span>
+<span id="cb17-252"><a href="#cb17-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-253"><a href="#cb17-253" aria-hidden="true" tabindex="-1"></a>docs[<span class="dv">0</span>]</span>
+<span id="cb17-254"><a href="#cb17-254" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-255"><a href="#cb17-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-256"><a href="#cb17-256" aria-hidden="true" tabindex="-1"></a><span class="fu">## 인메모리 벡터스토어</span></span>
+<span id="cb17-257"><a href="#cb17-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-258"><a href="#cb17-258" aria-hidden="true" tabindex="-1"></a><span class="in">`DocArray`</span>는 다양한 형태의 데이터를 관리할 수 있는 오픈소스 도구로, 랭체인과 연동하여 강력한 AI 애플리케이션을 만들 수 있다. 예를 들어, OpenAI의 Whisper 모델을 사용하여 유튜브 동영상의 오디오를 텍스트로 변환한 경우, <span class="in">`DocArray`</span>를 활용해 이 텍스트 데이터를 효율적으로 저장하고 검색할 수 있다. 또한 <span class="in">`DocArrayRetriever`</span>를 통해 랭체인 애플리케이션에서 문서 데이터를 쉽게 활용할 수 있어, 유튜브 콘텐츠 기반의 질의응답 시스템이나 콘텐츠 추천 엔진 등 다양한 응용 프로그램을 개발할 수 있다.</span>
+<span id="cb17-259"><a href="#cb17-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-262"><a href="#cb17-262" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-263"><a href="#cb17-263" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb17-264"><a href="#cb17-264" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tiktoken</span>
+<span id="cb17-265"><a href="#cb17-265" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.chains <span class="im">import</span> RetrievalQA</span>
+<span id="cb17-266"><a href="#cb17-266" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_openai <span class="im">import</span> ChatOpenAI, OpenAIEmbeddings</span>
+<span id="cb17-267"><a href="#cb17-267" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.vectorstores <span class="im">import</span> DocArrayInMemorySearch</span>
+<span id="cb17-268"><a href="#cb17-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-269"><a href="#cb17-269" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> DocArrayInMemorySearch.from_documents(docs, OpenAIEmbeddings())</span>
+<span id="cb17-270"><a href="#cb17-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-271"><a href="#cb17-271" aria-hidden="true" tabindex="-1"></a>retriever <span class="op">=</span> db.as_retriever()</span>
+<span id="cb17-272"><a href="#cb17-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-273"><a href="#cb17-273" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> ChatOpenAI(temperature<span class="op">=</span><span class="fl">0.0</span>)</span>
+<span id="cb17-274"><a href="#cb17-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-275"><a href="#cb17-275" aria-hidden="true" tabindex="-1"></a>qa_stuff <span class="op">=</span> RetrievalQA.from_chain_type(</span>
+<span id="cb17-276"><a href="#cb17-276" aria-hidden="true" tabindex="-1"></a>    llm<span class="op">=</span>llm, </span>
+<span id="cb17-277"><a href="#cb17-277" aria-hidden="true" tabindex="-1"></a>    chain_type<span class="op">=</span><span class="st">"stuff"</span>,</span>
+<span id="cb17-278"><a href="#cb17-278" aria-hidden="true" tabindex="-1"></a>    retriever<span class="op">=</span>retriever,</span>
+<span id="cb17-279"><a href="#cb17-279" aria-hidden="true" tabindex="-1"></a>    verbose<span class="op">=</span><span class="va">True</span></span>
+<span id="cb17-280"><a href="#cb17-280" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-281"><a href="#cb17-281" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-282"><a href="#cb17-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-283"><a href="#cb17-283" aria-hidden="true" tabindex="-1"></a><span class="fu">## 질의</span></span>
+<span id="cb17-284"><a href="#cb17-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-285"><a href="#cb17-285" aria-hidden="true" tabindex="-1"></a>실제 질의를 통해 사실관계를 확인해보자.</span>
+<span id="cb17-286"><a href="#cb17-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-289"><a href="#cb17-289" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-290"><a href="#cb17-290" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb17-291"><a href="#cb17-291" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"what is misinformation"</span></span>
+<span id="cb17-292"><a href="#cb17-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-293"><a href="#cb17-293" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> qa_stuff.invoke(query)</span>
+<span id="cb17-294"><a href="#cb17-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-295"><a href="#cb17-295" aria-hidden="true" tabindex="-1"></a>response</span>
+<span id="cb17-296"><a href="#cb17-296" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-297"><a href="#cb17-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-298"><a href="#cb17-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-299"><a href="#cb17-299" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-300"><a href="#cb17-300" aria-hidden="true" tabindex="-1"></a><span class="in">&gt; Entering new RetrievalQA chain...</span></span>
+<span id="cb17-301"><a href="#cb17-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-302"><a href="#cb17-302" aria-hidden="true" tabindex="-1"></a><span class="in">&gt; Finished chain.</span></span>
+<span id="cb17-303"><a href="#cb17-303" aria-hidden="true" tabindex="-1"></a><span class="in">{'query': 'what is misinformation',</span></span>
+<span id="cb17-304"><a href="#cb17-304" aria-hidden="true" tabindex="-1"></a><span class="in"> 'result': 'Misinformation refers to false or inaccurate information that is spread, often unintentionally, leading to misunderstandings or misconceptions. It can be shared through various mediums such as social media, news outlets, or word of mouth. Misinformation can have negative impacts on individuals, communities, and society as a whole by influencing beliefs, decisions, and behaviors based on incorrect information.'}</span></span>
+<span id="cb17-305"><a href="#cb17-305" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-306"><a href="#cb17-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-307"><a href="#cb17-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-310"><a href="#cb17-310" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-311"><a href="#cb17-311" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb17-312"><a href="#cb17-312" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"There have been incidents due to misinformation.?"</span></span>
+<span id="cb17-313"><a href="#cb17-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-314"><a href="#cb17-314" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> qa_stuff.invoke(query)</span>
+<span id="cb17-315"><a href="#cb17-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-316"><a href="#cb17-316" aria-hidden="true" tabindex="-1"></a>response</span>
+<span id="cb17-317"><a href="#cb17-317" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-318"><a href="#cb17-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-319"><a href="#cb17-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-320"><a href="#cb17-320" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-321"><a href="#cb17-321" aria-hidden="true" tabindex="-1"></a><span class="in">&gt; Entering new RetrievalQA chain...</span></span>
+<span id="cb17-322"><a href="#cb17-322" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-323"><a href="#cb17-323" aria-hidden="true" tabindex="-1"></a><span class="in">&gt; Finished chain.</span></span>
+<span id="cb17-324"><a href="#cb17-324" aria-hidden="true" tabindex="-1"></a><span class="in">{'query': 'There have been incidents due to misinformation.?',</span></span>
+<span id="cb17-325"><a href="#cb17-325" aria-hidden="true" tabindex="-1"></a><span class="in"> 'result': "Yes, incidents due to misinformation have been a significant concern in various fields, including science, politics, health, and society in general. Misinformation can lead to confusion, mistrust, and even harm. In the context of generative AI and chatbots, the potential for misinformation to spread rapidly and at scale is a growing concern. Researchers like Jebin West are studying the impact of misinformation and disinformation in the digital world, particularly in the context of new technologies like generative AI. The spread of false information can have serious consequences, affecting democratic discourse, public health, and the credibility of information sources. It's essential to address and combat misinformation to promote an informed society and strengthen democratic discourse."}</span></span>
+<span id="cb17-326"><a href="#cb17-326" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code><button title="클립보드 복사" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p><a href="https://quarto.org/">Quarto</a> 개발</p>
+</div>   
+    <div class="nav-footer-center">
+<p><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></p>
+</div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/bit2r/gpt-ai">Github 코드 저장소</a></p>
+</div>
+  </div>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","loop":false,"descPosition":"bottom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+</body></html>

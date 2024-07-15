@@ -49,6 +49,7 @@ website:
       - section: "챗GPT"
         contents:
           - chat.qmd
+          - AI_app.qmd
       - section: "데이터베이스"
         contents:
           - database.qmd

@@ -1,0 +1,303 @@
+# OpenAI 응용프로그램
+
+[[한국 R 컨퍼런스 - Julia Silge Keynote번역 (2021-11-17)](https://statkclee.github.io/deep-learning/rconf-keynote.html)]{.aside}
+
+2023년 서울 R 미트업에서 "챗GPT와 오정보(ChatGPT and Misinformation)"를 주제로
+워싱턴 대학 제빈 웨스트 교수님을 모시고 특강을 진행했다. 
+한정된 예산으로 직접 모시지는 못하고 줌(Zoom) 녹화로 대신했다.
+
+약 1시간 분량의 녹화분량 중 일부 불필요한 부분은 [오픈샷 비디오 편집기(OpenShot Video Editor)](https://ko.wikipedia.org/wiki/%EC%98%A4%ED%94%88%EC%83%B7)를 가지고 잘라낸다.
+
+결국 유튜브 동영상으로 올려 한글 자막을 입히는 것이 최종 목적이기 때문에 
+`.mp4` 파일에서 이미지 정보 대신 오디오 정보만 `.wav`, `.mp3` 파일로 추출해서 뽑아낸다. 
+
+STT(Speech-to-Text) 영어 음성을 영어 텍스트로 전사(transcribe)해야 하는 작업이 
+필요하기 때문에 다양한 모델이 있지만 성능이 좋다고 인정받는 OpenAI Whisper 를 
+사용한다. 
+
+::: callout-note
+### API와 설치형
+
+[OpenAI Whisper API](https://platform.openai.com/docs/models/whisper)는 OpenAI의 API를 통해 사용할 수 있는 음성-텍스트 변환 모델이며 Whisper의 [오픈 소스 버전은 Github](https://github.com/openai/whisper)에서 사용할 수 있다. 오픈 소스 버전의 Whisper와 OpenAI의 API를 통해 제공되는 버전은 차이가 없지만, OpenAI의 Whisper API를 사용할 경우, 시스템 전반에 걸친 일련의 최적화를 통해 OpenAI는 12월부터 ChatGPT의 비용을 90% 저렴하게 이용할 수 있으며,개발자는 API에서 오픈 소스 Whisper 대형-v2 모델을 사용하여 훨씬 빠르고 비용 효율적인 결과를 얻을 수 있다.
+
+
+영어 음성에서 텍스트로 전환하는 작업을 STT(Speech-to-Text)라고 부르는데 
+최근 성능도 많이 좋아졌고 그중 챗GPT 인기를 얻고 있는 `whisper` API를 사용해서 
+영어 음성을 텍스트로 변환할 수도 있고, C/C++로 OpenAI의 Whisper 모델 이식한 
+[whisper.cpp](https://github.com/ggerganov/whisper.cpp) 모델을 사용하면 CPU로 
+무료로 사용가능하다. [`audio.whisper`](https://github.com/bnosac/audio.whisper) 패키지가 최근에 출시되어 
+이를 사용하면 수월히 R에서도 STT 작업을 수행할 수 있다.
+
+| 모형                   | 언어                        |  크기  | 필요 RAM 크기 |
+|:-----------------------|:---------------------------:|-------:|-----------:|
+| `tiny` & `tiny.en`     | Multilingual & English only | 75 MB  | 390 MB     |
+| `base` & `base.en`     | Multilingual & English only | 142 MB | 500 MB     |
+| `small` & `small.en`   | Multilingual & English only | 466 MB | 1.0 GB     |
+| `medium` & `medium.en` | Multilingual & English only | 1.5 GB | 2.6 GB     |
+| `large-v1` & `large`   | Multilingual                | 2.9 GB | 4.7 GB     |
+
+`whisper()` 입력 오디오는 16비트 `.wav` 파일형식만 가능하다. 
+따라서 R `av` 패키지 `av_audio_convert()` 함수로 원본 파일(`.flac`)을 `.wav` 파일로 변환한 후에 
+STT 작업을 수행한다.
+
+:::
+
+
+```{mermaid}
+%%| label: whisper-process
+graph TB
+    subgraph 전처리
+        direction TB
+        A[유튜브 동영상 다운로드] --> B[MP3로 변환]
+        B --> C[파일 크기 축소]
+    end
+    subgraph 음성인식
+        direction TB
+        C --> D[OpenAI Whisper API]
+        D --> E[스크립트 저장]
+    end
+    subgraph 벡터저장소
+        direction TB
+        E --> F[텍스트 로드]
+        F --> G[벡터 저장소 생성]
+    end
+    subgraph 질의처리
+        direction TB
+        G --> H[검색기 생성]
+        H --> I[RetrievalQA 체인 설정]
+        I --> J[사용자 질의 처리]
+    end
+```
+
+## 환경설정
+
+```{bash}
+#| eval: false
+pip install openai
+pip install unstructured
+pip install langchain-community 
+pip install langchain-core
+pip install langchain-openai
+pip install yt_dlp
+pip install tiktoken
+pip install docarray
+```
+
+
+```{python}
+import os
+import glob
+from openai import OpenAI
+import yt_dlp as youtube_dl
+from yt_dlp import DownloadError
+from dotenv import load_dotenv
+
+load_dotenv()
+openai_api_key = os.getenv("OPENAI_API_KEY")
+```
+
+## 유튜브 동영상 다운로드
+
+::: panel-tabset
+### 챗GPT와 오정보
+
+{{< video https://www.youtube.com/watch?v=3t9nPopr0QA >}}
+
+### 오디오 추출
+
+```{python}
+#| eval: false
+# An example YouTube tutorial video
+youtube_url = "https://www.youtube.com/watch?v=3t9nPopr0QA"
+
+# Directory to store the downloaded video
+output_dir = "data/audio/"
+
+# Config for youtube-dl
+ydl_config = {
+    "format": "bestaudio/best",
+    "postprocessors": [
+        {
+            "key": "FFmpegExtractAudio",
+            "preferredcodec": "mp3",
+            "preferredquality": "192",
+        }
+    ],
+    "outtmpl": os.path.join(output_dir, "%(title)s.%(ext)s"),
+    "verbose": True,
+}
+
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+
+try:
+    with youtube_dl.YoutubeDL(ydl_config) as ydl:
+        ydl.download([youtube_url])
+except DownloadError:
+    with youtube_dl.YoutubeDL(ydl_config) as ydl:
+        ydl.download([youtube_url])        
+```
+
+```{r}
+library(embedr)
+
+embed_audio("data/audio/챗GPT와 오정보(Misinformation).mp3")
+```
+
+:::
+
+```{python}
+#| eval: false
+import os
+from pydub import AudioSegment
+
+
+def reduce_mp3_file_size(
+    input_file, output_file, target_size_mb=24, initial_bitrate=128
+):
+    # Load the audio file
+    audio = AudioSegment.from_mp3(input_file)
+
+    # Get the current file size in MB
+    current_size_mb = os.path.getsize(input_file) / (1024 * 1024)
+
+    if current_size_mb <= target_size_mb:
+        # If the file is already small enough, just copy it
+        audio.export(output_file, format="mp3", bitrate=f"{initial_bitrate}k")
+    else:
+        # Calculate the necessary bitrate
+        duration_seconds = len(audio) / 1000
+        target_bitrate = int((target_size_mb * 8 * 1024) / duration_seconds)
+
+        # Ensure the bitrate is not too low
+        target_bitrate = max(
+            target_bitrate, 32
+        )  # 32 kbps is usually the lowest reasonable bitrate
+
+        # Export with the new bitrate
+        audio.export(output_file, format="mp3", bitrate=f"{target_bitrate}k")
+
+    new_size_mb = os.path.getsize(output_file) / (1024 * 1024)
+    print(f"Original size: {current_size_mb:.2f} MB")
+    print(f"New size: {new_size_mb:.2f} MB")
+    print(f"Reduced file saved as {output_file}")
+
+
+# Usage
+input_file = "data/audio/챗GPT와 오정보(Misinformation).mp3"
+output_file = "data/audio/reduced_audio_file.mp3"
+reduce_mp3_file_size(input_file, output_file)
+```
+
+```{r}
+library(embedr)
+
+embed_audio("data/audio/reduced_audio_file.mp3")
+```
+
+## 오디오 &rarr; 텍스트
+
+`whisper` 모형을 사용해서 오디오 음성에서 텍스트를 추출한다.
+
+```{python}
+#| eval: false
+audio_file = glob.glob(os.path.join(output_dir, "*.mp3"))
+audio_filename = audio_file[0]
+
+print(audio_filename)
+
+audio_file = audio_filename
+output_file = "data/transcript.txt"
+model = "whisper-1"
+
+client = OpenAI()
+
+audio_file = open(audio_file, "rb")
+transcript = client.audio.transcriptions.create(model="whisper-1", file=audio_file)
+
+transcript.text
+
+with open(output_file, "w") as file:
+    file.write(transcript.text)
+```
+
+## 텍스트 적재
+
+OpenAI whisper 모형으로 추출한 텍스트를 랭체인 `TextLoader`로 불러온다.
+
+```{python}
+from langchain_community.document_loaders import TextLoader
+
+loader = TextLoader("./data/transcript.txt")
+
+docs = loader.load()
+
+docs[0]
+```
+
+## 인메모리 벡터스토어
+
+`DocArray`는 다양한 형태의 데이터를 관리할 수 있는 오픈소스 도구로, 랭체인과 연동하여 강력한 AI 애플리케이션을 만들 수 있다. 예를 들어, OpenAI의 Whisper 모델을 사용하여 유튜브 동영상의 오디오를 텍스트로 변환한 경우, `DocArray`를 활용해 이 텍스트 데이터를 효율적으로 저장하고 검색할 수 있다. 또한 `DocArrayRetriever`를 통해 랭체인 애플리케이션에서 문서 데이터를 쉽게 활용할 수 있어, 유튜브 콘텐츠 기반의 질의응답 시스템이나 콘텐츠 추천 엔진 등 다양한 응용 프로그램을 개발할 수 있다.
+
+```{python}
+#| eval: false
+import tiktoken
+from langchain.chains import RetrievalQA
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain.vectorstores import DocArrayInMemorySearch
+
+db = DocArrayInMemorySearch.from_documents(docs, OpenAIEmbeddings())
+
+retriever = db.as_retriever()
+
+llm = ChatOpenAI(temperature=0.0)
+
+qa_stuff = RetrievalQA.from_chain_type(
+    llm=llm, 
+    chain_type="stuff",
+    retriever=retriever,
+    verbose=True
+)
+```
+
+## 질의
+
+실제 질의를 통해 사실관계를 확인해보자.
+
+```{python}
+#| eval: false
+query = "what is misinformation"
+
+response = qa_stuff.invoke(query)
+
+response
+```
+
+
+```
+> Entering new RetrievalQA chain...
+
+> Finished chain.
+{'query': 'what is misinformation',
+ 'result': 'Misinformation refers to false or inaccurate information that is spread, often unintentionally, leading to misunderstandings or misconceptions. It can be shared through various mediums such as social media, news outlets, or word of mouth. Misinformation can have negative impacts on individuals, communities, and society as a whole by influencing beliefs, decisions, and behaviors based on incorrect information.'}
+```
+
+
+```{python}
+#| eval: false
+query = "There have been incidents due to misinformation.?"
+
+response = qa_stuff.invoke(query)
+
+response
+```
+
+
+```
+> Entering new RetrievalQA chain...
+
+> Finished chain.
+{'query': 'There have been incidents due to misinformation.?',
+ 'result': "Yes, incidents due to misinformation have been a significant concern in various fields, including science, politics, health, and society in general. Misinformation can lead to confusion, mistrust, and even harm. In the context of generative AI and chatbots, the potential for misinformation to spread rapidly and at scale is a growing concern. Researchers like Jebin West are studying the impact of misinformation and disinformation in the digital world, particularly in the context of new technologies like generative AI. The spread of false information can have serious consequences, affecting democratic discourse, public health, and the credibility of information sources. It's essential to address and combat misinformation to promote an informed society and strengthen democratic discourse."}
+```
+
