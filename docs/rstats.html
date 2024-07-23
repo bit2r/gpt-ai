@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.45">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>rstats – 챗GPT AI</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./assets/android-chrome-192x192.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script><script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-229551680-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script><link rel="stylesheet" href="assets/quarto.css">
+</head>
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">기본기</a></li><li class="breadcrumb-item"><a href="./rstats.html">R</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="검색" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">챗GPT AI</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="다크 모드 전환"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="검색"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">기본기</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">인공지능</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">데이터 사이언스</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./langchain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">랭체인</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./LLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LLMs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./positron.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">데이터 과학 편집기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./API.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">API</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./API_openai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">OpenAI API</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./API_openai_apps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">OpenAI 응용프로그램</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rstats.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">R</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">자동화</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gh_action.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">깃헙 액션</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./target.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">타겟</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">GCP</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gcs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">버킷</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">챗GPT</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">챗GPT</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AI_app.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">OpenAI 응용프로그램</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">데이터베이스</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./database.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">벡터 데이터베이스</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ollama.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">올라마</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li>
+<a href="#r" id="toc-r" class="nav-link active" data-scroll-target="#r">R</a>
+  <ul class="collapse">
+<li><a href="#r-%EC%9E%91%EC%97%85%ED%9D%90%EB%A6%84" id="toc-r-작업흐름" class="nav-link" data-scroll-target="#r-%EC%9E%91%EC%97%85%ED%9D%90%EB%A6%84">R 작업흐름</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#r-%EC%8B%9C%EC%9E%91%EA%B3%BC%EC%A0%95" id="toc-r-시작과정" class="nav-link" data-scroll-target="#r-%EC%8B%9C%EC%9E%91%EA%B3%BC%EC%A0%95">R 시작과정</a>
+  <ul class="collapse">
+<li><a href="#renviron" id="toc-renviron" class="nav-link" data-scroll-target="#renviron"><code>.Renviron</code></a></li>
+  <li>
+<a href="#rprofile" id="toc-rprofile" class="nav-link" data-scroll-target="#rprofile"><code>.Rprofile</code></a>
+  <ul class="collapse">
+<li><a href="#%EC%9E%AC%ED%98%84%EC%84%B1" id="toc-재현성" class="nav-link" data-scroll-target="#%EC%9E%AC%ED%98%84%EC%84%B1">재현성</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#%EC%8B%A4%EC%8A%B5" id="toc-실습" class="nav-link" data-scroll-target="#%EC%8B%A4%EC%8A%B5">실습</a>
+  <ul class="collapse">
+<li><a href="#renviron-%ED%99%98%EA%B2%BD%EB%B3%80%EC%88%98-%ED%8C%8C%EC%9D%BC-%ED%8E%B8%EC%A7%91" id="toc-renviron-환경변수-파일-편집" class="nav-link" data-scroll-target="#renviron-%ED%99%98%EA%B2%BD%EB%B3%80%EC%88%98-%ED%8C%8C%EC%9D%BC-%ED%8E%B8%EC%A7%91"><code>.Renviron</code> 환경변수 파일 편집</a></li>
+  <li><a href="#rprofile-%ED%99%98%EA%B2%BD%EB%B3%80%EC%88%98-%ED%8C%8C%EC%9D%BC-%ED%8E%B8%EC%A7%91" id="toc-rprofile-환경변수-파일-편집" class="nav-link" data-scroll-target="#rprofile-%ED%99%98%EA%B2%BD%EB%B3%80%EC%88%98-%ED%8C%8C%EC%9D%BC-%ED%8E%B8%EC%A7%91"><code>.Rprofile</code> 환경변수 파일 편집</a></li>
+  </ul>
+</li>
+  <li><a href="#r-%ED%8C%A8%ED%82%A4%EC%A7%80" id="toc-r-패키지" class="nav-link" data-scroll-target="#r-%ED%8C%A8%ED%82%A4%EC%A7%80">R 패키지</a></li>
+  <li>
+<a href="#r_libs_user-%ED%8C%A8%ED%82%A4%EC%A7%80-%EC%A0%80%EC%9E%A5%EC%86%8C" id="toc-r_libs_user-패키지-저장소" class="nav-link" data-scroll-target="#r_libs_user-%ED%8C%A8%ED%82%A4%EC%A7%80-%EC%A0%80%EC%9E%A5%EC%86%8C"><code>R_LIBS_USER</code> 패키지 저장소</a>
+  <ul class="collapse">
+<li><a href="#r-%ED%8C%A8%ED%82%A4%EC%A7%80-%EA%B0%9C%EB%B0%9C%EA%B3%BC-%ED%99%9C%EC%9A%A9" id="toc-r-패키지-개발과-활용" class="nav-link" data-scroll-target="#r-%ED%8C%A8%ED%82%A4%EC%A7%80-%EA%B0%9C%EB%B0%9C%EA%B3%BC-%ED%99%9C%EC%9A%A9">R 패키지 개발과 활용</a></li>
+  <li><a href="#%EB%B0%94%EC%9D%B4%EB%84%88%EB%A6%AC%EC%99%80-%EC%86%8C%EC%8A%A4" id="toc-바이너리와-소스" class="nav-link" data-scroll-target="#%EB%B0%94%EC%9D%B4%EB%84%88%EB%A6%AC%EC%99%80-%EC%86%8C%EC%8A%A4">바이너리와 소스</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#%EC%9E%AC%ED%98%84%EA%B0%80%EB%8A%A5-%ED%99%98%EA%B2%BD" id="toc-재현가능-환경" class="nav-link" data-scroll-target="#%EC%9E%AC%ED%98%84%EA%B0%80%EB%8A%A5-%ED%99%98%EA%B2%BD">재현가능 환경</a>
+  <ul class="collapse">
+<li><a href="#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B3%B5%EC%9C%A0%ED%99%98%EA%B2%BD" id="toc-프로젝트-공유환경" class="nav-link" data-scroll-target="#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B3%B5%EC%9C%A0%ED%99%98%EA%B2%BD">프로젝트 공유환경</a></li>
+  <li><a href="#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B2%A9%EB%A6%AC-%ED%99%98%EA%B2%BD" id="toc-프로젝트-격리-환경" class="nav-link" data-scroll-target="#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B2%A9%EB%A6%AC-%ED%99%98%EA%B2%BD">프로젝트 격리 환경</a></li>
+  </ul>
+</li>
+  </ul>
+</li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><div class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">기본기</a></li><li class="breadcrumb-item"><a href="./rstats.html">R</a></li></ol></nav><div class="quarto-title-tools-only"><h1></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> 코드</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 표시</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 숨기기</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">소스 코드 표시</a></li></ul></div></div><section id="r" class="level1"><h1>R</h1>
+<p>프로젝트 중심 작업흐름(Project-based Workflow)를 채택<span class="citation" data-cites="aja2024personal">(<a href="#ref-aja2024personal" role="doc-biblioref"><strong>aja2024personal?</strong></a>)</span>한다는 것은 프로젝트 설정의 각 계층을 프로그래밍 방식으로 관리할 수 있게 해주는 도구들을 사용한다는 의미로 이러한 계층은 <strong>“프로젝트 양파(Project Onion)”</strong>로 시각화할 수 있다.</p>
+<p>프로젝트 양파는 프로젝트 설정의 여러 계층으로 표현되고, 가장 바깥 층에서 안쪽으로 들어가면서 다음과 같은 구조를 가진다. 이 구조에서 각 바깥 층은 그 안쪽 층의 설치와 관리를 담당한다. 즉, 패키지 관리자가 언어 관리자를 설치하고, 언어 관리자는 특정 언어 버전을 설치하며, 언어 버전은 환경을 설치하고 관리한다.</p>
+<ol type="1">
+<li>패키지 관리자가 가장 바깥 층을 차지한다.</li>
+<li>그 다음 층에는 언어 관리자가 위치한다.</li>
+<li>그 안쪽에는 언어 버전이 자리잡고 있다.</li>
+<li>가장 안쪽 핵심에는 환경이 위치한다.</li>
+</ol>
+<p>이러한 접근 방식을 통해 개발자는 프로젝트의 모든 측면을 체계적으로 관리할 수 있으며, 재현 가능하고 일관된 개발 환경을 유지할 수 있다.</p>
+<div id="fig-project-onion" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-project-onion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/project-oyster-kr.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="R 프로젝트 양파"><img src="images/project-oyster-kr.svg" class="img-fluid figure-img"></a></p>
+<figcaption>R 프로젝트 양파</figcaption></figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/project-oyster-py.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="파이썬 프로젝트 양파"><img src="images/project-oyster-py.svg" class="img-fluid figure-img"></a></p>
+<figcaption>파이썬 프로젝트 양파</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-project-onion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;1: R과 파이썬 프로젝트 양파 사례
+</figcaption></figure>
+</div>
+<section id="r-작업흐름" class="level2"><h2 class="anchored" data-anchor-id="r-작업흐름">R 작업흐름</h2>
+<p><strong>R 작업흐름(workflow)</strong>은 데이터 과학업무를 효율적으로 수행하기 위한 과정이다. R을 시작하고 필요한 패키지를 설치한다. 재현 가능한 환경을 생성하여 일관된 결과를 보장한다. R을 최신 버전으로 설치하고 업그레이드하여 새로운 기능과 개선사항을 활용한다. 이러한 순환적인 과정을 통해 R 사용자는 데이터 불러오기, 전처리, 분석, 시각화, 모형개발, 결과 해석 등의 작업을 체계적으로 수행한다.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="r-workflow">
+<div>
+<p><a href="rstats_files\figure-html\mermaid-figure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="rstats_files\figure-html\mermaid-figure-1.png" style="width:5.03in;height:1.13in"></a></p>
+</div>
+</div>
+</div>
+</div>
+</section></section><section id="r-시작과정" class="level1"><h1>R 시작과정</h1>
+<p>R은 리눅스 서버와 같이 공유 컴퓨팅 자원(shared computing resource)으로 사용되도록 설계되었다. R의 시작 과정은 시스템의 모든 사용자를 지원하는 경우와 개별 사용자 모두에게 맞춤 설정 기회도 제공한다. 하지만 이런 유연성에는 대가가 따른다. 즉, <strong>‘복잡성’(complexity)</strong>이다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/R-startup.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="R 시작과정 도해"><img src="images/R-startup.svg" class="img-fluid figure-img" alt="R 시작과정 도해"></a></p>
+<figcaption>R 시작과정 도해</figcaption></figure>
+</div>
+<p>대부분의 R 사용자는 이런 복잡성의 대부분을 무시하고 두 가지 주요 파일에만 집중하면 된다.</p>
+<ol type="1">
+<li>
+<code>.Renviron</code> - R 세션에서 설정될 환경 변수를 지정한다.</li>
+<li>
+<code>.Rprofile</code> - 각 세션에서 실행될 R 코드를 설정한다.</li>
+</ol>
+<p><a href="https://www.quora.com/What-are-dotfiles">점파일(dotfiles)</a>은 특히 유닉스 명령줄에 뿌리를 두고 있으며 많은 프로그램의 동작을 조정하는 데 사용된다. <code>.Renviron</code>, <code>.Rprofile</code> 파일은 ’점파일(dotfiles)’이라고 불리는 더 넓은 범위의 맞춤 설정 파일 중 R에 특화된 것이다. R 관련 점파일을 찾는 한 방법은 GitHub에서 ’filename:.Rprofile’로 검색하는 것이다.</p>
+<table class="caption-top table">
+<thead><tr class="header">
+<th style="text-align: center;"><code>.Renviron</code></th>
+<th style="text-align: center;"><code>.Rprofile</code></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">API 키 등 인증정보</td>
+<td style="text-align: center;">개발 의존성(<code>usethis</code>, <code>devtools</code> 등)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">환경 정보 (<code>R_LIBS_USER</code>)</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<section id="renviron" class="level2"><h2 class="anchored" data-anchor-id="renviron"><code>.Renviron</code></h2>
+<p><code>.Renviron</code> 파일은 주로 API 키(예: GitHub, OpenAI)와 같은 민감한 정보나 R 관련 환경 변수(예: 히스토리 크기 <code>R_HISTSIZE=100000</code>, 기본 라이브러리 위치 <code>R_LIBS_USER</code>)를 정의하는 데 유용하다. R 코드는 담기지 않는다. <code>.Renviron</code> 파일을 편집하려면 <code><a href="https://usethis.r-lib.org/reference/edit.html">usethis::edit_r_environ()</a></code>을 실행한다.</p>
+<pre><code>R_HISTSIZE=100000
+RETICULATE_PYTHON=.venv/bin/python
+DB_USER=elephant
+DB_PASS=p0stgr3s
+GITHUB_PAT=abc123
+R_LIBS_USER=~/R/%p/%v</code></pre>
+<p><code>usethis::edit_r_environ(scope = ?)</code>을 사용해서 환경설정변수 파일(<code>.Renviron</code>) 위치를 지정할 수 있다.</p>
+<table class="caption-top table">
+<thead><tr class="header">
+<th style="text-align: center;">사용자</th>
+<th style="text-align: center;">프로젝트</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td style="text-align: center;"><code>~/.Renviron</code></td>
+<td style="text-align: center;"><code>path/to/your/project/.Renviron</code></td>
+</tr></tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>R_LIBS_USER=~/R/%p/%v</code>의 의미
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>R_LIBS_USER=~/R/%p/%v</code>는 R에서 사용자 지정 라이브러리의 위치를 설정하는 환경 변수로 다음과 같은 의미를 갖는다.</p>
+<ol type="1">
+<li>
+<code>~</code>: 사용자 홈 디렉토리</li>
+<li>
+<code>/R/</code>: R 관련 파일들을 저장할 디렉토리</li>
+<li>
+<code>%p</code>: R의 플랫폼 이름으로 대체 (예: “x86_64-pc-linux-gnu”).</li>
+<li>
+<code>%v</code>: R의 주요 버전 번호로 대체 (예: “4.1”).</li>
+</ol>
+<p>따라서 리눅스 시스템에서 R 4.3 버전을 사용한다면, 실제 경로는 다음과 같을 수 있다.</p>
+<pre><code>/home/username/R/x86_64-pc-linux-gnu/4.3</code></pre>
+</div>
+</div>
+</section><section id="rprofile" class="level2"><h2 class="anchored" data-anchor-id="rprofile"><code>.Rprofile</code></h2>
+<p><code>.Rprofile</code> 파일은 R 세션 시작 시 실행될 R 코드를 포함되고, 주로 사용자의 홈 디렉토리에 위치하며, <code><a href="https://usethis.r-lib.org/reference/edit.html">usethis::edit_r_profile()</a></code>로 편집할 수 있다. <code>.Rprofile</code> 파일에 공유하는데 문제를 야기할 수 있는 코드는 담지 않는다.</p>
+<blockquote class="blockquote">
+<p><code>.Rprofile</code> GitHub 검색어 → <a href="https://github.com/search?q=.Rprofile" class="uri">https://github.com/search?q=.Rprofile</a></p>
+</blockquote>
+<section id="재현성" class="level3"><h3 class="anchored" data-anchor-id="재현성">재현성</h3>
+<p><code>.Rprofile</code>에는 R 터미널에서 대화식으로 실행하는 것만 포함해야 한다. R 스크립트나 R 마크다운 파일에 나타나는 것은 포함하지 않아야 한다. 대부분의 코드는 <code><a href="https://rdrr.io/r/base/interactive.html">interactive()</a></code> 함수로 감싸서 대화형 세션에서만 실행되도록 해야 한다.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>CRAN <span class="op">=</span> <span class="st">"https://cran.rstudio.org"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">120</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>.Rprofile</code> 설정에서 <code>newline</code> 활성화
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>시작 파일(startup)들은 반드시 새 줄(newline)로 끝나야 한다. 만약 이렇게 하지 않으면, R이 마지막 줄을 아무 경고 없이 무시할 수 있다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/insert-newline-end-highlight.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="newline 활성화"><img src="images/insert-newline-end-highlight.png" class="img-fluid figure-img" alt="newline 활성화"></a></p>
+<figcaption><code>newline</code> 활성화</figcaption></figure>
+</div>
+</div>
+</div>
+</section></section><section id="실습" class="level2"><h2 class="anchored" data-anchor-id="실습">실습</h2>
+<section id="renviron-환경변수-파일-편집" class="level3"><h3 class="anchored" data-anchor-id="renviron-환경변수-파일-편집">
+<code>.Renviron</code> 환경변수 파일 편집</h3>
+<ol type="1">
+<li>R 콘솔에서 <code><a href="https://usethis.r-lib.org/reference/edit.html">usethis::edit_r_environ()</a></code> 실행</li>
+<li>WTF_USER={사용자명}_user 추가</li>
+<li>R 세션 새로 실행: <code>CTRL + SHIFT + F10</code>(윈도우), <code>CMD  + SHIFT + 0</code>(맥)</li>
+<li>
+<code>WTF_USER</code> 환경변수 값 <code>Sys.getenv("WTF_USER")</code> 명령어로 확인</li>
+</ol></section><section id="rprofile-환경변수-파일-편집" class="level3"><h3 class="anchored" data-anchor-id="rprofile-환경변수-파일-편집">
+<code>.Rprofile</code> 환경변수 파일 편집</h3>
+<ol type="1">
+<li>R 콘솔에서 <code><a href="https://usethis.r-lib.org/reference/edit.html">usethis::edit_r_profile()</a></code> 혹은 <code>usethis::edit_r_profile("project")</code> 실행</li>
+<li>print(“Rprofile 코드 추가”)</li>
+<li>R 세션 새로 실행: <code>CTRL + SHIFT + F10</code>(윈도우), <code>CMD  + SHIFT + 0</code>(맥)</li>
+<li>
+<code>WTF_USER</code> 환경변수 값 <code>Sys.getenv("WTF_USER")</code> 명령어로 확인</li>
+</ol></section></section><section id="r-패키지" class="level2"><h2 class="anchored" data-anchor-id="r-패키지">R 패키지</h2>
+<p>R 패키지 설치 방법은 크게 바이너리 설치와 소스 코드 컴파일 설치로 구분된다. 바이너리 설치는 미리 컴파일된 패키지를 사용하는 방식으로, <code>install.packages("패키지이름")</code>으로 간단히 실행할 수 있다. 이 방법은 빠르고 편리하지만, 시스템 특정적이며 최신 버전이 늦게 제공될 수 있다. 반면 소스 코드 컴파일 설치는 <code>install.packages("패키지이름", type = "source")</code>로 실행하며, 사용자 시스템에서 직접 컴파일하여 설치한다. 이 방식은 시간이 더 걸리고 추가 도구가 필요할 수 있지만, 시스템 최적화와 최신 버전 사용이 가능하다다. 일반 사용자에게는 간편한 바이너리 설치가 권장되나, 특수한 요구사항이나 최신 기능이 필요한 경우 소스 코드 설치가 적합할 수 있다.</p>
+<p>운영체제에 맞게 패키지를 구할 수 있는 곳은 <a href="https://cran.r-project.org/">CRAN</a>, <a href="https://packagemanager.posit.co/client/#/">Posit Public Package Manager (p3m)</a>가 대표적이다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 24%">
+<col style="width: 38%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: center;">운영체제</th>
+<th style="text-align: center;">CRAN</th>
+<th style="text-align: center;">Posit Public Package Manager (p3m)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+<i class="fa-brands fa-windows" aria-label="windows"></i> 윈도우즈</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+<i class="fa-brands fa-apple" aria-label="apple"></i> 맥 OS</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+<i class="fa-brands fa-linux" aria-label="linux"></i> 리눅스</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table></section><section id="r_libs_user-패키지-저장소" class="level2"><h2 class="anchored" data-anchor-id="r_libs_user-패키지-저장소">
+<code>R_LIBS_USER</code> 패키지 저장소</h2>
+<p>수만개의 R 패키지 중에서 일부를 로컬 컴퓨터에 설치하여 프로젝트에 활용하여 성과를 내게 된다. CRAN, P3M에서 다운로드하여 패키지가 설치된 <code>R_LIBS_USER</code> 환경정보를 <code>.Renviron</code> 파일에 설정하는 방법은 몇단계를 걸친다.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page"><code>edit_r_environ()</code></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><code>R_LIBS_USER</code></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">세션 재시작</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">수정사항 확인</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>R 콘솔에서 <code><a href="https://usethis.r-lib.org/reference/edit.html">usethis::edit_r_environ()</a></code> 명령어를 실행하여 <code>.Renviron</code> 파일을 연다.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p><code>R_LIBS_USER</code> 환경변수 설정을 한다.</p>
+<p>R_LIBS_USER=C:/Users/&lt;사용자명&gt;/AppData/Local/R/win-library/4.4</p>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p><code>CTRL + SHIFT + F10</code>(윈도우), <code>CMD  + SHIFT + 0</code>(맥) 명령어를 실행하여 세션을 재시작한다.</p>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">Sys.getenv</span>(<span class="st">"R_LIBS_USER"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"C:/Users/&lt;사용자명&gt;/AppData/Local/R/win-library/4.4"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<section id="r-패키지-개발과-활용" class="level3"><h3 class="anchored" data-anchor-id="r-패키지-개발과-활용">R 패키지 개발과 활용</h3>
+<p>R 패키지는 개발과정과 개발된 패키지를 활용하는 두가지 단계로 크게 구분할 수 있다. 소스코드를 번들로 만들고 이를 빌드하여 바이너리 배포용 패키지를 제작하는 과정과 패키지를 설치한 후에 이를 활용하는 두가지 단계로 나눌 수 있다.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="pkg-downstream">
+<div>
+<p><a href="rstats_files\figure-html\mermaid-figure-4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="rstats_files\figure-html\mermaid-figure-4.png" style="width:2.87in;height:5.96in"></a></p>
+</div>
+</div>
+</div>
+</div>
+</section><section id="바이너리와-소스" class="level3"><h3 class="anchored" data-anchor-id="바이너리와-소스">바이너리와 소스</h3>
+<p>패키지를 바이너리(binary)를 기본으로 설치하는 것을 추천하지만 <code>GitHub</code> 저장소에서 R 패키지를 설치할 경우 불가피하게 패키지를 소스(source)에서 설치해야한다.</p>
+<p><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> 함수를 사용할 때 <code>type</code> 파라미터를 “source”로 지정하면 CRAN, P3M 에서 바이너리 대신 소스를 컴파일하여 설치할 수 있다.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"패키지명"</span>, type <span class="op">=</span> <span class="st">"source"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>devtools</code> 패키지를 사용하여 GitHub 등에서 특정 버전의 소스를 직접 설치할 수 있는데 컴파일 시간이 더 오래 걸릴 수 있고, 시스템에 필요한 개발 도구가 설치되어 않으면 패키지를 설치할 수도 없다.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"사용자명/레포지토리명"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>로컬 컴퓨터 환경에 맞춰 C, C++, 포트란(Fortran), 러스트(Rust) 언어로 된 코드를 컴파일할 수 있는 도구를 운영체제에 맞춰 설치를 해야만 소스코드 형태 R 패키지를 설치할 수 있다.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">윈도우즈 <i class="fa-brands fa-windows" aria-label="windows"></i></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">맥OS <i class="fa-brands fa-apple" aria-label="apple"></i></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">리눅스 <i class="fa-brands fa-linux" aria-label="linux"></i></a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p><a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a></p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p><a href="https://apps.apple.com/us/app/xcode/id497799835?mt=12">XCode</a></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xcode-select</span> <span class="at">--install</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<p>install tools via package manager, e.g.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> install make</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<p>운영체제에 맞춰 도구를 설치하면 <code><a href="https://pkgbuild.r-lib.org/reference/has_compiler.html">devtools::has_devel()</a></code> 명령어로 설치여부를 점검할 수 있다.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>코드</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://pkgbuild.r-lib.org/reference/has_compiler.html">has_devel</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stderr">
+<pre><code>Your system is ready to build packages!</code></pre>
+</div>
+</div>
+</section></section><section id="재현가능-환경" class="level2"><h2 class="anchored" data-anchor-id="재현가능-환경">재현가능 환경</h2>
+<p>데이터 과학 작업의 환경을 재현하는 전략을 크게 재현성 환경관리 책임자와 패키지 접근 개방이라는 두 가지 축을 기반으로 ‘스냅샷 및 복원(Snapshot)’, ‘공유 기준선(Shared Baseline)’, ‘검증(Validated)’이라는 세 가지 성공적인 전략을 제시하는 동시에 ’무법 지대’, ‘티켓 시스템’, ’차단’이라는 세 가지 위험 구역도 언급하고 있다. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/reproducibility-strategies-and-danger-zones.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="재현성 환경 전략지도"><img src="images/reproducibility-strategies-and-danger-zones.png" class="img-fluid figure-img" alt="재현성 환경 전략지도"></a></p>
+<figcaption>재현성 환경 전략지도</figcaption></figure>
+</div>
+<p><strong>스냅샷 전략</strong>은 데이터 과학 작업의 재현성을 보장하는 효과적인 방법으로 널리 인정받고 있다. 주요 장점으로 특정 시점의 환경을 정확히 캡처하고 나중에 그대로 복원할 수 있다는 점으로, 프로젝트의 모든 종속성, 패키지 버전, 설정을 포함한 전체 작업 환경을 보존함으로써 연구 결과의 정확한 재현을 가능하게 한다.</p>
+<p>스냅샷 전략은 동시에 유연성도 제공한다. 데이터 과학자들은 필요에 따라 자유롭게 패키지를 설치하고 업데이트할 수 있으며, 동시에 각 프로젝트의 고유한 환경을 유지할 수 있다. 이를 통해 혁신과 실험을 장려하면서도 프로젝트의 안정성을 보장하는 균형 잡힌 접근 방식으로 팀 협업 시에도 모든 구성원이 동일한 환경에서 작업할 수 있게 하여 “내 컴퓨터에서는 작동합니다”와 같은 문제를 해결하는데 기여할 수 있다.</p>
+<p>그러나 스냅샷 전략에도 몇 가지 단점도 존재한다. 첫째, 스냅샷 관리에 추가적인 시간과 리소스가 필요하다. 특히 큰 조직이나 많은 프로젝트를 다루는 경우, 여러 스냅샷을 관리하고 추적하는 것이 복잡해질 수 있다. 둘째, 스냅샷은 시간이 지남에 따라 용량을 많이 차지할 수 있으며, 이는 저장 공간 문제로 이어질 수 있다. 마지막으로, 보안 업데이트나 중요한 버그 수정이 있을 때 모든 관련 스냅샷을 업데이트해야 하는 번거로움이 있을 수 있다.</p>
+<section id="프로젝트-공유환경" class="level3"><h3 class="anchored" data-anchor-id="프로젝트-공유환경">프로젝트 공유환경</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"></figure><p></p>
+<div>
+<p><a href="rstats_files\figure-html\mermaid-figure-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="rstats_files\figure-html\mermaid-figure-3.png" style="width:3.94in;height:1.42in"></a></p>
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p>:::</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>코드</summary><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">.libPaths</span>()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"C:/Users/statkclee/AppData/Local/R/win-library/4.4"</span>  <span class="co"># 사용자</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>] <span class="st">"C:/Program Files/R/R-4.4.1/library"</span>                  <span class="co"># 시스템</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="프로젝트-격리-환경" class="level3"><h3 class="anchored" data-anchor-id="프로젝트-격리-환경">프로젝트 격리 환경</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"></figure><p></p>
+<div>
+<p><a href="rstats_files\figure-html\mermaid-figure-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="rstats_files\figure-html\mermaid-figure-2.png" style="width:3.94in;height:2.31in"></a></p>
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold"><summary>코드</summary><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> Project <span class="st">'~/sample-project'</span> loaded. [renv <span class="dv">1</span>.<span class="fl">0.7</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">.libPaths</span>()</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"C:/Users/statkclee/Documents/sample-project/renv/library/windows/R-4.4/x86_64-w64-mingw32"</span>        </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>] <span class="st">"C:/Users/statkclee/AppData/Local/R/cache/R/renv/sandbox/windows/R-4.4/x86_64-w64-mingw32/88765555"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+
+
+<!-- -->
+
+</section></section></section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">각주</h2>
+<ol>
+<li id="fn1"><p><a href="https://solutions.posit.co/envs-pkgs/environments/reproduce/">Strategy Maps - Strategies to Reproduce Environments Over Time</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "복사완료!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "복사완료!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb13" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># R</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>프로젝트 중심 작업흐름(Project-based Workflow)를 채택<span class="co">[</span><span class="ot">@aja2024personal</span><span class="co">]</span>한다는 것은 프로젝트 설정의 각 계층을 프로그래밍 방식으로 관리할 수 있게 해주는 도구들을 사용한다는 의미로 이러한 계층은 **"프로젝트 양파(Project Onion)"**로 시각화할 수 있다.</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>프로젝트 양파는 프로젝트 설정의 여러 계층으로 표현되고, 가장 바깥 층에서 안쪽으로 들어가면서 다음과 같은 구조를 가진다. 이 구조에서 각 바깥 층은 그 안쪽 층의 설치와 관리를 담당한다. 즉, 패키지 관리자가 언어 관리자를 설치하고, 언어 관리자는 특정 언어 버전을 설치하며, 언어 버전은 환경을 설치하고 관리한다.</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>패키지 관리자가 가장 바깥 층을 차지한다.</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>그 다음 층에는 언어 관리자가 위치한다.</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>그 안쪽에는 언어 버전이 자리잡고 있다.</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>가장 안쪽 핵심에는 환경이 위치한다.</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>이러한 접근 방식을 통해 개발자는 프로젝트의 모든 측면을 체계적으로 관리할 수 있으며, 재현 가능하고 일관된 개발 환경을 유지할 수 있다.</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>::: {#fig-project-onion layout-ncol="2"}</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="al">![R 프로젝트 양파](images/project-oyster-kr.svg)</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="al">![파이썬 프로젝트 양파](images/project-oyster-py.svg)</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>R과 파이썬 프로젝트 양파 사례</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## R 작업흐름</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>**R 작업흐름(workflow)**은 데이터 과학업무를 효율적으로 수행하기 위한 과정이다. R을 시작하고 필요한 패키지를 설치한다. 재현 가능한 환경을 생성하여 일관된 결과를 보장한다. R을 최신 버전으로 설치하고 업그레이드하여 새로운 기능과 개선사항을 활용한다. 이러한 순환적인 과정을 통해 R 사용자는 데이터 불러오기, 전처리, 분석, 시각화, 모형개발, 결과 해석 등의 작업을 체계적으로 수행한다.</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="in">%%| label: r-workflow</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="in">flowchart LR</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="in">start(R 시작)</span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="in">packages(R 패키지&lt;br&gt;설치)</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="in">repro(재현가능&lt;br&gt;환경 생성)</span></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="in">installing("R 설치 및&lt;br&gt;업그레이드")</span></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="in">start --&gt; packages --&gt; repro --&gt; installing --&gt; start</span></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a><span class="fu"># R 시작과정</span></span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>R은 리눅스 서버와 같이 공유 컴퓨팅 자원(shared computing resource)으로 사용되도록 설계되었다. R의 시작 과정은 시스템의 모든 사용자를 지원하는 경우와 개별 사용자 모두에게 맞춤 설정 기회도 제공한다. 하지만 이런 유연성에는 대가가 따른다. 즉, **'복잡성'(complexity)**이다.</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="al">![R 시작과정 도해](images/R-startup.svg)</span></span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>대부분의 R 사용자는 이런 복잡성의 대부분을 무시하고 두 가지 주요 파일에만 집중하면 된다.</span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span><span class="in">`.Renviron`</span> - R 세션에서 설정될 환경 변수를 지정한다.</span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span><span class="in">`.Rprofile`</span> - 각 세션에서 실행될 R 코드를 설정한다.</span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">점파일(dotfiles)</span><span class="co">](https://www.quora.com/What-are-dotfiles)</span>은 특히 유닉스 명령줄에 뿌리를 두고 있으며 많은 프로그램의 동작을 조정하는 데 사용된다. <span class="in">`.Renviron`</span>, <span class="in">`.Rprofile`</span> 파일은 '점파일(dotfiles)'이라고 불리는 더 넓은 범위의 맞춤 설정 파일 중 R에 특화된 것이다. R 관련 점파일을 찾는 한 방법은 GitHub에서 'filename:.Rprofile'로 검색하는 것이다.</span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>|        <span class="in">`.Renviron`</span>        |              <span class="in">`.Rprofile`</span>              |</span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>|:-------------------------:|:-------------------------------------:|</span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>|    API 키 등 인증정보     | 개발 의존성(<span class="in">`usethis`</span>, <span class="in">`devtools`</span> 등) |</span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>| 환경 정보 (<span class="in">`R_LIBS_USER`</span>) |                                       |</span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a><span class="fu">## `.Renviron`</span></span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a><span class="in">`.Renviron`</span> 파일은 주로 API 키(예: GitHub, OpenAI)와 같은 민감한 정보나 R 관련 환경 변수(예: 히스토리 크기 <span class="in">`R_HISTSIZE=100000`</span>, 기본 라이브러리 위치 <span class="in">`R_LIBS_USER`</span>)를 정의하는 데 유용하다. R 코드는 담기지 않는다. <span class="in">`.Renviron`</span> 파일을 편집하려면 <span class="in">`usethis::edit_r_environ()`</span>을 실행한다.</span>
+<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a><span class="in">R_HISTSIZE=100000</span></span>
+<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a><span class="in">RETICULATE_PYTHON=.venv/bin/python</span></span>
+<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a><span class="in">DB_USER=elephant</span></span>
+<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a><span class="in">DB_PASS=p0stgr3s</span></span>
+<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a><span class="in">GITHUB_PAT=abc123</span></span>
+<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a><span class="in">R_LIBS_USER=~/R/%p/%v</span></span>
+<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a><span class="in">`usethis::edit_r_environ(scope = ?)`</span>을 사용해서 환경설정변수 파일(<span class="in">`.Renviron`</span>) 위치를 지정할 수 있다.</span>
+<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a>|    사용자     |             프로젝트             |</span>
+<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a>|:-------------:|:--------------------------------:|</span>
+<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a>| <span class="in">`~/.Renviron`</span> | <span class="in">`path/to/your/project/.Renviron`</span> |</span>
+<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb13-78"><a href="#cb13-78" aria-hidden="true" tabindex="-1"></a><span class="fu">### `R_LIBS_USER=~/R/%p/%v`의 의미</span></span>
+<span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-80"><a href="#cb13-80" aria-hidden="true" tabindex="-1"></a><span class="in">`R_LIBS_USER=~/R/%p/%v`</span>는 R에서 사용자 지정 라이브러리의 위치를 설정하는 환경 변수로 다음과 같은 의미를 갖는다.</span>
+<span id="cb13-81"><a href="#cb13-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-82"><a href="#cb13-82" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span><span class="in">`~`</span>: 사용자 홈 디렉토리</span>
+<span id="cb13-83"><a href="#cb13-83" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span><span class="in">`/R/`</span>: R 관련 파일들을 저장할 디렉토리</span>
+<span id="cb13-84"><a href="#cb13-84" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span><span class="in">`%p`</span>: R의 플랫폼 이름으로 대체 (예: "x86_64-pc-linux-gnu").</span>
+<span id="cb13-85"><a href="#cb13-85" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span><span class="in">`%v`</span>: R의 주요 버전 번호로 대체 (예: "4.1").</span>
+<span id="cb13-86"><a href="#cb13-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-87"><a href="#cb13-87" aria-hidden="true" tabindex="-1"></a>따라서 리눅스 시스템에서 R 4.3 버전을 사용한다면, 실제 경로는 다음과 같을 수 있다.</span>
+<span id="cb13-88"><a href="#cb13-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-89"><a href="#cb13-89" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb13-90"><a href="#cb13-90" aria-hidden="true" tabindex="-1"></a><span class="in">/home/username/R/x86_64-pc-linux-gnu/4.3</span></span>
+<span id="cb13-91"><a href="#cb13-91" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-92"><a href="#cb13-92" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-93"><a href="#cb13-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-94"><a href="#cb13-94" aria-hidden="true" tabindex="-1"></a><span class="fu">## `.Rprofile`</span></span>
+<span id="cb13-95"><a href="#cb13-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-96"><a href="#cb13-96" aria-hidden="true" tabindex="-1"></a><span class="in">`.Rprofile`</span> 파일은 R 세션 시작 시 실행될 R 코드를 포함되고, 주로 사용자의 홈 디렉토리에 위치하며, <span class="in">`usethis::edit_r_profile()`</span>로 편집할 수 있다. <span class="in">`.Rprofile`</span> 파일에 공유하는데 문제를 야기할 수 있는 코드는 담지 않는다.</span>
+<span id="cb13-97"><a href="#cb13-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-98"><a href="#cb13-98" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; </span><span class="in">`.Rprofile`</span><span class="at"> GitHub 검색어 → </span><span class="ot">&lt;https://github.com/search?q=.Rprofile&gt;</span></span>
+<span id="cb13-99"><a href="#cb13-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-100"><a href="#cb13-100" aria-hidden="true" tabindex="-1"></a><span class="fu">### 재현성</span></span>
+<span id="cb13-101"><a href="#cb13-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-102"><a href="#cb13-102" aria-hidden="true" tabindex="-1"></a><span class="in">`.Rprofile`</span>에는 R 터미널에서 대화식으로 실행하는 것만 포함해야 한다. R 스크립트나 R 마크다운 파일에 나타나는 것은 포함하지 않아야 한다. 대부분의 코드는 <span class="in">`interactive()`</span> 함수로 감싸서 대화형 세션에서만 실행되도록 해야 한다.</span>
+<span id="cb13-103"><a href="#cb13-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-104"><a href="#cb13-104" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb13-105"><a href="#cb13-105" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repos =</span> <span class="fu">c</span>(<span class="at">CRAN =</span> <span class="st">"https://cran.rstudio.org"</span>))</span>
+<span id="cb13-106"><a href="#cb13-106" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) {</span>
+<span id="cb13-107"><a href="#cb13-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">options</span>(<span class="at">width =</span> <span class="dv">120</span>)</span>
+<span id="cb13-108"><a href="#cb13-108" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-109"><a href="#cb13-109" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-110"><a href="#cb13-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-111"><a href="#cb13-111" aria-hidden="true" tabindex="-1"></a>::: callout-warning</span>
+<span id="cb13-112"><a href="#cb13-112" aria-hidden="true" tabindex="-1"></a><span class="fu">### `.Rprofile` 설정에서 `newline` 활성화</span></span>
+<span id="cb13-113"><a href="#cb13-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-114"><a href="#cb13-114" aria-hidden="true" tabindex="-1"></a>시작 파일(startup)들은 반드시 새 줄(newline)로 끝나야 한다. 만약 이렇게 하지 않으면, R이 마지막 줄을 아무 경고 없이 무시할 수 있다.</span>
+<span id="cb13-115"><a href="#cb13-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-116"><a href="#cb13-116" aria-hidden="true" tabindex="-1"></a><span class="al">![`newline` 활성화](images/insert-newline-end-highlight.png)</span></span>
+<span id="cb13-117"><a href="#cb13-117" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-118"><a href="#cb13-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-119"><a href="#cb13-119" aria-hidden="true" tabindex="-1"></a><span class="fu">## 실습</span></span>
+<span id="cb13-120"><a href="#cb13-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-121"><a href="#cb13-121" aria-hidden="true" tabindex="-1"></a><span class="fu">### `.Renviron` 환경변수 파일 편집</span></span>
+<span id="cb13-122"><a href="#cb13-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-123"><a href="#cb13-123" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>R 콘솔에서 <span class="in">`usethis::edit_r_environ()`</span> 실행</span>
+<span id="cb13-124"><a href="#cb13-124" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>WTF_USER={사용자명}<span class="sc">\_</span>user 추가</span>
+<span id="cb13-125"><a href="#cb13-125" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>R 세션 새로 실행: <span class="in">`CTRL + SHIFT + F10`</span>(윈도우), <span class="in">`CMD  + SHIFT + 0`</span>(맥)</span>
+<span id="cb13-126"><a href="#cb13-126" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span><span class="in">`WTF_USER`</span> 환경변수 값 <span class="in">`Sys.getenv("WTF_USER")`</span> 명령어로 확인</span>
+<span id="cb13-127"><a href="#cb13-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-128"><a href="#cb13-128" aria-hidden="true" tabindex="-1"></a><span class="fu">### `.Rprofile` 환경변수 파일 편집</span></span>
+<span id="cb13-129"><a href="#cb13-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-130"><a href="#cb13-130" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>R 콘솔에서 <span class="in">`usethis::edit_r_profile()`</span> 혹은 <span class="in">`usethis::edit_r_profile("project")`</span> 실행</span>
+<span id="cb13-131"><a href="#cb13-131" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>print("Rprofile 코드 추가")</span>
+<span id="cb13-132"><a href="#cb13-132" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>R 세션 새로 실행: <span class="in">`CTRL + SHIFT + F10`</span>(윈도우), <span class="in">`CMD  + SHIFT + 0`</span>(맥)</span>
+<span id="cb13-133"><a href="#cb13-133" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span><span class="in">`WTF_USER`</span> 환경변수 값 <span class="in">`Sys.getenv("WTF_USER")`</span> 명령어로 확인</span>
+<span id="cb13-134"><a href="#cb13-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-135"><a href="#cb13-135" aria-hidden="true" tabindex="-1"></a><span class="fu">## R 패키지</span></span>
+<span id="cb13-136"><a href="#cb13-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-137"><a href="#cb13-137" aria-hidden="true" tabindex="-1"></a>R 패키지 설치 방법은 크게 바이너리 설치와 소스 코드 컴파일 설치로 구분된다. 바이너리 설치는 미리 컴파일된 패키지를 사용하는 방식으로, <span class="in">`install.packages("패키지이름")`</span>으로 간단히 실행할 수 있다. 이 방법은 빠르고 편리하지만, 시스템 특정적이며 최신 버전이 늦게 제공될 수 있다. 반면 소스 코드 컴파일 설치는 <span class="in">`install.packages("패키지이름", type = "source")`</span>로 실행하며, 사용자 시스템에서 직접 컴파일하여 설치한다. 이 방식은 시간이 더 걸리고 추가 도구가 필요할 수 있지만, 시스템 최적화와 최신 버전 사용이 가능하다다. 일반 사용자에게는 간편한 바이너리 설치가 권장되나, 특수한 요구사항이나 최신 기능이 필요한 경우 소스 코드 설치가 적합할 수 있다.</span>
+<span id="cb13-138"><a href="#cb13-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-139"><a href="#cb13-139" aria-hidden="true" tabindex="-1"></a>운영체제에 맞게 패키지를 구할 수 있는 곳은 <span class="co">[</span><span class="ot">CRAN</span><span class="co">](https://cran.r-project.org/)</span>, <span class="co">[</span><span class="ot">Posit Public Package Manager (p3m)</span><span class="co">](https://packagemanager.posit.co/client/#/)</span>가 대표적이다.</span>
+<span id="cb13-140"><a href="#cb13-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-141"><a href="#cb13-141" aria-hidden="true" tabindex="-1"></a>|      운영체제             | CRAN | Posit Public Package Manager (p3m) |</span>
+<span id="cb13-142"><a href="#cb13-142" aria-hidden="true" tabindex="-1"></a>|:-------------------------:|:----------------:|:--------------------------:|</span>
+<span id="cb13-143"><a href="#cb13-143" aria-hidden="true" tabindex="-1"></a>| {{&lt; fa brands windows &gt;}}  윈도우즈 |  <span class="dv">&amp;#x2705;</span>  |               <span class="dv">&amp;#x2705;</span>              |</span>
+<span id="cb13-144"><a href="#cb13-144" aria-hidden="true" tabindex="-1"></a>|   {{&lt; fa brands apple &gt;}}  맥 OS    |  <span class="dv">&amp;#x2705;</span>  |               <span class="dv">&amp;#x2705;</span>              |</span>
+<span id="cb13-145"><a href="#cb13-145" aria-hidden="true" tabindex="-1"></a>|   {{&lt; fa brands linux &gt;}}  리눅스   |  <span class="dv">&amp;#x274C;</span>  |               <span class="dv">&amp;#x2705;</span>              |</span>
+<span id="cb13-146"><a href="#cb13-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-147"><a href="#cb13-147" aria-hidden="true" tabindex="-1"></a><span class="fu">## `R_LIBS_USER` 패키지 저장소</span></span>
+<span id="cb13-148"><a href="#cb13-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-149"><a href="#cb13-149" aria-hidden="true" tabindex="-1"></a>수만개의 R 패키지 중에서 일부를 로컬 컴퓨터에 설치하여 프로젝트에 활용하여 성과를 내게 된다.</span>
+<span id="cb13-150"><a href="#cb13-150" aria-hidden="true" tabindex="-1"></a>CRAN, P3M에서 다운로드하여 패키지가 설치된 <span class="in">`R_LIBS_USER`</span> 환경정보를 <span class="in">`.Renviron`</span> 파일에 설정하는 방법은 몇단계를 걸친다.</span>
+<span id="cb13-151"><a href="#cb13-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-152"><a href="#cb13-152" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb13-153"><a href="#cb13-153" aria-hidden="true" tabindex="-1"></a><span class="fu">### `edit_r_environ()`</span></span>
+<span id="cb13-154"><a href="#cb13-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-155"><a href="#cb13-155" aria-hidden="true" tabindex="-1"></a>R 콘솔에서 <span class="in">`usethis::edit_r_environ()`</span> 명령어를 실행하여 <span class="in">`.Renviron`</span> 파일을 연다.</span>
+<span id="cb13-156"><a href="#cb13-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-157"><a href="#cb13-157" aria-hidden="true" tabindex="-1"></a><span class="fu">### `R_LIBS_USER` </span></span>
+<span id="cb13-158"><a href="#cb13-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-159"><a href="#cb13-159" aria-hidden="true" tabindex="-1"></a><span class="in">`R_LIBS_USER`</span> 환경변수 설정을 한다.</span>
+<span id="cb13-160"><a href="#cb13-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-161"><a href="#cb13-161" aria-hidden="true" tabindex="-1"></a>R_LIBS_USER=C:/Users/&lt;사용자명&gt;/AppData/Local/R/win-library/4.4</span>
+<span id="cb13-162"><a href="#cb13-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-163"><a href="#cb13-163" aria-hidden="true" tabindex="-1"></a><span class="fu">### 세션 재시작</span></span>
+<span id="cb13-164"><a href="#cb13-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-165"><a href="#cb13-165" aria-hidden="true" tabindex="-1"></a><span class="in">`CTRL + SHIFT + F10`</span>(윈도우), <span class="in">`CMD  + SHIFT + 0`</span>(맥) 명령어를 실행하여 세션을 재시작한다.</span>
+<span id="cb13-166"><a href="#cb13-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-167"><a href="#cb13-167" aria-hidden="true" tabindex="-1"></a><span class="fu">### 수정사항 확인</span></span>
+<span id="cb13-168"><a href="#cb13-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-169"><a href="#cb13-169" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb13-170"><a href="#cb13-170" aria-hidden="true" tabindex="-1"></a> <span class="fu">Sys.getenv</span>(<span class="st">"R_LIBS_USER"</span>)</span>
+<span id="cb13-171"><a href="#cb13-171" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"C:/Users/&lt;사용자명&gt;/AppData/Local/R/win-library/4.4"</span></span>
+<span id="cb13-172"><a href="#cb13-172" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-173"><a href="#cb13-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-174"><a href="#cb13-174" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-175"><a href="#cb13-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-176"><a href="#cb13-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-177"><a href="#cb13-177" aria-hidden="true" tabindex="-1"></a><span class="fu">### R 패키지 개발과 활용</span></span>
+<span id="cb13-178"><a href="#cb13-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-179"><a href="#cb13-179" aria-hidden="true" tabindex="-1"></a>R 패키지는 개발과정과 개발된 패키지를 활용하는 두가지 단계로 크게 구분할 수 있다. 소스코드를 번들로 만들고 이를 빌드하여 바이너리 배포용 패키지를 제작하는 과정과 패키지를 설치한 후에 이를 활용하는 두가지 단계로 나눌 수 있다.</span>
+<span id="cb13-180"><a href="#cb13-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-183"><a href="#cb13-183" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb13-184"><a href="#cb13-184" aria-hidden="true" tabindex="-1"></a><span class="in">%%| label: pkg-downstream</span></span>
+<span id="cb13-185"><a href="#cb13-185" aria-hidden="true" tabindex="-1"></a><span class="in">%%| fig-align: center</span></span>
+<span id="cb13-186"><a href="#cb13-186" aria-hidden="true" tabindex="-1"></a><span class="in">flowchart TD</span></span>
+<span id="cb13-187"><a href="#cb13-187" aria-hidden="true" tabindex="-1"></a><span class="in">subgraph dev["개발"]</span></span>
+<span id="cb13-188"><a href="#cb13-188" aria-hidden="true" tabindex="-1"></a><span class="in">  direction LR</span></span>
+<span id="cb13-189"><a href="#cb13-189" aria-hidden="true" tabindex="-1"></a><span class="in">소스 -- "devtools::build()" --&gt; 번들</span></span>
+<span id="cb13-190"><a href="#cb13-190" aria-hidden="true" tabindex="-1"></a><span class="in">번들 -- "devtools::build(binary = TRUE)"--&gt; 바이너리 </span></span>
+<span id="cb13-191"><a href="#cb13-191" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb13-192"><a href="#cb13-192" aria-hidden="true" tabindex="-1"></a><span class="in">subgraph use["설치 활용"]</span></span>
+<span id="cb13-193"><a href="#cb13-193" aria-hidden="true" tabindex="-1"></a><span class="in">direction LR</span></span>
+<span id="cb13-194"><a href="#cb13-194" aria-hidden="true" tabindex="-1"></a><span class="in">바이너리 --"install.packages()"--&gt; 설치됨 </span></span>
+<span id="cb13-195"><a href="#cb13-195" aria-hidden="true" tabindex="-1"></a><span class="in">설치됨 --"library()"--&gt; 로드됨 </span></span>
+<span id="cb13-196"><a href="#cb13-196" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb13-197"><a href="#cb13-197" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-198"><a href="#cb13-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-199"><a href="#cb13-199" aria-hidden="true" tabindex="-1"></a><span class="fu">### 바이너리와 소스</span></span>
+<span id="cb13-200"><a href="#cb13-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-201"><a href="#cb13-201" aria-hidden="true" tabindex="-1"></a>패키지를 바이너리(binary)를 기본으로 설치하는 것을 추천하지만 <span class="in">`GitHub`</span> 저장소에서</span>
+<span id="cb13-202"><a href="#cb13-202" aria-hidden="true" tabindex="-1"></a>R 패키지를 설치할 경우 불가피하게 패키지를 소스(source)에서 설치해야한다.</span>
+<span id="cb13-203"><a href="#cb13-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-204"><a href="#cb13-204" aria-hidden="true" tabindex="-1"></a><span class="in">`install.packages()`</span> 함수를 사용할 때 <span class="in">`type`</span> 파라미터를 "source"로 지정하면</span>
+<span id="cb13-205"><a href="#cb13-205" aria-hidden="true" tabindex="-1"></a>CRAN, P3M 에서 바이너리 대신 소스를 컴파일하여 설치할 수 있다.</span>
+<span id="cb13-206"><a href="#cb13-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-207"><a href="#cb13-207" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb13-208"><a href="#cb13-208" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"패키지명"</span>, <span class="at">type =</span> <span class="st">"source"</span>)</span>
+<span id="cb13-209"><a href="#cb13-209" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-210"><a href="#cb13-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-211"><a href="#cb13-211" aria-hidden="true" tabindex="-1"></a><span class="in">`devtools`</span> 패키지를 사용하여 GitHub 등에서 특정 버전의 소스를 직접 설치할 수 있는데 </span>
+<span id="cb13-212"><a href="#cb13-212" aria-hidden="true" tabindex="-1"></a>컴파일 시간이 더 오래 걸릴 수 있고, 시스템에 필요한 개발 도구가 설치되어 않으면 패키지를 설치할 수도 없다.</span>
+<span id="cb13-213"><a href="#cb13-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-214"><a href="#cb13-214" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb13-215"><a href="#cb13-215" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"사용자명/레포지토리명"</span>)</span>
+<span id="cb13-216"><a href="#cb13-216" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-217"><a href="#cb13-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-218"><a href="#cb13-218" aria-hidden="true" tabindex="-1"></a>로컬 컴퓨터 환경에 맞춰 C, C++, 포트란(Fortran), 러스트(Rust) 언어로 된 코드를 컴파일할 수 있는 도구를 운영체제에 맞춰 설치를 해야만 소스코드 형태 R 패키지를 설치할 수 있다.</span>
+<span id="cb13-219"><a href="#cb13-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-220"><a href="#cb13-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-221"><a href="#cb13-221" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb13-222"><a href="#cb13-222" aria-hidden="true" tabindex="-1"></a><span class="fu">### 윈도우즈 {{&lt; fa brands windows &gt;}}</span></span>
+<span id="cb13-223"><a href="#cb13-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-224"><a href="#cb13-224" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Rtools</span><span class="co">](https://cran.r-project.org/bin/windows/Rtools/)</span></span>
+<span id="cb13-225"><a href="#cb13-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-226"><a href="#cb13-226" aria-hidden="true" tabindex="-1"></a><span class="fu">### 맥OS {{&lt; fa brands apple &gt;}}</span></span>
+<span id="cb13-227"><a href="#cb13-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-228"><a href="#cb13-228" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">XCode</span><span class="co">](https://apps.apple.com/us/app/xcode/id497799835?mt=12)</span></span>
+<span id="cb13-229"><a href="#cb13-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-230"><a href="#cb13-230" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb13-231"><a href="#cb13-231" aria-hidden="true" tabindex="-1"></a><span class="ex">xcode-select</span> <span class="at">--install</span></span>
+<span id="cb13-232"><a href="#cb13-232" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-233"><a href="#cb13-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-234"><a href="#cb13-234" aria-hidden="true" tabindex="-1"></a><span class="fu">### 리눅스 {{&lt; fa brands linux &gt;}}</span></span>
+<span id="cb13-235"><a href="#cb13-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-236"><a href="#cb13-236" aria-hidden="true" tabindex="-1"></a>install tools via package manager, e.g.</span>
+<span id="cb13-237"><a href="#cb13-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-238"><a href="#cb13-238" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb13-239"><a href="#cb13-239" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> install make</span>
+<span id="cb13-240"><a href="#cb13-240" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-241"><a href="#cb13-241" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-242"><a href="#cb13-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-243"><a href="#cb13-243" aria-hidden="true" tabindex="-1"></a>운영체제에 맞춰 도구를 설치하면 <span class="in">`devtools::has_devel()`</span> 명령어로 설치여부를 점검할 수 있다.</span>
+<span id="cb13-244"><a href="#cb13-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-247"><a href="#cb13-247" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-248"><a href="#cb13-248" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">has_devel</span>()</span>
+<span id="cb13-249"><a href="#cb13-249" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-250"><a href="#cb13-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-251"><a href="#cb13-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-252"><a href="#cb13-252" aria-hidden="true" tabindex="-1"></a><span class="fu">## 재현가능 환경</span></span>
+<span id="cb13-253"><a href="#cb13-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-254"><a href="#cb13-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-255"><a href="#cb13-255" aria-hidden="true" tabindex="-1"></a>데이터 과학 작업의 환경을 재현하는 전략을 크게 재현성 환경관리 책임자와 패키지 접근 개방이라는 두 가지 축을 기반으로 '스냅샷 및 복원(Snapshot)', '공유 기준선(Shared Baseline)', '검증(Validated)'이라는 세 가지 성공적인 전략을 제시하는 동시에 '무법 지대', '티켓 시스템', '차단'이라는 세 가지 위험 구역도 언급하고 있다. <span class="ot">[^strategy-map]</span></span>
+<span id="cb13-256"><a href="#cb13-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-257"><a href="#cb13-257" aria-hidden="true" tabindex="-1"></a><span class="ot">[^strategy-map]: </span><span class="co">[</span><span class="ot">Strategy Maps - Strategies to Reproduce Environments Over Time</span><span class="co">](https://solutions.posit.co/envs-pkgs/environments/reproduce/)</span> </span>
+<span id="cb13-258"><a href="#cb13-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-259"><a href="#cb13-259" aria-hidden="true" tabindex="-1"></a><span class="al">![재현성 환경 전략지도](images/reproducibility-strategies-and-danger-zones.png)</span></span>
+<span id="cb13-260"><a href="#cb13-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-261"><a href="#cb13-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-262"><a href="#cb13-262" aria-hidden="true" tabindex="-1"></a>**스냅샷 전략**은 데이터 과학 작업의 재현성을 보장하는 효과적인 방법으로 널리 인정받고 있다. 주요 장점으로 특정 시점의 환경을 정확히 캡처하고 나중에 그대로 복원할 수 있다는 점으로, 프로젝트의 모든 종속성, 패키지 버전, 설정을 포함한 전체 작업 환경을 보존함으로써 연구 결과의 정확한 재현을 가능하게 한다.</span>
+<span id="cb13-263"><a href="#cb13-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-264"><a href="#cb13-264" aria-hidden="true" tabindex="-1"></a>스냅샷 전략은 동시에 유연성도 제공한다. 데이터 과학자들은 필요에 따라 자유롭게 패키지를 설치하고 업데이트할 수 있으며, 동시에 각 프로젝트의 고유한 환경을 유지할 수 있다. 이를 통해 혁신과 실험을 장려하면서도 프로젝트의 안정성을 보장하는 균형 잡힌 접근 방식으로 팀 협업 시에도 모든 구성원이 동일한 환경에서 작업할 수 있게 하여 "내 컴퓨터에서는 작동합니다"와 같은 문제를 해결하는데 기여할 수 있다.</span>
+<span id="cb13-265"><a href="#cb13-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-266"><a href="#cb13-266" aria-hidden="true" tabindex="-1"></a>그러나 스냅샷 전략에도 몇 가지 단점도 존재한다. 첫째, 스냅샷 관리에 추가적인 시간과 리소스가 필요하다. 특히 큰 조직이나 많은 프로젝트를 다루는 경우, 여러 스냅샷을 관리하고 추적하는 것이 복잡해질 수 있다. 둘째, 스냅샷은 시간이 지남에 따라 용량을 많이 차지할 수 있으며, 이는 저장 공간 문제로 이어질 수 있다. 마지막으로, 보안 업데이트나 중요한 버그 수정이 있을 때 모든 관련 스냅샷을 업데이트해야 하는 번거로움이 있을 수 있다.</span>
+<span id="cb13-267"><a href="#cb13-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-268"><a href="#cb13-268" aria-hidden="true" tabindex="-1"></a><span class="fu">### 프로젝트 공유환경</span></span>
+<span id="cb13-269"><a href="#cb13-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-272"><a href="#cb13-272" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb13-273"><a href="#cb13-273" aria-hidden="true" tabindex="-1"></a><span class="in">graph</span></span>
+<span id="cb13-274"><a href="#cb13-274" aria-hidden="true" tabindex="-1"></a><span class="in">L --- P1</span></span>
+<span id="cb13-275"><a href="#cb13-275" aria-hidden="true" tabindex="-1"></a><span class="in">L --- P2</span></span>
+<span id="cb13-276"><a href="#cb13-276" aria-hidden="true" tabindex="-1"></a><span class="in">L --- P3</span></span>
+<span id="cb13-277"><a href="#cb13-277" aria-hidden="true" tabindex="-1"></a><span class="in">L(library)</span></span>
+<span id="cb13-278"><a href="#cb13-278" aria-hidden="true" tabindex="-1"></a><span class="in">P1(프로젝트1)</span></span>
+<span id="cb13-279"><a href="#cb13-279" aria-hidden="true" tabindex="-1"></a><span class="in">P2(프로젝트2)</span></span>
+<span id="cb13-280"><a href="#cb13-280" aria-hidden="true" tabindex="-1"></a><span class="in">P3(프로젝트3)</span></span>
+<span id="cb13-281"><a href="#cb13-281" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-282"><a href="#cb13-282" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-283"><a href="#cb13-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-284"><a href="#cb13-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-285"><a href="#cb13-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-288"><a href="#cb13-288" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-289"><a href="#cb13-289" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb13-290"><a href="#cb13-290" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">.libPaths</span>()</span>
+<span id="cb13-291"><a href="#cb13-291" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"C:/Users/statkclee/AppData/Local/R/win-library/4.4"</span>  <span class="co"># 사용자</span></span>
+<span id="cb13-292"><a href="#cb13-292" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>] <span class="st">"C:/Program Files/R/R-4.4.1/library"</span>                  <span class="co"># 시스템</span></span>
+<span id="cb13-293"><a href="#cb13-293" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-294"><a href="#cb13-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-295"><a href="#cb13-295" aria-hidden="true" tabindex="-1"></a><span class="fu">### 프로젝트 격리 환경</span></span>
+<span id="cb13-296"><a href="#cb13-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-299"><a href="#cb13-299" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb13-300"><a href="#cb13-300" aria-hidden="true" tabindex="-1"></a><span class="in">graph</span></span>
+<span id="cb13-301"><a href="#cb13-301" aria-hidden="true" tabindex="-1"></a><span class="in">C --- L1</span></span>
+<span id="cb13-302"><a href="#cb13-302" aria-hidden="true" tabindex="-1"></a><span class="in">C --- L2</span></span>
+<span id="cb13-303"><a href="#cb13-303" aria-hidden="true" tabindex="-1"></a><span class="in">C --- L3</span></span>
+<span id="cb13-304"><a href="#cb13-304" aria-hidden="true" tabindex="-1"></a><span class="in">L1 --- P1</span></span>
+<span id="cb13-305"><a href="#cb13-305" aria-hidden="true" tabindex="-1"></a><span class="in">L2 --- P2</span></span>
+<span id="cb13-306"><a href="#cb13-306" aria-hidden="true" tabindex="-1"></a><span class="in">L3 --- P3</span></span>
+<span id="cb13-307"><a href="#cb13-307" aria-hidden="true" tabindex="-1"></a><span class="in">L1(library1)</span></span>
+<span id="cb13-308"><a href="#cb13-308" aria-hidden="true" tabindex="-1"></a><span class="in">L2(library2)</span></span>
+<span id="cb13-309"><a href="#cb13-309" aria-hidden="true" tabindex="-1"></a><span class="in">L3(library3)</span></span>
+<span id="cb13-310"><a href="#cb13-310" aria-hidden="true" tabindex="-1"></a><span class="in">P1(프로젝트1)</span></span>
+<span id="cb13-311"><a href="#cb13-311" aria-hidden="true" tabindex="-1"></a><span class="in">P2(프로젝트2)</span></span>
+<span id="cb13-312"><a href="#cb13-312" aria-hidden="true" tabindex="-1"></a><span class="in">P3(프로젝트3)</span></span>
+<span id="cb13-313"><a href="#cb13-313" aria-hidden="true" tabindex="-1"></a><span class="in">C(글로벌 캐쉬)</span></span>
+<span id="cb13-314"><a href="#cb13-314" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-315"><a href="#cb13-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-316"><a href="#cb13-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-319"><a href="#cb13-319" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-320"><a href="#cb13-320" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb13-321"><a href="#cb13-321" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> Project <span class="st">'~/sample-project'</span> loaded. [renv <span class="dv">1</span>.<span class="fl">0.7</span>]</span>
+<span id="cb13-322"><a href="#cb13-322" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">.libPaths</span>()</span>
+<span id="cb13-323"><a href="#cb13-323" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"C:/Users/statkclee/Documents/sample-project/renv/library/windows/R-4.4/x86_64-w64-mingw32"</span>        </span>
+<span id="cb13-324"><a href="#cb13-324" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>] <span class="st">"C:/Users/statkclee/AppData/Local/R/cache/R/renv/sandbox/windows/R-4.4/x86_64-w64-mingw32/88765555"</span></span>
+<span id="cb13-325"><a href="#cb13-325" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-326"><a href="#cb13-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-327"><a href="#cb13-327" aria-hidden="true" tabindex="-1"></a></span>
+</code><button title="클립보드 복사" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p><a href="https://quarto.org/">Quarto</a> 개발</p>
+</div>   
+    <div class="nav-footer-center">
+<p><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></p>
+</div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/bit2r/gpt-ai">Github 코드 저장소</a></p>
+</div>
+  </div>
+</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","loop":false});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+</body></html>

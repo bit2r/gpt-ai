@@ -39,6 +39,7 @@ website:
           - API.qmd
           - API_openai.qmd
           - API_openai_apps.qmd
+          - rstats.qmd
       - section: "자동화"
         contents:
           - gh_action.qmd
