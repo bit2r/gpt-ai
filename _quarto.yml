@@ -32,29 +32,28 @@ website:
       - section: "기본기"
         contents:
           - index.qmd
-          - code_interpreter.qmd
-          - langchain.qmd
-          - LLMs.qmd
           - positron.qmd
           - API.qmd
-          - API_openai.qmd
-          - API_openai_apps.qmd
           - rstats.qmd
-      - section: "자동화"
+      - section: "AI 코딩"
         contents:
-          - gh_action.qmd
-          - target.qmd
-      - section: "GCP"
-        contents:
-          - gcs.qmd
-      - section: "챗GPT"
-        contents:
-          - chat.qmd
-          - AI_app.qmd
+          - langchain.qmd
+          - API_openai.qmd
+          - code_interpreter.qmd
       - section: "데이터베이스"
         contents:
           - database.qmd
           - ollama.qmd
+      - section: "자동화"
+        contents:
+          - gh_action.qmd
+          - target.qmd
+          - gcs.qmd
+      - section: "사례"
+        contents:
+          - chat.qmd
+          - openai_apps.qmd
+          - yt_openai.qmd
 
     right:
       - icon: github

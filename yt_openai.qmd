@@ -1,4 +1,4 @@
-# OpenAI 응용프로그램
+# 유튜브 동영상
 
 [[한국 R 컨퍼런스 - Julia Silge Keynote번역 (2021-11-17)](https://statkclee.github.io/deep-learning/rconf-keynote.html)]{.aside}
 
