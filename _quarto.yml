@@ -54,6 +54,9 @@ website:
           - chat.qmd
           - openai_apps.qmd
           - yt_openai.qmd
+      - section: "참고문헌"
+        contents:
+          - references.qmd
 
     right:
       - icon: github
