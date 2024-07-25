@@ -19,3 +19,64 @@ from langchain_community.llms import Ollama
 llm = Ollama(model="gemma2")
 llm.invoke("축구를 가장 잘하는 나라는 어디야?")
 ```
+
+## 라마3
+
+라마(Llama)는 메타(Meta)에서 2023년 2월에 처음 공개한 대규모 언어 모델이며, 라마2는 2023년 7월에 출시된 라마의 개선 버전으로, 오픈 소스로 공개되어 연구 및 상업적 용도로 사용할 수 있다.
+라마3는 2024년 6월 출시되었으며 128,256 토큰을 보유한 새로운 토크나이저를 장착했으며, 8,192 컨텍스트 길이를 갖고 15조개(15T)토큰 학습 데이터를 사용하여 성능을 크게 높였고, Supervised fine-tuning (SFT)
+Rejection Sampling, Proximal Policy Optimization (PPO), Direct Preference Optimization (DPO) 알고리즘을 적용하였다. 
+
+```{mermaid}
+graph BT
+    subgraph Llama_Model_and_CPP["Llama 모델 및 llama.cpp"]
+        A[Llama 모델] -->|제공| B((모델 가중치))
+        A -->|정의| C((모델 아키텍처))
+        subgraph llama_cpp[llama.cpp]
+            D[가중치 로딩]
+            E[아키텍처 구현]
+            F[추론 수행]
+            G[최적화된 연산]
+        end
+        B --> D
+        C --> E
+    end
+
+    subgraph Upper_Layers["AI 응용프로그램"]
+        H[llama-cpp-python]
+        I[Llama 클래스]
+        J[사용자 코드]
+    end
+
+    llama_cpp --> H
+    H --> I
+    I --> J
+
+```
+
+
+**Llama 모델**은 GGUF(GPT-Generated Unified Format) 파일 형태로 제공되며, 모델 가중치(학습된 파라미터 값)와 모델 아키텍처(신경망의 구조와 레이어)를 포함하고 있다.
+**llama.cpp**는 C++로 작성된 Llama 모델의 추론 엔진으로 Llama 모델의 아키텍처를 C++ 코드로 구현되어 있으며 GGUF 파일에서 가중치를 읽어 메모리에 로드하고, 입력 텍스트에 대해 모델의 추론을 실행한다.
+즉, llama.cpp는 Llama 모델을 "실행"하는 엔진으로 모델 파일(GGUF)은 "무엇을" 계산할지를 정의하고, llama.cpp는 "어떻게" 계산할지를 구현한다.
+
+## 헬로월드
+
+[CMake](https://cmake.org/download/)를 설치하고 `llama-cpp-python` 패키지를 설치한다.
+
+```{bash}
+#| eval: false
+pip install llama-cpp-python --prefer-binary
+```
+
+허깅페이스 [QuantFactory/Meta-Llama-3-8B-GGUF ](https://huggingface.co/QuantFactory/Meta-Llama-3-8B-GGUF/tree/main) 에서 `Meta-Llama-3-8B.Q8_0.gguf` 파일을 다운로드 받아 사용한다.
+
+
+```{python}
+from llama_cpp import Llama
+
+path_to_model = "data/Meta-Llama-3-8B.Q8_0.gguf"
+llm = Llama(model_path=path_to_model)
+output = llm(
+    "Why is the sky blue?",
+)
+print(output["choices"][0]["text"])
+```

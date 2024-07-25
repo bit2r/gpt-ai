@@ -76,6 +76,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -170,7 +173,7 @@ ga('send', {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">인공지능</span></a>
+ <span class="menu-text">AI 공학</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -303,13 +306,37 @@ ga('send', {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">참고문헌</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">참고문헌</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#라마3" id="toc-라마3" class="nav-link active" data-scroll-target="#라마3">라마3</a></li>
+  <li><a href="#헬로월드" id="toc-헬로월드" class="nav-link" data-scroll-target="#헬로월드">헬로월드</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -338,7 +365,7 @@ ga('send', {
 setx OLLAMA_MODELS D:\llms</code></pre>
 <pre class="{bash}"><code>#| eval: false
 ollama run gemma2</code></pre>
-<div id="40407e2e" class="cell" data-execution_count="1">
+<div id="d4f6e857" class="cell" data-execution_count="1">
 <details open="" class="code-fold">
 <summary>코드</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_community.llms <span class="im">import</span> Ollama</span>
@@ -346,13 +373,168 @@ ollama run gemma2</code></pre>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>llm.invoke(<span class="st">"축구를 가장 잘하는 나라는 어디야?"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>'축구를 가장 잘하는 국가는 주관적인 평가이며 여러 기준에 따라 달라질 수 있습니다. 하지만 일반적으로 다음 국가들이 가장 뛰어난 축구팀으로 여겨집니다.\n\n* **브라질:** FIFA 월드컵 역사상 5번 우승, 축구의 발상지로서 풍부한 전통과 재능을 자랑합니다.\n* **아르헨티나:**  FIFA 월드컵 역사상 3번 우승, 마치 감독하에 세계 최고 선수들을 배출하며 강력한 부족으로 평가받습니다.\n* **프랑스:** FIFA 월드컵 역사상 2번 우승, 새로운 세대의 유망 주자들이 등장하면서 다시금 강팀으로 자리매김 중입니다.\n* **독일:** FIFA 월드컵 역사상 4번 우승, 전략적인 플레이와 체계적인 선수 양성 시스템으로 오랫동안 경쟁력을 유지합니다.\n\n이 외에도 스페인, 이탈리아, 영국 등 역대 축구 강호들이 있으며, 최근에는 네덜란드, 벨기에 등 새로운 강자들이 등장하고 있습니다.\n\n\n 어떤 국가가 "가장" 잘하는지에 대한 정답은 없습니다. 다만 위에서 언급된 국가들은 모두 높은 수준의 축구 실력을 보여주고 있으며, 국제 무대에서 주목받는 팀들입니다.\n'</code></pre>
+<pre><code>' 축구를 가장 잘 하는 국가는 여러 기준에 따라 달라질 수 있습니다. FIFA 역사상 전 세계 대회 우승 횟수 기준으로는 **브라질**이 가장 많은 우승 경력을 가지고 있으며, 5번의 월드컵 우승 트로피를 들어올렸습니다.\n\n하지만, 최근몇 년간은 **아르헨티나**, **프랑스**, **독일** 등의 국가가 브라질과 대등한 수준으로 경쟁하고 있습니다.  개인 선수들의 능력, 국제대회 성적, 세계적인 축구 문화 등을 종합적으로 고려하면 가장 잘하는 나라는 명확하게 결정하기 어렵습니다.\n\n\n어떤 기준에 따라 "가장 잘 하는 국가"를 정의하시는지에 따라 다른 답변이 있을 수 있습니다. 예를 들어,\n\n* **FIFA 월드컵 우승**: 브라질\n* **최근 FIFA 순위**: 아르헨티나\n* **유럽 축구 대회 우승**: 독일\n* **프로 유럽 리그 우승**: 영국\n* **오늘날 가장 강력한 국제팀**: 프랑스\n\n등이 있습니다.\n\n\n 어떤 기준을 사용하시는지에 따라 달라질 수 있습니다!'</code></pre>
+</div>
+</div>
+<section id="라마3" class="level2">
+<h2 class="anchored" data-anchor-id="라마3">라마3</h2>
+<p>라마(Llama)는 메타(Meta)에서 2023년 2월에 처음 공개한 대규모 언어 모델이며, 라마2는 2023년 7월에 출시된 라마의 개선 버전으로, 오픈 소스로 공개되어 연구 및 상업적 용도로 사용할 수 있다. 라마3는 2024년 6월 출시되었으며 128,256 토큰을 보유한 새로운 토크나이저를 장착했으며, 8,192 컨텍스트 길이를 갖고 15조개(15T)토큰 학습 데이터를 사용하여 성능을 크게 높였고, Supervised fine-tuning (SFT) Rejection Sampling, Proximal Policy Optimization (PPO), Direct Preference Optimization (DPO) 알고리즘을 적용하였다.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<p><a href="ollama_files\figure-html\mermaid-figure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="ollama_files\figure-html\mermaid-figure-1.png" style="width:7.21in;height:7.61in" class="figure-img"></a></p>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><strong>Llama 모델</strong>은 GGUF(GPT-Generated Unified Format) 파일 형태로 제공되며, 모델 가중치(학습된 파라미터 값)와 모델 아키텍처(신경망의 구조와 레이어)를 포함하고 있다. <strong>llama.cpp</strong>는 C++로 작성된 Llama 모델의 추론 엔진으로 Llama 모델의 아키텍처를 C++ 코드로 구현되어 있으며 GGUF 파일에서 가중치를 읽어 메모리에 로드하고, 입력 텍스트에 대해 모델의 추론을 실행한다. 즉, llama.cpp는 Llama 모델을 “실행”하는 엔진으로 모델 파일(GGUF)은 “무엇을” 계산할지를 정의하고, llama.cpp는 “어떻게” 계산할지를 구현한다.</p>
+</section>
+<section id="헬로월드" class="level2">
+<h2 class="anchored" data-anchor-id="헬로월드">헬로월드</h2>
+<p><a href="https://cmake.org/download/">CMake</a>를 설치하고 <code>llama-cpp-python</code> 패키지를 설치한다.</p>
+<pre class="{bash}"><code>#| eval: false
+pip install llama-cpp-python --prefer-binary</code></pre>
+<p>허깅페이스 <a href="https://huggingface.co/QuantFactory/Meta-Llama-3-8B-GGUF/tree/main">QuantFactory/Meta-Llama-3-8B-GGUF</a> 에서 <code>Meta-Llama-3-8B.Q8_0.gguf</code> 파일을 다운로드 받아 사용한다.</p>
+<div id="11ae686d" class="cell" data-execution_count="2">
+<details open="" class="code-fold">
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> llama_cpp <span class="im">import</span> Llama</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>path_to_model <span class="op">=</span> <span class="st">"data/Meta-Llama-3-8B.Q8_0.gguf"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> Llama(model_path<span class="op">=</span>path_to_model)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> llm(</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Why is the sky blue?"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(output[<span class="st">"choices"</span>][<span class="dv">0</span>][<span class="st">"text"</span>])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>llama_model_loader: loaded meta data with 22 key-value pairs and 291 tensors from data/Meta-Llama-3-8B.Q8_0.gguf (version GGUF V3 (latest))
+llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+llama_model_loader: - kv   0:                       general.architecture str              = llama
+llama_model_loader: - kv   1:                               general.name str              = .
+llama_model_loader: - kv   2:                           llama.vocab_size u32              = 128256
+llama_model_loader: - kv   3:                       llama.context_length u32              = 8192
+llama_model_loader: - kv   4:                     llama.embedding_length u32              = 4096
+llama_model_loader: - kv   5:                          llama.block_count u32              = 32
+llama_model_loader: - kv   6:                  llama.feed_forward_length u32              = 14336
+llama_model_loader: - kv   7:                 llama.rope.dimension_count u32              = 128
+llama_model_loader: - kv   8:                 llama.attention.head_count u32              = 32
+llama_model_loader: - kv   9:              llama.attention.head_count_kv u32              = 8
+llama_model_loader: - kv  10:     llama.attention.layer_norm_rms_epsilon f32              = 0.000010
+llama_model_loader: - kv  11:                       llama.rope.freq_base f32              = 500000.000000
+llama_model_loader: - kv  12:                          general.file_type u32              = 7
+llama_model_loader: - kv  13:                       tokenizer.ggml.model str              = gpt2
+llama_model_loader: - kv  14:                      tokenizer.ggml.tokens arr[str,128256]  = ["!", "\"", "#", "$", "%", "&amp;", "'", ...
+llama_model_loader: - kv  15:                      tokenizer.ggml.scores arr[f32,128256]  = [0.000000, 0.000000, 0.000000, 0.0000...
+llama_model_loader: - kv  16:                  tokenizer.ggml.token_type arr[i32,128256]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+llama_model_loader: - kv  17:                      tokenizer.ggml.merges arr[str,280147]  = ["Ġ Ġ", "Ġ ĠĠĠ", "ĠĠ ĠĠ", "...
+llama_model_loader: - kv  18:                tokenizer.ggml.bos_token_id u32              = 128000
+llama_model_loader: - kv  19:                tokenizer.ggml.eos_token_id u32              = 128001
+llama_model_loader: - kv  20:                    tokenizer.chat_template str              = {% set loop_messages = messages %}{% ...
+llama_model_loader: - kv  21:               general.quantization_version u32              = 2
+llama_model_loader: - type  f32:   65 tensors
+llama_model_loader: - type q8_0:  226 tensors
+llm_load_vocab: missing pre-tokenizer type, using: 'default'
+llm_load_vocab:                                             
+llm_load_vocab: ************************************        
+llm_load_vocab: GENERATION QUALITY WILL BE DEGRADED!        
+llm_load_vocab: CONSIDER REGENERATING THE MODEL             
+llm_load_vocab: ************************************        
+llm_load_vocab:                                             
+llm_load_vocab: special tokens cache size = 256
+llm_load_vocab: token to piece cache size = 0.8000 MB
+llm_load_print_meta: format           = GGUF V3 (latest)
+llm_load_print_meta: arch             = llama
+llm_load_print_meta: vocab type       = BPE
+llm_load_print_meta: n_vocab          = 128256
+llm_load_print_meta: n_merges         = 280147
+llm_load_print_meta: vocab_only       = 0
+llm_load_print_meta: n_ctx_train      = 8192
+llm_load_print_meta: n_embd           = 4096
+llm_load_print_meta: n_layer          = 32
+llm_load_print_meta: n_head           = 32
+llm_load_print_meta: n_head_kv        = 8
+llm_load_print_meta: n_rot            = 128
+llm_load_print_meta: n_swa            = 0
+llm_load_print_meta: n_embd_head_k    = 128
+llm_load_print_meta: n_embd_head_v    = 128
+llm_load_print_meta: n_gqa            = 4
+llm_load_print_meta: n_embd_k_gqa     = 1024
+llm_load_print_meta: n_embd_v_gqa     = 1024
+llm_load_print_meta: f_norm_eps       = 0.0e+00
+llm_load_print_meta: f_norm_rms_eps   = 1.0e-05
+llm_load_print_meta: f_clamp_kqv      = 0.0e+00
+llm_load_print_meta: f_max_alibi_bias = 0.0e+00
+llm_load_print_meta: f_logit_scale    = 0.0e+00
+llm_load_print_meta: n_ff             = 14336
+llm_load_print_meta: n_expert         = 0
+llm_load_print_meta: n_expert_used    = 0
+llm_load_print_meta: causal attn      = 1
+llm_load_print_meta: pooling type     = 0
+llm_load_print_meta: rope type        = 0
+llm_load_print_meta: rope scaling     = linear
+llm_load_print_meta: freq_base_train  = 500000.0
+llm_load_print_meta: freq_scale_train = 1
+llm_load_print_meta: n_ctx_orig_yarn  = 8192
+llm_load_print_meta: rope_finetuned   = unknown
+llm_load_print_meta: ssm_d_conv       = 0
+llm_load_print_meta: ssm_d_inner      = 0
+llm_load_print_meta: ssm_d_state      = 0
+llm_load_print_meta: ssm_dt_rank      = 0
+llm_load_print_meta: model type       = 8B
+llm_load_print_meta: model ftype      = Q8_0
+llm_load_print_meta: model params     = 8.03 B
+llm_load_print_meta: model size       = 7.95 GiB (8.50 BPW) 
+llm_load_print_meta: general.name     = .
+llm_load_print_meta: BOS token        = 128000 '&lt;|begin_of_text|&gt;'
+llm_load_print_meta: EOS token        = 128001 '&lt;|end_of_text|&gt;'
+llm_load_print_meta: LF token         = 128 'Ä'
+llm_load_print_meta: EOT token        = 128009 '&lt;|eot_id|&gt;'
+llm_load_print_meta: max token length = 256
+llm_load_tensors: ggml ctx size =    0.14 MiB
+llm_load_tensors:        CPU buffer size =  8137.64 MiB
+.........................................................................................
+llama_new_context_with_model: n_ctx      = 512
+llama_new_context_with_model: n_batch    = 512
+llama_new_context_with_model: n_ubatch   = 512
+llama_new_context_with_model: flash_attn = 0
+llama_new_context_with_model: freq_base  = 500000.0
+llama_new_context_with_model: freq_scale = 1
+llama_kv_cache_init:        CPU KV buffer size =    64.00 MiB
+llama_new_context_with_model: KV self size  =   64.00 MiB, K (f16):   32.00 MiB, V (f16):   32.00 MiB
+llama_new_context_with_model:        CPU  output buffer size =     0.49 MiB
+llama_new_context_with_model:        CPU compute buffer size =   258.50 MiB
+llama_new_context_with_model: graph nodes  = 1030
+llama_new_context_with_model: graph splits = 1
+AVX = 1 | AVX_VNNI = 0 | AVX2 = 1 | AVX512 = 1 | AVX512_VBMI = 0 | AVX512_VNNI = 0 | AVX512_BF16 = 0 | FMA = 1 | NEON = 0 | SVE = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | SSSE3 = 1 | VSX = 0 | MATMUL_INT8 = 0 | LLAMAFILE = 0 | 
+Model metadata: {'general.name': '.', 'general.architecture': 'llama', 'llama.block_count': '32', 'llama.vocab_size': '128256', 'llama.context_length': '8192', 'llama.rope.dimension_count': '128', 'llama.embedding_length': '4096', 'llama.feed_forward_length': '14336', 'llama.attention.head_count': '32', 'tokenizer.ggml.eos_token_id': '128001', 'general.file_type': '7', 'llama.attention.head_count_kv': '8', 'llama.attention.layer_norm_rms_epsilon': '0.000010', 'llama.rope.freq_base': '500000.000000', 'tokenizer.ggml.model': 'gpt2', 'general.quantization_version': '2', 'tokenizer.ggml.bos_token_id': '128000', 'tokenizer.chat_template': "{% set loop_messages = messages %}{% for message in loop_messages %}{% set content = '&lt;|start_header_id|&gt;' + message['role'] + '&lt;|end_header_id|&gt;\n\n'+ message['content'] | trim + '&lt;|eot_id|&gt;' %}{% if loop.index0 == 0 %}{% set content = bos_token + content %}{% endif %}{{ content }}{% endfor %}{{ '&lt;|start_header_id|&gt;assistant&lt;|end_header_id|&gt;\n\n' }}"}
+Available chat formats from metadata: chat_template.default
+Using gguf chat template: {% set loop_messages = messages %}{% for message in loop_messages %}{% set content = '&lt;|start_header_id|&gt;' + message['role'] + '&lt;|end_header_id|&gt;
+
+'+ message['content'] | trim + '&lt;|eot_id|&gt;' %}{% if loop.index0 == 0 %}{% set content = bos_token + content %}{% endif %}{{ content }}{% endfor %}{{ '&lt;|start_header_id|&gt;assistant&lt;|end_header_id|&gt;
+
+' }}
+Using chat eos_token: &lt;|end_of_text|&gt;
+Using chat bos_token: &lt;|begin_of_text|&gt;
+
+llama_print_timings:        load time =     955.36 ms
+llama_print_timings:      sample time =       1.58 ms /    16 runs   (    0.10 ms per token, 10126.58 tokens per second)
+llama_print_timings: prompt eval time =     955.24 ms /     6 tokens (  159.21 ms per token,     6.28 tokens per second)
+llama_print_timings:        eval time =    2222.69 ms /    15 runs   (  148.18 ms per token,     6.75 tokens per second)
+llama_print_timings:       total time =    3202.00 ms /    21 tokens</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Why do leaves change color in the fall? What is a tornado? These are</code></pre>
 </div>
 </div>
 
 
 <!-- -->
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -970,26 +1152,87 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 올라마</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">올라마(ollama)</span><span class="co">](https://ollama.com/download)</span> 웹사이트에서 운영체제에 맞춰 다운로드 받아 설치한다.</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ex">setx</span> OLLAMA_MODELS D:<span class="dt">\l</span>lms</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> run gemma2</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_community.llms <span class="im">import</span> Ollama</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> Ollama(model<span class="op">=</span><span class="st">"gemma2"</span>)</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>llm.invoke(<span class="st">"축구를 가장 잘하는 나라는 어디야?"</span>)</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 올라마</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">올라마(ollama)</span><span class="co">](https://ollama.com/download)</span> 웹사이트에서 운영체제에 맞춰 다운로드 받아 설치한다.</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="ex">setx</span> OLLAMA_MODELS D:<span class="dt">\l</span>lms</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> run gemma2</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_community.llms <span class="im">import</span> Ollama</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> Ollama(model<span class="op">=</span><span class="st">"gemma2"</span>)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>llm.invoke(<span class="st">"축구를 가장 잘하는 나라는 어디야?"</span>)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## 라마3</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>라마(Llama)는 메타(Meta)에서 2023년 2월에 처음 공개한 대규모 언어 모델이며, 라마2는 2023년 7월에 출시된 라마의 개선 버전으로, 오픈 소스로 공개되어 연구 및 상업적 용도로 사용할 수 있다.</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>라마3는 2024년 6월 출시되었으며 128,256 토큰을 보유한 새로운 토크나이저를 장착했으며, 8,192 컨텍스트 길이를 갖고 15조개(15T)토큰 학습 데이터를 사용하여 성능을 크게 높였고, Supervised fine-tuning (SFT)</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>Rejection Sampling, Proximal Policy Optimization (PPO), Direct Preference Optimization (DPO) 알고리즘을 적용하였다. </span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="in">graph BT</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="in">    subgraph Llama_Model_and_CPP["Llama 모델 및 llama.cpp"]</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="in">        A[Llama 모델] --&gt;|제공| B((모델 가중치))</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="in">        A --&gt;|정의| C((모델 아키텍처))</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="in">        subgraph llama_cpp[llama.cpp]</span></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a><span class="in">            D[가중치 로딩]</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="in">            E[아키텍처 구현]</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="in">            F[추론 수행]</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="in">            G[최적화된 연산]</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="in">        end</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="in">        B --&gt; D</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="in">        C --&gt; E</span></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="in">    subgraph Upper_Layers["AI 응용프로그램"]</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a><span class="in">        H[llama-cpp-python]</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="in">        I[Llama 클래스]</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="in">        J[사용자 코드]</span></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="in">    llama_cpp --&gt; H</span></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a><span class="in">    H --&gt; I</span></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a><span class="in">    I --&gt; J</span></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>**Llama 모델**은 GGUF(GPT-Generated Unified Format) 파일 형태로 제공되며, 모델 가중치(학습된 파라미터 값)와 모델 아키텍처(신경망의 구조와 레이어)를 포함하고 있다.</span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>**llama.cpp**는 C++로 작성된 Llama 모델의 추론 엔진으로 Llama 모델의 아키텍처를 C++ 코드로 구현되어 있으며 GGUF 파일에서 가중치를 읽어 메모리에 로드하고, 입력 텍스트에 대해 모델의 추론을 실행한다.</span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>즉, llama.cpp는 Llama 모델을 "실행"하는 엔진으로 모델 파일(GGUF)은 "무엇을" 계산할지를 정의하고, llama.cpp는 "어떻게" 계산할지를 구현한다.</span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a><span class="fu">## 헬로월드</span></span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">CMake</span><span class="co">](https://cmake.org/download/)</span>를 설치하고 <span class="in">`llama-cpp-python`</span> 패키지를 설치한다.</span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a><span class="in">```{bash}</span></span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install llama-cpp-python <span class="at">--prefer-binary</span></span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>허깅페이스 <span class="co">[</span><span class="ot">QuantFactory/Meta-Llama-3-8B-GGUF </span><span class="co">](https://huggingface.co/QuantFactory/Meta-Llama-3-8B-GGUF/tree/main)</span> 에서 <span class="in">`Meta-Llama-3-8B.Q8_0.gguf`</span> 파일을 다운로드 받아 사용한다.</span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> llama_cpp <span class="im">import</span> Llama</span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>path_to_model <span class="op">=</span> <span class="st">"data/Meta-Llama-3-8B.Q8_0.gguf"</span></span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> Llama(model_path<span class="op">=</span>path_to_model)</span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> llm(</span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Why is the sky blue?"</span>,</span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(output[<span class="st">"choices"</span>][<span class="dv">0</span>][<span class="st">"text"</span>])</span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="클립보드 복사" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
@@ -1006,6 +1249,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

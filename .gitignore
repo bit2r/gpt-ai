@@ -9,3 +9,4 @@ bfg.jar
 .chroma
 replacements.txt
 langchain/
+data/Meta-Llama-3-8B.Q8_0.gguf
