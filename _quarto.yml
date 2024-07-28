@@ -38,6 +38,8 @@ website:
       - section: "AI 코딩"
         contents:
           - langchain.qmd
+          - prompt_eng.qmd
+          - prompt_coding.qmd          
           - API_openai.qmd
           - code_interpreter.qmd
       - section: "LLM"
