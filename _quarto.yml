@@ -49,6 +49,7 @@ website:
           - database.qmd
       - section: "자동화"
         contents:
+          - llm_ops.qmd
           - gh_action.qmd
           - target.qmd
           - gcs.qmd
