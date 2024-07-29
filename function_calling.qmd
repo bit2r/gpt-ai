@@ -155,3 +155,54 @@ else:
     print(message.content)
 ```
 
+## 랭체인 도구
+
+함수 호출은 특정 GPT 모형에 특화된 반면 랭체인 도구는 특정 GPT 모형에 종속되지 않는다.
+
+```{python}
+from langchain.agents import Tool
+from langchain.agents import AgentType
+from langchain.memory import ConversationBufferMemory
+from langchain.chat_models import ChatOpenAI
+from langchain.agents import initialize_agent
+from langchain.tools import DuckDuckGoSearchRun
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# OpenAI API 키 설정
+os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+
+# ChatOpenAI 모델 초기화
+llm = ChatOpenAI(temperature=0)
+
+# DuckDuckGo 검색 도구 초기화
+search = DuckDuckGoSearchRun()
+
+# 도구 정의
+tools = [
+    Tool(
+        name="DuckDuckGo Search",
+        func=search.run,
+        description="useful for when you need to answer questions about current events or the current state of the world",
+    )
+]
+
+# 메모리 초기화
+memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
+
+# 에이전트 초기화
+agent = initialize_agent(
+    tools,
+    llm,
+    agent=AgentType.CHAT_CONVERSATIONAL_REACT_DESCRIPTION,
+    verbose=True,
+    memory=memory,
+)
+
+# 에이전트 실행
+response = agent.run("What's the latest news about SpaceX?")
+print(response)
+
+```
