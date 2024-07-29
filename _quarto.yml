@@ -41,6 +41,7 @@ website:
           - prompt_eng.qmd
           - prompt_coding.qmd          
           - API_openai.qmd
+          - function_calling.qmd          
           - code_interpreter.qmd
       - section: "LLM"
         contents:
