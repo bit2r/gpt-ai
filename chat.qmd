@@ -4,7 +4,9 @@ editor:
     wrap: 72
 ---
 
-# 챗GPT
+# R 패키지
+
+## `chattr`
 
 
 ![](images/chattr-diagram.png){fig-align="center"}
@@ -90,3 +92,48 @@ Max Data Frames: 0
 ✖ Document contents
 ```
 
+## `ollamar`
+
+[`ollamar`](https://github.com/hauselin/ollama-r) 패키지는 오픈소스 LLM을 R에서 직접 사용할 수 있도록 하는 패키지다. 올라마를 설치하고 LLM 모형을 다운로드 받은 후에 `ollamar` 패키지 함수를 사용해서 활용할 수 있다.
+
+```{r}
+library(ollamar)
+test_connection() # 연결확인
+list_models()     # LLM 모형 
+```
+
+라마 3.1 모형을 기반모형으로 헬로월드 프롬프트를 통해 시범운전해보자.
+``` {r}
+generate("llama3.1:8b", "하늘은 왜 파란색이야?", output = "text")
+```
+
+뉴스기사를 요약하는 코드를 다음과 같이 작성할 수 있다.
+한국 R 사용자회에서 뉴스토마토 기사를 R 데이터 패키지로 제작한 [bitTomato](https://github.com/bit2r/bitTomato) 패키지에서 일부 뉴스를 추출해서 라마3.1 LLM에 요약작업을 수행한다.
+
+```{r}
+library(tidyverse)
+library(ollamar)
+library(bitTomato) # devtools::install_github("bit2r/bitTomato")
+
+summarize_news <- function(news) {
+  generate(
+    "llama3.1:8b",
+    str_glue(
+      "뉴스 기사내용을 글머리표 3개로 요약한다.
+      제목은 개조식으로 작성한다.
+      {news}"
+    ),
+    output = "text"
+  )
+}
+
+news_tbl <- bitTomato::cherry_tomato |>
+  slice_sample(n = 3) |>
+  mutate(요약 = map(contents, summarize_news))
+
+news_tbl |>
+  mutate(요약글 = map(요약, select, "response") |> unlist()) |> 
+  select(원기사=contents, 요약글) |> 
+  pander::pander()
+
+```

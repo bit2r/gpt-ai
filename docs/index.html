@@ -403,6 +403,7 @@ ga('send', {
   </ul></li>
   <li><a href="#ai-엔지니어" id="toc-ai-엔지니어" class="nav-link" data-scroll-target="#ai-엔지니어">AI 엔지니어</a></li>
   <li><a href="#개발-작업흐름" id="toc-개발-작업흐름" class="nav-link" data-scroll-target="#개발-작업흐름">개발 작업흐름</a></li>
+  <li><a href="#아키텍처" id="toc-아키텍처" class="nav-link" data-scroll-target="#아키텍처">아키텍처</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -606,6 +607,22 @@ ga('send', {
 <p><a href="images/product-data-model.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="제품, 데이터, 모델 작업흐름"><img src="images/product-data-model.png" class="img-fluid figure-img" alt="제품, 데이터, 모델 작업흐름"></a></p>
 <figcaption>제품, 데이터, 모델 작업흐름</figcaption>
 </figure>
+</div>
+</section>
+<section id="아키텍처" class="level2">
+<h2 class="anchored" data-anchor-id="아키텍처">아키텍처</h2>
+<p>LLM 기반 AI 응용프로그램 개발 구조는 크게 네 개의 계층으로 구성된다. 가장 상위에는 실제 사용자와 상호작용하는 AI 응용프로그램 계층이 있고, 그 아래에는 Langchain이나 LlamaIndex와 같은 프레임워크와 프롬프트 공학을 포함하는 개발 계층이 위치한다. 인프라 계층에서는 Ollama나 LMStudio를 통한 LLM 모델 배포와 Pinecone, Weaviate 등의 벡터 데이터베이스가 운용된다.</p>
+<p>이 구조의 기반이 되는 LLM 모형 계층에는 GPT, Llama, BERT, T5와 같은 기본 모델과 CodeBERT, LEGAL-BERT 등의 특화 모델이 포함된다. 각 계층은 서로 긴밀히 연결되어 있으며, 상위 계층은 하위 계층의 기능을 활용하여 작동한다. 이러한 계층화된 구조는 AI 응용프로그램 개발의 복잡성을 관리하고, 각 계층의 독립적인 발전과 유지보수를 가능하게 한다.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<p><a href="index_files\figure-html\mermaid-figure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="index_files\figure-html\mermaid-figure-1.png" style="width:5.85in;height:5.93in" class="figure-img"></a></p>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
 </div>
 
 
@@ -1312,7 +1329,37 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="al">![제품, 데이터, 모델 작업흐름](images/product-data-model.png)</span></span>
 <span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span></code><button title="클립보드 복사" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="fu">## 아키텍처</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>LLM 기반 AI 응용프로그램 개발 구조는 크게 네 개의 계층으로 구성된다. 가장 상위에는 실제 사용자와 상호작용하는 AI 응용프로그램 계층이 있고, 그 아래에는 Langchain이나 LlamaIndex와 같은 프레임워크와 프롬프트 공학을 포함하는 개발 계층이 위치한다. 인프라 계층에서는 Ollama나 LMStudio를 통한 LLM 모델 배포와 Pinecone, Weaviate 등의 벡터 데이터베이스가 운용된다.</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>이 구조의 기반이 되는 LLM 모형 계층에는 GPT, Llama, BERT, T5와 같은 기본 모델과 CodeBERT, LEGAL-BERT 등의 특화 모델이 포함된다. 각 계층은 서로 긴밀히 연결되어 있으며, 상위 계층은 하위 계층의 기능을 활용하여 작동한다. 이러한 계층화된 구조는 AI 응용프로그램 개발의 복잡성을 관리하고, 각 계층의 독립적인 발전과 유지보수를 가능하게 한다.</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="in">flowchart TD</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="in">    subgraph APP["응용프로그램 계층"]</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="in">        A[AI 응용프로그램]</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="in">    subgraph DEV["개발 계층"]</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="in">        B1[Langchain/LlamaIndex]</span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="in">        B2[프롬프트 공학]</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="in">    subgraph INFRA["인프라 계층"]</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="in">        C1[LLM 모델 배포&lt;br&gt;Ollama/LMStudio]</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="in">        C2[벡터 데이터베이스&lt;br&gt;Pinecone/Weaviate/Milvus/ChromaDB]</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="in">    subgraph LLM["LLM 모형 계층"]</span></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="in">        D["LLM&lt;br&gt;기본 모델 (예: GPT, Llama, BERT, T5)&lt;br&gt;특화 모델 (예: CodeBERT, LEGAL-BERT)"]</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="in">    APP --&gt; DEV</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="in">    DEV --&gt; INFRA</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="in">    INFRA --&gt; LLM</span></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code><button title="클립보드 복사" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
@@ -1328,7 +1375,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":false,"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"loop":false,"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","closeEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

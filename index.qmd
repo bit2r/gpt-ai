@@ -75,5 +75,34 @@ AI 엔지니어의 역할은 LLM(대규모 언어 모델) 기반 AI 개발 과�
 ![제품, 데이터, 모델 작업흐름](images/product-data-model.png)
 
 
+## 아키텍처
 
+LLM 기반 AI 응용프로그램 개발 구조는 크게 네 개의 계층으로 구성된다. 가장 상위에는 실제 사용자와 상호작용하는 AI 응용프로그램 계층이 있고, 그 아래에는 Langchain이나 LlamaIndex와 같은 프레임워크와 프롬프트 공학을 포함하는 개발 계층이 위치한다. 인프라 계층에서는 Ollama나 LMStudio를 통한 LLM 모델 배포와 Pinecone, Weaviate 등의 벡터 데이터베이스가 운용된다.
+
+이 구조의 기반이 되는 LLM 모형 계층에는 GPT, Llama, BERT, T5와 같은 기본 모델과 CodeBERT, LEGAL-BERT 등의 특화 모델이 포함된다. 각 계층은 서로 긴밀히 연결되어 있으며, 상위 계층은 하위 계층의 기능을 활용하여 작동한다. 이러한 계층화된 구조는 AI 응용프로그램 개발의 복잡성을 관리하고, 각 계층의 독립적인 발전과 유지보수를 가능하게 한다.
+
+```{mermaid}
+flowchart TD
+    subgraph APP["응용프로그램 계층"]
+        A[AI 응용프로그램]
+    end
+
+    subgraph DEV["개발 계층"]
+        B1[Langchain/LlamaIndex]
+        B2[프롬프트 공학]
+    end
+
+    subgraph INFRA["인프라 계층"]
+        C1[LLM 모델 배포<br>Ollama/LMStudio]
+        C2[벡터 데이터베이스<br>Pinecone/Weaviate/Milvus/ChromaDB]
+    end
+
+    subgraph LLM["LLM 모형 계층"]
+        D["LLM<br>기본 모델 (예: GPT, Llama, BERT, T5)<br>특화 모델 (예: CodeBERT, LEGAL-BERT)"]
+    end
+
+    APP --> DEV
+    DEV --> INFRA
+    INFRA --> LLM
+```
 
