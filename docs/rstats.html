@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.45">
+<meta name="generator" content="quarto-1.6.4">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>rstats – 챗GPT AI</title>
 <style>
@@ -51,7 +51,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -158,7 +178,7 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">인공지능</span></a>
+ <span class="menu-text">AI 공학</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -198,8 +218,26 @@ ga('send', {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./prompt_eng.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">프롬프트 공학</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prompt_coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">프롬프트 코딩</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./API_openai.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">OpenAI API</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./function_calling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">함수 호출</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -213,7 +251,7 @@ ga('send', {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">데이터베이스</span></a>
+ <span class="menu-text">LLM</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -221,14 +259,20 @@ ga('send', {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./database.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">벡터 데이터베이스</span></a>
+  <a href="./ollama.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">올라마</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ollama.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">올라마</span></a>
+  <a href="./hf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">허깅페이스</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./perf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LLM 성능</span></a>
   </div>
 </li>
       </ul>
@@ -236,13 +280,36 @@ ga('send', {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">자동화</span></a>
+ <span class="menu-text">데이터베이스</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./database.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">벡터 데이터베이스</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">자동화</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./llm_ops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LLMOps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./gh_action.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">깃헙 액션</span></a>
@@ -264,17 +331,17 @@ ga('send', {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
  <span class="menu-text">사례</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">챗GPT</span></a>
+ <span class="menu-text">R 패키지</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -287,6 +354,23 @@ ga('send', {
   <div class="sidebar-item-container"> 
   <a href="./yt_openai.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">유튜브 동영상</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">참고문헌</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">참고문헌</span></a>
   </div>
 </li>
       </ul>
@@ -343,7 +427,7 @@ ga('send', {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><div class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">기본기</a></li><li class="breadcrumb-item"><a href="./rstats.html">R</a></li></ol></nav><div class="quarto-title-tools-only"><h1></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> 코드</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 표시</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 숨기기</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">소스 코드 표시</a></li></ul></div></div><section id="r" class="level1"><h1>R</h1>
-<p>프로젝트 중심 작업흐름(Project-based Workflow)를 채택<span class="citation" data-cites="aja2024personal">(<a href="#ref-aja2024personal" role="doc-biblioref"><strong>aja2024personal?</strong></a>)</span>한다는 것은 프로젝트 설정의 각 계층을 프로그래밍 방식으로 관리할 수 있게 해주는 도구들을 사용한다는 의미로 이러한 계층은 <strong>“프로젝트 양파(Project Onion)”</strong>로 시각화할 수 있다.</p>
+<p>프로젝트 중심 작업흐름(Project-based Workflow)를 채택<span class="citation" data-cites="aja2024personal">(<a href="#ref-aja2024personal" role="doc-biblioref">Aja, 2024</a>)</span>한다는 것은 프로젝트 설정의 각 계층을 프로그래밍 방식으로 관리할 수 있게 해주는 도구들을 사용한다는 의미로 이러한 계층은 <strong>“프로젝트 양파(Project Onion)”</strong>로 시각화할 수 있다.</p>
 <p>프로젝트 양파는 프로젝트 설정의 여러 계층으로 표현되고, 가장 바깥 층에서 안쪽으로 들어가면서 다음과 같은 구조를 가진다. 이 구조에서 각 바깥 층은 그 안쪽 층의 설치와 관리를 담당한다. 즉, 패키지 관리자가 언어 관리자를 설치하고, 언어 관리자는 특정 언어 버전을 설치하며, 언어 버전은 환경을 설치하고 관리한다.</p>
 <ol type="1">
 <li>패키지 관리자가 가장 바깥 층을 차지한다.</li>
@@ -379,7 +463,7 @@ ga('send', {
 <div class="cell-output-display">
 <div id="r-workflow">
 <div>
-<p><a href="rstats_files\figure-html\mermaid-figure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="rstats_files\figure-html\mermaid-figure-1.png" style="width:5.03in;height:1.13in"></a></p>
+<p><a href="rstats_files/figure-html/mermaid-figure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="rstats_files/figure-html/mermaid-figure-1.png" style="width:4.72in;height:1.1in"></a></p>
 </div>
 </div>
 </div>
@@ -415,7 +499,7 @@ ga('send', {
 </tbody>
 </table>
 <section id="renviron" class="level2"><h2 class="anchored" data-anchor-id="renviron"><code>.Renviron</code></h2>
-<p><code>.Renviron</code> 파일은 주로 API 키(예: GitHub, OpenAI)와 같은 민감한 정보나 R 관련 환경 변수(예: 히스토리 크기 <code>R_HISTSIZE=100000</code>, 기본 라이브러리 위치 <code>R_LIBS_USER</code>)를 정의하는 데 유용하다. R 코드는 담기지 않는다. <code>.Renviron</code> 파일을 편집하려면 <code><a href="https://usethis.r-lib.org/reference/edit.html">usethis::edit_r_environ()</a></code>을 실행한다.</p>
+<p><code>.Renviron</code> 파일은 주로 API 키(예: GitHub, OpenAI)와 같은 민감한 정보나 R 관련 환경 변수(예: 히스토리 크기 <code>R_HISTSIZE=100000</code>, 기본 라이브러리 위치 <code>R_LIBS_USER</code>)를 정의하는 데 유용하다. R 코드는 담기지 않는다. <code>.Renviron</code> 파일을 편집하려면 <code>usethis::edit_r_environ()</code>을 실행한다.</p>
 <pre><code>R_HISTSIZE=100000
 RETICULATE_PYTHON=.venv/bin/python
 DB_USER=elephant
@@ -459,7 +543,7 @@ R_LIBS_USER=~/R/%p/%v</code></pre>
 </div>
 </div>
 </section><section id="rprofile" class="level2"><h2 class="anchored" data-anchor-id="rprofile"><code>.Rprofile</code></h2>
-<p><code>.Rprofile</code> 파일은 R 세션 시작 시 실행될 R 코드를 포함되고, 주로 사용자의 홈 디렉토리에 위치하며, <code><a href="https://usethis.r-lib.org/reference/edit.html">usethis::edit_r_profile()</a></code>로 편집할 수 있다. <code>.Rprofile</code> 파일에 공유하는데 문제를 야기할 수 있는 코드는 담지 않는다.</p>
+<p><code>.Rprofile</code> 파일은 R 세션 시작 시 실행될 R 코드를 포함되고, 주로 사용자의 홈 디렉토리에 위치하며, <code>usethis::edit_r_profile()</code>로 편집할 수 있다. <code>.Rprofile</code> 파일에 공유하는데 문제를 야기할 수 있는 코드는 담지 않는다.</p>
 <blockquote class="blockquote">
 <p><code>.Rprofile</code> GitHub 검색어 → <a href="https://github.com/search?q=.Rprofile" class="uri">https://github.com/search?q=.Rprofile</a></p>
 </blockquote>
@@ -490,7 +574,7 @@ R_LIBS_USER=~/R/%p/%v</code></pre>
 <section id="renviron-환경변수-파일-편집" class="level3"><h3 class="anchored" data-anchor-id="renviron-환경변수-파일-편집">
 <code>.Renviron</code> 환경변수 파일 편집</h3>
 <ol type="1">
-<li>R 콘솔에서 <code><a href="https://usethis.r-lib.org/reference/edit.html">usethis::edit_r_environ()</a></code> 실행</li>
+<li>R 콘솔에서 <code>usethis::edit_r_environ()</code> 실행</li>
 <li>WTF_USER={사용자명}_user 추가</li>
 <li>R 세션 새로 실행: <code>CTRL + SHIFT + F10</code>(윈도우), <code>CMD  + SHIFT + 0</code>(맥)</li>
 <li>
@@ -498,7 +582,7 @@ R_LIBS_USER=~/R/%p/%v</code></pre>
 </ol></section><section id="rprofile-환경변수-파일-편집" class="level3"><h3 class="anchored" data-anchor-id="rprofile-환경변수-파일-편집">
 <code>.Rprofile</code> 환경변수 파일 편집</h3>
 <ol type="1">
-<li>R 콘솔에서 <code><a href="https://usethis.r-lib.org/reference/edit.html">usethis::edit_r_profile()</a></code> 혹은 <code>usethis::edit_r_profile("project")</code> 실행</li>
+<li>R 콘솔에서 <code>usethis::edit_r_profile()</code> 혹은 <code>usethis::edit_r_profile("project")</code> 실행</li>
 <li>print(“Rprofile 코드 추가”)</li>
 <li>R 세션 새로 실행: <code>CTRL + SHIFT + F10</code>(윈도우), <code>CMD  + SHIFT + 0</code>(맥)</li>
 <li>
@@ -549,11 +633,11 @@ R_LIBS_USER=~/R/%p/%v</code></pre>
 </ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>R 콘솔에서 <code><a href="https://usethis.r-lib.org/reference/edit.html">usethis::edit_r_environ()</a></code> 명령어를 실행하여 <code>.Renviron</code> 파일을 연다.</p>
+<p>R 콘솔에서 <code>usethis::edit_r_environ()</code> 명령어를 실행하여 <code>.Renviron</code> 파일을 연다.</p>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p><code>R_LIBS_USER</code> 환경변수 설정을 한다.</p>
-<p>R_LIBS_USER=C:/Users/&lt;사용자명&gt;/AppData/Local/R/win-library/4.4</p>
+<p>R_LIBS_USER=C:/Users//AppData/Local/R/win-library/4.4</p>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <p><code>CTRL + SHIFT + F10</code>(윈도우), <code>CMD  + SHIFT + 0</code>(맥) 명령어를 실행하여 세션을 재시작한다.</p>
@@ -570,7 +654,7 @@ R_LIBS_USER=~/R/%p/%v</code></pre>
 <div class="cell-output-display">
 <div id="pkg-downstream">
 <div>
-<p><a href="rstats_files\figure-html\mermaid-figure-4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="rstats_files\figure-html\mermaid-figure-4.png" style="width:2.87in;height:5.96in"></a></p>
+<p><a href="rstats_files/figure-html/mermaid-figure-4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="rstats_files/figure-html/mermaid-figure-4.png" style="width:2.87in;height:5.91in"></a></p>
 </div>
 </div>
 </div>
@@ -580,7 +664,7 @@ R_LIBS_USER=~/R/%p/%v</code></pre>
 <p><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> 함수를 사용할 때 <code>type</code> 파라미터를 “source”로 지정하면 CRAN, P3M 에서 바이너리 대신 소스를 컴파일하여 설치할 수 있다.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"패키지명"</span>, type <span class="op">=</span> <span class="st">"source"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>devtools</code> 패키지를 사용하여 GitHub 등에서 특정 버전의 소스를 직접 설치할 수 있는데 컴파일 시간이 더 오래 걸릴 수 있고, 시스템에 필요한 개발 도구가 설치되어 않으면 패키지를 설치할 수도 없다.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"사용자명/레포지토리명"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"사용자명/레포지토리명"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>로컬 컴퓨터 환경에 맞춰 C, C++, 포트란(Fortran), 러스트(Rust) 언어로 된 코드를 컴파일할 수 있는 도구를 운영체제에 맞춰 설치를 해야만 소스코드 형태 R 패키지를 설치할 수 있다.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
@@ -602,9 +686,9 @@ R_LIBS_USER=~/R/%p/%v</code></pre>
 </div>
 </div>
 </div>
-<p>운영체제에 맞춰 도구를 설치하면 <code><a href="https://pkgbuild.r-lib.org/reference/has_compiler.html">devtools::has_devel()</a></code> 명령어로 설치여부를 점검할 수 있다.</p>
+<p>운영체제에 맞춰 도구를 설치하면 <code>devtools::has_devel()</code> 명령어로 설치여부를 점검할 수 있다.</p>
 <div class="cell">
-<details open="" class="code-fold"><summary>코드</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://pkgbuild.r-lib.org/reference/has_compiler.html">has_devel</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details open="" class="code-fold"><summary>코드</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">has_devel</span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stderr">
 <pre><code>Your system is ready to build packages!</code></pre>
 </div>
@@ -624,7 +708,7 @@ R_LIBS_USER=~/R/%p/%v</code></pre>
 <div>
 <p></p><figure class="figure"></figure><p></p>
 <div>
-<p><a href="rstats_files\figure-html\mermaid-figure-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="rstats_files\figure-html\mermaid-figure-3.png" style="width:3.94in;height:1.42in"></a></p>
+<p><a href="rstats_files/figure-html/mermaid-figure-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="rstats_files/figure-html/mermaid-figure-3.png" style="width:3.67in;height:1.41in"></a></p>
 </div>
 <p></p>
 </div>
@@ -643,7 +727,7 @@ R_LIBS_USER=~/R/%p/%v</code></pre>
 <div>
 <p></p><figure class="figure"></figure><p></p>
 <div>
-<p><a href="rstats_files\figure-html\mermaid-figure-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="rstats_files\figure-html\mermaid-figure-2.png" style="width:3.94in;height:2.31in"></a></p>
+<p><a href="rstats_files/figure-html/mermaid-figure-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="rstats_files/figure-html/mermaid-figure-2.png" style="width:3.67in;height:2.29in"></a></p>
 </div>
 <p></p>
 </div>
@@ -660,7 +744,12 @@ R_LIBS_USER=~/R/%p/%v</code></pre>
 
 <!-- -->
 
-</section></section></section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">각주</h2>
+
+</section></section></section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">참고문헌</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-aja2024personal" class="csl-entry" role="listitem">
+Aja, E. D. (2024). <em>Personal radmin - throw your computer into the ocean with confidence</em>. R-Ladies Global. <a href="https://www.youtube.com/watch?v=XXXXXXXXX">https://www.youtube.com/watch?v=XXXXXXXXX</a>
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">각주</h2>
 <ol>
 <li id="fn1"><p><a href="https://solutions.posit.co/envs-pkgs/environments/reproduce/">Strategy Maps - Strategies to Reproduce Environments Over Time</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -1605,7 +1694,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p><a href="https://github.com/bit2r/gpt-ai">Github 코드 저장소</a></p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","loop":false,"openEffect":"zoom"});
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

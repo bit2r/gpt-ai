@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.45">
+<meta name="generator" content="quarto-1.6.4">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>hf – 챗GPT AI</title>
 <style>
@@ -196,8 +196,26 @@ ga('send', {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./prompt_eng.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">프롬프트 공학</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prompt_coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">프롬프트 코딩</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./API_openai.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">OpenAI API</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./function_calling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">함수 호출</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -227,6 +245,12 @@ ga('send', {
   <div class="sidebar-item-container"> 
   <a href="./hf.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">허깅페이스</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./perf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LLM 성능</span></a>
   </div>
 </li>
       </ul>
@@ -259,6 +283,12 @@ ga('send', {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./llm_ops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LLMOps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./gh_action.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">깃헙 액션</span></a>
   </div>
@@ -289,7 +319,7 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">챗GPT</span></a>
+ <span class="menu-text">R 패키지</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -354,7 +384,7 @@ ga('send', {
 <div>
 <p></p><figure class="figure"></figure><p></p>
 <div>
-<p><a href="hf_files\figure-html\mermaid-figure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="hf_files\figure-html\mermaid-figure-1.png" style="width:6.36in;height:5.97in"></a></p>
+<p><a href="hf_files/figure-html/mermaid-figure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="hf_files/figure-html/mermaid-figure-1.png" style="width:5.93in;height:5.9in"></a></p>
 </div>
 <p></p>
 </div>
@@ -508,7 +538,7 @@ C:\Users\statkclee\AppData\Roaming\Python\Python312\site-packages\torch\storage.
 <div>
 <p></p><figure class="figure"></figure><p></p>
 <div>
-<p><a href="hf_files\figure-html\mermaid-figure-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="hf_files\figure-html\mermaid-figure-2.png" style="width:10.42in;height:2.55in"></a></p>
+<p><a href="hf_files/figure-html/mermaid-figure-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="hf_files/figure-html/mermaid-figure-2.png" style="width:10.24in;height:2.53in"></a></p>
 </div>
 <p></p>
 </div>
@@ -635,9 +665,9 @@ C:\Users\statkclee\AppData\Roaming\Python\Python312\site-packages\torch\storage.
 </div>
 <pre><code>정교는 국미럽 얼는 여던 레번째 사미지를 맞아 나라 리 기생하고 신하신 애국 습예들개 단았는 감사와 경위를 표합니또립 유공자와 유가적 여러분에게도 존경과 감사에 말씀을 쓰립니다</code></pre>
 <div class="cell">
-<details open="" class="code-fold"><summary>코드</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mccarthy-m-g/embedr">embedr</a></span><span class="op">)</span></span>
+<details open="" class="code-fold"><summary>코드</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">embedr</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/embedr/man/embed_audio.html">embed_audio</a></span><span class="op">(</span><span class="st">"data/한국어_영어번역.mp3"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu">embed_audio</span><span class="op">(</span><span class="st">"data/한국어_영어번역.mp3"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <audio controls=""><source src="data/한국어_영어번역.mp3" type="audio/mpeg"> Your browser does not support the audio tag;  for browser support, please see:  https://www.w3schools.com/tags/tag_audio.asp </audio>
 </div>
@@ -1615,7 +1645,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p><a href="https://github.com/bit2r/gpt-ai">Github 코드 저장소</a></p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":false,"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox"});
+</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","loop":false,"descPosition":"bottom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.45">
+<meta name="generator" content="quarto-1.6.4">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -213,14 +213,26 @@ ga('send', {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./prompt_eng.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">프롬프트 공학</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prompt_coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">프롬프트 코딩</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./API_openai.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">OpenAI API</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prompt_eng.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">프롬프트 공학</span></a>
+  <a href="./function_calling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">함수 호출</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -250,6 +262,12 @@ ga('send', {
   <div class="sidebar-item-container"> 
   <a href="./hf.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">허깅페이스</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./perf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LLM 성능</span></a>
   </div>
 </li>
       </ul>
@@ -318,7 +336,7 @@ ga('send', {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">챗GPT</span></a>
+ <span class="menu-text">R 패키지</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -393,7 +411,7 @@ ga('send', {
 </figure>
 </div>
 <p>챗GPT 코딩 구성요소는 프롬프트와 언어모형으로 구성되어 있다고 보면 된다. 자연어 프롬프트를 통해 생성하고자 하는 코드의 목적과 요구사항을 명시하여 언어모형에 전달하면 언어모형은 프롬프트를 이해하고 관련 코드를 생성한다. 몇년전 영어가 가장 뜨거운 프로그래밍 언어라는 주장이 허언은 아닌 것이다.</p>
-<p></p><div id="tweet-32466"></div><script>tweet={"url":"https:\/\/twitter.com\/karpathy\/status\/1617979122625712128","author_name":"Andrej Karpathy","author_url":"https:\/\/twitter.com\/karpathy","html":"\u003Cblockquote class=\"twitter-tweet\" align=\"center\"\u003E\u003Cp lang=\"en\" dir=\"ltr\"\u003EThe hottest new programming language is English\u003C\/p\u003E&mdash; Andrej Karpathy (@karpathy) \u003Ca href=\"https:\/\/twitter.com\/karpathy\/status\/1617979122625712128?ref_src=twsrc%5Etfw\"\u003EJanuary 24, 2023\u003C\/a\u003E\u003C\/blockquote\u003E\n\u003Cscript async src=\"https:\/\/platform.twitter.com\/widgets.js\" charset=\"utf-8\"\u003E\u003C\/script\u003E\n\n","width":550,"height":null,"type":"rich","cache_age":"3153600000","provider_name":"Twitter","provider_url":"https:\/\/twitter.com","version":"1.0"};document.getElementById("tweet-32466").innerHTML = tweet["html"];</script><p></p>
+<p></p><div id="tweet-42258"></div><script>tweet={"url":"https:\/\/twitter.com\/karpathy\/status\/1617979122625712128","author_name":"Andrej Karpathy","author_url":"https:\/\/twitter.com\/karpathy","html":"\u003Cblockquote class=\"twitter-tweet\" align=\"center\"\u003E\u003Cp lang=\"en\" dir=\"ltr\"\u003EThe hottest new programming language is English\u003C\/p\u003E&mdash; Andrej Karpathy (@karpathy) \u003Ca href=\"https:\/\/twitter.com\/karpathy\/status\/1617979122625712128?ref_src=twsrc%5Etfw\"\u003EJanuary 24, 2023\u003C\/a\u003E\u003C\/blockquote\u003E\n\u003Cscript async src=\"https:\/\/platform.twitter.com\/widgets.js\" charset=\"utf-8\"\u003E\u003C\/script\u003E\n\n","width":550,"height":null,"type":"rich","cache_age":"3153600000","provider_name":"Twitter","provider_url":"https:\/\/twitter.com","version":"1.0"};document.getElementById("tweet-42258").innerHTML = tweet["html"];</script><p></p>
 <section id="프롬프트-구성요소" class="level2">
 <h2 class="anchored" data-anchor-id="프롬프트-구성요소">프롬프트 구성요소</h2>
 <p>효과적인 AI 프롬프트 작성은 인공지능과의 상호작용을 최적화하는 핵심으로 매우 중요하다. 먼저 프롬프트를 구성하는 핵심 5가지 구성요소를 살펴보자.</p>
@@ -415,7 +433,7 @@ ga('send', {
 <div class="cell-output-display">
 <div id="prompt-components">
 <div>
-<p><a href="prompt_eng_files\figure-html\mermaid-figure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="prompt_eng_files\figure-html\mermaid-figure-1.png" style="width:4.85in;height:8.85in"></a></p>
+<p><a href="prompt_eng_files/figure-html/mermaid-figure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="prompt_eng_files/figure-html/mermaid-figure-1.png" style="width:4.51in;height:8.76in"></a></p>
 </div>
 </div>
 </div>
@@ -1386,7 +1404,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"descPosition":"bottom","openEffect":"zoom","selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","loop":false,"selector":".lightbox","closeEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
