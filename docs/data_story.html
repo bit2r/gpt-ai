@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>챗GPT AI</title>
+<title>data_story – 챗GPT AI</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -54,27 +54,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -153,7 +133,7 @@ ga('send', {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">기본기</a></li><li class="breadcrumb-item"><a href="./index.html">AI 공학</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chat.html">사례</a></li><li class="breadcrumb-item"><a href="./data_story.html">데이터 스토리</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="검색" onclick="window.quartoOpenSearch();">
@@ -192,7 +172,7 @@ ga('send', {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">AI 공학</span></a>
   </div>
 </li>
@@ -373,7 +353,7 @@ ga('send', {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data_story.html" class="sidebar-item-text sidebar-link">
+  <a href="./data_story.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">데이터 스토리</span></a>
   </div>
 </li>
@@ -406,249 +386,75 @@ ga('send', {
     <h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#ai-공학" id="toc-ai-공학" class="nav-link active" data-scroll-target="#ai-공학">AI 공학</a>
+  <li><a href="#데이터-스토리" id="toc-데이터-스토리" class="nav-link active" data-scroll-target="#데이터-스토리">데이터 스토리</a>
   <ul class="collapse">
-  <li><a href="#소프트웨어-3.0" id="toc-소프트웨어-3.0" class="nav-link" data-scroll-target="#소프트웨어-3.0">소프트웨어 3.0</a>
-  <ul class="collapse">
-  <li><a href="#애자일과-crisp-dm" id="toc-애자일과-crisp-dm" class="nav-link" data-scroll-target="#애자일과-crisp-dm">애자일과 CRISP-DM</a></li>
-  <li><a href="#소프트웨어-3.0-개발방법론" id="toc-소프트웨어-3.0-개발방법론" class="nav-link" data-scroll-target="#소프트웨어-3.0-개발방법론">소프트웨어 3.0 개발방법론</a></li>
-  </ul></li>
-  <li><a href="#ai-엔지니어" id="toc-ai-엔지니어" class="nav-link" data-scroll-target="#ai-엔지니어">AI 엔지니어</a></li>
-  <li><a href="#개발-작업흐름" id="toc-개발-작업흐름" class="nav-link" data-scroll-target="#개발-작업흐름">개발 작업흐름</a></li>
-  <li><a href="#아키텍처" id="toc-아키텍처" class="nav-link" data-scroll-target="#아키텍처">아키텍처</a></li>
+  <li><a href="#윔블던-테니스-코드" id="toc-윔블던-테니스-코드" class="nav-link" data-scroll-target="#윔블던-테니스-코드">윔블던 테니스 코드</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><div class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">기본기</a></li><li class="breadcrumb-item"><a href="./index.html">AI 공학</a></li></ol></nav><div class="quarto-title-tools-only"><h1></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> 코드</button></div></div>
+<main class="content" id="quarto-document-content"><div class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chat.html">사례</a></li><li class="breadcrumb-item"><a href="./data_story.html">데이터 스토리</a></li></ol></nav><div class="quarto-title-tools-only"><h1></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> 코드</button></div></div>
 
 
 
 
-<section id="ai-공학" class="level1">
-<h1>AI 공학</h1>
-<section id="소프트웨어-3.0" class="level2">
-<h2 class="anchored" data-anchor-id="소프트웨어-3.0">소프트웨어 3.0</h2>
-<p>소프트웨어 개발 패러다임은 1.0, 2.0, 3.0으로 진화했다. 소프트웨어 1.0은 전통적인 프로그래밍 방식을 대표한다. 개발자가 모든 로직과 규칙을 명시적으로 코딩하며, 문제 해결을 위한 알고리즘을 직접 설계하고 구현한다. 프로그래머의 논리적 사고와 코딩 능력이 핵심이다.</p>
-<p>소프트웨어 2.0은 머신러닝과 인공신경망을 활용한다. 데이터를 기반으로 모델이 학습하고 패턴을 찾아내어 문제를 해결한다. 개발자는 모델 구조를 설계하고 학습 과정을 관리하는 역할을 맡는다. 데이터의 품질과 양, 효과적인 학습 알고리즘이 성능을 좌우한다.</p>
-<p>소프트웨어 3.0은 대규모 언어 모델(LLM)과 같은 고급 AI 시스템을 활용한 새로운 패러다임이다. 추론과 생성 능력을 갖춘 AI를 활용하여 더 복잡하고 다양한 문제를 해결한다. 개발자는 AI 모델과 상호작용하며 고수준의 지시를 제공하고, AI는 이를 바탕으로 코드를 생성하거나 복잡한 작업을 수행한다. 이 방식은 이전 버전들보다 훨씬 더 광범위한 문제 영역을 다룬다.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/software-3.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="소프트웨어 3.0"><img src="images/software-3.jpg" class="img-fluid figure-img" alt="소프트웨어 3.0"></a></p>
-<figcaption>소프트웨어 3.0</figcaption>
-</figure>
-</div>
+<section id="데이터-스토리" class="level1">
+<h1>데이터 스토리</h1>
+<section id="윔블던-테니스-코드" class="level2">
+<h2 class="anchored" data-anchor-id="윔블던-테니스-코드">윔블던 테니스 코드</h2>
+<p>목재 라켓에서 현대의 경량 복합 소재 라켓으로의 전환이 서브 앤 볼리에서 파워 베이스라인 플레이로의 변화를 가져왔고, 이는 잔디 코트의 마모 패턴에 직접적인 영향을 미쳤음을 보여주고 있다. 즉, 라켓 기술의 발전이 플레이 스타일을 변화시키고, 이에 따라 코트의 마모 패턴이 달라졌다는 주장을 시각적으로 확인할 수 있다.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 24%">
-<col style="width: 24%">
-<col style="width: 27%">
+<col style="width: 12%">
+<col style="width: 22%">
+<col style="width: 42%">
+<col style="width: 22%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: center;">특성</th>
-<th style="text-align: center;">소프트웨어 1.0</th>
-<th style="text-align: center;">소프트웨어 2.0</th>
-<th style="text-align: center;">소프트웨어 3.0</th>
+<th>연도</th>
+<th>라켓 기술</th>
+<th>주요 플레이 스타일</th>
+<th>잔디 상태</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">핵심 접근법</td>
-<td style="text-align: center;">명시적 프로그래밍</td>
-<td style="text-align: center;">머신러닝/인공신경망</td>
-<td style="text-align: center;">대규모 언어 모델(LLM)/AI</td>
+<td>1970</td>
+<td>목재 라켓</td>
+<td>- 서브 앤 볼리 지배적<br>- 네트 플레이 빈번<br>- 짧은 랠리</td>
+<td>- 전반적으로 황색 띔<br>- 네트 주변과 서비스 라인 근처 마모 심함<br>- 베이스라인 상대적으로 양호</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">개발자 역할</td>
-<td style="text-align: center;">알고리즘 설계 및 구현</td>
-<td style="text-align: center;">모델 구조 설계 및 학습 관리</td>
-<td style="text-align: center;">AI와 상호작용, 고수준 지시 제공</td>
+<td>1980</td>
+<td>목재 및 초기 금속 라켓</td>
+<td>- 서브 앤 볼리 여전히 강세<br>- 그라운드 스트로크 플레이 증가 시작</td>
+<td>- 1970년대보다 약간 개선<br>- 베이스라인 마모 조금씩 증가<br>- 여전히 네트 주변 마모 뚜렷</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">문제 해결 방식</td>
-<td style="text-align: center;">직접 로직 코딩</td>
-<td style="text-align: center;">데이터 기반 학습 및 패턴 인식</td>
-<td style="text-align: center;">AI 기반 추론 및 생성</td>
+<td>2005</td>
+<td>경량 복합 소재 라켓</td>
+<td>- 파워 베이스라인 플레이 주류화<br>- 강력한 서브와 리턴<br>- 긴 랠리 증가</td>
+<td>- 전반적인 잔디 상태 크게 개선<br>- 베이스라인 마모 뚜렷해짐<br>- 네트 주변 마모 감소</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">핵심 역량</td>
-<td style="text-align: center;">논리적 사고, 코딩 기술</td>
-<td style="text-align: center;">데이터 처리, 모델 최적화</td>
-<td style="text-align: center;">AI 이해/활용, 프롬프트 공학</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">성능 좌우 요소</td>
-<td style="text-align: center;">코드 품질, 알고리즘 효율성</td>
-<td style="text-align: center;">데이터 품질/양, 학습 알고리즘</td>
-<td style="text-align: center;">AI 모델 성능, 프롬프트 품질</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">적용 범위</td>
-<td style="text-align: center;">명확히 정의된 문제</td>
-<td style="text-align: center;">패턴 인식, 예측 가능한 문제</td>
-<td style="text-align: center;">복잡하고 다양한 문제</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">개발 과정</td>
-<td style="text-align: center;">순차적, 명시적</td>
-<td style="text-align: center;">반복적, 데이터 중심</td>
-<td style="text-align: center;">대화형, AI 협업</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">유지보수</td>
-<td style="text-align: center;">직접 코드 수정</td>
-<td style="text-align: center;">모델 재학습, 파라미터 조정</td>
-<td style="text-align: center;">프롬프트 개선, AI 모델 업데이트</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">장점</td>
-<td style="text-align: center;">정확성, 투명성</td>
-<td style="text-align: center;">복잡한 패턴 처리 능력</td>
-<td style="text-align: center;">높은 유연성, 빠른 개발</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">단점</td>
-<td style="text-align: center;">복잡한 문제에 대한 확장성 제한</td>
-<td style="text-align: center;">대량의 데이터 필요, 설명 어려움</td>
-<td style="text-align: center;">결과 예측 어려움, 윤리적 고려사항</td>
+<td>2023</td>
+<td>첨단 복합 소재 라켓</td>
+<td>- 공격적 베이스라인 플레이 극대화<br>- 파워와 스피드 중심 경기<br>- 매우 긴 랠리 일반화</td>
+<td>- 최상의 전반적 잔디 관리<br>- 베이스라인 극심한 마모<br>- 코트 중앙부 마모 증가</td>
 </tr>
 </tbody>
 </table>
-<section id="애자일과-crisp-dm" class="level3">
-<h3 class="anchored" data-anchor-id="애자일과-crisp-dm">애자일과 CRISP-DM</h3>
-<p>Agile 방법론은 소프트웨어 개발을 위한 반복적이고 증분적인 접근 방식이다. 짧은 개발 주기(스프린트)를 통해 빠른 피드백과 변화에 대한 유연한 대응을 강조한다. 고객과의 긴밀한 협력, 작동하는 소프트웨어의 지속적인 제공, 그리고 팀의 자율성을 중요시한다.</p>
-<p>CRISP-DM은 데이터 마이닝과 머신러닝 프로젝트를 위한 구조화된 접근 방식이다. 비즈니스 이해부터 배포까지 6단계로 구성되며, 각 단계는 순환적이고 반복적으로 수행될 수 있다. 데이터의 이해와 준비에 많은 비중을 두며, 비즈니스 목표와 데이터 과학적 방법론을 긴밀히 연계한다.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 17%">
-<col style="width: 34%">
-<col style="width: 47%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">특성</th>
-<th style="text-align: center;">Agile</th>
-<th style="text-align: center;">CRISP-DM</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">주요 목적</td>
-<td style="text-align: center;">소프트웨어 개발</td>
-<td style="text-align: center;">데이터 마이닝/머신러닝</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">프로세스 구조</td>
-<td style="text-align: center;">반복적 스프린트</td>
-<td style="text-align: center;">6단계 순환 프로세스</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">주기 길이</td>
-<td style="text-align: center;">2-4주의 짧은 스프린트</td>
-<td style="text-align: center;">각 단계별로 다양함</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">핵심 산출물</td>
-<td style="text-align: center;">작동하는 소프트웨어</td>
-<td style="text-align: center;">데이터 인사이트, 예측 모델</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">팀 구성</td>
-<td style="text-align: center;">크로스 펑셔널 소규모 팀</td>
-<td style="text-align: center;">다양한 전문가 (데이터 과학자, 비즈니스 분석가 등)</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">고객 참여</td>
-<td style="text-align: center;">지속적이고 긴밀함</td>
-<td style="text-align: center;">주로 초기와 평가 단계에 집중</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">변경 관리</td>
-<td style="text-align: center;">매우 유연함</td>
-<td style="text-align: center;">구조화되어 있으나 단계 간 반복 가능</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">품질 관리</td>
-<td style="text-align: center;">지속적인 통합과 테스팅</td>
-<td style="text-align: center;">데이터 품질, 모델 성능, 비즈니스 가치 평가</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">주요 강조점</td>
-<td style="text-align: center;">빠른 제품 출시와 적응</td>
-<td style="text-align: center;">데이터 이해와 비즈니스 가치 창출</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">적용 분야</td>
-<td style="text-align: center;">주로 소프트웨어 개발</td>
-<td style="text-align: center;">데이터 분석, 예측 모델링 프로젝트</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="소프트웨어-3.0-개발방법론" class="level3">
-<h3 class="anchored" data-anchor-id="소프트웨어-3.0-개발방법론">소프트웨어 3.0 개발방법론</h3>
-<p>소프트웨어 3.0 개발방법론은 아직 공식적으로 정립되지 않았지만, 새로운 패러다임의 특성을 반영한 몇 가지 emerging practices와 원칙들이 존재한다.</p>
-<p>AI-first 설계를 통해 제품 설계 단계부터 AI 기능을 핵심으로 고려한다. 프롬프트 엔지니어링은 LLM과의 효과적인 상호작용을 위해 중요한 역할을 한다. 개발자들은 반복적 AI 튜닝 과정을 통해 모델의 출력을 지속적으로 평가하고 개선한다.</p>
-<p>데이터 큐레이션은 모델의 성능 향상을 위해 필수적이며, 고품질 데이터를 선별하고 관리하는 작업이 포함된다. 윤리적 AI 개발을 통해 AI의 편향성, 공정성, 투명성 등을 고려한 개발 프로세스를 구축한다.</p>
-<p>하이브리드 인간-AI 협업 모델을 통해 인간 개발자와 AI 시스템의 강점을 결합한다. 지속적 학습 및 적응 원칙에 따라 배포 후에도 모델의 성능을 모니터링하고 업데이트한다.</p>
-<p>멀티모달 AI 통합을 통해 텍스트, 이미지, 음성 등 다양한 모달리티를 처리할 수 있는 AI 시스템을 개발한다. 확장 가능한 AI 인프라 구축에 중점을 두어 대규모 AI 모델을 효율적으로 운영하고 확장한다.</p>
-<p>마지막으로, AI 안전성 및 견고성을 보장하기 위해 예측 불가능한 상황에서도 안정적으로 작동할 수 있는 시스템을 개발한다.</p>
-</section>
-</section>
-<section id="ai-엔지니어" class="level2">
-<h2 class="anchored" data-anchor-id="ai-엔지니어">AI 엔지니어</h2>
-<p><strong>AI 엔지니어(AI Engineer)</strong>는 API를 기준으로 오른쪽에 위치하여 데이터/연구 중심의 역할과 제품/사용자 중심의 역할 사이를 효과적으로 연결한다. 주요 업무로는 체인/에이전트 개발과 도구 및 인프라 구축에 집중하며, ML 엔지니어나 데이터 과학자보다 더 제품 지향적이면서도 풀스택 엔지니어보다는 AI 기술에 특화된 역량을 보유한다. AI 엔지니어는 AI 모델과 기술을 실제 제품이나 서비스로 구현하는 데 중점을 두어, 연구 결과를 실용적인 애플리케이션으로 변환하는 핵심적인 역할을 수행한다. <span class="citation" data-cites="swyx_alessio_2023">(<a href="#ref-swyx_alessio_2023" role="doc-biblioref">SWYX &amp; ALESSIO, 2023</a>)</span></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/ai-engineer.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="AI 엔지니어"><img src="images/ai-engineer.webp" class="img-fluid figure-img" alt="AI 엔지니어"></a></p>
-<figcaption>AI 엔지니어</figcaption>
-</figure>
-</div>
-</section>
-<section id="개발-작업흐름" class="level2">
-<h2 class="anchored" data-anchor-id="개발-작업흐름">개발 작업흐름</h2>
-<p><strong>“발사하고, 준비하고, 조준한다(Fire, ready, aim)”</strong>는 접근법은 AI 개발 프로세스를 혁신적으로 변화시켰다. 기존에는 데이터 과학자나 ML 엔지니어가 특정 도메인 모델을 훈련시키기 위해 먼저 광범위한 데이터 수집 작업을 수행해야 했다. 이는 시간과 자원을 많이 소모하는 과정이었다. 그러나 이제는 제품 관리자나 소프트웨어 엔지니어가 대규모 언어 모델(LLM)을 활용하여 즉시 제품 아이디어를 구축하고 검증할 수 있게 되었다. 이들은 LLM에 프롬프트를 입력하여 빠르게 프로토타입을 만들고 아이디어의 실현 가능성을 평가한다. 이후 제품 컨셉이 검증되면, 그때 필요한 특정 데이터를 수집하여 모델을 미세 조정한다. 이 방식은 개발 주기를 크게 단축시키고, 더 빠른 혁신과 시장 반응 확인을 가능하게 한다.</p>
-<p>AI 엔지니어의 역할은 LLM(대규모 언어 모델) 기반 AI 개발 과정에서 혁신적인 변화를 가져왔다. 이들은 전통적인 ML 접근법과는 다르게 작업한다. AI 엔지니어는 먼저 제품 아이디어를 신속하게 구현하고 검증하는 것으로 시작한다. 이를 위해 기존의 강력한 LLM을 활용하여 초기 프로토타입을 만들고 사용자 피드백을 수집한다.</p>
-<p>제품이 성공 가능성을 보이면, AI 엔지니어는 그 다음 단계로 넘어간다. 제품에 특화된 데이터를 수집하고 정제한다. 제품에 특화된 데이터는 초기 프로토타입을 통해 얻은 인사이트를 바탕으로 선별된다.</p>
-<p>마지막으로, 제품의 규모를 확장해야 할 필요가 있을 때, AI 엔지니어는 수집된 데이터를 사용하여 맞춤형 모델을 개발하거나 기존 LLM을 파인튜닝하여 제품의 성능을 향상시키고 특정 사용 사례에 더 잘 맞도록 최적화하는 데 중점을 둔다.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/product-data-model.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="제품, 데이터, 모델 작업흐름"><img src="images/product-data-model.png" class="img-fluid figure-img" alt="제품, 데이터, 모델 작업흐름"></a></p>
-<figcaption>제품, 데이터, 모델 작업흐름</figcaption>
-</figure>
-</div>
-</section>
-<section id="아키텍처" class="level2">
-<h2 class="anchored" data-anchor-id="아키텍처">아키텍처</h2>
-<p>LLM 기반 AI 응용프로그램 개발 구조는 크게 네 개의 계층으로 구성된다. 가장 상위에는 실제 사용자와 상호작용하는 AI 응용프로그램 계층이 있고, 그 아래에는 Langchain이나 LlamaIndex와 같은 프레임워크와 프롬프트 공학을 포함하는 개발 계층이 위치한다. 인프라 계층에서는 Ollama나 LMStudio를 통한 LLM 모델 배포와 Pinecone, Weaviate 등의 벡터 데이터베이스가 운용된다.</p>
-<p>이 구조의 기반이 되는 LLM 모형 계층에는 GPT, Llama, BERT, T5와 같은 기본 모델과 CodeBERT, LEGAL-BERT 등의 특화 모델이 포함된다. 각 계층은 서로 긴밀히 연결되어 있으며, 상위 계층은 하위 계층의 기능을 활용하여 작동한다. 이러한 계층화된 구조는 AI 응용프로그램 개발의 복잡성을 관리하고, 각 계층의 독립적인 발전과 유지보수를 가능하게 한다.</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<p><a href="index_files\figure-html\mermaid-figure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="index_files\figure-html\mermaid-figure-1.png" style="width:5.85in;height:5.93in" class="figure-img"></a></p>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+<p><a href="images/tennis.jfif" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/tennis.jfif" class="img-fluid"></a></p>
 
 
 <!-- -->
 
-
 </section>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">참고문헌</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-swyx_alessio_2023" class="csl-entry" role="listitem">
-SWYX, &amp; ALESSIO. (2023). The Rise of the AI Engineer. <em>Latent Space</em>. <a href="https://www.latent.space/p/ai-engineer">https://www.latent.space/p/ai-engineer</a>
-</div>
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1264,114 +1070,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># AI 공학</span></span>
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 데이터 스토리</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## 소프트웨어 3.0</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## 윔블던 테니스 코드</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>소프트웨어 개발 패러다임은 1.0, 2.0, 3.0으로 진화했다. 소프트웨어 1.0은 전통적인 프로그래밍 방식을 대표한다. 개발자가 모든 로직과 규칙을 명시적으로 코딩하며, 문제 해결을 위한 알고리즘을 직접 설계하고 구현한다. 프로그래머의 논리적 사고와 코딩 능력이 핵심이다.</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>목재 라켓에서 현대의 경량 복합 소재 라켓으로의 전환이 서브 앤 볼리에서 파워 베이스라인 플레이로의 변화를 가져왔고, 이는 잔디 코트의 마모 패턴에 직접적인 영향을 미쳤음을 보여주고 있다. 즉, 라켓 기술의 발전이 플레이 스타일을 변화시키고, 이에 따라 코트의 마모 패턴이 달라졌다는 주장을 시각적으로 확인할 수 있다. <span class="ot">[^1]</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>소프트웨어 2.0은 머신러닝과 인공신경망을 활용한다. 데이터를 기반으로 모델이 학습하고 패턴을 찾아내어 문제를 해결한다. 개발자는 모델 구조를 설계하고 학습 과정을 관리하는 역할을 맡는다. 데이터의 품질과 양, 효과적인 학습 알고리즘이 성능을 좌우한다.</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ot">[^1]: </span>Alex ChandyAlex Chandy, "Telling a story with data", <span class="co">[</span><span class="ot">linkedin</span><span class="co">](https://www.linkedin.com/posts/alex-chandy-tx_telling-a-story-with-data-the-grass-on-activity-7224368217723387906-CzgH)</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>소프트웨어 3.0은 대규모 언어 모델(LLM)과 같은 고급 AI 시스템을 활용한 새로운 패러다임이다. 추론과 생성 능력을 갖춘 AI를 활용하여 더 복잡하고 다양한 문제를 해결한다. 개발자는 AI 모델과 상호작용하며 고수준의 지시를 제공하고, AI는 이를 바탕으로 코드를 생성하거나 복잡한 작업을 수행한다. 이 방식은 이전 버전들보다 훨씬 더 광범위한 문제 영역을 다룬다.</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="al">![소프트웨어 3.0](images/software-3.jpg)</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>| 특성 | 소프트웨어 1.0 | 소프트웨어 2.0 | 소프트웨어 3.0 |</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>|:---------------:|:----------------:|:----------------:|:------------------:|</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>| 핵심 접근법 | 명시적 프로그래밍 | 머신러닝/인공신경망 | 대규모 언어 모델(LLM)/AI |</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>| 개발자 역할 | 알고리즘 설계 및 구현 | 모델 구조 설계 및 학습 관리 | AI와 상호작용, 고수준 지시 제공 |</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>| 문제 해결 방식 | 직접 로직 코딩 | 데이터 기반 학습 및 패턴 인식 | AI 기반 추론 및 생성 |</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>| 핵심 역량 | 논리적 사고, 코딩 기술 | 데이터 처리, 모델 최적화 | AI 이해/활용, 프롬프트 공학 |</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>| 성능 좌우 요소 | 코드 품질, 알고리즘 효율성 | 데이터 품질/양, 학습 알고리즘 | AI 모델 성능, 프롬프트 품질 |</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>| 적용 범위 | 명확히 정의된 문제 | 패턴 인식, 예측 가능한 문제 | 복잡하고 다양한 문제 |</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>| 개발 과정 | 순차적, 명시적 | 반복적, 데이터 중심 | 대화형, AI 협업 |</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>| 유지보수 | 직접 코드 수정 | 모델 재학습, 파라미터 조정 | 프롬프트 개선, AI 모델 업데이트 |</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>| 장점 | 정확성, 투명성 | 복잡한 패턴 처리 능력 | 높은 유연성, 빠른 개발 |</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>| 단점 | 복잡한 문제에 대한 확장성 제한 | 대량의 데이터 필요, 설명 어려움 | 결과 예측 어려움, 윤리적 고려사항 |</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">### 애자일과 CRISP-DM</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>Agile 방법론은 소프트웨어 개발을 위한 반복적이고 증분적인 접근 방식이다. 짧은 개발 주기(스프린트)를 통해 빠른 피드백과 변화에 대한 유연한 대응을 강조한다. 고객과의 긴밀한 협력, 작동하는 소프트웨어의 지속적인 제공, 그리고 팀의 자율성을 중요시한다.</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>CRISP-DM은 데이터 마이닝과 머신러닝 프로젝트를 위한 구조화된 접근 방식이다. 비즈니스 이해부터 배포까지 6단계로 구성되며, 각 단계는 순환적이고 반복적으로 수행될 수 있다. 데이터의 이해와 준비에 많은 비중을 두며, 비즈니스 목표와 데이터 과학적 방법론을 긴밀히 연계한다.</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>| 특성 | Agile | CRISP-DM |</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>|:----------:|:----------------------:|:-------------------------------:|</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>| 주요 목적 | 소프트웨어 개발 | 데이터 마이닝/머신러닝 |</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>| 프로세스 구조 | 반복적 스프린트 | 6단계 순환 프로세스 |</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>| 주기 길이 | 2-4주의 짧은 스프린트 | 각 단계별로 다양함 |</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>| 핵심 산출물 | 작동하는 소프트웨어 | 데이터 인사이트, 예측 모델 |</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>| 팀 구성 | 크로스 펑셔널 소규모 팀 | 다양한 전문가 (데이터 과학자, 비즈니스 분석가 등) |</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>| 고객 참여 | 지속적이고 긴밀함 | 주로 초기와 평가 단계에 집중 |</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>| 변경 관리 | 매우 유연함 | 구조화되어 있으나 단계 간 반복 가능 |</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>| 품질 관리 | 지속적인 통합과 테스팅 | 데이터 품질, 모델 성능, 비즈니스 가치 평가 |</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>| 주요 강조점 | 빠른 제품 출시와 적응 | 데이터 이해와 비즈니스 가치 창출 |</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>| 적용 분야 | 주로 소프트웨어 개발 | 데이터 분석, 예측 모델링 프로젝트 |</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="fu">### 소프트웨어 3.0 개발방법론</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>소프트웨어 3.0 개발방법론은 아직 공식적으로 정립되지 않았지만, 새로운 패러다임의 특성을 반영한 몇 가지 emerging practices와 원칙들이 존재한다. </span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>AI-first 설계를 통해 제품 설계 단계부터 AI 기능을 핵심으로 고려한다. 프롬프트 엔지니어링은 LLM과의 효과적인 상호작용을 위해 중요한 역할을 한다. 개발자들은 반복적 AI 튜닝 과정을 통해 모델의 출력을 지속적으로 평가하고 개선한다. </span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>데이터 큐레이션은 모델의 성능 향상을 위해 필수적이며, 고품질 데이터를 선별하고 관리하는 작업이 포함된다. 윤리적 AI 개발을 통해 AI의 편향성, 공정성, 투명성 등을 고려한 개발 프로세스를 구축한다. </span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>하이브리드 인간-AI 협업 모델을 통해 인간 개발자와 AI 시스템의 강점을 결합한다. 지속적 학습 및 적응 원칙에 따라 배포 후에도 모델의 성능을 모니터링하고 업데이트한다. </span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>멀티모달 AI 통합을 통해 텍스트, 이미지, 음성 등 다양한 모달리티를 처리할 수 있는 AI 시스템을 개발한다. 확장 가능한 AI 인프라 구축에 중점을 두어 대규모 AI 모델을 효율적으로 운영하고 확장한다. </span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>마지막으로, AI 안전성 및 견고성을 보장하기 위해 예측 불가능한 상황에서도 안정적으로 작동할 수 있는 시스템을 개발한다. </span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="fu">## AI 엔지니어</span></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>**AI 엔지니어(AI Engineer)**는 API를 기준으로 오른쪽에 위치하여 데이터/연구 중심의 역할과 제품/사용자 중심의 역할 사이를 효과적으로 연결한다. 주요 업무로는 체인/에이전트 개발과 도구 및 인프라 구축에 집중하며, ML 엔지니어나 데이터 과학자보다 더 제품 지향적이면서도 풀스택 엔지니어보다는 AI 기술에 특화된 역량을 보유한다. AI 엔지니어는 AI 모델과 기술을 실제 제품이나 서비스로 구현하는 데 중점을 두어, 연구 결과를 실용적인 애플리케이션으로 변환하는 핵심적인 역할을 수행한다. <span class="co">[</span><span class="ot">@swyx_alessio_2023</span><span class="co">]</span></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="al">![AI 엔지니어](images/ai-engineer.webp)</span></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="fu">## 개발 작업흐름</span></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>**"발사하고, 준비하고, 조준한다(Fire, ready, aim)"**는 접근법은 AI 개발 프로세스를 혁신적으로 변화시켰다. 기존에는 데이터 과학자나 ML 엔지니어가 특정 도메인 모델을 훈련시키기 위해 먼저 광범위한 데이터 수집 작업을 수행해야 했다. 이는 시간과 자원을 많이 소모하는 과정이었다. 그러나 이제는 제품 관리자나 소프트웨어 엔지니어가 대규모 언어 모델(LLM)을 활용하여 즉시 제품 아이디어를 구축하고 검증할 수 있게 되었다. 이들은 LLM에 프롬프트를 입력하여 빠르게 프로토타입을 만들고 아이디어의 실현 가능성을 평가한다. 이후 제품 컨셉이 검증되면, 그때 필요한 특정 데이터를 수집하여 모델을 미세 조정한다. 이 방식은 개발 주기를 크게 단축시키고, 더 빠른 혁신과 시장 반응 확인을 가능하게 한다.</span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>AI 엔지니어의 역할은 LLM(대규모 언어 모델) 기반 AI 개발 과정에서 혁신적인 변화를 가져왔다. 이들은 전통적인 ML 접근법과는 다르게 작업한다. AI 엔지니어는 먼저 제품 아이디어를 신속하게 구현하고 검증하는 것으로 시작한다. 이를 위해 기존의 강력한 LLM을 활용하여 초기 프로토타입을 만들고 사용자 피드백을 수집한다.</span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>제품이 성공 가능성을 보이면, AI 엔지니어는 그 다음 단계로 넘어간다. 제품에 특화된 데이터를 수집하고 정제한다. 제품에 특화된 데이터는 초기 프로토타입을 통해 얻은 인사이트를 바탕으로 선별된다.</span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>마지막으로, 제품의 규모를 확장해야 할 필요가 있을 때, AI 엔지니어는 수집된 데이터를 사용하여 맞춤형 모델을 개발하거나 기존 LLM을 파인튜닝하여 제품의 성능을 향상시키고 특정 사용 사례에 더 잘 맞도록 최적화하는 데 중점을 둔다.</span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="al">![제품, 데이터, 모델 작업흐름](images/product-data-model.png)</span></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="fu">## 아키텍처</span></span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>LLM 기반 AI 응용프로그램 개발 구조는 크게 네 개의 계층으로 구성된다. 가장 상위에는 실제 사용자와 상호작용하는 AI 응용프로그램 계층이 있고, 그 아래에는 Langchain이나 LlamaIndex와 같은 프레임워크와 프롬프트 공학을 포함하는 개발 계층이 위치한다. 인프라 계층에서는 Ollama나 LMStudio를 통한 LLM 모델 배포와 Pinecone, Weaviate 등의 벡터 데이터베이스가 운용된다.</span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>이 구조의 기반이 되는 LLM 모형 계층에는 GPT, Llama, BERT, T5와 같은 기본 모델과 CodeBERT, LEGAL-BERT 등의 특화 모델이 포함된다. 각 계층은 서로 긴밀히 연결되어 있으며, 상위 계층은 하위 계층의 기능을 활용하여 작동한다. 이러한 계층화된 구조는 AI 응용프로그램 개발의 복잡성을 관리하고, 각 계층의 독립적인 발전과 유지보수를 가능하게 한다.</span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="in">flowchart TD</span></span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="in">    subgraph APP["응용프로그램 계층"]</span></span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="in">        A[AI 응용프로그램]</span></span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="in">    subgraph DEV["개발 계층"]</span></span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="in">        B1[Langchain/LlamaIndex]</span></span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="in">        B2[프롬프트 공학]</span></span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="in">    subgraph INFRA["인프라 계층"]</span></span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="in">        C1[LLM 모델 배포&lt;br&gt;Ollama/LMStudio]</span></span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="in">        C2[벡터 데이터베이스&lt;br&gt;Pinecone/Weaviate/Milvus/ChromaDB]</span></span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="in">    subgraph LLM["LLM 모형 계층"]</span></span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="in">        D["LLM&lt;br&gt;기본 모델 (예: GPT, Llama, BERT, T5)&lt;br&gt;특화 모델 (예: CodeBERT, LEGAL-BERT)"]</span></span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="in">    APP --&gt; DEV</span></span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="in">    DEV --&gt; INFRA</span></span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="in">    INFRA --&gt; LLM</span></span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-</code><button title="클립보드 복사" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>| 연도 | 라켓 기술 | 주요 플레이 스타일 | 잔디 상태 |</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>|------|----------|------------------------|------------------------|</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>| 1970 | 목재 라켓 | <span class="sc">\-</span> 서브 앤 볼리 지배적&lt;br&gt;- 네트 플레이 빈번&lt;br&gt;- 짧은 랠리 | <span class="sc">\-</span> 전반적으로 황색 띔&lt;br&gt;- 네트 주변과 서비스 라인 근처 마모 심함&lt;br&gt;- 베이스라인 상대적으로 양호 |</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>| 1980 | 목재 및 초기 금속 라켓 | <span class="sc">\-</span> 서브 앤 볼리 여전히 강세&lt;br&gt;- 그라운드 스트로크 플레이 증가 시작 | <span class="sc">\-</span> 1970년대보다 약간 개선&lt;br&gt;- 베이스라인 마모 조금씩 증가&lt;br&gt;- 여전히 네트 주변 마모 뚜렷 |</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>| 2005 | 경량 복합 소재 라켓 | <span class="sc">\-</span> 파워 베이스라인 플레이 주류화&lt;br&gt;- 강력한 서브와 리턴&lt;br&gt;- 긴 랠리 증가 | <span class="sc">\-</span> 전반적인 잔디 상태 크게 개선&lt;br&gt;- 베이스라인 마모 뚜렷해짐&lt;br&gt;- 네트 주변 마모 감소 |</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>| 2023 | 첨단 복합 소재 라켓 | <span class="sc">\-</span> 공격적 베이스라인 플레이 극대화&lt;br&gt;- 파워와 스피드 중심 경기&lt;br&gt;- 매우 긴 랠리 일반화 | <span class="sc">\-</span> 최상의 전반적 잔디 관리&lt;br&gt;- 베이스라인 극심한 마모&lt;br&gt;- 코트 중앙부 마모 증가 |</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/tennis.jfif)</span>{fig-align="center" width="516"}</span></code><button title="클립보드 복사" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
@@ -1387,7 +1101,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false});
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","loop":false,"openEffect":"zoom","closeEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
