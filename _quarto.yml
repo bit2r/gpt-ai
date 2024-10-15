@@ -32,6 +32,7 @@ website:
       - section: "기본기"
         contents:
           - index.qmd
+          - theory.qmd          
           - positron.qmd
           - API.qmd
           - rstats.qmd
